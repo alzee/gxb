@@ -2,6 +2,7 @@
   background: #FAFAFA;
   opacity: 1;
   border-radius: 8px;
+  position: relative;
   --padding-top: 10px;
   --padding-bottom: 10px;
   --padding-end: 15px;
@@ -9,20 +10,13 @@
   --placeholder-color: #B2B2B2;
 }
 .small-links{
-  color: #787878;
+  color: #9B9B9B;
+  font-size: 13px;
 }
-ion-button{
+.submit{
   background: #0072FF;
   border-radius: 8px;
-}
-.circle{
-  width: 50px !important;
-  height: 50px;
-  background: #FFFFFF;
-  border: 1px solid #D9D9D9;
-  border-radius: 50%;
-  opacity: 1;
-  display: flex;
+  margin-bottom: 60px;
 }
 .logo{
   background-color: #b2b2b2;
@@ -35,15 +29,20 @@ ion-button{
 }
 ion-item{
   --border-style: none;
+  --padding-start: 0;
 }
-ion-button{
-  margin-bottom: 60px;
+ion-checkbox{
+  --background-checked: #00A9F6;
+  --border-color-checked: #00A9F6;
+  --size: 16px;
 }
-ion-thumbnail{
-  width: 25px;
-  height: 25px;
+a{
+  color: #00A9F6;
 }
-ion-img{
-  width: 25px;
-  height: 25px;
+ion-button.sms{
+  position: absolute;
+  right: 0;
+  --background: #FAFAFA;
+  --background-activated: #FAFAFA;
+  --color: black;
 }
