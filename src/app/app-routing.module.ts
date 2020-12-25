@@ -13,6 +13,26 @@ const routes: Routes = [
   {
     path: 'signup',
     loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'hall',
+    loadChildren: () => import('./hall/hall.module').then( m => m.HallPageModule)
+  },
+  {
+    path: 'equity',
+    loadChildren: () => import('./equity/equity.module').then( m => m.EquityPageModule)
+  },
+  {
+    path: 'land',
+    loadChildren: () => import('./land/land.module').then( m => m.LandPageModule)
+  },
+  {
+    path: 'me',
+    loadChildren: () => import('./me/me.module').then( m => m.MePageModule)
   }
 ];
 @NgModule({
