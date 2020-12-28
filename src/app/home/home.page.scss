@@ -1,0 +1,24 @@
+ion-searchbar{
+  --background: #fff;
+  //--border-radius: 1em;
+}
+ion-thumbnail{
+  --size: 32px;
+}
+ion-col{
+  display: flex;
+}
+ion-content{
+  --background: #F5F5F5 url("../../assets/img/bg.png") round;
+}
+ion-item{
+  --border-style: none;
+}
+.home1-pic img{
+  border-radius: 50%;
+}
+ion-item.home1{
+  ion-text{
+    display: block;
+  }
+}
