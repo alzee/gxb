@@ -1,7 +1,23 @@
+ion-badge{
+  border-radius: .25em;
+  font-weight: normal;
+  margin-right: 4px;
+}
+ion-badge.reg{
+  background: rgba(0, 114, 255, 0.1);
+  color: #0072FF;
+}
+ion-badge.save{
+  background: rgba(0, 208, 36, 0.1);
+  color: #00D024;
+}
 ion-content{
   --background: #F5F5F5 url("../../assets/img/bg.png") round;
   ion-grid{
     --ion-grid-padding: 0;
+  }
+  >ion-item{
+    margin-bottom: 10px;
   }
   ion-item{
     --border-style: none;
@@ -9,7 +25,6 @@ ion-content{
     --padding-start: 0;
     --padding-end: 0;
     --inner-padding-end: 0;
-    margin-bottom: 10px;
   }
   ion-searchbar{
     --background: #fff;
@@ -78,6 +93,90 @@ ion-content{
       }
       .close{
         color: #787878;
+      }
+    }
+  }
+  
+  .task{
+    ion-list{
+      width: 100%;
+      padding: 0 10px;
+      ion-list-header{
+        padding-left: 0;
+        .bar{
+          background-color: #0072FF;
+          width: 4px;
+          height: 38%;
+          border-radius: .5em;
+          margin-right: 6px;
+        }
+        ion-col{
+        display: flex;
+        align-items: center;
+          h3, h5, div{
+            display: inline-block;
+          }
+          h3, h5{
+            margin-top: 12px;
+            margin-bottom: 12px;
+          }
+          h5, ion-icon{
+            color: #787878;
+          }
+        }
+      }
+      >ion-item{
+        padding: 10px 0;
+        border-top: 1px solid #E6E6E6;
+        .pic{
+          ion-thumbnail{
+            --size: 48px;
+            img{
+              border-radius: 50%;
+              width: 48px;
+            }
+          }
+          ion-label{
+            color: #787878;
+            text-align: center;
+          }
+        }
+        .text{
+          ion-text{
+            display: block;
+            margin-bottom: 3px;
+          }
+          div{
+            margin-top: 8px;
+          }
+          .info{
+            color: #888888;
+            font-size: 12px;
+          }
+        }
+        .price{
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          div{
+            background: url("../../assets/img/bookmark.png") round;
+            width: 38px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          span{
+            color: #FF3B2F;
+          }
+          .sticky{
+            font-size: 12px;
+          }
+          .num{
+            margin-top: 12px;
+            font-size: 20px;
+          }
+        }
       }
     }
   }
