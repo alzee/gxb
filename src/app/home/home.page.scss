@@ -157,6 +157,7 @@ ion-content{
         .price{
           display: flex;
           flex-direction: column;
+          justify-content: flex-end;
           align-items: flex-end;
           div{
             background: url("../../assets/img/bookmark.png") round;
