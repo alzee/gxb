@@ -14,6 +14,7 @@ export class HomePage implements OnInit {
 
   public bids = [
     {
+      avatar: '../assets/img/she.png',
       title: '任务名称',
       cate: '账号注册',
       proc: '正在进行',
@@ -21,6 +22,7 @@ export class HomePage implements OnInit {
       price: 55.5,
     },
     {
+      avatar: '../assets/img/she.png',
       title: '任务名称',
       cate: '账号注册',
       proc: '正在进行',
@@ -28,6 +30,7 @@ export class HomePage implements OnInit {
       price: 55.5,
     },
     {
+      avatar: '../assets/img/she.png',
       title: '任务名称',
       cate: '账号注册',
       proc: '正在进行',
@@ -35,6 +38,7 @@ export class HomePage implements OnInit {
       price: 55.5,
     },
     {
+      avatar: '../assets/img/she.png',
       title: '任务名称',
       cate: '账号注册',
       proc: '正在进行',
@@ -43,9 +47,43 @@ export class HomePage implements OnInit {
     },
   ];
 
+  public features = [
+    {
+      link: '/signin',
+      img: '../assets/img/bag.png',
+      name: '悬赏管理',
+    },
+    {
+      link: '/signin',
+      img: '../assets/img/flag.png',
+      name: '发布悬赏',
+    },
+    {
+      link: '/signin',
+      img: '../assets/img/note.png',
+      name: '发布管理',
+    },
+    {
+      link: '/signin',
+      img: '../assets/img/wallet.png',
+      name: '全民分红',
+    },
+    {
+      link: '/signin',
+      img: '../assets/img/land.png',
+      name: '我的领地',
+    },
+    {
+      link: '/signin',
+      img: '../assets/img/equity.png',
+      name: '股权',
+    },
+  ];
+
   public tasks = [
     {
       boss: 'jess',
+      avatar: '../assets/img/she.png',
       title: '任务名称',
       runner: 88,
       left: 12,
@@ -55,6 +93,7 @@ export class HomePage implements OnInit {
     },
     {
       boss: 'mike',
+      avatar: '../assets/img/she.png',
       title: '任务名称',
       runner: 88,
       left: 12,
