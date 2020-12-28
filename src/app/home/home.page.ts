@@ -12,6 +12,37 @@ export class HomePage implements OnInit {
   ngOnInit() {
   }
 
+  public bids = [
+    {
+      title: '任务名称',
+      cate: '账号注册',
+      proc: '正在进行',
+      no: 12345,
+      price: 55.5,
+    },
+    {
+      title: '任务名称',
+      cate: '账号注册',
+      proc: '正在进行',
+      no: 12345,
+      price: 55.5,
+    },
+    {
+      title: '任务名称',
+      cate: '账号注册',
+      proc: '正在进行',
+      no: 12345,
+      price: 55.5,
+    },
+    {
+      title: '任务名称',
+      cate: '账号注册',
+      proc: '正在进行',
+      no: 12345,
+      price: 55.5,
+    },
+  ];
+
   public tasks = [
     {
       boss: 'jess',

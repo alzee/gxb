@@ -15,7 +15,7 @@
   <ion-item class="bid">
     <ion-grid>
       <ion-row>
-        <ion-col class="item" size="6">
+        <ion-col class="item" size="6" *ngFor="let i of bids">
           <ion-row>
             <ion-col size="auto">
               <ion-thumbnail>
@@ -23,55 +23,10 @@
               </ion-thumbnail>
             </ion-col>
             <ion-col>
-              <ion-text class="title">任务名称</ion-text>
-              <ion-text class="info">任务类别|人物标签</ion-text>
-              <ion-text class="info">编号: 12345</ion-text>
-              <ion-text class="price">+55.55元</ion-text>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-        <ion-col class="item" size="6">
-          <ion-row>
-            <ion-col size="auto">
-              <ion-thumbnail>
-                <img src="../../assets/img/she.png">
-              </ion-thumbnail>
-            </ion-col>
-            <ion-col>
-              <ion-text class="title">任务名称</ion-text>
-              <ion-text class="info">任务类别|人物标签</ion-text>
-              <ion-text class="info">编号: 12345</ion-text>
-              <ion-text class="price">+55.55元</ion-text>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-        <ion-col class="item" size="6">
-          <ion-row>
-            <ion-col size="auto">
-              <ion-thumbnail>
-                <img src="../../assets/img/she.png">
-              </ion-thumbnail>
-            </ion-col>
-            <ion-col>
-              <ion-text class="title">任务名称</ion-text>
-              <ion-text class="info">任务类别|人物标签</ion-text>
-              <ion-text class="info">编号: 12345</ion-text>
-              <ion-text class="price">+55.55元</ion-text>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-        <ion-col class="item" size="6">
-          <ion-row>
-            <ion-col size="auto">
-              <ion-thumbnail>
-                <img src="../../assets/img/she.png">
-              </ion-thumbnail>
-            </ion-col>
-            <ion-col>
-              <ion-text class="title">任务名称</ion-text>
-              <ion-text class="info">任务类别|人物标签</ion-text>
-              <ion-text class="info">编号: 12345</ion-text>
-              <ion-text class="price">+55.55元</ion-text>
+              <ion-text class="title">{{i.title}}</ion-text>
+              <ion-text class="info">{{i.cate}}|{{i.proc}}</ion-text>
+              <ion-text class="info">编号: {{i.no}}</ion-text>
+              <ion-text class="price">+{{i.price}}元</ion-text>
             </ion-col>
           </ion-row>
         </ion-col>
@@ -147,8 +102,7 @@
         </ion-grid>
       </ion-list-header>
 
-      <ng-container *ngFor="let i of tasks">
-      <ion-item>
+      <ion-item *ngFor="let i of tasks">
         <ion-grid>
           <ion-row>
             <ion-col class="pic" size="auto">
@@ -176,7 +130,6 @@
           </ion-row>
         </ion-grid>
       </ion-item>
-      </ng-container>
 
     </ion-list>
   </ion-item>
