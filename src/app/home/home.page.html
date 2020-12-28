@@ -1,10 +1,10 @@
 <ion-content class="ion-padding-horizontal">
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-searchbar class="ion-no-padding" placeholder="任务标题、编号、用户ID、昵称"></ion-searchbar>
+      <ion-col class="ion-no-padding">
+        <ion-searchbar class="ion-no-padding ion-padding-end" placeholder="任务标题、编号、用户ID、昵称"></ion-searchbar>
       </ion-col>
-      <ion-col class="support ion-align-items-center" size="auto">
+      <ion-col class="support ion-align-items-center ion-no-padding" size="auto">
         <ion-thumbnail class="">
           <img src="../assets/img/support.png">
         </ion-thumbnail>
@@ -80,6 +80,46 @@
   </ion-item>
 
   <ion-item class="feature">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" routerLink="/signin">
+          <ion-thumbnail>
+            <img src="../assets/img/bag.png">
+          </ion-thumbnail>
+          <ion-label>悬赏管理</ion-label>
+        </ion-col>
+        <ion-col size="4" routerLink="/signin">
+          <ion-thumbnail>
+            <img src="../assets/img/flag.png">
+          </ion-thumbnail>
+          <ion-label>发布悬赏</ion-label>
+        </ion-col>
+        <ion-col size="4" routerLink="/signin">
+          <ion-thumbnail>
+            <img src="../assets/img/note.png">
+          </ion-thumbnail>
+          <ion-label>发布管理</ion-label>
+        </ion-col>
+        <ion-col size="4" routerLink="/signin">
+          <ion-thumbnail>
+            <img src="../assets/img/wallet.png">
+          </ion-thumbnail>
+          <ion-label>全民分红</ion-label>
+        </ion-col>
+        <ion-col size="4" routerLink="/signin">
+          <ion-thumbnail>
+            <img src="../assets/img/land.png">
+          </ion-thumbnail>
+          <ion-label>我的领地</ion-label>
+        </ion-col>
+        <ion-col size="4" routerLink="/signin">
+          <ion-thumbnail>
+            <img src="../assets/img/equity.png">
+          </ion-thumbnail>
+          <ion-label>股权</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-item>
 
   <ion-item class="alert">
