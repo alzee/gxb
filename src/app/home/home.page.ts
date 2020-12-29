@@ -49,7 +49,7 @@ export class HomePage implements OnInit {
 
   public features = [
     {
-      link: '/signin',
+      link: '/mytasks',
       img: '../assets/img/bag.png',
       name: '悬赏管理',
     },
