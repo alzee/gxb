@@ -1,9 +1,36 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>me</ion-title>
+    <ion-icon color="light" slot="start" name="chatbubble-ellipses-outline"></ion-icon>
+    <ion-title color="light">个人中心</ion-title>
+    <ion-icon color="light" slot="end" name="settings-outline"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item class="about">
+    <ion-avatar slot="start">
+      <img src="../assets/img/she.png">
+    </ion-avatar>
+    <div>
+      <ion-text class="name" color="light">
+        姓名
+      </ion-text>
+      <ion-text color="light">
+        会员ID: 123124
+      </ion-text>
+      <ion-icon color="light" size="small" name="copy-outline"></ion-icon>
+    </div>
+  </ion-item>
+
+  <div class="offset ion-padding-horizontal">
+    <ion-item class="balance">
+    </ion-item>
+
+    <ion-item class="feature">
+    </ion-item>
+
+    <ion-item class="other">
+    </ion-item>
+  </div>
 
 </ion-content>

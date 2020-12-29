@@ -1,0 +1,36 @@
+ion-toolbar{
+  --background: none;
+}
+ion-content{
+  --offset-top:  45px !important;
+  --background: #F5F5F5;
+  .about{
+    --background: none;
+    background: linear-gradient(90deg, #0098FF 0%, #0072FF 50%);
+    top: -45px;
+    padding: 65px 0 45px;
+    ion-avatar{
+      width: 64px;
+      height: 64px;
+      border: 2px solid #fff;
+    }
+    .name{
+      display: block;
+      font-size: 22px;
+    }
+  }
+  .offset{
+    position: relative;
+    top: -72px;
+    ion-item{
+      --border-radius: .25em;
+      margin-bottom: 16px;
+    }
+    .balance{
+    }
+    .feature{
+    }
+    .other{
+    }
+  }
+}
