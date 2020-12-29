@@ -1,9 +1,52 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>land</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>主城</ion-title>
+    <ion-text color="medium" slot="end">规则</ion-text>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item class="cells">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let i of [].constructor(35)">
+          <ion-icon color="medium" name="add-outline"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
 
+  <ion-item class="info">
+    <ion-avatar>
+      <img src="../assets/img/she.png">
+    </ion-avatar>
+    <div class="name">
+      <ion-text color="medium">
+        地区
+      </ion-text>
+      <ion-text>
+        姓名
+      </ion-text>
+    </div>
+    <div slot="end" class="price">
+      <ion-text>
+        领地价格
+      </ion-text>
+      <ion-text color="danger">
+        9999
+      </ion-text>
+    </div>
+  </ion-item>
+
+  <ion-item class="btn">
+    <ion-button expand="full" size="large" class="other">
+      其它领地
+    </ion-button>
+    <ion-button expand="full" size="large" class="buy">
+      我要成为领主
+    </ion-button>
+  </ion-item>
 </ion-content>

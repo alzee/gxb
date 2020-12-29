@@ -12,4 +12,6 @@ export class LandPage implements OnInit {
   ngOnInit() {
   }
 
+  public cellNum = 35;
+
 }
