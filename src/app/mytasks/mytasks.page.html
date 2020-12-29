@@ -17,5 +17,34 @@
   </ion-toolbar>
 
 <ion-content>
+  <ion-item class="task">
+    <ion-list>
+      <ion-item *ngFor="let i of tasks">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="pic" size="auto">
+              <ion-thumbnail>
+                <img [src]="i.avatar">
+              </ion-thumbnail>
+            </ion-col>
+            <ion-col class="text">
+              <ion-text class="title">{{i.title}}</ion-text>
+              <div>
+                <ion-text class="info">{{i.cate}}</ion-text>
+                <ion-text class="info" *ngFor="let j of i.tags">|{{j}}</ion-text>
+              </div>
+              <ion-text class="info">报名时间:{{i.date}}</ion-text>
+            </ion-col>
+            <ion-col class="price" size="auto">
+              <ion-text class="num"><span>{{i.price}}元</span></ion-text>
+              <div class="status">
+                <ion-text class=""><span>已完成</span></ion-text>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
 
+    </ion-list>
+  </ion-item>
 </ion-content>

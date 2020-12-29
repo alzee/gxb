@@ -12,6 +12,33 @@ export class MytasksPage implements OnInit {
   ngOnInit() {
   }
 
+  public tasks = [
+    {
+      boss: 'jess',
+      avatar: '../assets/img/she.png',
+      title: '任务名称',
+      runner: 88,
+      left: 12,
+      cate: '简单关注',
+      sticky: true,
+      price: 55.5,
+      tags: ['急速审核', '趣省钱'],
+      date: '2020-11-11',
+    },
+    {
+      boss: 'mike',
+      avatar: '../assets/img/she.png',
+      title: '任务名称',
+      runner: 88,
+      left: 12,
+      cate: '账号注册',
+      sticky: false,
+      price: 55.5,
+      tags: ['急速审核', '趣省钱'],
+      date: '2020-11-11',
+    },
+  ];
+
   public statuses = [
     {
       value: 'all',
