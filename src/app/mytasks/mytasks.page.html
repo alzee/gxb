@@ -1,8 +1,20 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>mytasks</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>接单管理</ion-title>
+
   </ion-toolbar>
 </ion-header>
+
+  <ion-toolbar>
+<ion-segment value="all">
+  <ion-segment-button [value]="i.value" *ngFor="let i of statuses">
+    <ion-label>{{i.label}}</ion-label>
+  </ion-segment-button>
+</ion-segment>
+  </ion-toolbar>
 
 <ion-content>
 

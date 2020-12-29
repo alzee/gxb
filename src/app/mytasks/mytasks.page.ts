@@ -12,4 +12,27 @@ export class MytasksPage implements OnInit {
   ngOnInit() {
   }
 
+  public statuses = [
+    {
+      value: 'all',
+      label: '全部',
+    },
+    {
+      value: 'preSubmit',
+      label: '待提交',
+    },
+    {
+      value: 'reviewing',
+      label: '审核中',
+    },
+    {
+      value: 'fail',
+      label: '不合格',
+    },
+    {
+      value: 'done',
+      label: '已完成',
+    },
+  ];
+
 }
