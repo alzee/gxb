@@ -11,13 +11,6 @@ ion-badge.save{
   background: rgba(0, 208, 36, 0.1);
   color: #00D024;
 }
-ion-item{
-  --border-style: none;
-  --border-radius: .25em;
-  --padding-start: 0;
-  --padding-end: 0;
-  --inner-padding-end: 0;
-}
 ion-header{
   ion-toolbar{
     ion-button{
@@ -37,7 +30,8 @@ ion-segment-button{
 }
 
 .search{
-  --border-style: none;
+  --padding-start: 16px;
+  --padding-end: 16px;
   --background: #F5F5F5;
   //--padding-start: 0;
   //--padding-end: 0;

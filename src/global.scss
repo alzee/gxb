@@ -29,3 +29,9 @@ ion-header{
     padding-left: 16px;
     padding-right: 16px;
 }
+ion-item{
+  --border-style: none;
+  --inner-padding-end: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+}

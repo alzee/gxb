@@ -69,7 +69,7 @@ export class HomePage implements OnInit {
       name: '全民分红',
     },
     {
-      link: '/signin',
+      link: '/land',
       img: '../assets/img/land.png',
       name: '我的领地',
     },
