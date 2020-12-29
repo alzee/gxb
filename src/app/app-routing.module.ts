@@ -33,6 +33,10 @@ const routes: Routes = [
   {
     path: 'me',
     loadChildren: () => import('./me/me.module').then( m => m.MePageModule)
+  },
+  {
+    path: 'mytasks',
+    loadChildren: () => import('./mytasks/mytasks.module').then( m => m.MytasksPageModule)
   }
 ];
 @NgModule({
