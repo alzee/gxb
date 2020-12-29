@@ -1,0 +1,35 @@
+ion-content{
+  --background: #F5F5F5 url("../../assets/img/equity_bg.png") top/contain no-repeat;
+  //background-image: url('../../assets/img/equity_bg.png');
+  ion-toolbar{
+    --background: none;
+  }
+  >ion-item{
+    margin-bottom: 10px;
+  }
+  ion-item{
+    --border-style: none;
+    --border-radius: .25em;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    --inner-padding-end: 0;
+  }
+  .banner{
+    margin-top: 32px;
+  }
+  .feature{
+    ion-col:last-child{
+      margin-bottom: 20px;
+    }
+    ion-col{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+      ion-thumbnail{
+        --size: 32px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}

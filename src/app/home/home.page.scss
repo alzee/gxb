@@ -73,6 +73,10 @@ ion-content{
       flex-direction: column;
       align-items: center;
       margin-top: 20px;
+      ion-thumbnail{
+        --size: 38px;
+        margin-bottom: 6px;
+      }
     }
   }
   
