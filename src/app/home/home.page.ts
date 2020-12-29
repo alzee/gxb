@@ -74,7 +74,7 @@ export class HomePage implements OnInit {
       name: '我的领地',
     },
     {
-      link: '/signin',
+      link: '/equity',
       img: '../assets/img/equity.png',
       name: '股权',
     },

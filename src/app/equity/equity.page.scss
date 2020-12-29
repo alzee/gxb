@@ -1,6 +1,11 @@
+ion-header{
+    ion-toolbar{
+  --background: none;
+    }
+}
 ion-content{
+  --offset-top: 46px !important;
   --background: #F5F5F5 url("../../assets/img/equity_bg.png") top/contain no-repeat;
-  //background-image: url('../../assets/img/equity_bg.png');
   ion-toolbar{
     --background: none;
   }
