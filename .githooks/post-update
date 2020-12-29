@@ -7,4 +7,4 @@
 
 
 cd ..
-npm run ng build
+npm run build
