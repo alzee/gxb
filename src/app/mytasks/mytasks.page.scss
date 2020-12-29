@@ -53,13 +53,6 @@ ion-content{
         padding: 10px 0;
         border-bottom: 1px solid #E6E6E6;
         .pic{
-          ion-thumbnail{
-            --size: 48px;
-            img{
-              border-radius: 50%;
-              width: 48px;
-            }
-          }
           ion-label{
             color: #787878;
             text-align: center;
