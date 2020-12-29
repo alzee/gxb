@@ -8,13 +8,13 @@
   </ion-toolbar>
 </ion-header>
 
-  <ion-toolbar>
-<ion-segment value="all">
-  <ion-segment-button [value]="i.value" *ngFor="let i of statuses">
-    <ion-label>{{i.label}}</ion-label>
-  </ion-segment-button>
-</ion-segment>
-  </ion-toolbar>
+<ion-toolbar>
+  <ion-segment value="all">
+    <ion-segment-button [value]="i.value" *ngFor="let i of statuses">
+      <ion-label>{{i.label}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
 
 <ion-content>
   <ion-item class="task">

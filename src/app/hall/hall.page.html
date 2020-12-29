@@ -1,9 +1,63 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>hall</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>任务大厅</ion-title>
+    <!--
+    <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet">
+      <ion-select-option *ngFor="let i of cate">{{i}}</ion-select-option>
+    </ion-select>
+    -->
+    <ion-button slot="end" size="small">发悬赏</ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item class="search">
+        <ion-searchbar class="ion-no-padding ion-padding-end" placeholder="请输入任务编号、关键词搜索"></ion-searchbar>
+        <ion-text slot="end">搜索</ion-text>
+  </ion-item>
 
+  <ion-segment value="all">
+    <ion-segment-button [value]="i.value" *ngFor="let i of sorts">
+      <ion-label>
+        {{i.label}}
+        <ion-icon slot="end" name="caret-down-outline"></ion-icon>
+      </ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+<ion-item class="task">
+    <ion-list>
+      <ion-item *ngFor="let i of tasks">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="pic" size="auto">
+              <ion-avatar>
+                <img [src]="i.avatar">
+              </ion-avatar>
+              <ion-label>{{i.boss}}</ion-label>
+            </ion-col>
+            <ion-col class="text">
+              <ion-text class="title">{{i.title}}</ion-text>
+              <ion-text class="info">{{i.runner}}人已赚|剩余:{{i.left}}</ion-text>
+              <div>
+                <ng-container *ngFor="let j of i.cate">
+                  <ion-badge *ngIf="j==='reg'" class="reg">账号注册</ion-badge>
+                  <ion-badge *ngIf="j==='save'" class="save">趣省钱</ion-badge>
+                </ng-container>
+              </div>
+            </ion-col>
+            <ion-col class="price" size="auto">
+              <div *ngIf="i.sticky">
+                <ion-text class="sticky"><span>置顶</span></ion-text>
+              </div>
+              <ion-text class="num"><span>{{i.price}}元</span></ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </ion-item>
 </ion-content>
