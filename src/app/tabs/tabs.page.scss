@@ -1,36 +1,8 @@
-.home ion-item{
-  --background: url("../../assets/img/home.png") round;
+:host{
+  --svgcolor: #999999;
 }
-.home.tab-selected ion-item{
-  --background: url("../../assets/img/home.png") round;
-}
-.hall ion-item{
-  --background: url("../../assets/img/hall.png") round;
-}
-.hall.tab-selected ion-item{
-  --background: url("../../assets/img/hall.png") round;
-}
-.equity ion-item{
-  --background: url("../../assets/img/equity.png") round;
-}
-.equity.tab-selected ion-item{
-  --background: url("../../assets/img/equity.png") round;
-}
-.land ion-item{
-  --background: url("../../assets/img/land.png") round;
-}
-.land.tab-selected ion-item{
-  --background: url("../../assets/img/land.png") round;
-}
-.me ion-item{
-  --background: url("../../assets/img/me.png") round;
-}
-.me .tab-selected ion-item{
-  --background: url("../../assets/img/me.png") round;
-}
-ion-item{
-  width: 30px;
-  height: 30px;
+.tab-selected{
+  --svgcolor: #328EFF;
 }
 ion-tab-bar{
   --border: 0;
