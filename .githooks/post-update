@@ -6,5 +6,5 @@
 # To enable this hook, rename this file to "post-update".
 
 
-cd ../../
-touch testhook
+cd ..
+npm run ng build
