@@ -53,6 +53,10 @@ const routes: Routes = [
   {
     path: 'approve',
     loadChildren: () => import('./approve/approve.module').then( m => m.ApprovePageModule)
+  },
+  {
+    path: 'sticky',
+    loadChildren: () => import('./sticky/sticky.module').then( m => m.StickyPageModule)
   }
 ];
 @NgModule({

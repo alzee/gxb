@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>置顶</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-item class="title">
+    <ion-label>标题名称</ion-label>
+    <ion-input placeholder="请输入任务标题" value="分分钟钟搞定 秒审核" required readonly></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>展示天数</ion-label>
+    <ion-input placeholder="填写天数" required clearInput></ion-input>
+    <ion-badge color="danger">5.55元/天</ion-badge>
+  </ion-item>
+  <ion-label class="label" color="medium">支付金额</ion-label>
+  <ion-item class="price">
+    <ion-text color="danger">¥ 9.55</ion-text>
+  </ion-item>
+  <ion-button expand="block">立即支付</ion-button>
+
+</ion-content>
