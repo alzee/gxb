@@ -1,0 +1,26 @@
+ion-segment{
+  --background: unset;
+}
+ion-segment-button{
+  --color-checked: #0072FF;
+  --border-style: none;
+  --indicator-box-shadow: 0 4px #0072FF;
+  --border-radius: unset;
+}
+
+ion-content{
+  ion-button{
+    margin: 16px;
+  }
+  .title{
+    margin-top: 10px;
+  }
+  ion-item{
+    --padding-start: 16px;
+    --padding-end: 16px;
+  }
+  >ion-label{
+    margin: 10px 16px;
+    display: block;
+  }
+}

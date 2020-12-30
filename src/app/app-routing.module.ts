@@ -73,6 +73,10 @@ const routes: Routes = [
   {
     path: 'topup',
     loadChildren: () => import('./topup/topup.module').then( m => m.TopupPageModule)
+  },
+  {
+    path: 'report',
+    loadChildren: () => import('./report/report.module').then( m => m.ReportPageModule)
   }
 ];
 @NgModule({
