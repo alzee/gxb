@@ -1,0 +1,53 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">全民分红</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="info">
+    <div slot="start">
+      <ion-text color="light" class="label">
+        分红金额
+      </ion-text>
+      <ion-text color="light" class="amount">
+        123123
+      </ion-text>
+    </div>
+    <div slot="end">
+      <ion-text color="light" class="desc">
+        分红说明
+      </ion-text>
+      <ion-text color="light" class="coin">
+        金币:10个
+      </ion-text>
+    </div>
+  </ion-item>
+
+  <ion-item class="hist">
+    <ion-list>
+      <ion-list-header>
+        <ion-item>
+          <ion-text color="medium" slot="start">
+            2020-11-22
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </ion-text>
+          <ion-text color="medium" slot="end">共555元</ion-text>
+        </ion-item>
+      </ion-list-header>
+      <ion-item class="list-item" *ngFor="let i of hists">
+        <ion-thumbnail slot="start">
+          <img src="../assets/img/rmb.png">
+        </ion-thumbnail>
+        <div>
+          <ion-text>分红</ion-text>
+          <ion-text color="medium" class="date">{{i.date}}</ion-text>
+        </div>
+        <ion-text color="warning" slot="end">+{{i.amount}}</ion-text>
+      </ion-item>
+    </ion-list>
+  </ion-item>
+</ion-content>

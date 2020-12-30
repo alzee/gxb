@@ -64,7 +64,7 @@ export class HomePage implements OnInit {
       name: '发布管理',
     },
     {
-      link: '/signin',
+      link: '/bonus',
       img: '../assets/img/wallet.png',
       name: '全民分红',
     },
