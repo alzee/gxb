@@ -69,6 +69,10 @@ const routes: Routes = [
   {
     path: 'bids',
     loadChildren: () => import('./bids/bids.module').then( m => m.BidsPageModule)
+  },
+  {
+    path: 'topup',
+    loadChildren: () => import('./topup/topup.module').then( m => m.TopupPageModule)
   }
 ];
 @NgModule({
