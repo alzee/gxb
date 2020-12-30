@@ -57,6 +57,10 @@ const routes: Routes = [
   {
     path: 'sticky',
     loadChildren: () => import('./sticky/sticky.module').then( m => m.StickyPageModule)
+  },
+  {
+    path: 'promo',
+    loadChildren: () => import('./promo/promo.module').then( m => m.PromoPageModule)
   }
 ];
 @NgModule({
