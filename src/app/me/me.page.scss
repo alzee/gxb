@@ -4,6 +4,10 @@ ion-toolbar{
 ion-content{
   --offset-top:  45px !important;
   --background: #F5F5F5;
+  ion-item{
+    --padding-start: 16px;
+    --padding-end: 16px;
+  }
   .about{
     --background: none;
     background: linear-gradient(90deg, #0098FF 0%, #0072FF 50%);
@@ -22,13 +26,57 @@ ion-content{
   .offset{
     position: relative;
     top: -72px;
-    ion-item{
-      --border-radius: .25em;
+    >*{
+      border-radius: .25em;
       margin-bottom: 16px;
+      overflow: hidden;
     }
     .balance{
+      .total{
+        --background: #474656;
+        width: 100%;
+        ion-button{
+          --background: #474656;
+        }
+      }
+      .misc{
+        --padding-start: 0px;
+        --padding-end: 0px;
+        width: 100%;
+        h3{
+          margin: 4px 0;
+        }
+        .label{
+          font-size: 14px;
+        }
+      }
     }
-    .feature{
+    .bar{
+      background-color: #0072FF;
+      width: 4px;
+      height: 38%;
+      border-radius: .5em;
+      margin-right: 6px;
+    }
+    .feature, .other{
+    --padding-start: 0px;
+    --padding-end: 0px;
+      ion-col:last-child{
+        margin-bottom: 20px;
+      }
+      ion-col{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        ion-thumbnail{
+          --size: 32px;
+          margin-bottom: 6px;
+        }
+        ion-label{
+          font-size: 14px;
+        }
+      }
     }
     .other{
     }
