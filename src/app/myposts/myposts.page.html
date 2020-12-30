@@ -5,15 +5,14 @@
     </ion-buttons>
     <ion-title>发布管理</ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment value="all">
+      <ion-segment-button [value]="i.value" *ngFor="let i of statuses">
+        <ion-label>{{i.label}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
-
-<ion-toolbar>
-  <ion-segment value="all">
-    <ion-segment-button [value]="i.value" *ngFor="let i of statuses">
-      <ion-label>{{i.label}}</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-</ion-toolbar>
 
 <ion-content color="light">
   <ion-card *ngFor="let i of tasks">
