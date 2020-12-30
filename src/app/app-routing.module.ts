@@ -49,6 +49,10 @@ const routes: Routes = [
   {
     path: 'bonus',
     loadChildren: () => import('./bonus/bonus.module').then( m => m.BonusPageModule)
+  },
+  {
+    path: 'approve',
+    loadChildren: () => import('./approve/approve.module').then( m => m.ApprovePageModule)
   }
 ];
 @NgModule({

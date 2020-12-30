@@ -1,0 +1,26 @@
+ion-content{
+  >div{
+    background: #fff;
+    padding: 10px 16px;
+    ion-label{
+      padding: 10px 0;
+      display: block;
+      ion-badge{
+        padding: 3px 6px;
+      }
+    }
+  }
+  >ion-label{
+    padding: 10px 16px;
+    display: block;
+  }
+  .check{
+    --padding-start: 16px;
+  }
+  .hint{
+    font-size: 14px;
+  }
+  ion-button{
+    margin: 16px;
+  }
+}

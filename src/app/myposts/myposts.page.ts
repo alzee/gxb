@@ -39,26 +39,32 @@ export class MypostsPage implements OnInit {
     {
       value: 'review',
       label: '审核',
+      link: '/approve',
     },
     {
       value: 'edit',
       label: '修改',
+      link: '/edit',
     },
     {
       value: 'pause',
       label: '暂停',
+      link: '/pause',
     },
     {
       value: 'unPublish',
       label: '下架',
+      link: '/unpublish',
     },
     {
       value: 'sticky',
       label: '置顶',
+      link: '/sticky',
     },
     {
       value: 'promo',
       label: '推荐',
+      link: '/promo',
     },
   ];
 

@@ -1,0 +1,49 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>审核</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-label color="medium">任务图片</ion-label>
+  <div class="ion-padding-horizontal">
+    <div>
+      <ion-label>
+        <ion-badge>1</ion-badge>
+        <ion-text>
+          出于互联网交流的数据隐私安全问题的考虑，请允许我只做简单说明。
+        </ion-text>
+      </ion-label>
+      <ion-item>
+        <ion-img src="../assets/img/pic1.png"></ion-img>
+        <ion-img src="../assets/img/pic1.png"></ion-img>
+      </ion-item>
+    </div>
+    <div>
+      <ion-label>
+        <ion-badge>2</ion-badge>
+        <ion-text>
+          出于互联网交流的数据隐私安全问题的考虑，请允许我只做简单说明。
+        </ion-text>
+      </ion-label>
+      <ion-item>
+        <ion-img src="../assets/img/pic1.png"></ion-img>
+        <ion-img src="../assets/img/pic1.png"></ion-img>
+      </ion-item>
+    </div>
+  </div>
+
+  <ion-label color="medium">审核</ion-label>
+  <ion-item class="check">
+    <ion-checkbox></ion-checkbox>
+    <ion-label>通过</ion-label>
+    <ion-checkbox checked></ion-checkbox>
+    <ion-label>拒绝</ion-label>
+  </ion-item>
+  <ion-label class="hint" color="medium">温馨提示：发布的任务涉黄、毒、赌，传销，虚假宣传，暴力恐
+    怖，谣言诈骗等违规违法信息将不予通过。</ion-label>
+  <ion-button expand="block">提交审核结果</ion-button>
+</ion-content>
