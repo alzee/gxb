@@ -20,6 +20,7 @@ export class HomePage implements OnInit {
       proc: '正在进行',
       no: 12345,
       price: 55.5,
+      link: '/signin',
     },
     {
       avatar: '../assets/img/she.png',
@@ -28,6 +29,7 @@ export class HomePage implements OnInit {
       proc: '正在进行',
       no: 12345,
       price: 55.5,
+      link: '/signin',
     },
     {
       avatar: '../assets/img/she.png',
@@ -36,6 +38,7 @@ export class HomePage implements OnInit {
       proc: '正在进行',
       no: 12345,
       price: 55.5,
+      link: '/signin',
     },
     {
       avatar: '../assets/img/she.png',
@@ -44,6 +47,7 @@ export class HomePage implements OnInit {
       proc: '正在进行',
       no: 12345,
       price: 55.5,
+      link: '/signin',
     },
   ];
 
@@ -90,6 +94,7 @@ export class HomePage implements OnInit {
       cate: ['reg'],
       sticky: true,
       price: 55.5,
+      link: '/signin',
     },
     {
       boss: 'mike',
@@ -100,6 +105,7 @@ export class HomePage implements OnInit {
       cate: ['reg', 'save'],
       sticky: false,
       price: 55.5,
+      link: '/signin',
     },
   ];
 }

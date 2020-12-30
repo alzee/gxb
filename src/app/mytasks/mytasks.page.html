@@ -19,7 +19,7 @@
 <ion-content>
   <ion-item class="task">
     <ion-list>
-      <ion-item *ngFor="let i of tasks">
+      <ion-item [routerLink]="i.link" *ngFor="let i of tasks">
         <ion-grid>
           <ion-row>
             <ion-col class="pic" size="auto">

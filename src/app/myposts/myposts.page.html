@@ -16,7 +16,7 @@
 </ion-toolbar>
 
 <ion-content color="light">
-  <ion-card *ngFor="let i of tasks">
+  <ion-card [routerLink]="i.link" *ngFor="let i of tasks">
     <ion-item class="info">
       <ion-thumbnail slot="start">
         <img src="../assets/img/she.png">

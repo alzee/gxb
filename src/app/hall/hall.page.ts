@@ -47,6 +47,7 @@ export class HallPage implements OnInit {
       cate: ['reg'],
       sticky: true,
       price: 55.5,
+      link: '/signin',
     },
     {
       boss: 'mike',
@@ -57,6 +58,7 @@ export class HallPage implements OnInit {
       cate: ['reg', 'save'],
       sticky: false,
       price: 55.5,
+      link: '/signin',
     },
   ];
 
