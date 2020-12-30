@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EquityPage } from './equity.page';
+import { CollectPage } from './collect.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: EquityPage
-  },
-  {
-    path: 'collect',
-    loadChildren: () => import('./collect/collect.module').then( m => m.CollectPageModule)
+    component: CollectPage
   }
 ];
 
@@ -18,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class EquityPageRoutingModule {}
+export class CollectPageRoutingModule {}

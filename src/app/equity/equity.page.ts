@@ -14,27 +14,27 @@ export class EquityPage implements OnInit {
 
   public features = [
     {
-      link: '/mytasks',
+      link: '/equity/collect',
       img: '../assets/img/collect.png',
       name: '领股权',
     },
     {
-      link: '/signin',
+      link: '/equity/exchange',
       img: '../assets/img/exchange.png',
       name: '兑股权',
     },
     {
-      link: '/signin',
+      link: '/equity/market',
       img: '../assets/img/market.png',
       name: '交换市场',
     },
     {
-      link: '/signin',
+      link: '/equity/meeting',
       img: '../assets/img/meeting.png',
       name: '股东大会',
     },
     {
-      link: '/signin',
+      link: '/equity/topic',
       img: '../assets/img/talk.png',
       name: '股东话题',
     },
