@@ -33,52 +33,52 @@ export class MePage implements OnInit {
 
   public features = [
     {
-      link: '/mytasks',
+      link: '/myposts',
       img: '../assets/img/bag.png',
       name: '发布管理',
     },
     {
-      link: '/signin',
+      link: '/mytasks',
       img: '../assets/img/flag.png',
       name: '接单管理',
     },
     {
-      link: '/signin',
+      link: '/me/finance',
       img: '../assets/img/note.png',
       name: '财务管理',
     },
     {
-      link: '/signin',
+      link: '/bids',
       img: '../assets/img/wallet.png',
       name: '首页竞价',
     },
     {
-      link: '/land',
+      link: '/topup',
       img: '../assets/img/land.png',
       name: '充值',
     },
     {
-      link: '/equity',
+      link: '/vip',
       img: '../assets/img/equity.png',
       name: '开通会员',
     },
     {
-      link: '/equity',
+      link: '/bonus',
       img: '../assets/img/equity.png',
       name: '全分分红',
     },
     {
-      link: '/equity',
+      link: '/report',
       img: '../assets/img/equity.png',
       name: '举报维权',
     },
     {
-      link: '/equity',
+      link: '/me/vip',
       img: '../assets/img/equity.png',
       name: '我的会员',
     },
     {
-      link: '/equity',
+      link: '/promo',
       img: '../assets/img/equity.png',
       name: '推广',
     },

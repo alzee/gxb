@@ -1,0 +1,49 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>账户明细</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-toolbar>
+    <ion-segment value="1">
+      <ion-segment-button value="1" selected>
+        <ion-label>余额明细</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2">
+        <ion-label>提现明细</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="3">
+        <ion-label>充值记录</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ion-item class="hist">
+    <ion-list>
+      <ion-list-header>
+        <ion-item>
+          <ion-text color="medium" slot="start">
+            2020-11-22
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </ion-text>
+          <ion-text color="medium" slot="end">共555元</ion-text>
+        </ion-item>
+      </ion-list-header>
+      <ion-item class="list-item" *ngFor="let i of hists">
+        <ion-thumbnail slot="start">
+          <img src="../assets/img/rmb_blue.png">
+        </ion-thumbnail>
+        <div>
+          <ion-text>充值</ion-text>
+          <ion-text color="medium" class="date">{{i.date}}</ion-text>
+        </div>
+        <ion-text color="danger" slot="end">+{{i.amount}}</ion-text>
+      </ion-item>
+    </ion-list>
+  </ion-item>
+
+</ion-content>
