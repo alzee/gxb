@@ -1,0 +1,49 @@
+ion-label{
+  padding: 10px;
+  display: block;
+  font-size: 14px;
+}
+.data ion-label{
+  width: 88px;
+}
+.cate, .devices{
+  ion-button{
+    --padding-start: 8px;
+    --padding-end: 8px;
+  }
+}
+ion-input,
+ion-textarea{
+  --placeholder-color: #B2B2B2FF;
+}
+ion-textarea{
+  --padding-start: 8px !important;
+  --padding-end: 8px;
+}
+.policy{
+    --padding-start: 8px;
+    --padding-end: 8px;
+    font-size: 14px;
+    ion-checkbox{
+      --size: 18px;
+    }
+    ion-label{
+      padding-left: 4px;
+    }
+}
+.btn{
+  ion-button{
+    height: 46px;
+    margin: 0;
+    font-size: 16px;
+  }
+  .preview{
+    --background: #fff;
+    width: 40%;
+    color: #787878;
+    border: 1px solid #E6E6E6;
+  }
+  .publish{
+    width: 60%;
+  }
+}

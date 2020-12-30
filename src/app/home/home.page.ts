@@ -54,7 +54,7 @@ export class HomePage implements OnInit {
       name: '悬赏管理',
     },
     {
-      link: '/signin',
+      link: '/publish',
       img: '../assets/img/flag.png',
       name: '发布悬赏',
     },

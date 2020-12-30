@@ -37,6 +37,10 @@ const routes: Routes = [
   {
     path: 'mytasks',
     loadChildren: () => import('./mytasks/mytasks.module').then( m => m.MytasksPageModule)
+  },
+  {
+    path: 'publish',
+    loadChildren: () => import('./publish/publish.module').then( m => m.PublishPageModule)
   }
 ];
 @NgModule({
