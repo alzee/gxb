@@ -2,6 +2,11 @@ ion-content{
   >div{
     background: #fff;
     padding: 10px 16px;
+    .pic{
+      ion-img{
+        margin-right: 10px;
+      }
+    }
     ion-label{
       padding: 10px 0;
       display: block;

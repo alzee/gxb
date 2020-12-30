@@ -1,0 +1,135 @@
+ion-item{
+  --border-radius: .25em;
+}
+.info{
+  overflow: visible;
+  margin: 30px 0 10px;
+  h4{
+    font-size: 16px;
+    margin: 4px 0;
+  }
+  .id{
+    overflow: visible;
+    padding-left: 40px;
+    ion-text{
+      font-size: 12px;
+    }
+    >ion-thumbnail{
+      width: 40px;
+      height: 38px;
+      margin-right: 12px;
+      position: relative;
+      top: -22px;
+      background: #fff;
+      border: 1px solid #E6E6E6;
+      border-radius: .25em;
+      padding: 6px 4px;
+    }
+    .speed{
+      ion-text{
+        margin-right: 6px;
+      }
+      ion-thumbnail{
+        width: 12px;
+        height: 12px;
+        margin: 0 2px;
+      }
+    }
+  }
+  .main{
+    --padding-start: 10px;
+    --padding-end: 10px;
+    display: flex;
+    align-items: flex-start;
+    div{
+      ion-text{
+        font-size: 12px;
+      }
+    }
+    .price{
+      font-size: 20px;
+    }
+  }
+  .data{
+    --padding-start: 10px;
+    --padding-end: 10px;
+    ion-col{
+      text-align: center;
+      h4{
+        color: #000;
+        font-size: 20px;
+      }
+      ion-text{
+        font-size: 12px;
+      }
+    }
+  }
+}
+.about{
+  ion-avatar{
+    margin-right: 8px;
+  }
+  .uid{
+    font-size: 14px;
+    p{
+      margin: 0;
+    }
+  }
+  .actions{
+    display: flex;
+    align-items: center;
+    ion-thumbnail{
+      --size: 14px;
+    }
+    ion-text{
+      margin: 0 20px 0 4px;
+      font-size: 14px;
+    }
+  }
+  .follow{
+    --padding-start: 12px;
+    --padding-end: 12px;
+  }
+}
+ion-button{
+  margin: 0;
+}
+.contact{
+  --background: #fff;
+  color: #787878FF;
+  width: 40%;
+}
+.apply{
+  width: 60%;
+}
+.bar{
+  background-color: #0072FF;
+  width: 4px;
+  height: 38%;
+  border-radius: .5em;
+  margin-right: 6px;
+}
+.item-header{
+  border-bottom: 1px solid #E6E6E6FF;
+  h4{
+    margin: 12px 0;
+  }
+}
+.pic{
+  ion-img{
+    margin-right: 10px;
+  }
+}
+.item-container{
+  background: #fff;
+  padding: 0 10px 10px;
+  margin: 10px 0;
+  border-radius: .25em;
+  ion-text{
+    margin: 10px 0;
+    display: block;
+    p{
+      margin: 4px 0;
+    }
+  }
+}

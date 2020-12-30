@@ -78,7 +78,7 @@ export class MypostsPage implements OnInit {
       preReview: 3,
       done: 2,
       failed: 2,
-      link: '/signin',
+      link: '/detail',
     },
     {
       title: '分分钟钟搞定 秒审核',
@@ -89,7 +89,7 @@ export class MypostsPage implements OnInit {
       preReview: 3,
       done: 2,
       failed: 2,
-      link: '/signin',
+      link: '/detail',
     },
     {
       title: '分分钟钟搞定 秒审核',
@@ -100,7 +100,7 @@ export class MypostsPage implements OnInit {
       preReview: 3,
       done: 2,
       failed: 2,
-      link: '/signin',
+      link: '/detail',
     },
     {
       title: '分分钟钟搞定 秒审核',
@@ -111,7 +111,7 @@ export class MypostsPage implements OnInit {
       preReview: 3,
       done: 2,
       failed: 2,
-      link: '/signin',
+      link: '/detail',
     },
     {
       title: '分分钟钟搞定 秒审核',
@@ -122,7 +122,7 @@ export class MypostsPage implements OnInit {
       preReview: 3,
       done: 2,
       failed: 2,
-      link: '/signin',
+      link: '/detail',
     },
   ];
 

@@ -61,6 +61,10 @@ const routes: Routes = [
   {
     path: 'promo',
     loadChildren: () => import('./promo/promo.module').then( m => m.PromoPageModule)
+  },
+  {
+    path: 'detail',
+    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
   }
 ];
 @NgModule({

@@ -58,6 +58,12 @@ ion-content{
       border-radius: .5em;
       margin-right: 6px;
     }
+    .item-header{
+      border-bottom: 1px solid #E6E6E6FF;
+      h4{
+        margin: 16px 0;
+      }
+    }
     .feature, .other{
     --padding-start: 0px;
     --padding-end: 0px;
@@ -77,8 +83,6 @@ ion-content{
           font-size: 14px;
         }
       }
-    }
-    .other{
     }
   }
 }

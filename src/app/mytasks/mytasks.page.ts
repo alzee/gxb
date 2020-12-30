@@ -24,7 +24,7 @@ export class MytasksPage implements OnInit {
       price: 55.5,
       tags: ['急速审核', '趣省钱'],
       date: '2020-11-11',
-      link: '/signin',
+      link: '/detail',
     },
     {
       boss: 'mike',
@@ -37,7 +37,7 @@ export class MytasksPage implements OnInit {
       price: 55.5,
       tags: ['急速审核', '趣省钱'],
       date: '2020-11-11',
-      link: '/signin',
+      link: '/detail',
     },
   ];
 
