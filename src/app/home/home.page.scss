@@ -12,7 +12,7 @@ ion-badge.save{
   color: #00D024;
 }
 ion-content{
-  --background: #F5F5F5 url("../../assets/img/bg.png") round;
+  --background: #F5F5F5 url("../../assets/img/bg.png") top/contain no-repeat;
   ion-grid{
     --ion-grid-padding: 0;
   }
