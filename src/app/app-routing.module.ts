@@ -41,6 +41,10 @@ const routes: Routes = [
   {
     path: 'publish',
     loadChildren: () => import('./publish/publish.module').then( m => m.PublishPageModule)
+  },
+  {
+    path: 'myposts',
+    loadChildren: () => import('./myposts/myposts.module').then( m => m.MypostsPageModule)
   }
 ];
 @NgModule({

@@ -1,0 +1,45 @@
+ion-segment{
+  --background: unset;
+}
+ion-segment-button{
+  --color-checked: #0072FF;
+  --border-style: none;
+  --indicator-box-shadow: 0 4px #0072FF;
+  --border-radius: unset;
+}
+ion-card{
+  margin: 10px 16px;
+  border-radius: .25em;
+  padding: 8px;
+  .info{
+    font-size: 12px;
+    align-items: flex-start;
+    img{
+      border-radius: .25em;
+    }
+    div{
+      .title{
+        font-size: 16px;
+      }
+      ion-grid{
+        --ion-grid-padding: 0;
+        ion-col{
+          --ion-grid-column-padding: 0;
+        }
+      }
+    }
+  }
+  .actions{
+    border-top: 1px solid #E6E6E6FF;
+    margin-top: 10px;
+    --padding-top: 5px;
+    padding: 0;
+    height: 30px;
+    display: flex;
+    ion-label{
+      font-size: 14px;
+      text-align: center;
+      margin: 0;
+    }
+  }
+}
