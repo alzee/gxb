@@ -1,0 +1,84 @@
+ion-header{
+    ion-toolbar{
+      --background: none;
+    }
+}
+ion-content{
+  --offset-top: 46px !important;
+  --background: url("../../../assets/img/land_cell_bg.png") top/contain no-repeat;
+}
+.info{
+  ion-thumbnail{
+    --size: 64px;
+    margin: 60px auto 4px;
+    img{
+      border-radius: .25em;
+    }
+  }
+  .desc{
+    font-size: 20px;
+  }
+  p{
+    text-align: center;
+  }
+  .avatars{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+    span{
+      //margin-left: 8px;
+    }
+    ion-avatar{
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+      position: relative;
+      img{
+      }
+    }
+    .b{
+      left: -6px;
+    }
+    .c{
+      left: -12px;
+    }
+    .d{
+      left: -18px;
+    }
+  }
+}
+.row{
+  height: 10px;
+}
+.bar{
+  background-color: #0072FF;
+  width: 4px;
+  height: 38%;
+  border-radius: .5em;
+  margin-right: 6px;
+}
+.item-header{
+  border-bottom: 1px solid #E6E6E6FF;
+  h4{
+    margin: 12px 0;
+  }
+}
+.pic{
+  ion-img{
+    margin-right: 10px;
+  }
+}
+.item-container{
+  background: #fff;
+  padding: 0 10px 10px;
+  margin: 10px 0;
+  border-radius: .25em;
+  ion-text{
+    margin: 10px 0;
+    display: block;
+    p{
+      margin: 4px 0;
+    }
+  }
+}

@@ -10,6 +10,12 @@
     height: 70px;
     border-right: 1px solid #E6E6E6;
     border-bottom: 1px solid #E6E6E6;
+    ion-thumbnail{
+      --size: 64px;
+      img{
+        border-radius: .25em;
+      }
+    }
   }
   ion-col:nth-child(5n){
     border-right: none;

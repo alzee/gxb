@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'occupy',
     loadChildren: () => import('./occupy/occupy.module').then( m => m.OccupyPageModule)
+  },
+  {
+    path: 'cell',
+    loadChildren: () => import('./cell/cell.module').then( m => m.CellPageModule)
   }
 ];
 

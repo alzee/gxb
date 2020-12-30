@@ -12,7 +12,12 @@
   <ion-item class="cells">
     <ion-grid>
       <ion-row>
-        <ion-col *ngFor="let i of [].constructor(35)">
+        <ion-col>
+          <ion-thumbnail routerLink="/land/cell">
+            <img src="../../assets/img/she.png">
+          </ion-thumbnail>
+        </ion-col>
+        <ion-col *ngFor="let i of [].constructor(34)">
           <ion-icon routerLink="/land/occupy" color="medium" name="add-outline"></ion-icon>
         </ion-col>
       </ion-row>
