@@ -1,0 +1,38 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>交换市场</ion-title>
+    <ion-text color="medium" slot="end" routerLink="/equity/market/rule">交易规则</ion-text>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="header">
+      <ion-col>
+        <ion-text>数量</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text>单价(GXB)</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text>操作</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row class="list-item" *ngFor="let i of [].constructor(8)">
+      <ion-col>
+        <h3>20GS</h3>
+        <ion-text color="medium">用户指数60</ion-text>
+      </ion-col>
+      <ion-col>
+        <h4>¥856.00</h4>
+      </ion-col>
+      <ion-col>
+        <ion-button shape="round" size="small" routerLink="/equity/market/buy">买入</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

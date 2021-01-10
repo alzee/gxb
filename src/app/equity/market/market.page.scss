@@ -1,0 +1,33 @@
+ion-content{
+  h3, h4{
+    margin: 0;
+  }
+  ion-row{
+    ion-col{
+      text-align: center;
+    }
+    ion-col:first-child{
+      text-align: left;
+    }
+    ion-col:last-child{
+      text-align: right;
+    }
+  }
+  .header{
+    margin: 16px;
+  }
+  .list-item{
+    padding: 16px;
+    align-items: flex-end;
+    border-top: 1px solid #E6E6E6FF;
+    ion-button{
+      font-size: 14px;
+    }
+    h3{
+      font-size: 16px;
+    }
+    h4{
+      font-size: 24px;
+    }
+  }
+}
