@@ -16,13 +16,15 @@
   </ion-item>
 
   <ion-label color="medium">选择充值方式</ion-label>
-  <ion-item>
-    <ion-thumbnail>
-      <img src="../assets/img/alipay.png">
-    </ion-thumbnail>
-    <ion-text>支付宝</ion-text>
-    <ion-text></ion-text>
-  </ion-item>
+  <ion-radio-group value="ali">
+    <ion-item class="input">
+      <ion-icon name="logo-alipay" color="secondary"></ion-icon>
+      <ion-label>
+        支付宝
+      </ion-label>
+      <ion-radio slot="end" value="ali"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
 
   <ion-button expand="block">立即充值</ion-button>
 </ion-content>
