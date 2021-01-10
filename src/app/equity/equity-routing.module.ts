@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'collect',
     loadChildren: () => import('./collect/collect.module').then( m => m.CollectPageModule)
+  },
+  {
+    path: 'exchange',
+    loadChildren: () => import('./exchange/exchange.module').then( m => m.ExchangePageModule)
   }
 ];
 

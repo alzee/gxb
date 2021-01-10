@@ -1,0 +1,51 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">兑股权</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+  <ion-thumbnail>
+    <img src="../assets/img/exchange_bg.png">
+  </ion-thumbnail>
+
+  <div class="ex">
+    <ion-item class="ratio">
+      <ion-thumbnail>
+        <img src="../assets/img/exchange_gxb.png">
+      </ion-thumbnail>
+      <div>
+        <p>股权</p>
+        <ion-text color="medium">当前兑换比例1000：1</ion-text>
+      </div>
+    </ion-item>
+    <ion-item>
+        <ion-text color="medium" slot="start">剩余 1,387,987,458</ion-text>
+        <ion-text color="medium" slot="end">已取 18,387,987</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-progress-bar color="warning" value="0.5"></ion-progress-bar>
+    </ion-item>
+      <ion-text slot="start">总量： 1,400,000,000</ion-text>
+    <ion-button expand="block">申请兑换</ion-button>
+  </div>
+
+  <div class="desc item-container">
+    <ion-item class="item-header">
+      <div class="bar"></div>
+      <h4>兑换说明</h4>
+    </ion-item>
+    <ion-text color="medium">
+      <p>
+      1、每7天分红一次，分红标准是平台的收入（会员充值和发布任务的手续费）的50%参与分红，除以当期有多少个共享宝=每个共享宝的分红基数x个人的共享宝个数=当期分红金额。
+      </p>
+      <p>
+      2、参与分红的条件是达到10个共享宝的人参与分红。
+      </p>
+    </ion-text>
+  </div>
+
+</ion-content>
