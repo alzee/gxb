@@ -1,9 +1,86 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>shop</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">姓名的店铺</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item class="about">
+    <ion-avatar slot="start">
+      <img src="../assets/img/she.png">
+    </ion-avatar>
+    <div>
+      <ion-text class="name" color="light">
+        姓名
+      </ion-text>
+      <ion-text color="light">
+        审核速度
+      </ion-text>
+      <div>
+        <ion-text color="light">
+          ID:12345
+        </ion-text>
+        <ion-text color="light">
+          粉丝数:12345
+        </ion-text>
+      </div>
+      <div>
+        <ion-button>+关注</ion-button>
+        <ion-button>屏蔽TA</ion-button>
+      </div>
+    </div>
+  </ion-item>
 
+  <div class="item-container">
+    <ion-item class="item-header">
+      <div class="bar"></div>
+      <h4>店铺数据统计</h4>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" *ngFor="let i of stats">
+          <div>
+            <ion-text class="num">
+              {{i.value}}
+            </ion-text>
+            <ion-text color="medium">
+              {{i.label}}
+            </ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-item class="task">
+    <ion-list>
+      <ion-item [routerLink]="i.link" *ngFor="let i of tasks">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="pic" size="auto">
+              <ion-avatar>
+                <img [src]="i.avatar">
+              </ion-avatar>
+            </ion-col>
+            <ion-col class="text">
+              <ion-text class="title">{{i.title}}</ion-text>
+              <ion-text class="info">{{i.runner}}人已赚|剩余:{{i.left}}</ion-text>
+              <div>
+                <ng-container *ngFor="let j of i.cate">
+                  <ion-badge *ngIf="j==='reg'" class="reg">账号注册</ion-badge>
+                  <ion-badge *ngIf="j==='save'" class="save">趣省钱</ion-badge>
+                </ng-container>
+              </div>
+            </ion-col>
+            <ion-col class="price" size="auto">
+              <ion-text class="num"><span>{{i.price}}元</span></ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </ion-item>
 </ion-content>
