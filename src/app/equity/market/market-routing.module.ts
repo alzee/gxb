@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'rule',
     loadChildren: () => import('./rule/rule.module').then( m => m.RulePageModule)
+  },
+  {
+    path: 'buy',
+    loadChildren: () => import('./buy/buy.module').then( m => m.BuyPageModule)
   }
 ];
 

@@ -1,0 +1,84 @@
+ion-header{
+  background: linear-gradient(90deg, #0098FF 0%, #0072FF 100%);
+}
+ion-toolbar{
+  --background: none;
+}
+ion-content{
+  p{
+    margin: 6px 0;
+  }
+  .head{
+    --background: linear-gradient(90deg, #0098FF 0%, #0072FF 100%);
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    color: #ffffff;
+    span{
+      margin: 20px;
+    }
+  }
+  .item-container{
+    background: #fff;
+    padding: 10px 16px;
+    .item-header{
+      border-bottom: 1px solid #E6E6E6FF;
+      .bar{
+        background-color: #0072FF;
+        width: 4px;
+        height: 38%;
+        border-radius: .5em;
+        margin-right: 6px;
+      }
+      h4{
+        margin: 12px 0;
+      }
+    }
+    ion-text{
+      display: block;
+      p{
+        margin: 4px 0;
+      }
+    }
+    h3, h4{
+      margin: 0;
+    }
+    ion-row{
+      ion-col{
+        text-align: center;
+      }
+    }
+    .header{
+      margin: 10px;
+    }
+    .list-item{
+      padding: 10px 0;
+      align-items: center;
+      border-top: 1px solid #E6E6E6FF;
+      ion-button{
+        font-size: 14px;
+      }
+      h3{
+        font-size: 16px;
+      }
+      h4{
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+ion-footer{
+  ion-button{
+    margin: 0;
+  }
+  .sell{
+    --background: #fff;
+    color: #787878FF;
+    width: 40%;
+  }
+  .buy{
+    width: 60%;
+  }
+}

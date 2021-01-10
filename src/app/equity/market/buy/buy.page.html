@@ -1,0 +1,61 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">股权交易</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-item class="head">
+    <div slot="start">
+      <h2>78.00</h2>
+      <p>现价(RMB)</p>
+    </div>
+    <div slot="end" class="">
+      <p><span>最高价</span>74.00</p>
+      <p><span>最低价</span>74.00</p>
+      <p><span>成交量</span>21</p>
+    </div>
+  </ion-item>
+
+  <div class="item-container">
+    <ion-item class="item-header">
+      <div class="bar"></div>
+      <h4>历史成交</h4>
+    </ion-item>
+    <ion-grid>
+      <ion-row class="header">
+        <ion-col>
+          <ion-text color="medium">时间</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text color="medium">数量(GXB)</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text color="medium">价格(RMB)</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row class="list-item" *ngFor="let i of [].constructor(8)">
+        <ion-col>
+          <h3>2020-12-11</h3>
+          <ion-text color="medium">10:05:27</ion-text>
+        </ion-col>
+        <ion-col>
+          <h4>20</h4>
+        </ion-col>
+        <ion-col>
+          <h4>78.00</h4>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-item>
+    <ion-button class="sell" size="large" expand="full">卖出</ion-button>
+    <ion-button class="buy" size="large" expand="full" routerLink="/equity/market/pay">申请任务</ion-button>
+  </ion-item>
+</ion-footer>
