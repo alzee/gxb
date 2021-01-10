@@ -1,0 +1,43 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">领地交易大厅</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+  <div *ngFor="let i of [].constructor(3)">
+    <ion-item class="head">
+      <ion-thumbnail slot="start">
+        <img src="../assets/img/locate.png">
+      </ion-thumbnail>
+      <ion-label>十堰市 张湾区</ion-label>
+      <ion-text slot="end" color="medium">36分钟前</ion-text>
+    </ion-item>
+    <div class="pk">
+      <div class="peer">
+        <ion-avatar slot="start">
+          <img src="../assets/img/she.png">
+        </ion-avatar>
+        <ion-text class="name">姓名</ion-text>
+        <ion-text color="medium">现领主购买价格</ion-text>
+        <ion-text class="price">596.58</ion-text>
+      </div>
+      <div class="vs">
+        <ion-button fill="outline" color="danger" size="small">调整价格</ion-button>
+        <ion-icon name="navigate" color="danger"></ion-icon>
+      </div>
+      <div class="peer">
+        <ion-avatar slot="start">
+          <img src="../assets/img/she.png">
+        </ion-avatar>
+        <ion-text class="name">姓名</ion-text>
+        <ion-text color="medium">现领主购买价格</ion-text>
+        <ion-text class="price">596.58</ion-text>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

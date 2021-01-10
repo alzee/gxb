@@ -1,0 +1,59 @@
+ion-header{
+  background: linear-gradient(90deg, #0098FF 0%, #0072FF 100%);
+}
+ion-toolbar{
+  --background: none;
+}
+ion-content{
+  --background: linear-gradient(90deg, #0098FF 0%, #0072FF 100%);
+  >div{
+    border-radius: .25em;
+    overflow: hidden;
+    padding: 8px 16px;
+    margin: 10px 0;
+    background-color: #ffffff;
+    .head{
+      font-size: 14px;
+      ion-thumbnail{
+        width: 12px;
+        height: 14px;
+        margin-right: 6px;
+      }
+    }
+    .pk{
+      display: flex;
+      justify-content: space-around;
+      margin: 10px;
+      .peer{
+        >*{
+          margin: 5px 0;
+        }
+        text-align: center;
+        ion-avatar{
+          margin: auto;
+        }
+        ion-text{
+          display: block;
+          font-size: 14px;
+        }
+        .name{
+          font-size: 18px;
+        }
+        .price{
+          font-size: 24px;
+        }
+      }
+      .vs{
+        text-align: center;
+        padding-top: 8px;
+        ion-button{
+          display: block;
+          margin-bottom: 35px;
+        }
+        ion-icon{
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+}
