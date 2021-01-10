@@ -1,0 +1,27 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>在线支付</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-label color="medium">支付金额</ion-label>
+  <ion-item class="input">
+    <ion-text color="danger" class="price"> ¥ 2586.00 </ion-text>
+  </ion-item>
+  <ion-label color="medium">选择支付方式</ion-label>
+  <ion-radio-group value="ali">
+    <ion-item class="input">
+      <ion-icon name="logo-alipay" color="secondary"></ion-icon>
+      <ion-label>
+        支付宝
+      </ion-label>
+      <ion-radio slot="end" value="ali"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+  <ion-button expand="block">立即支付</ion-button>
+
+</ion-content>

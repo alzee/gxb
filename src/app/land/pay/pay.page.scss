@@ -1,0 +1,19 @@
+ion-content{
+  ion-icon{
+    margin-right: 10px;
+  }
+  >ion-label{
+    display: block;
+    padding: 10px 16px;
+  }
+  .input{
+    padding: 10px 16px;
+    background-color: #ffffff;
+  }
+  ion-button{
+    margin: 16px;
+  }
+  .price{
+    font-size: 32px;
+  }
+}

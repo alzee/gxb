@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'hall',
     loadChildren: () => import('./hall/hall.module').then( m => m.HallPageModule)
+  },
+  {
+    path: 'pay',
+    loadChildren: () => import('./pay/pay.module').then( m => m.PayPageModule)
   }
 ];
 
