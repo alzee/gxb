@@ -8,29 +8,29 @@
 </ion-header>
 
 <ion-content class="ion-padding-horizontal">
-  <ion-thumbnail>
-    <img src="../assets/img/exchange_bg.png">
-  </ion-thumbnail>
+  <div class="balance">
+    <p>
+    <ion-text class="label" color="light">GXB余额</ion-text>
+    </p>
+    <ion-text class="amount" color="light">576.58</ion-text>
+  </div>
 
   <div class="ex">
-    <ion-item class="ratio">
-      <ion-thumbnail>
-        <img src="../assets/img/exchange_gxb.png">
-      </ion-thumbnail>
-      <div>
-        <p>股权</p>
-        <ion-text color="medium">当前兑换比例1000：1</ion-text>
-      </div>
+    <ion-item>
+      <ion-text slot="start">股权</ion-text>
+      <ion-input slot="end"> </ion-input>
     </ion-item>
     <ion-item>
-        <ion-text color="medium" slot="start">剩余 1,387,987,458</ion-text>
-        <ion-text color="medium" slot="end">已取 18,387,987</ion-text>
+      <ion-text color="medium" slot="start">合计：</ion-text>
+      <ion-text color="danger" slot="start"> 1,387GXB</ion-text>
+      <ion-text color="primary" slot="end">全部投入</ion-text>
     </ion-item>
-    <ion-item>
-      <ion-progress-bar color="warning" value="0.5"></ion-progress-bar>
-    </ion-item>
-      <ion-text slot="start">总量： 1,400,000,000</ion-text>
-    <ion-button expand="block" routerLink="/equity/exchange/apply">申请兑换</ion-button>
+    <div class="hint">
+      <ion-text color="medium">
+        <p>温馨提示：</p>
+        兑换过程中按获得金股数扣除相应的GXB</ion-text>
+    </div>
+    <ion-button expand="block">兑换</ion-button>
   </div>
 
   <div class="desc item-container">
@@ -47,5 +47,6 @@
       </p>
     </ion-text>
   </div>
+
 
 </ion-content>
