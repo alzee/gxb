@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'cell',
     loadChildren: () => import('./cell/cell.module').then( m => m.CellPageModule)
+  },
+  {
+    path: 'my',
+    loadChildren: () => import('./my/my.module').then( m => m.MyPageModule)
   }
 ];
 

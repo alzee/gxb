@@ -1,0 +1,53 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">我的领地</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button color="light" shape="round" routerLink="/land/hall">交易大厅</ion-button>
+  <div class="income">
+    <div>
+      <ion-text color="medium" class="label">领地总收入</ion-text>
+      <ion-text class="total">1324.12</ion-text>
+    </div>
+    <div class="secondary">
+      <div>
+        <ion-text>1324.12</ion-text>
+        <ion-text color="medium" class="label">领地收益</ion-text>
+      </div>
+      <div>
+        <ion-text>1324.12</ion-text>
+        <ion-text color="medium" class="label">转让收益</ion-text>
+      </div>
+    </div>
+  </div>
+
+  <div class="hist">
+    <ion-segment value="my">
+      <ion-segment-button value="my">
+        <ion-label>拥有的领地</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="sold">
+        <ion-label>卖出的领地</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-item class="list">
+      <ion-thumbnail>
+        <img src="../../assets/img/locate.png">
+      </ion-thumbnail>
+      <ion-text>十堰市 张湾区</ion-text>
+      <div slot="end">
+        <ion-text class="price">590.00</ion-text>
+        <ion-item routerLink="/land/hall" >
+          <ion-text color="danger" class="label">价格调整</ion-text>
+        </ion-item>
+      </div>
+    </ion-item>
+
+  </div>
+
+</ion-content>

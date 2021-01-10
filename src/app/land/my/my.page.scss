@@ -1,0 +1,83 @@
+ion-segment{
+  --background: none;
+  border-radius: 0;
+  border-bottom: 1px solid #E5E5E5FF;
+}
+ion-segment-button{
+  --border-style: none;
+  --indicator-box-shadow: 0 4px #0072FF;
+  --border-radius: unset;
+}
+ion-header{
+  background: linear-gradient(90deg, #0098FF 0%, #0072FF 100%);
+}
+ion-toolbar{
+  --background: none;
+}
+ion-content{
+  --background: linear-gradient(90deg, #0098FF 0%, #0072FF 100%);
+  text-align: right;
+  ion-button{
+    --border-radius: 64px 0 0 64px;
+    margin-right: 0;
+  }
+  >div{
+    background-color: #ffffff;
+    margin: 0 16px;
+    border-radius: .25em;
+    padding: 16px;
+  }
+  .income{
+    margin: 16px;
+    padding: 22px 16px;
+    .label{
+      font-size: 14px;
+    }
+    ion-text{
+      font-size: 22px;
+    }
+    .total{
+      font-size: 28px;
+    }
+    div{
+      text-align: center;
+      ion-text{
+        display: block;
+      }
+    }
+    .secondary{
+      margin-top: 20px;
+      >div{
+        margin: 0 28px;
+        display: inline-block;
+      }
+    }
+  }
+  .hist{
+    ion-segment{
+      ion-segment-button{
+        font-size: 16px;
+      }
+      ion-segment-button.segment-button-checked{
+        font-size: 22px;
+      }
+    }
+    .list{
+      margin: 16px 0;
+      align-items: flex-start;
+      border-bottom: 1px solid #E5E5E5FF;
+      ion-thumbnail{
+        width: 16px;
+        height: 20px;
+        margin-right:10px;
+      }
+      .price{
+        font-size: 20px;
+      }
+      .label{
+        font-size: 14px;
+      }
+    }
+
+  }
+}
