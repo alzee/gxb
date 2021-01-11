@@ -1,0 +1,40 @@
+ion-content{
+  p{
+    margin: 5px;
+  }
+  >ion-item:first-child{
+    margin-top: 10px;
+  }
+  >ion-item{
+    --padding-start: 16px;
+    --padding-end: 16px;
+    border-bottom: 1px solid #E5E5E5FF;
+    .label{
+      width: 110px;
+    }
+  }
+  .position{
+    margin: 10px 0;
+  }
+  >ion-label{
+    display: block;
+    margin: 12px 16px;
+    font-size: 14px;
+  }
+  .list-item{
+    padding: 10px 0;
+    background: #ffffff;
+  }
+}
+ion-footer{
+  ion-button{
+    margin: 0;
+    display: inline-block;
+  }
+  .left{
+    width: 40%;
+  }
+  .right{
+    width: 60%;
+  }
+}

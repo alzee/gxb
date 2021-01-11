@@ -11,7 +11,7 @@
   <ion-item class="bids">
     <ion-grid>
       <ion-row>
-        <ion-col class="item" size="6">
+        <ion-col class="item" size="6" *ngFor="let i of [].constructor(4)">
           <ion-item>
             <ion-badge color="medium">1</ion-badge>
             <div>
@@ -24,58 +24,7 @@
                 <ion-text class="del" color="medium">一口价:300元</ion-text>
               </del>
               </p>
-              <ion-button shape="round">我要竞价</ion-button>
-            </div>
-          </ion-item>
-        </ion-col>
-        <ion-col class="item" size="6">
-          <ion-item>
-            <ion-badge color="medium">1</ion-badge>
-            <div>
-              <p>
-              <ion-text color="medium">现价:</ion-text>
-              <ion-text class="price" color="danger">100元</ion-text>
-              </p>
-              <p>
-              <del>
-                <ion-text class="del" color="medium">一口价:300元</ion-text>
-              </del>
-              </p>
-              <ion-button shape="round">我要竞价</ion-button>
-            </div>
-          </ion-item>
-        </ion-col>
-        <ion-col class="item" size="6">
-          <ion-item>
-            <ion-badge color="medium">1</ion-badge>
-            <div>
-              <p>
-              <ion-text color="medium">现价:</ion-text>
-              <ion-text class="price" color="danger">100元</ion-text>
-              </p>
-              <p>
-              <del>
-                <ion-text class="del" color="medium">一口价:300元</ion-text>
-              </del>
-              </p>
-              <ion-button shape="round">我要竞价</ion-button>
-            </div>
-          </ion-item>
-        </ion-col>
-        <ion-col class="item" size="6">
-          <ion-item>
-            <ion-badge color="medium">1</ion-badge>
-            <div>
-              <p>
-              <ion-text color="medium">现价:</ion-text>
-              <ion-text class="price" color="danger">100元</ion-text>
-              </p>
-              <p>
-              <del>
-                <ion-text class="del" color="medium">一口价:300元</ion-text>
-              </del>
-              </p>
-              <ion-button shape="round">我要竞价</ion-button>
+              <ion-button shape="round" routerLink="/bids/offer">我要竞价</ion-button>
             </div>
           </ion-item>
         </ion-col>
