@@ -1,0 +1,39 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">股东话题</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+  <ion-item class="banner">
+    <ion-img src="../assets/img/equity_banner.png"> </ion-img>
+  </ion-item>
+  <ion-item class="item-header">
+    <div class="bar"></div>
+    <h4>推荐话题</h4>
+  </ion-item>
+  <div class="list-item" *ngFor="let i of [].constructor(5)" routerLink="/equity/topic/node">
+    <ion-item>
+      <ion-avatar>
+        <img src="../../../assets/img/she.png">
+      </ion-avatar>
+      <div>
+        <h3>夏刚</h3>
+        <ion-text color="medium">姓名</ion-text>
+      </div>
+    </ion-item>
+    <ion-item class="summary">
+      <ion-text>任务大厅发布任务，任务可以选择推荐/置顶/暂停，取消四种状态。推荐、置顶需要购买。</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text slot="end" color="medium">
+        <ion-icon name="thumbs-up-sharp"></ion-icon>
+        1520
+      </ion-text>
+    </ion-item>
+  </div>
+
+</ion-content>

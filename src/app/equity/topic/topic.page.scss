@@ -1,0 +1,48 @@
+ion-header{
+    ion-toolbar{
+      --background: none;
+    }
+}
+ion-content{
+  --offset-top: 46px !important;
+  --background: #ffffff url("../../../assets/img/equity_bg.png") top/contain no-repeat;
+  h3{
+    margin: 0;
+    font-size: 18px;
+  }
+  ion-toolbar{
+    --background: none;
+  }
+  >ion-item{
+    margin-bottom: 10px;
+  }
+  ion-item{
+    --background: none;
+  }
+  .banner{
+    margin-top: 32px;
+  }
+  .item-header{
+    margin: 16px 0;
+    .bar{
+      background-color: #0072FF;
+      width: 4px;
+      height: 38%;
+      border-radius: .5em;
+      margin-right: 6px;
+    }
+    h4{
+      margin: 12px 0;
+    }
+  }
+  .list-item{
+    border-bottom: 1px solid #E6E6E6FF;
+    margin: 16px 0;
+    ion-avatar{
+      margin-right: 6px;
+    }
+  }
+  .summary{
+    margin: 10px;
+  }
+}

@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'meeting',
     loadChildren: () => import('./meeting/meeting.module').then( m => m.MeetingPageModule)
+  },
+  {
+    path: 'topic',
+    loadChildren: () => import('./topic/topic.module').then( m => m.TopicPageModule)
   }
 ];
 
