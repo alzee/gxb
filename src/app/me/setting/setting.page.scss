@@ -1,0 +1,19 @@
+ion-content{
+  >ion-item{
+    --padding-start: 16px;
+    --padding-end: 16px;
+    margin: 2px 0;
+    ion-item{
+      margin: 0;
+    }
+  }
+  .avatar{
+    margin: 10px 0;
+  }
+  .alipay{
+    margin: 10px 0 30px;
+  }
+  ion-button{
+    margin: 16px;
+  }
+}

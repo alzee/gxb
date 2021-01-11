@@ -1,0 +1,51 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>设置</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-item class="avatar">
+    <ion-text slot="start">头像</ion-text>
+    <ion-item slot="end" routerLink="/">
+      <ion-avatar>
+        <img src="../../../assets/img/she.png">
+      </ion-avatar>
+    </ion-item>
+  </ion-item>
+  <ion-item>
+    <ion-text slot="start">昵称</ion-text>
+    <ion-item slot="end" routerLink="/signin">
+      <ion-text color="medium">落花流水</ion-text>
+    </ion-item>
+  </ion-item>
+  <ion-item>
+    <ion-text slot="start">修改密码</ion-text>
+    <ion-item slot="end" routerLink="/signin">
+      <ion-text color="medium"></ion-text>
+    </ion-item>
+  </ion-item>
+  <ion-item>
+    <ion-text slot="start">修改手机号</ion-text>
+    <ion-item slot="end" routerLink="/signin">
+      <ion-text color="medium">13000000000</ion-text>
+    </ion-item>
+  </ion-item>
+  <ion-item>
+    <ion-text slot="start">修改支付密码</ion-text>
+    <ion-item slot="end" routerLink="/signin">
+      <ion-text color="medium"></ion-text>
+    </ion-item>
+  </ion-item>
+  <ion-item class="alipay">
+    <ion-text slot="start">支付宝</ion-text>
+    <ion-item slot="end" routerLink="/alipay">
+      <ion-text color="medium">已绑定</ion-text>
+    </ion-item>
+  </ion-item>
+  <ion-button expand="block">退出登录</ion-button>
+
+</ion-content>
