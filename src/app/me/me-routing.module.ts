@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'alipay',
     loadChildren: () => import('./alipay/alipay.module').then( m => m.AlipayPageModule)
+  },
+  {
+    path: 'withdraw',
+    loadChildren: () => import('./withdraw/withdraw.module').then( m => m.WithdrawPageModule)
   }
 ];
 

@@ -1,0 +1,24 @@
+ion-content{
+  >ion-label{
+    display: block;
+    margin: 16px;
+  }
+  >ion-text{
+    display: block;
+    margin: 0 16px;
+  }
+  ion-item{
+    --padding-start: 16px;
+    --padding-end: 16px;
+  }
+  .price{
+    margin-bottom: 16px;
+    font-size: 22px;
+    ion-text:first-child{
+      font-size: 42px;
+    }
+  }
+  ion-button{
+    margin: 16px;
+  }
+}
