@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">会员中心</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src="../../assets/img/vip_crown.png">
+  <ion-list>
+    <ion-item *ngFor="let i of vip">
+      <ion-text slot="start">{{i.label}}</ion-text>
+      <ion-text color="danger">{{i.price}}元</ion-text>
+      <ion-button size="large" slot="end" shape="round">立即开通</ion-button>
+    </ion-item>
+  </ion-list>
+  <div class="item-container">
+    <ion-item class="item-header">
+      <div class="bar"></div>
+      <h4>会员权益</h4>
+    </ion-item>
+  </div>
+
+</ion-content>

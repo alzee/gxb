@@ -81,6 +81,10 @@ const routes: Routes = [
   {
     path: 'shop',
     loadChildren: () => import('./shop/shop.module').then( m => m.ShopPageModule)
+  },
+  {
+    path: 'vip',
+    loadChildren: () => import('./vip/vip.module').then( m => m.VipPageModule)
   }
 ];
 @NgModule({
