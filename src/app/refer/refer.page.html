@@ -1,0 +1,88 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">邀请好友</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+  <div class="poster">
+    <ion-thumbnail routerLink="/refer/qr">
+      <img src="../../assets/img/qr.png">
+    </ion-thumbnail>
+    <ion-text color="light">点击二维码，生成专属推广页</ion-text>
+  </div>
+
+  <div>
+    <ion-button class="offset">分享到</ion-button>
+    <div class="row">
+      <div>
+        <ion-thumbnail>
+          <img src="../assets/img/wx_moment.png">
+        </ion-thumbnail>
+        <ion-label>朋友圈</ion-label>
+      </div>
+      <div>
+        <ion-thumbnail>
+          <img src="../assets/img/qq_moment.png">
+        </ion-thumbnail>
+        <ion-label>QQ空间</ion-label>
+      </div>
+      <div>
+        <ion-thumbnail>
+          <img src="../assets/img/wx_friends.png">
+        </ion-thumbnail>
+        <ion-label>微信好友</ion-label>
+      </div>
+      <div>
+        <ion-thumbnail>
+          <img src="../assets/img/qq_friends.png">
+        </ion-thumbnail>
+        <ion-label>QQ好友</ion-label>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <ion-button class="offset">推广好友提成</ion-button>
+    <div class="row">
+      <div>
+        <ion-text color="danger ion-text-center"><h2>8%</h2></ion-text>
+        <ion-text>一级好友提成</ion-text>
+      </div>
+      <div>
+        <ion-text color="danger ion-text-center"><h2>2%</h2></ion-text>
+        <ion-text>二级好友提成</ion-text>
+      </div>
+    </div>
+    <ion-button expand="block" class="btn">查看我的好友（0人）</ion-button>
+  </div>
+
+  <div>
+    <ion-button class="offset">登录网址</ion-button>
+    <div class="row">
+      <div>
+        <ion-text>若APP无法下载/注册/推广，请使用登录网址注册推广。</ion-text>
+      </div>
+    </div>
+    <ion-button expand="block" class="btn">复制网址</ion-button>
+  </div>
+
+  <div>
+    <ion-button class="offset">推广说明</ion-button>
+    <div class="row">
+      <div>
+        <ion-text>
+          <p>
+1、每7天分红一次，分红标准是平台的收入（会员充值和发布任务的手续费）的50%参与分红，除以当期有多少个共享宝=每个共享宝的分红基数x个人的共享宝个数=当期分红金额。
+          </p>
+          <p>
+2、参与分红的条件是达到10个共享宝的人参与分红。
+          </p>
+        </ion-text>
+      </div>
+    </div>
+  </div>
+</ion-content>

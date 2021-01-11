@@ -85,6 +85,10 @@ const routes: Routes = [
   {
     path: 'vip',
     loadChildren: () => import('./vip/vip.module').then( m => m.VipPageModule)
+  },
+  {
+    path: 'refer',
+    loadChildren: () => import('./refer/refer.module').then( m => m.ReferPageModule)
   }
 ];
 @NgModule({

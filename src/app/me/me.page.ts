@@ -73,12 +73,12 @@ export class MePage implements OnInit {
       name: '举报维权',
     },
     {
-      link: '/me/vip',
+      link: '/signin',
       img: '../assets/img/equity.png',
       name: '我的会员',
     },
     {
-      link: '/promo',
+      link: '/refer',
       img: '../assets/img/equity.png',
       name: '推广',
     },
