@@ -32,7 +32,7 @@ export class LandPage implements OnInit {
     ]
   ]
 
-  async openPicker(numColumns = 1, numOptions = 5, columnOptions = multiColumnOptions){
+  async openPicker(numColumns = 1, numOptions = 5, columnOptions = this.multiColumnOptions){
     const picker = await this.pickerController.create({
       columns: this.getColumns(numColumns, numOptions, columnOptions),
       buttons: [
