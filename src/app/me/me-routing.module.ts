@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'setting',
     loadChildren: () => import('./setting/setting.module').then( m => m.SettingPageModule)
+  },
+  {
+    path: 'alipay',
+    loadChildren: () => import('./alipay/alipay.module').then( m => m.AlipayPageModule)
   }
 ];
 
