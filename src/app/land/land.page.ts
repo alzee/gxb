@@ -14,7 +14,7 @@ export class LandPage implements OnInit {
   ngOnInit() {
   }
 
-  const multiColumnOptions = [
+  multiColumnOptions = [
     [
       '北京',
       '上海',
