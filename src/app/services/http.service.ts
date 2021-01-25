@@ -15,4 +15,11 @@ export class HttpService {
 
         return this.http.post(url, JSON.stringify(data), options);
     }
+
+    get(serviceName: string) {
+        const headers = new HttpHeaders();
+        const options = { headers: headers, withCredintials: false };
+        const url = environment.apiUrl + serviceName;
+        return this.http.get(url);
+    }
 }
