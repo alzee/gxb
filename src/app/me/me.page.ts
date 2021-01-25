@@ -8,11 +8,12 @@ import { StorageService } from '../services/storage.service';
   styleUrls: ['./me.page.scss'],
 })
 export class MePage implements OnInit {
+  userData = {};
 
-  constructor(
-        private storageService: StorageService,
-  ) {
-        const userData = this.storageService.get(AuthConstants.AUTH).then((res) => console.log(res.id));
+  constructor(private storageService: StorageService) {
+    this.storageService.get(AuthConstants.AUTH).then((res) => {
+      this.userData = res;
+    });
   }
 
   ngOnInit() {
