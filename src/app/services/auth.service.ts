@@ -25,10 +25,11 @@ export class AuthService {
 
     login(postData: any): Observable<any> {
         return this.httpService.post('login', postData);
+        //return this.httpService.get('users/6');
     }
 
     signup(postData: any): Observable<any> {
-        return this.httpService.post('signup', postData);
+        return this.httpService.post('users', postData);
     }
 
     logout() {
