@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthConstants } from '../config/auth-constants';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-me',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MePage implements OnInit {
 
-  constructor() { }
+  constructor(
+        private storageService: StorageService,
+  ) {
+        const userData = this.storageService.get(AuthConstants.AUTH).then((res) => console.log(res.id));
+  }
 
   ngOnInit() {
   }
