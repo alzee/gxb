@@ -26,13 +26,15 @@ export class SignupPage implements OnInit {
     ngOnInit() {}
 
     validateInputs() {
-        console.log(this.postData);
         let username = this.postData.username.trim();
         let password = this.postData.password.trim();
+        let phone = this.postData.phone.trim();
         return (
             this.postData.username &&
                 this.postData.password &&
+                this.postData.phone &&
                 username.length > 0 &&
+                phone.length > 0 &&
                 password.length > 0
         );
     }
@@ -41,12 +43,13 @@ export class SignupPage implements OnInit {
         if (this.validateInputs()) {
             this.authService.signup(this.postData).subscribe(
                 (res: any) => {
-                    if (res.userData) {
+                    console.log(res);
+                    if (res) {
                         // Storing the User data.
                         this.storageService
-                        .store(AuthConstants.AUTH, res.userData)
+                        .store(AuthConstants.AUTH, res)
                         .then(res => {
-                            this.router.navigate(['home']);
+                            this.router.navigate(['/tabs/home']);
                         });
                     } else {
                         this.toastService.presentToast(
