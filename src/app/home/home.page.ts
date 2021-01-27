@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskDataService } from '../services/task-data.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +9,14 @@ import { TaskDataService } from '../services/task-data.service';
 })
 export class HomePage implements OnInit {
 
-  data = {};
+  bids = {};
+  tasks = [];
+  envs = environment;
   constructor(private taskDataService: TaskDataService) {
-      taskDataService.data.subscribe((res) => {console.log(res)});
-      //this.data = taskDataService.data;
-      //console.log(this.data);
+      taskDataService.data.subscribe((res) => {
+          this.tasks = res;
+          console.log(res);
+      });
   }
 
   ngOnInit() {
@@ -90,7 +94,7 @@ export class HomePage implements OnInit {
     },
   ];
 
-  public tasks = [
+  public tasks0 = [
     {
       boss: 'jess',
       avatar: '../assets/img/she.png',

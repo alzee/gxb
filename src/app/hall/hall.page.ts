@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskDataService } from '../services/task-data.service';
 
 @Component({
   selector: 'app-hall',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hall.page.scss'],
 })
 export class HallPage implements OnInit {
+  tasks = [];
 
-  constructor() { }
+  constructor(private taskDataService: TaskDataService) {
+      taskDataService.data.subscribe((res) => {
+          this.tasks = res;
+          console.log(res);
+      });
+  }
 
   ngOnInit() {
   }
@@ -37,7 +44,7 @@ export class HallPage implements OnInit {
     '推广引流',
     '其它任务',
   ];
-  public tasks = [
+  public tasks0 = [
     {
       boss: 'jess',
       avatar: '../assets/img/she.png',

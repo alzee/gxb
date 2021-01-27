@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://b.gxb/api/'
+  apiUrl: 'http://b.gxb/api/',
+  imgUrl: 'http://b.gxb/uploads/files/img/'
 };
 
 /*

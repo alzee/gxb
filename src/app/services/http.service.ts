@@ -17,7 +17,7 @@ export class HttpService {
     }
 
     get(serviceName: string) {
-        const headers = new HttpHeaders();
+        const headers = new HttpHeaders('accept: application/json');
         const options = { headers: headers, withCredintials: false };
         const url = environment.apiUrl + serviceName;
         return this.http.get(url);
