@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskDataService } from '../services/task-data.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  data = {};
+  constructor(private taskDataService: TaskDataService) {
+      taskDataService.data.subscribe((res) => {console.log(res)});
+      //this.data = taskDataService.data;
+      //console.log(this.data);
+  }
 
   ngOnInit() {
   }
