@@ -12,6 +12,9 @@ export class PublishPage implements OnInit {
   ngOnInit() {
   }
 
+  log(o) {
+      console.log(o.el.className.indexOf('radio-checked'));
+  }
   public cate = [
     {
       label: '下载APP',

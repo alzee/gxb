@@ -8,6 +8,19 @@
 </ion-header>
 
 <ion-content color="light">
+  <ion-grid class="cate">
+    <ion-radio-group value="app">
+      <ion-row>
+        <ion-col *ngFor="let i of cate">
+          <ion-button color="danger" fill="{{radio.el.className.indexOf('radio-checked')<0?'outline':'solid'}}" shape="round">
+            <ion-radio slot="start" value="{{i.cate}}" #radio></ion-radio>
+            {{i.label}}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+  </ion-grid>
+
   <ion-label color="medium">请选择类型</ion-label>
   <ion-item class="cate">
     <ion-grid>

@@ -47,3 +47,24 @@ ion-textarea{
     width: 60%;
   }
 }
+.cate{
+  ion-radio-group{
+    ion-button{
+      --padding-start: 10px;
+      --padding-end: 10px;
+      --padding-top: 10px;
+      --padding-bottom: 10px;
+      --background-activated: blue;
+      position: relative;
+      width: 74px;
+      height: 25px;
+      font-size: 14px;
+      ion-radio{
+        margin:0;
+        width: 100%;
+        position: absolute;
+        opacity: 0;
+      }
+    }
+  }
+}
