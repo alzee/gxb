@@ -56,7 +56,7 @@
 
   <ion-item class="about">
     <ion-avatar routerLink="/shop">
-      <img src="../assets/img/she.png">
+      <img [src]="envs.imgUrl + owner.avatar">
     </ion-avatar>
     <div>
       <ion-text>{{owner.username}}</ion-text>
@@ -96,7 +96,6 @@
       </ion-text>
       <ion-item class="pic">
         <ion-img src="../assets/img/pic1.png"></ion-img>
-        <ion-img src="../assets/img/pic1.png"></ion-img>
       </ion-item>
     </div>
     <div>
@@ -104,7 +103,6 @@
         出于互联网交流的数据隐私安全问题的考虑，请允许我只做简单说明。
       </ion-text>
       <ion-item class="pic">
-        <ion-img src="../assets/img/pic1.png"></ion-img>
         <ion-img src="../assets/img/pic1.png"></ion-img>
       </ion-item>
     </div>

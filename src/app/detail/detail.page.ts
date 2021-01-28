@@ -11,6 +11,8 @@ import { environment } from '../../environments/environment';
 export class DetailPage implements OnInit {
   data = {};
   owner = {};
+  //avatar = {};
+  envs = environment;
 
   constructor(
       private activeRoute: ActivatedRoute,
@@ -25,6 +27,7 @@ export class DetailPage implements OnInit {
       this.httpService.get('tasks/' + this.id).subscribe((res) => {
           this.data = res;
           this.owner = this.data.owner;
+          //this.avatar = this.data.avatar;
           console.log(this.data);
       });
   }
