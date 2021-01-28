@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../services/http.service';
 import { TaskDataService } from '../services/task-data.service';
 import { environment } from '../../environments/environment';
 
@@ -9,20 +10,33 @@ import { environment } from '../../environments/environment';
 })
 export class HomePage implements OnInit {
 
-  bids = {};
+  //http = HttpService;
+  //http: HttpService;
+  bids = [];
   tasks = [];
   envs = environment;
-  constructor(private taskDataService: TaskDataService) {
-      taskDataService.data.subscribe((res) => {
+  constructor(
+      //private taskDataService: TaskDataService,
+      private httpService: HttpService
+  ) {
+     // taskDataService.data.subscribe((res) => {
+     //     this.tasks = res;
+     //     console.log(res);
+     // });
+  }
+
+  ngOnInit() {
+      this.httpService.get('tasks?order%5BbidPosition%5D=asc&bidPosition%5Bgt%5D=0&page=1').subscribe((res) => {
+          this.bids = res;
+          console.log(res);
+      });
+      this.httpService.get('tasks?page=1&sticky=true&recommended=true&order%5Bsticky%5D=desc').subscribe((res) => {
           this.tasks = res;
           console.log(res);
       });
   }
 
-  ngOnInit() {
-  }
-
-  public bids = [
+  public bids0 = [
     {
       avatar: '../assets/img/she.png',
       title: '任务名称',
