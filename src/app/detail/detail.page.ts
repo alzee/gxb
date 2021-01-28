@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { HttpService } from '../services/http.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-detail',
@@ -6,10 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
+  data = {};
+  owner = {};
 
-  constructor() { }
+  constructor(
+      private activeRoute: ActivatedRoute,
+      private httpService: HttpService
+  ) { }
 
   ngOnInit() {
+      this.activeRoute.queryParams.subscribe((params: Params) => {
+          this.id = params['id'];
+      });
+
+      this.httpService.get('tasks/' + this.id).subscribe((res) => {
+          this.data = res;
+          this.owner = this.data.owner;
+          console.log(this.data);
+      });
   }
 
 }

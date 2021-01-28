@@ -13,7 +13,7 @@
       <ion-thumbnail>
         <img src="../assets/img/heart.png">
       </ion-thumbnail>
-      <ion-text color="medium">编号: 1231</ion-text>
+      <ion-text color="medium">编号: {{data.id}}</ion-text>
       <ion-item slot="end" class="speed">
         <ion-text color="medium">店铺审核速度</ion-text>
         <ion-thumbnail>
@@ -30,11 +30,11 @@
     <ion-item class="main">
       <div>
         <h4>
-          分分钟钟搞定 秒审核
+          {{data.title}}
         </h4>
         <ion-text color="medium">简单关注 | 急速审核</ion-text>
       </div>
-      <ion-text class="price" slot="end" color="danger">68.00元</ion-text>
+      <ion-text class="price" slot="end" color="danger">{{data.price}}元</ion-text>
     </ion-item>
     <ion-grid class="data">
       <ion-row>
@@ -43,11 +43,11 @@
           <ion-text color="medium">剩余数量</ion-text>
         </ion-col>
         <ion-col>
-          <h4>0.5h</h4>
+          <h4>{{data.applydays}}h</h4>
           <ion-text color="medium">做单时间</ion-text>
         </ion-col>
         <ion-col>
-          <h4>1d</h4>
+          <h4>{{data.approvedays}}d</h4>
           <ion-text color="medium">审核时间</ion-text>
         </ion-col>
       </ion-row>
@@ -59,8 +59,8 @@
       <img src="../assets/img/she.png">
     </ion-avatar>
     <div>
-      <ion-text>姓名</ion-text>
-      <ion-text class="uid" color="medium"><p>1234</p></ion-text>
+      <ion-text>{{owner.username}}</ion-text>
+      <ion-text class="uid" color="medium"><p>{{owner.id}}</p></ion-text>
     </div>
     <div slot="end" class="actions">
       <ion-thumbnail>
@@ -80,15 +80,7 @@
     </ion-item>
     <ion-item>
       <ion-text>
-        <p>
-        1、出于互联网交流的数据隐私安全问题的考虑，请允许我只做简单说明，我也不会提到任何具体的数据信息。
-        </p>
-        <p>
-        2、对数字卫星电视接收系统的整体框架做一简单说明。
-        </p>
-        <p>
-        3、对数字卫星电视接收系统做一简单说明。
-        </p>
+        {{data.description}}
       </ion-text>
     </ion-item>
   </div>
