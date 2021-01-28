@@ -19,7 +19,7 @@
         <ion-text slot="end">搜索</ion-text>
   </ion-item>
 
-  <ion-segment value="all">
+  <ion-segment (ionChange)="segmentChanged($event)" value="all">
     <ion-segment-button [value]="i.value" *ngFor="let i of sorts">
       <ion-label>
         {{i.label}}

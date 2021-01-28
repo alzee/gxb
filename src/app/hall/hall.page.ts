@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 })
 export class HallPage implements OnInit {
   tasks = [];
+  tasksBySticky = [];
   tasksByDate = [];
   tasksByPrice = [];
   envs = environment;
@@ -26,9 +27,35 @@ export class HallPage implements OnInit {
 
   ngOnInit() {
       this.httpService.get('tasks?page=1&order%5Bsticky%5D=desc').subscribe((res) => {
-          this.tasks = res;
+          this.tasksBySticky = res;
+          this.tasks = this.tasksBySticky;
           console.log(res);
       });
+      this.httpService.get('tasks?page=1&order%5Bdate%5D=desc').subscribe((res) => {
+          this.tasksByDate = res;
+          console.log(res);
+      });
+      this.httpService.get('tasks?page=1&order%5Bprice%5D=desc').subscribe((res) => {
+          this.tasksByPrice = res;
+          console.log(res);
+      });
+  }
+
+  segmentChanged(ev: any) {
+    this.tasks = this.tasksByPrice;
+    switch(ev.detail.value){
+        case this.sorts[0].value:
+            this.tasks = this.tasksBySticky;
+            break;
+        case this.sorts[1].value:
+            this.tasks = this.tasksByDate;
+            break;
+        case this.sorts[2].value:
+            this.tasks = this.tasksByPrice;
+            break;
+
+    }
+    console.log('Segment changed', ev.detail.value);
   }
 
   public sorts= [
