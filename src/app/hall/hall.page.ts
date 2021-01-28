@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskDataService } from '../services/task-data.service';
+import { HttpService } from '../services/http.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-hall',
@@ -8,15 +10,25 @@ import { TaskDataService } from '../services/task-data.service';
 })
 export class HallPage implements OnInit {
   tasks = [];
+  tasksByDate = [];
+  tasksByPrice = [];
+  envs = environment;
 
-  constructor(private taskDataService: TaskDataService) {
-      taskDataService.data.subscribe((res) => {
-          this.tasks = res;
-          console.log(res);
-      });
+  constructor(
+      //private taskDataService: TaskDataService,
+      private httpService: HttpService
+  ) {
+      //taskDataService.data.subscribe((res) => {
+      //    this.tasks = res;
+      //    console.log(res);
+      //});
   }
 
   ngOnInit() {
+      this.httpService.get('tasks?page=1&order%5Bsticky%5D=desc').subscribe((res) => {
+          this.tasks = res;
+          console.log(res);
+      });
   }
 
   public sorts= [
