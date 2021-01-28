@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../services/http.service';
 import { TaskDataService } from '../services/task-data.service';
+import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 
 @Component({

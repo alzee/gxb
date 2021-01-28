@@ -15,7 +15,7 @@
   <ion-item class="bid">
     <ion-grid>
       <ion-row>
-        <ion-col [routerLink]="['/detail', i.id]" class="item" size="6" *ngFor="let i of bids">
+        <ion-col [routerLink]="['/detail']" [queryParams]="{id: i.id}" class="item" size="6" *ngFor="let i of bids">
           <ion-row>
             <ion-col size="auto">
               <ion-avatar>
@@ -82,7 +82,7 @@
               <ion-label>{{i.owner.username}}</ion-label>
             </ion-col>
             <ion-col class="text">
-              <ion-text class="title" routerLink="/detail/{{i.id}}">{{i.title}}</ion-text>
+              <ion-text class="title" [routerLink]="['/detail']" [queryParams]="{id: i.id}" >{{i.title}}</ion-text>
               <ion-text class="info">{{i.applies}}人已赚|剩余:{{i.left}}</ion-text>
               <div>
                 <ion-badge class="reg">{{i.category.name}}</ion-badge>

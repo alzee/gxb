@@ -30,7 +30,7 @@
 
 <ion-item class="task">
     <ion-list>
-      <ion-item routerLink="/detail/{{i.id}}" *ngFor="let i of tasks">
+      <ion-item  [routerLink]="['/detail']" [queryParams]="{id: i.id}" *ngFor="let i of tasks">
         <ion-grid>
           <ion-row>
             <ion-col class="pic" size="auto">
