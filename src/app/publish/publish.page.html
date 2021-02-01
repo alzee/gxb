@@ -1,90 +1,62 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button color="dark" text=""></ion-back-button>
-    </ion-buttons>
-    <ion-title>发布任务</ion-title>
+    <ion-buttons slot="start"> <ion-back-button color="dark" text=""></ion-back-button> </ion-buttons> <ion-title>发布任务</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="light">
-  <ion-grid class="cate">
-    <ion-radio-group value="app">
-      <ion-row>
-        <ion-col *ngFor="let i of cate">
-          <ion-button color="danger" fill="{{radio.el.className.indexOf('radio-checked')<0?'outline':'solid'}}" shape="round">
-            <ion-radio slot="start" value="{{i.cate}}" #radio></ion-radio>
-            {{i.label}}
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-radio-group>
-  </ion-grid>
-
-  <ion-label color="medium">请选择类型</ion-label>
-  <ion-item class="cate">
-    <ion-grid>
-      <ion-row>
-        <ion-col *ngFor="let i of cate">
-          <ion-button color="danger" fill="outline" shape="round">{{i.label}}</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <form (ngSubmit)="postTask()">
+  <ion-item>
+    <ion-label>请选择类型</ion-label>
+    <ion-select value="1" name="category" [(ngModel)]="category" interface="action-sheet">
+      <ion-select-option *ngFor="let i of categories" value="{{i.id}}">{{i.name}}</ion-select-option>
+    </ion-select>
   </ion-item>
 
-  <ion-label color="medium">支持设备</ion-label>
-  <ion-item class="devices">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="auto" *ngFor="let i of devices">
-          <ion-button color="danger" fill="outline" shape="round">{{i}}</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-item>
+    <ion-label>支持设备</ion-label>
+    <ion-select value="1" name="platform" [(ngModel)]="platform" interface="action-sheet">
+      <ion-select-option *ngFor="let i of platforms" value="{{i.id}}">{{i.name}}</ion-select-option>
+    </ion-select>
   </ion-item>
 
   <ion-label color="medium"></ion-label>
   <ion-item class="data">
     <ion-label>任务标题</ion-label>
-    <ion-input placeholder="请输入任务标题" required clearInput></ion-input>
+    <ion-input name="title" [(ngModel)]="postData.title" placeholder="请输入任务标题" required clearInput></ion-input>
   </ion-item>
   <ion-item class="data">
     <ion-label>项目名称</ion-label>
-    <ion-input placeholder="请输入项目名称" required clearInput></ion-input>
+    <ion-input name="name" [(ngModel)]="postData.name" placeholder="请输入项目名称" required clearInput></ion-input>
+  </ion-item>
+  <ion-item class="data">
+    <ion-label>任务数量</ion-label>
+    <ion-input name="quantity" [(ngModel)]="postData.quantity" type="number" placeholder=""> </ion-input>
   </ion-item>
   <ion-item class="data">
     <ion-label>接单时间</ion-label>
-    <ion-select placeholder="请选择">
-      <ion-select-option value="1">1</ion-select-option>
-      <ion-select-option value="2">2</ion-select-option>
-    </ion-select>
+    <ion-input name="applydays" [(ngModel)]="postData.applydays" type="number" placeholder=""> </ion-input>
   </ion-item>
   <ion-item class="data">
     <ion-label>审核天数</ion-label>
-    <ion-select placeholder="请选择">
-      <ion-select-option value="1">1</ion-select-option>
-      <ion-select-option value="2">2</ion-select-option>
-    </ion-select>
+    <ion-input name="approvedays" [(ngModel)]="postData.approvedays" type="number" placeholder=""> </ion-input>
   </ion-item>
   <ion-item class="data">
     <ion-label>展现天数</ion-label>
-    <ion-select placeholder="请选择">
-      <ion-select-option value="1">1</ion-select-option>
-      <ion-select-option value="2">2</ion-select-option>
-    </ion-select>
+    <ion-input name="showdays" [(ngModel)]="postData.showdays" type="number" placeholder="请选择"> </ion-input>
   </ion-item>
   <ion-item class="data">
     <ion-label>悬赏单价</ion-label>
-    <ion-input placeholder="最低出价0.5元" required clearInput></ion-input>
+    <ion-input name="price" [(ngModel)]="postData.price" type="number" placeholder="最低出价0.5元" required clearInput></ion-input>
   </ion-item>
   <ion-item class="data">
     <ion-label>预付赏金</ion-label>
-    <ion-input placeholder="服务费，成交额15%" required clearInput></ion-input>
+    <ion-input name="prepaid" [(ngModel)]="postData.prepaid" type="number" placeholder="服务费，成交额15%" required clearInput></ion-input>
   </ion-item>
 
   <ion-label color="medium">任务说明</ion-label>
   <ion-item class="desc">
-    <ion-textarea placeholder="请输入任务介绍" autoGrow clearOnEdit>
+    <ion-textarea name="description" [(ngModel)]="postData.description" placeholder="请输入任务介绍" autoGrow clearOnEdit>
     </ion-textarea>
   </ion-item>
 
@@ -128,8 +100,9 @@
       <ion-icon name="eye-outline"></ion-icon>
       浏览 
     </ion-button>
-    <ion-button expand="full" size="large" class="publish">
+    <ion-button expand="full" size="large" class="publish" type="submit">
       申请发布
     </ion-button>
   </ion-item>
+  </form>
 </ion-content>
