@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PickerController } from "@ionic/angular";
 import { PickerOptions } from "@ionic/core";
+import cities from "./pca.json";
 
 @Component({
   selector: 'app-land',
@@ -12,29 +13,30 @@ export class LandPage implements OnInit {
   constructor(private pickerController: PickerController) {}
 
   ngOnInit() {
+      console.log(cities);
   }
 
   multiColumnOptions = [
     [
-      '北京',
-      '上海',
       '湖北',
-      '湖南',
     ],
     [
-      '武汉',
       '十堰',
-      '宜昌',
-      '襄阳',
     ],
     [
       '张湾区',
+      '茅箭区',
+      '郧阳区',
+      '竹山县',
+      '竹溪县',
+      '房县',
+      '丹江口市'
     ]
   ]
 
-  async openPicker(numColumns = 1, numOptions = 5, columnOptions = this.multiColumnOptions){
+  async openPicker(){
     const picker = await this.pickerController.create({
-      columns: this.getColumns(numColumns, numOptions, columnOptions),
+      columns: this.getColumns(3),
       buttons: [
         {
           text: '取消',
@@ -44,6 +46,7 @@ export class LandPage implements OnInit {
           text: '确定',
           handler: (value) => {
             console.log(`Got Value ${value}`);
+            console.log(value);
           }
         }
       ]
@@ -52,8 +55,10 @@ export class LandPage implements OnInit {
     await picker.present();
   }
 
-  getColumns(numColumns, numOptions, columnOptions) {
+  getColumns(numColumns) {
     let columns = [];
+    let numOptions = 5;
+    let columnOptions = this.multiColumnOptions;
     for (let i = 0; i < numColumns; i++) {
       columns.push({
         name: `col-${i}`,
