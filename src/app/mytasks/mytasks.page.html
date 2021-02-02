@@ -10,7 +10,7 @@
 
 <ion-content>
   <ion-toolbar>
-    <ion-segment value="all">
+    <ion-segment (ionChange)="segmentChanged($event)" value="0">
       <ion-segment-button [value]="i.value" *ngFor="let i of statuses">
         <ion-label>{{i.label}}</ion-label>
       </ion-segment-button>
@@ -18,24 +18,24 @@
   </ion-toolbar>
   <ion-item class="task">
     <ion-list>
-      <ion-item [routerLink]="i.link" *ngFor="let i of tasks">
+      <ion-item [routerLink]="i.link" *ngFor="let i of applies">
         <ion-grid>
           <ion-row>
             <ion-col class="pic" size="auto">
               <ion-avatar>
-                <img [src]="i.avatar">
+                <img [src]="envs.imgUrl + i.task.owner.avatar">
               </ion-avatar>
             </ion-col>
             <ion-col class="text">
-              <ion-text class="title">{{i.title}}</ion-text>
+              <ion-text class="title">{{i.task.title}}</ion-text>
               <div>
-                <ion-text class="info">{{i.cate}}</ion-text>
-                <ion-text class="info" *ngFor="let j of i.tags">|{{j}}</ion-text>
+                <ion-text class="info">{{i.task.category.name}}</ion-text>
+                <ion-text class="info" *ngFor="let j of i.task.tag">|{{j.name}}</ion-text>
               </div>
-              <ion-text class="info">报名时间:{{i.date}}</ion-text>
+              <ion-text class="info">报名时间:{{i.date | date:'y-M-d'}}</ion-text>
             </ion-col>
             <ion-col class="price" size="auto">
-              <ion-text class="num"><span>{{i.price}}元</span></ion-text>
+              <ion-text class="num"><span>{{i.task.price}}元</span></ion-text>
               <div class="status">
                 <ion-text class=""><span>已完成</span></ion-text>
               </div>
