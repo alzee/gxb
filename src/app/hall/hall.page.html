@@ -35,7 +35,10 @@
           <ion-row>
             <ion-col class="pic" size="auto">
               <ion-avatar>
-                <img [src]="envs.imgUrl + i.owner.avatar">
+                <img *ngIf="i.owner.avatar; else elseBlock" [src]="envs.imgUrl + i.owner.avatar">
+                <ng-template #elseBlock>
+                  <img src="../assets/img/she.png">
+                </ng-template>
               </ion-avatar>
               <ion-label>{{i.owner.username}}</ion-label>
             </ion-col>
