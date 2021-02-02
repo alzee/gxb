@@ -13,6 +13,7 @@ export class MePage implements OnInit {
   constructor(private storageService: StorageService) {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
       this.userData = res;
+      console.log(res);
     });
   }
 

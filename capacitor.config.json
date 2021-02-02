@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "com.drgxb.app",
   "appName": "task",
   "bundledWebRuntime": false,
   "npmClient": "npm",
