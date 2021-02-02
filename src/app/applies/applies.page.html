@@ -21,6 +21,7 @@
                   <img src="../assets/img/she.png">
                 </ng-template>
               </ion-avatar>
+              <ion-label>{{i.applicant.username}}</ion-label>
             </ion-col>
             <ion-col class="text">
               <ion-text class="title">{{i.task.title}}</ion-text>
@@ -31,9 +32,9 @@
               <ion-text class="info">报名时间:{{i.date | date:'y-M-d'}}</ion-text>
             </ion-col>
             <ion-col class="price" size="auto">
-              <ion-text class="num"><span>{{i.task.price}}元</span></ion-text>
+              <ion-text class="num"><span></span></ion-text>
               <div class="status">
-                <ion-text class=""><span>已完成</span></ion-text>
+                <ion-text class=""><span>{{i.status.name}}</span></ion-text>
               </div>
             </ion-col>
           </ion-row>
