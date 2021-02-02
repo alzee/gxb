@@ -17,6 +17,7 @@ export class DetailPage implements OnInit {
   applyData = {};
   owner = {};
   //avatar = {};
+  applied = false;
   envs = environment;
 
   constructor(
@@ -41,6 +42,15 @@ export class DetailPage implements OnInit {
           this.owner = this.data.owner;
           //this.avatar = this.data.avatar;
           console.log(this.data);
+          console.log(this.data.applies);
+          for ( let i = 0; i < this.data.applies.length; i++){
+              if(this.data.applies[i].applicant.id === this.userData.id){
+                  this.applied = true;
+                  break;
+              };
+              console.log(this.data.applies[i].applicant.id);
+              //console.log(this.userData.id);
+          }
       });
   }
 

@@ -112,6 +112,11 @@
 <ion-footer>
   <ion-item>
     <ion-button class="contact" size="large" expand="full">联系商家</ion-button>
-    <ion-button class="apply" size="large" expand="full" (click)="apply()">申请任务</ion-button>
+    <ng-container *ngIf="applied; else elseBlock">
+      <ion-button class="apply" size="large" expand="full" disabled>已申请</ion-button>
+    </ng-container>
+    <ng-template #elseBlock>
+      <ion-button class="apply" size="large" expand="full" (click)="apply()">申请任务</ion-button>
+    </ng-template>
   </ion-item>
 </ion-footer>
