@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>申请列表</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="task">
+    <ion-list>
+      <ion-item [routerLink]="['/approve']" [queryParams]="{applyid:i.id}" *ngFor="let i of applies">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="pic" size="auto">
+              <ion-avatar>
+                <img *ngIf="i.applicant.avatar; else elseBlock" [src]="envs.imgUrl + i.applicant.avatar">
+                <ng-template #elseBlock>
+                  <img src="../assets/img/she.png">
+                </ng-template>
+              </ion-avatar>
+            </ion-col>
+            <ion-col class="text">
+              <ion-text class="title">{{i.task.title}}</ion-text>
+              <div>
+                <ion-text class="info">{{i.task.category.name}}</ion-text>
+                <ion-text class="info" *ngFor="let j of i.task.tag">|{{j.name}}</ion-text>
+              </div>
+              <ion-text class="info">报名时间:{{i.date | date:'y-M-d'}}</ion-text>
+            </ion-col>
+            <ion-col class="price" size="auto">
+              <ion-text class="num"><span>{{i.task.price}}元</span></ion-text>
+              <div class="status">
+                <ion-text class=""><span>已完成</span></ion-text>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+    </ion-list>
+  </ion-item>
+</ion-content>

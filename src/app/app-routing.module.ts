@@ -89,6 +89,10 @@ const routes: Routes = [
   {
     path: 'refer',
     loadChildren: () => import('./refer/refer.module').then( m => m.ReferPageModule)
+  },
+  {
+    path: 'applies',
+    loadChildren: () => import('./applies/applies.module').then( m => m.AppliesPageModule)
   }
 ];
 @NgModule({
