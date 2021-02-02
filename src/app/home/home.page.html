@@ -24,7 +24,7 @@
             </ion-col>
             <ion-col>
               <ion-text class="title">{{i.title}}</ion-text>
-              <ion-text class="info">{{i.category.name}}|{{i.proc}}</ion-text>
+              <ion-text class="info">{{i.category.name}}</ion-text>
               <ion-text class="info">编号: {{i.id}}</ion-text>
               <ion-text class="price">+{{i.price}}元</ion-text>
             </ion-col>
@@ -83,7 +83,7 @@
             </ion-col>
             <ion-col class="text">
               <ion-text class="title" [routerLink]="['/detail']" [queryParams]="{id: i.id}" >{{i.title}}</ion-text>
-              <ion-text class="info">{{i.applies}}人已赚|剩余:{{i.left}}</ion-text>
+              <ion-text class="info">{{i.countApplies}}人已赚|剩余:{{i.remain}}</ion-text>
               <div>
                 <ion-badge class="reg">{{i.category.name}}</ion-badge>
                 <ng-container *ngFor="let j of i.tag">
