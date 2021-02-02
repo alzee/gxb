@@ -24,7 +24,7 @@
         </ng-template>
       </ion-thumbnail>
       <div>
-        <ion-text [routerLink]="i.link" class="title">{{i.title}}</ion-text>
+        <ion-text [routerLink]="['/detail']" [queryParams]="{id:i.id}" class="title">{{i.title}}</ion-text>
         <ion-grid>
           <ion-row>
             <ion-col size=3>
@@ -56,7 +56,8 @@
       </div>
     </ion-item>
     <ion-item class="actions">
-      <ion-label color="medium" [routerLink]="i.link" *ngFor="let i of actions">{{i.label}}</ion-label>
+      <ion-label color="medium" [routerLink]="['/applies']" [queryParams]="{task:i.id}" >审核</ion-label>
+      <ion-label color="medium" [routerLink]="j.link" *ngFor="let j of actions">{{j.label}}</ion-label>
     </ion-item>
   </ion-card>
 

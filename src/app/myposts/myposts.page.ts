@@ -53,11 +53,6 @@ export class MypostsPage implements OnInit {
 
   public actions = [
     {
-      value: 'review',
-      label: '审核',
-      link: '/approve',
-    },
-    {
       value: 'edit',
       label: '修改',
       link: '/edit',
