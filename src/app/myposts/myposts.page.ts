@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../services/http.service';
+import { AuthConstants } from '../config/auth-constants';
+import { StorageService } from '../services/storage.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-myposts',
@@ -6,10 +10,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./myposts.page.scss'],
 })
 export class MypostsPage implements OnInit {
+  tasks = [];
+  envs = environment;
 
-  constructor() { }
+  constructor(
+      private storageService: StorageService,
+      private httpService: HttpService
+  ) { }
 
   ngOnInit() {
+      this.storageService.get(AuthConstants.AUTH).then((res) => {
+          this.userData = res;
+          this.httpService.get('tasks?owner.id=' + this.userData.id).subscribe((res) => {
+              console.log(res);
+              this.tasks = res;
+          });
+      });
   }
 
   public statuses = [
@@ -67,63 +83,4 @@ export class MypostsPage implements OnInit {
       link: '/promo',
     },
   ];
-
-  public tasks = [
-    {
-      title: '分分钟钟搞定 秒审核',
-      price: 2,
-      quantity: 10,
-      remain: 5,
-      doing: 5,
-      preReview: 3,
-      done: 2,
-      failed: 2,
-      link: '/detail',
-    },
-    {
-      title: '分分钟钟搞定 秒审核',
-      price: 2,
-      quantity: 10,
-      remain: 5,
-      doing: 5,
-      preReview: 3,
-      done: 2,
-      failed: 2,
-      link: '/detail',
-    },
-    {
-      title: '分分钟钟搞定 秒审核',
-      price: 2,
-      quantity: 10,
-      remain: 5,
-      doing: 5,
-      preReview: 3,
-      done: 2,
-      failed: 2,
-      link: '/detail',
-    },
-    {
-      title: '分分钟钟搞定 秒审核',
-      price: 2,
-      quantity: 10,
-      remain: 5,
-      doing: 5,
-      preReview: 3,
-      done: 2,
-      failed: 2,
-      link: '/detail',
-    },
-    {
-      title: '分分钟钟搞定 秒审核',
-      price: 2,
-      quantity: 10,
-      remain: 5,
-      doing: 5,
-      preReview: 3,
-      done: 2,
-      failed: 2,
-      link: '/detail',
-    },
-  ];
-
 }

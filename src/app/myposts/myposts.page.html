@@ -18,7 +18,10 @@
   <ion-card *ngFor="let i of tasks">
     <ion-item class="info">
       <ion-thumbnail slot="start">
-        <img src="../assets/img/she.png">
+        <img *ngIf="i.owner.avatar; else elseBlock" [src]="envs.imgUrl + i.owner.avatar">
+        <ng-template #elseBlock>
+          <img src="../assets/img/she.png">
+        </ng-template>
       </ion-thumbnail>
       <div>
         <ion-text [routerLink]="i.link" class="title">{{i.title}}</ion-text>
@@ -37,7 +40,7 @@
               <ion-text color="medium"></ion-text>
             </ion-col>
             <ion-col size=3>
-              <ion-text color="medium">进行中:{{i.doing}}</ion-text>
+              <ion-text color="medium">进行中:{{i.countApplies}}</ion-text>
             </ion-col>
             <ion-col size=3>
               <ion-text color="medium">待审核:{{i.preReview}}</ion-text>
