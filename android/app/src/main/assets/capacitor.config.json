@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "task",
+  "appId": "com.drgxb.app",
+  "appName": "达人共享宝",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
@@ -9,5 +9,6 @@
       "launchShowDuration": 0
     }
   },
-  "cordova": {}
+  "cordova": {},
+  "linuxAndroidStudioPath": "/home/al/l/android-studio/bin/studio.sh"
 }
