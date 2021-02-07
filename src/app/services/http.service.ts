@@ -28,6 +28,6 @@ export class HttpService {
         const headers = new HttpHeaders('accept: application/json');
         const options = { headers: headers, withCredintials: false };
         const url = environment.apiUrl + serviceName;
-        return this.http.get(url);
+        return this.http.get<any[]>(url);
     }
 }
