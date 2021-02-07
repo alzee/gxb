@@ -1,6 +1,6 @@
 {
   "appId": "com.drgxb.app",
-  "appName": "task",
+  "appName": "达人共享宝",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
