@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./applies.page.scss'],
 })
 export class AppliesPage implements OnInit {
+  taskId = '';
   applies = [];
   envs = environment;
 
@@ -28,8 +29,7 @@ export class AppliesPage implements OnInit {
           this.taskId = params['task'];
           this.httpService.get('applies?task.id=' + this.taskId).subscribe((res) => {
               console.log(res);
-              this.applies0 = res;
-              this.applies = this.applies0;
+              this.applies = res;
           });
       });
   }

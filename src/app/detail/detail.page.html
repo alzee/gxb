@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light" class="ion-padding-horizontal">
+<ion-content color="light" class="ion-padding-horizontal" *ngIf="data">
   <ion-card class="info">
     <ion-item class="id">
       <ion-thumbnail>
@@ -56,14 +56,14 @@
 
   <ion-item class="about">
     <ion-avatar routerLink="/shop">
-      <img *ngIf="owner.avatar; else block1" [src]="envs.imgUrl + owner.avatar">
+      <img *ngIf="data.owner.avatar; else block1" [src]="envs.imgUrl + data.owner.avatar">
       <ng-template #block1>
         <img src="../assets/img/she.png">
       </ng-template>
     </ion-avatar>
     <div>
-      <ion-text>{{owner.username}}</ion-text>
-      <ion-text class="uid" color="medium"><p>{{owner.id}}</p></ion-text>
+      <ion-text>{{data.owner.username}}</ion-text>
+      <ion-text class="uid" color="medium"><p>{{data.owner.id}}</p></ion-text>
     </div>
     <div slot="end" class="actions">
       <ion-thumbnail>

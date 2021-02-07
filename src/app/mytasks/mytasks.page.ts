@@ -16,7 +16,9 @@ export class MytasksPage implements OnInit {
   applies2 = [];
   applies3 = [];
   applies4 = [];
-  userData = {};
+  userData = {
+      id: 0
+  };
   envs = environment;
 
   constructor(

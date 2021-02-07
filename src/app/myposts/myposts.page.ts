@@ -10,6 +10,9 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./myposts.page.scss'],
 })
 export class MypostsPage implements OnInit {
+  userData = {
+      id: 0
+  };
   tasks = [];
   envs = environment;
 

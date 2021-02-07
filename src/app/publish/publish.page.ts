@@ -11,7 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./publish.page.scss'],
 })
 export class PublishPage implements OnInit {
-  userData = {};
+  userData = {
+      id: 0
+  };
+  applydays = '';
   category = '';
   platform = '';
   categories = [];
@@ -20,11 +23,11 @@ export class PublishPage implements OnInit {
       owner: '',
       title: '',
       name: '',
-      applydays: '',
-      approvedays: '',
+      applydays: 0,
+      approvedays: 0,
       prepaid: '',
-      quantity: '',
-      showdays: '',
+      quantity: 0,
+      showdays: 0,
       category: '',
       platform: ''
   };
@@ -38,11 +41,11 @@ export class PublishPage implements OnInit {
           this.userData = res;
       });
 
-      this.httpService.get('categories?itemsPerPage=50', this.postData).subscribe((res) => {
+      this.httpService.get('categories?itemsPerPage=50').subscribe((res) => {
           console.log(res);
           this.categories = res;
       });
-      this.httpService.get('platforms?itemsPerPage=50', this.postData).subscribe((res) => {
+      this.httpService.get('platforms?itemsPerPage=50').subscribe((res) => {
           console.log(res);
           this.platforms = res;
       });
@@ -61,7 +64,7 @@ export class PublishPage implements OnInit {
 
   validateInputs() {
       this.postData.owner = 'api/users/' + this.userData.id;
-      this.postData.applydays = parseInt(this.postData.applydays, 10);
+      this.postData.applydays = parseInt(this.applydays, 10);
       this.postData.category = '/api/categories/' + this.category;
       this.postData.platform = '/api/platforms/' + this.platform;
       let title = this.postData.title.trim();

@@ -7,17 +7,30 @@ import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../services/toast.service';
 
+interface Data {
+    //owner: object;
+    //applies: any[];
+    //id?: any;
+    //title: string;
+    [propName: string]: any;
+}
+
+interface UserData {
+    //id: number;
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.page.html',
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
-  data = {};
-  applyData = {};
-  owner = {};
-  //avatar = {};
-  applied = false;
+  id: string;
+  userData: UserData; 
+  data: Data;
+  applyData: object;
+  applied: boolean = false;
   envs = environment;
 
   constructor(
@@ -39,8 +52,6 @@ export class DetailPage implements OnInit {
 
       this.httpService.get('tasks/' + this.id).subscribe((res) => {
           this.data = res;
-          this.owner = this.data.owner;
-          //this.avatar = this.data.avatar;
           console.log(this.data);
           console.log(this.data.applies);
           for ( let i = 0; i < this.data.applies.length; i++){
@@ -68,3 +79,5 @@ export class DetailPage implements OnInit {
   }
 
 }
+
+
