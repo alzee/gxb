@@ -28,6 +28,9 @@
     </ion-segment-button>
   </ion-segment>
 
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
 <ion-item class="task">
     <ion-list>
       <ion-item  [routerLink]="['/detail']" [queryParams]="{id: i.id}" *ngFor="let i of tasks">

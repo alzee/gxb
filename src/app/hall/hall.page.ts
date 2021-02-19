@@ -112,4 +112,13 @@ export class HallPage implements OnInit {
     header: 'Colors',
     subHeader: 'Select your favorite color'
   };
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
 }
