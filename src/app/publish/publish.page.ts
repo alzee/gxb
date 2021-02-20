@@ -4,6 +4,8 @@ import { environment } from '../../environments/environment';
 import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-publish',
@@ -34,6 +36,7 @@ export class PublishPage implements OnInit {
 
   constructor(
       private httpService: HttpService,
+      private http: HttpClient,
       private storageService: StorageService,
       private router: Router
   ) {
@@ -85,4 +88,22 @@ export class PublishPage implements OnInit {
 {"title":"1","name":"1","applydays":1,"approvedays":1,"prepaid":1,"quantity":1,"showdays":1,"category":"/api/categories/1","price":1,"description":"1", "sticky": true, "recommended": true, "owner":"/api/users/4", "platform": "/api/platforms/1"}
    
    */
+
+  uploadPhoto(fileChangeEvent) {
+    console.log(fileChangeEvent);
+    // Get a reference to the file that has just been added to the input
+    const photo = fileChangeEvent.target.files[0];
+
+    // Create a form data object using the FormData API
+    let formData = new FormData();
+
+    // Add the file that was just added to the form data
+    formData.append("file", photo, photo.name);
+
+    // POST formData to server using HttpClient
+    const url = environment.apiUrl;
+    this.http.post(url + 'media_objects', formData).subscribe((res) => {
+      console.log(res);
+    });
+  }
 }

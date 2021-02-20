@@ -73,6 +73,9 @@
     <ion-label>步骤2</ion-label>
     <ion-input placeholder="请输入文字" required clearInput></ion-input>
   </ion-item>
+  <ion-item>
+    <ion-input type="file" (change)="uploadPhoto($event)"></ion-input>
+  </ion-item>
 
   <ion-grid>
     <ion-row>
