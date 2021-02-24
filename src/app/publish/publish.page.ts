@@ -108,14 +108,11 @@ export class PublishPage implements OnInit {
 
     // POST formData to server using HttpClient
     const url = environment.apiUrl;
-    // const o = {};
-    // o.object = {
-    //         desc: 'desc 3',
-    //         pic: 'pic 3',
-    //     };
+    let o:any; // = { contentUrl?: '' };
     this.http.post(url + 'media_objects', formData).subscribe((res) => {
       console.log(res);
-      this.guide.img = res.contentUrl;
+      o = res
+      this.guide.img = o.contentUrl;
     });
   }
 }
