@@ -12,6 +12,10 @@
     </ion-row>
   </ion-grid>
 
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+
   <ion-item class="bid">
     <ion-grid>
       <ion-row>
