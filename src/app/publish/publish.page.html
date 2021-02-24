@@ -67,15 +67,10 @@
   </ion-item>
   <ion-item class="data">
     <ion-label>步骤1</ion-label>
-    <ion-input placeholder="请输入文字" required clearInput></ion-input>
+    <ion-input name="desc" placeholder="请输入文字" [(ngModel)]="guide.desc" required clearInput></ion-input>
+    <ion-icon name="image-sharp" (click)="fileUpload.click()"></ion-icon>
   </ion-item>
-  <ion-item class="data">
-    <ion-label>步骤2</ion-label>
-    <ion-input placeholder="请输入文字" required clearInput></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input type="file" (change)="uploadPhoto($event)"></ion-input>
-  </ion-item>
+    <input class="ion-hide" type="file" (change)="uploadPhoto($event)" #fileUpload>
 
   <ion-grid>
     <ion-row>

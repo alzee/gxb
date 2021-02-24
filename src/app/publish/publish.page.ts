@@ -4,8 +4,8 @@ import { environment } from '../../environments/environment';
 import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-publish',
@@ -21,6 +21,10 @@ export class PublishPage implements OnInit {
   platform = '';
   categories = [];
   platforms = [];
+  guide = {
+      desc: '',
+      img: ''
+  };
   postData = {
       owner: '',
       title: '',
@@ -31,7 +35,8 @@ export class PublishPage implements OnInit {
       quantity: 0,
       showdays: 0,
       category: '',
-      platform: ''
+      platform: '',
+      guides: []
   };
 
   constructor(
@@ -70,6 +75,7 @@ export class PublishPage implements OnInit {
       this.postData.applydays = parseInt(this.applydays, 10);
       this.postData.category = '/api/categories/' + this.category;
       this.postData.platform = '/api/platforms/' + this.platform;
+      this.postData.guides.push(this.guide);
       let title = this.postData.title.trim();
       let name = this.postData.name.trim();
       let applydays = this.postData.applydays;
@@ -102,8 +108,14 @@ export class PublishPage implements OnInit {
 
     // POST formData to server using HttpClient
     const url = environment.apiUrl;
+    // const o = {};
+    // o.object = {
+    //         desc: 'desc 3',
+    //         pic: 'pic 3',
+    //     };
     this.http.post(url + 'media_objects', formData).subscribe((res) => {
       console.log(res);
+      this.guide.img = res.contentUrl;
     });
   }
 }
