@@ -93,20 +93,12 @@
       <div class="bar"></div>
       <h4>任务描述</h4>
     </ion-item>
-    <div>
+    <div *ngFor="let i of data.guides">
       <ion-text>
-        出于互联网交流的数据隐私安全问题的考虑，请允许我只做简单说明。
+        {{i.desc}}
       </ion-text>
       <ion-item class="pic">
-        <ion-img src="../assets/img/pic1.png"></ion-img>
-      </ion-item>
-    </div>
-    <div>
-      <ion-text>
-        出于互联网交流的数据隐私安全问题的考虑，请允许我只做简单说明。
-      </ion-text>
-      <ion-item class="pic">
-        <ion-img src="../assets/img/pic1.png"></ion-img>
+        <ion-img [src]="envs.url + i.img"></ion-img>
       </ion-item>
     </div>
   </div>
