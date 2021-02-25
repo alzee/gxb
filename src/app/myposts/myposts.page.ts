@@ -24,7 +24,7 @@ export class MypostsPage implements OnInit {
   ngOnInit() {
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
-          this.httpService.get('tasks?owner.id=' + this.userData.id).subscribe((res) => {
+          this.httpService.get('tasks?order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res) => {
               console.log(res);
               this.tasks = res;
           });
