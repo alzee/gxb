@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastService } from '../services/toast.service';
 
 interface Data {
@@ -32,10 +33,14 @@ export class DetailPage implements OnInit {
   applyData: object;
   applied: boolean = false;
   envs = environment;
+  status: number;
+  applyId: number;
+  pics = [];
 
   constructor(
       private activeRoute: ActivatedRoute,
       private httpService: HttpService,
+      private http: HttpClient,
       private storageService: StorageService,
       private router: Router,
       private toastService: ToastService
@@ -57,6 +62,8 @@ export class DetailPage implements OnInit {
           for ( let i = 0; i < this.data.applies.length; i++){
               if(this.data.applies[i].applicant.id === this.userData.id){
                   this.applied = true;
+                  this.status = this.data.applies[i].status.id;
+                  this.applyId = this.data.applies[i].id;
                   break;
               };
               console.log(this.data.applies[i].applicant.id);
@@ -78,6 +85,38 @@ export class DetailPage implements OnInit {
       });
   }
 
+  submit() {
+      let data = {
+          status: "/api/statuses/2"
+      };
+      this.httpService.patch('applies/' + this.applyId, data).subscribe((res) => {
+          console.log(res);
+          this.toastService.presentToast('已提交');
+          this.ngOnInit();
+      });
+  }
+
+  uploadPhoto(fileChangeEvent) {
+    console.log(fileChangeEvent);
+    // Get a reference to the file that has just been added to the input
+    const photo = fileChangeEvent.target.files[0];
+
+    // Create a form data object using the FormData API
+    let formData = new FormData();
+
+    // Add the file that was just added to the form data
+    formData.append("file", photo, photo.name);
+
+    // POST formData to server using HttpClient
+    const url = environment.apiUrl;
+    let o:any; // = { contentUrl?: '' };
+    let that = this;
+    this.http.post(url + 'media_objects', formData).subscribe((res) => {
+      console.log(res);
+      o = res
+      this.pics.push(o.contentUrl);
+    });
+  }
 }
 
 

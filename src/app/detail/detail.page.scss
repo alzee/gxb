@@ -119,7 +119,10 @@ ion-button{
 }
 .pic{
   ion-img{
-    margin-right: 10px;
+    width: 100%;
+  }
+  .w-50{
+    width: 50%;
   }
 }
 .item-container{

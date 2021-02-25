@@ -93,12 +93,34 @@
       <div class="bar"></div>
       <h4>任务描述</h4>
     </ion-item>
+    <input class="ion-hide" type="file" (change)="uploadPhoto($event)" #fileUpload>
     <div *ngFor="let i of data.guides">
       <ion-text>
         {{i.desc}}
       </ion-text>
       <ion-item class="pic">
-        <ion-img [src]="envs.url + i.img"></ion-img>
+        <ng-container *ngIf="applied; else elseBlock4">
+          <ion-img [src]="envs.url + i.img" class="w-50"></ion-img>
+
+          <ng-container *ngIf="status == 1; else elseBlock3">
+            <ng-container *ngIf="pics[0]; else elseBlock5">
+              <ion-img [src]="envs.url + pics[0]" class="w-50"></ion-img>
+            </ng-container>
+          </ng-container>
+
+        </ng-container>
+
+        <ng-template #elseBlock3>
+          <ion-img [src]="envs.url + i.img" class="w-50"></ion-img>
+        </ng-template>
+        <ng-template #elseBlock4>
+          <ion-img [src]="envs.url + i.img"></ion-img>
+        </ng-template>
+        <ng-template #elseBlock5>
+          <ion-thumbnail (click)="fileUpload.click()" class="w-50">
+            <ion-skeleton-text></ion-skeleton-text>
+          </ion-thumbnail>
+        </ng-template>
       </ion-item>
     </div>
   </div>
@@ -107,10 +129,15 @@
 <ion-footer>
   <ion-item>
     <ion-button class="contact" size="large" expand="full">联系商家</ion-button>
-    <ng-container *ngIf="applied; else elseBlock">
-      <ion-button class="apply" size="large" expand="full" disabled>已申请</ion-button>
+    <ng-container *ngIf="applied; else elseBlock1">
+      <ng-container *ngIf="status == 1; else elseBlock2">
+        <ion-button class="apply" size="large" expand="full" (click)="submit()">提交</ion-button>
+      </ng-container>
     </ng-container>
-    <ng-template #elseBlock>
+    <ng-template #elseBlock2>
+      <ion-button class="apply" size="large" expand="full" disabled>已提交</ion-button>
+    </ng-template>
+    <ng-template #elseBlock1>
       <ion-button class="apply" size="large" expand="full" (click)="apply()">申请任务</ion-button>
     </ng-template>
   </ion-item>
