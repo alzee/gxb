@@ -3,6 +3,7 @@ import { HttpService } from '../services/http.service';
 import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mytasks',
@@ -23,7 +24,8 @@ export class MytasksPage implements OnInit {
 
   constructor(
       private storageService: StorageService,
-      private httpService: HttpService
+      private httpService: HttpService,
+      private router: Router
   ) {
   }
 
@@ -51,7 +53,9 @@ export class MytasksPage implements OnInit {
               console.log(res);
               this.applies4 = res;
           });
-      });
+      }, (rej) => {
+          this.router.navigate(['/signin']);
+      })
   }
 
   segmentChanged(ev: any) {
