@@ -41,6 +41,5 @@ export class ApprovePage implements OnInit {
 
   checkPass(e){
     console.log(e);
-    this.noPass.check();
   }
 }
