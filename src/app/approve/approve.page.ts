@@ -10,9 +10,11 @@ import { ToastService } from '../services/toast.service';
   styleUrls: ['./approve.page.scss'],
 })
 export class ApprovePage implements OnInit {
+  pass: boolean;
   applyid = '';
   data = {
-    status: "/api/statuses/4"
+    //status: "/api/statuses/3",
+    status: "/api/statuses/4",
   };
 
   constructor(
@@ -37,5 +39,8 @@ export class ApprovePage implements OnInit {
       });
   }
 
-
+  checkPass(e){
+    console.log(e);
+    this.noPass.check();
+  }
 }

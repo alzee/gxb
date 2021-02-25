@@ -38,9 +38,9 @@
 
   <ion-label color="medium">审核</ion-label>
   <ion-item class="check">
-    <ion-checkbox checked></ion-checkbox>
+    <ion-checkbox checked (click)="checkPass()"></ion-checkbox>
     <ion-label>通过</ion-label>
-    <ion-checkbox></ion-checkbox>
+    <ion-checkbox (click)="checkPass()" #noPass></ion-checkbox>
     <ion-label>拒绝</ion-label>
   </ion-item>
 
