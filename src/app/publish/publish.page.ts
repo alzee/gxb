@@ -60,6 +60,14 @@ export class PublishPage implements OnInit {
   }
 
   ngOnInit() {
+      this.storageService.get(AuthConstants.AUTH).then(
+          (res) => {
+              this.userData = res;
+          },
+          (rej) => {
+              this.router.navigate(['/signin']);
+          }
+      )
   }
 
   postTask() {
