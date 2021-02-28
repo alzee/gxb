@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PickerController } from "@ionic/angular";
 import { PickerOptions } from "@ionic/core";
+import { HttpService } from '../services/http.service';
 import cities from "./pca.json";
 
 @Component({
@@ -9,11 +10,21 @@ import cities from "./pca.json";
   styleUrls: ['./land.page.scss'],
 })
 export class LandPage implements OnInit {
+  city: string;
+  land: object;
+  posts = [];
 
-  constructor(private pickerController: PickerController) {}
+  constructor(
+      private pickerController: PickerController,
+      private httpService: HttpService
+             ) {}
 
   ngOnInit() {
       console.log(cities);
+      this.httpService.get('land_posts?land=1').subscribe((res) => {
+          this.posts = res;
+          console.log(this.posts);
+      });
   }
 
   multiColumnOptions = [
@@ -47,6 +58,15 @@ export class LandPage implements OnInit {
           handler: (value) => {
             console.log(`Got Value ${value}`);
             console.log(value);
+            this.city = value['col-2'].text;
+            this.httpService.get('lands?name=' + this.city).subscribe((res) => {
+                this.land = res[0];
+                console.log(this.land);
+                this.httpService.get('land_posts?land=' + this.land.id).subscribe((res) => {
+                    this.posts = res;
+                    console.log(this.posts);
+                });
+            });
           }
         }
       ]

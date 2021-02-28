@@ -24,13 +24,13 @@
     </ion-grid>
   </ion-item>
 
-  <ion-item class="info">
+  <ion-item class="info" *ngIf="this.city">
     <ion-avatar>
       <img src="../assets/img/she.png">
     </ion-avatar>
     <div class="name">
       <ion-text color="medium">
-        地区
+        {{this.city}}
       </ion-text>
       <ion-text>
         姓名
