@@ -73,24 +73,28 @@ ion-content{
         --size: 38px;
         margin-bottom: 6px;
       }
+      ion-label{
+          font-size: 14px;
+      }
     }
   }
   
   .alert{
-    div{
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%;
-      .speaker{
-        color: #FF3B2F;
-      }
+    --padding-start: 12px;
+    .speaker{
+      color: #FF3B2F;
+      margin-inline-end: 10px;
+    }
+    .message{
       p{
         font-size: 12px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
-      .close{
-        color: #787878;
-      }
+    }
+    .close{
+      color: #787878;
     }
   }
   
@@ -126,9 +130,12 @@ ion-content{
         padding: 10px 0;
         border-top: 1px solid #E6E6E6;
         .pic{
+          width: 68px !important;
           ion-label{
             color: #787878;
             text-align: center;
+            font-size: 12px;
+            width: 48px;
           }
         }
         .text{

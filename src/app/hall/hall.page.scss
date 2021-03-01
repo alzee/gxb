@@ -74,9 +74,12 @@ ion-segment-button{
       padding: 10px 0;
       border-top: 1px solid #E6E6E6;
       .pic{
+        width: 68px !important;
         ion-label{
           color: #787878;
           text-align: center;
+          font-size: 12px;
+          width: 48px;
         }
       }
       .text{
