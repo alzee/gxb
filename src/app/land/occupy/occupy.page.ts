@@ -6,7 +6,6 @@ import { HttpService } from '../../services/http.service';
 import {Location} from '@angular/common';
 
 interface Data {
-    days: number;
     [propName: string]: any;
 }
 
