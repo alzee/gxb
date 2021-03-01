@@ -10,7 +10,7 @@
 <ion-content color="light">
   <ion-label color="medium">支付金额</ion-label>
   <ion-item class="input">
-    <ion-text color="danger" class="price"> ¥ 2586.00 </ion-text>
+    <ion-text color="danger" class="price"> ¥ {{total}} </ion-text>
   </ion-item>
   <ion-label color="medium">选择支付方式</ion-label>
   <ion-radio-group value="ali">
@@ -22,6 +22,6 @@
       <ion-radio slot="end" value="ali"></ion-radio>
     </ion-item>
   </ion-radio-group>
-  <ion-button expand="block">立即支付</ion-button>
+  <ion-button expand="block" (click)="pay()">立即支付</ion-button>
 
 </ion-content>
