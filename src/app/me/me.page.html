@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-icon color="light" slot="start" name="chatbubble-ellipses-outline"></ion-icon>
     <ion-title color="light">个人中心</ion-title>
-    <ion-icon color="light" slot="end" name="settings-outline" routerLink="/me/setting"></ion-icon>
+    <ion-icon color="light" slot="end" name="settings-outline" *ngIf="user" routerLink="/me/setting" [queryParams]="{id: user.id}"></ion-icon>
   </ion-toolbar>
 </ion-header>
 

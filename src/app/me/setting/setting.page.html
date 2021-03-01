@@ -7,19 +7,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light">
+<ion-content color="light" *ngIf="user">
+  <input class="ion-hide" type="file" (change)="uploadPhoto($event)" #fileUpload>
   <ion-item class="avatar">
     <ion-text slot="start">头像</ion-text>
-    <ion-item slot="end" routerLink="/">
+    <ion-item slot="end" (click)="fileUpload.click()">
       <ion-avatar>
-        <img src="../../../assets/img/she.png">
+        <img [src]="url + user.avatar">
       </ion-avatar>
     </ion-item>
   </ion-item>
   <ion-item>
     <ion-text slot="start">昵称</ion-text>
     <ion-item slot="end" routerLink="/signin">
-      <ion-text color="medium">落花流水</ion-text>
+      <ion-text color="medium">{{user.nick}}</ion-text>
     </ion-item>
   </ion-item>
   <ion-item>
@@ -31,7 +32,7 @@
   <ion-item>
     <ion-text slot="start">修改手机号</ion-text>
     <ion-item slot="end" routerLink="/signin">
-      <ion-text color="medium">13000000000</ion-text>
+      <ion-text color="medium">{{user.phone}}</ion-text>
     </ion-item>
   </ion-item>
   <ion-item>
