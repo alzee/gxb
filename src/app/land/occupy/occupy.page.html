@@ -8,32 +8,37 @@
 </ion-header>
 
 <ion-content color="light">
+  <input class="ion-hide" type="file" (change)="uploadPhoto($event)" #fileUpload>
   <ion-item>
-    <ion-textarea rows="7" placeholder="你想对大家说..."></ion-textarea>
+    <ion-textarea rows="7" placeholder="你想对大家说..." [(ngModel)]="body"></ion-textarea>
   </ion-item>
 
   <ion-label color="medium">在城市格子上展示的封面</ion-label>
   <ion-item>
     <ion-label>上传封面</ion-label>
     <ion-input></ion-input>
+    <ion-icon *ngIf="!cover" name="image-sharp" (click)="fileUpload.click()"></ion-icon>
+    <ion-thumbnail *ngIf="cover" (click)="fileUpload.click()">
+      <img [src]="url + cover">
+    </ion-thumbnail>
   </ion-item>
 
   <ion-label color="medium">在城市格子上展示的天数</ion-label>
   <ion-item>
     <ion-label>展示天数</ion-label>
-    <ion-input placeholder="最低10天起步"></ion-input>
+    <ion-input placeholder="最低10天起步" [(ngModel)]="days"></ion-input>
   </ion-item>
 
   <ion-label></ion-label>
   <ion-item>
     <ion-label>竞价购买</ion-label>
-    <ion-input placeholder="最低1.0元/天起步"></ion-input>
+    <ion-input placeholder="最低1.0元/天起步" [(ngModel)]="price"></ion-input>
   </ion-item>
 
   <ion-label color="medium">支付金额</ion-label>
   <ion-item>
-    <ion-text color="danger">¥ 10.00</ion-text>
+    <ion-text color="danger">¥ {{days * price}}</ion-text>
   </ion-item>
 
-  <ion-button expand="block" routerLink="/land/pay">立即支付</ion-button>
+  <ion-button expand="block" routerLink="/land/pay" [queryParams]="{total: days * price}" (click)="publish()">发布</ion-button>
 </ion-content>
