@@ -25,7 +25,7 @@ export class LandPage implements OnInit {
 
   ngOnInit() {
       console.log(cities);
-      this.httpService.get('land_posts?land=1').subscribe((res) => {
+      this.httpService.get('land_posts?itemsPerPage=35&land=1').subscribe((res) => {
           this.posts = res;
           this.posts.length = 35;
           console.log(this.posts);
@@ -70,7 +70,7 @@ export class LandPage implements OnInit {
                     const data = {name: this.city};
                     this.httpService.post('lands?', data).subscribe((res) => {
                         this.land = res;
-                        this.httpService.get('land_posts?land=' + this.land.id).subscribe((res) => {
+                        this.httpService.get('land_posts?itemsPerPage=35&land=' + this.land.id).subscribe((res) => {
                             this.posts = res;
                             this.posts.length = 35;
                             console.log(this.posts);
@@ -79,7 +79,7 @@ export class LandPage implements OnInit {
                 }
                 else{
                     console.log(this.land);
-                    this.httpService.get('land_posts?land=' + this.land.id).subscribe((res) => {
+                    this.httpService.get('land_posts?itemsPerPage=35&land=' + this.land.id).subscribe((res) => {
                         this.posts = res;
                         this.posts.length = 35;
                         console.log(this.posts);
