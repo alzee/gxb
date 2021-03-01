@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../../services/http.service';
+import { environment } from '../../../environments/environment';
+
+interface Data {
+    [propName: string]: any;
+}
 
 @Component({
   selector: 'app-topic',
@@ -6,10 +12,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./topic.page.scss'],
 })
 export class TopicPage implements OnInit {
+  posts: Data;
+  url = environment.url;
 
-  constructor() { }
+  constructor(
+      private httpService: HttpService
+  ) { }
 
   ngOnInit() {
+      this.httpService.get('nodes?type.id=2').subscribe((res) => {
+          this.posts = res;
+          console.log(this.posts);
+      });
   }
 
 }

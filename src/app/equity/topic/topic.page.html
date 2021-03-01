@@ -15,23 +15,23 @@
     <div class="bar"></div>
     <h4>推荐话题</h4>
   </ion-item>
-  <div class="list-item" *ngFor="let i of [].constructor(5)" routerLink="/equity/topic/node">
+  <div class="list-item" *ngFor="let i of posts" routerLink="/equity/topic/node" [queryParams]="{id: i.id}">
     <ion-item>
       <ion-avatar>
-        <img src="../../../assets/img/she.png">
+        <img [src]="url + i.author.avatar">
       </ion-avatar>
       <div>
-        <h3>夏刚</h3>
-        <ion-text color="medium">姓名</ion-text>
+        <h3>{{i.title}}</h3>
+        <ion-text color="medium">{{i.author.username}}</ion-text>
       </div>
     </ion-item>
     <ion-item class="summary">
-      <ion-text>任务大厅发布任务，任务可以选择推荐/置顶/暂停，取消四种状态。推荐、置顶需要购买。</ion-text>
+      <ion-text>{{i.body}}</ion-text>
     </ion-item>
     <ion-item>
       <ion-text slot="end" color="medium">
         <ion-icon name="thumbs-up-sharp"></ion-icon>
-        1520
+        {{i.up}}
       </ion-text>
     </ion-item>
   </div>
