@@ -24,8 +24,7 @@ export class OccupyPage implements OnInit {
   body: string;
   paid: boolean = false;
   url: string = environment.url;
-  postData = {
-  };
+  postData: Data;
 
   constructor(
       private activeRoute: ActivatedRoute,
@@ -36,13 +35,12 @@ export class OccupyPage implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.total = this.days * this.price;
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.land = '/api/lands/' + params['id'];
       });
       if(this.paid){
           console.log('ok');
-          this.post();
+          //this.publish();
       }
   }
 

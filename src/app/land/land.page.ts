@@ -5,6 +5,10 @@ import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 import cities from "./pca.json";
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-land',
   templateUrl: './land.page.html',
@@ -12,8 +16,8 @@ import cities from "./pca.json";
 })
 export class LandPage implements OnInit {
   city: string;
-  land = {
-    id: 1
+  land: Data = {
+      id: 1
   };
   url = environment.url;
   posts = [];
@@ -24,7 +28,6 @@ export class LandPage implements OnInit {
              ) {}
 
   ngOnInit() {
-      console.log(cities);
       this.httpService.get('land_posts?itemsPerPage=35&land=1').subscribe((res) => {
           this.posts = res;
           this.posts.length = 35;
