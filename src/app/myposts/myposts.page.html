@@ -18,7 +18,7 @@
   <ion-card *ngFor="let i of tasks">
     <ion-item class="info">
       <ion-thumbnail slot="start">
-        <img *ngIf="i.owner.avatar; else elseBlock" [src]="envs.imgUrl + i.owner.avatar">
+        <img *ngIf="i.owner.avatar; else elseBlock" [src]="envs.url + i.owner.avatar">
         <ng-template #elseBlock>
           <img src="../assets/img/she.png">
         </ng-template>

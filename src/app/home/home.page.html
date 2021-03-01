@@ -23,7 +23,7 @@
           <ion-row>
             <ion-col size="auto">
               <ion-avatar>
-                <img *ngIf="i.owner.avatar; else elseBlock" [src]="envs.imgUrl + i.owner.avatar">
+                <img *ngIf="i.owner.avatar; else elseBlock" [src]="envs.url + i.owner.avatar">
                 <ng-template #elseBlock>
                   <img src="../assets/img/she.png">
                 </ng-template>
@@ -84,7 +84,7 @@
           <ion-row>
             <ion-col class="pic" size="auto">
               <ion-avatar>
-                <img *ngIf="i.owner.avatar; else elseBlock" [src]="envs.imgUrl + i.owner.avatar">
+                <img *ngIf="i.owner.avatar; else elseBlock" [src]="envs.url + i.owner.avatar">
                 <ng-template #elseBlock>
                   <img src="../assets/img/she.png">
                 </ng-template>
