@@ -25,7 +25,7 @@
   </ion-item>
 
   <ion-item class="info" *ngIf="land.id !== 1">
-    <ion-avatar>
+    <ion-avatar *ngIf="land.owner">
       <img [src]="url + land.owner.avatar">
     </ion-avatar>
     <div class="name">

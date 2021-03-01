@@ -6,6 +6,7 @@ import { HttpService } from '../../services/http.service';
 import {Location} from '@angular/common';
 
 interface Data {
+    days: number;
     [propName: string]: any;
 }
 
@@ -24,7 +25,7 @@ export class OccupyPage implements OnInit {
   body: string;
   paid: boolean = false;
   url: string = environment.url;
-  postData: Data;
+  postData: Data = {};
 
   constructor(
       private activeRoute: ActivatedRoute,
