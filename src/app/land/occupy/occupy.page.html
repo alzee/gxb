@@ -16,7 +16,6 @@
   <ion-label color="medium">在城市格子上展示的封面</ion-label>
   <ion-item>
     <ion-label>上传封面</ion-label>
-    <ion-input></ion-input>
     <ion-icon *ngIf="!cover" name="image-sharp" (click)="fileUpload.click()"></ion-icon>
     <ion-thumbnail *ngIf="cover" (click)="fileUpload.click()">
       <img [src]="url + cover">
