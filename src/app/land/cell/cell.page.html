@@ -7,13 +7,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="data">
   <div class="info">
     <ion-thumbnail>
-      <img src="../../../assets/img/she.png">
+      <img [src]="url + data.owner.avatar">
     </ion-thumbnail>
-    <p>姓名</p>
-    <p class="desc">在城市范围内可领取</p>
+    <p>{{data.owner.username}}</p>
+    <p class="desc">{{data.title}}</p>
     <div class="avatars">
       <ion-avatar class="a">
         <img src="../../../assets/img/she.png">
@@ -40,7 +40,7 @@
     <ion-item>
       <ion-text>
         <p>
-        打开页面为主城页面，一行4个，多行。购买广告每天1元钱起步、最低选择10天起步购买，下面选择城市进入对应的城市格子。每个城市格子页面，一行4个，多行，购买广告每天0.05元钱起步、最低选择20天起步购买。广告位参与竞价，价高的排前面，同价的按时间顺序排列（后买的排前面）。用户可以在对应的格子里面付钱后上传广告、招聘、表白等信息。用户在城市每个区可以付钱认领一个领主，领主的权益。
+        {{data.body}}
         </p>
       </ion-text>
     </ion-item>
