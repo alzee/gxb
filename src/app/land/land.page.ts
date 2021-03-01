@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PickerController } from "@ionic/angular";
 import { PickerOptions } from "@ionic/core";
 import { HttpService } from '../services/http.service';
+import { environment } from '../../environments/environment';
 import cities from "./pca.json";
 
 @Component({
@@ -11,7 +12,10 @@ import cities from "./pca.json";
 })
 export class LandPage implements OnInit {
   city: string;
-  land: object;
+  land = {
+    id: 1
+  };
+  url = environment.url;
   posts = [];
 
   constructor(
@@ -23,6 +27,7 @@ export class LandPage implements OnInit {
       console.log(cities);
       this.httpService.get('land_posts?land=1').subscribe((res) => {
           this.posts = res;
+          this.posts.length = 35;
           console.log(this.posts);
       });
   }
@@ -61,11 +66,25 @@ export class LandPage implements OnInit {
             this.city = value['col-2'].text;
             this.httpService.get('lands?name=' + this.city).subscribe((res) => {
                 this.land = res[0];
-                console.log(this.land);
-                this.httpService.get('land_posts?land=' + this.land.id).subscribe((res) => {
-                    this.posts = res;
-                    console.log(this.posts);
-                });
+                if(!this.land){
+                    const data = {name: this.city};
+                    this.httpService.post('lands?', data).subscribe((res) => {
+                        this.land = res;
+                        this.httpService.get('land_posts?land=' + this.land.id).subscribe((res) => {
+                            this.posts = res;
+                            this.posts.length = 35;
+                            console.log(this.posts);
+                        });
+                    });
+                }
+                else{
+                    console.log(this.land);
+                    this.httpService.get('land_posts?land=' + this.land.id).subscribe((res) => {
+                        this.posts = res;
+                        this.posts.length = 35;
+                        console.log(this.posts);
+                    });
+                }
             });
           }
         }
@@ -76,29 +95,29 @@ export class LandPage implements OnInit {
   }
 
   getColumns(numColumns) {
-    let columns = [];
-    let numOptions = 5;
-    let columnOptions = this.multiColumnOptions;
-    for (let i = 0; i < numColumns; i++) {
-      columns.push({
-        name: `col-${i}`,
-        options: this.getColumnOptions(i, numOptions, columnOptions)
-      });
-    }
+      let columns = [];
+      let numOptions = 5;
+      let columnOptions = this.multiColumnOptions;
+      for (let i = 0; i < numColumns; i++) {
+          columns.push({
+              name: `col-${i}`,
+              options: this.getColumnOptions(i, numOptions, columnOptions)
+          });
+      }
 
-    return columns;
+      return columns;
   }
 
   getColumnOptions(columnIndex, numOptions, columnOptions) {
-    let options = [];
-    for (let i = 0; i < numOptions; i++) {
-      options.push({
-        text: columnOptions[columnIndex][i % numOptions],
-        value: i
-      })
-    }
+      let options = [];
+      for (let i = 0; i < numOptions; i++) {
+          options.push({
+              text: columnOptions[columnIndex][i % numOptions],
+              value: i
+          })
+      }
 
-    return options;
+      return options;
   }
 
 }

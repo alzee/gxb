@@ -12,28 +12,28 @@
   <ion-item class="cells">
     <ion-grid>
       <ion-row>
-        <ion-col>
-          <ion-thumbnail routerLink="/land/cell">
-            <img src="../../assets/img/she.png">
+        <ion-col *ngFor="let i of posts">
+          <ion-thumbnail routerLink="/land/cell" [queryParams]="{id:i.id}" *ngIf="i; else elseBlock1">
+            <img [src]="url + i.cover">
           </ion-thumbnail>
         </ion-col>
-        <ion-col *ngFor="let i of [].constructor(34)">
-          <ion-icon routerLink="/land/occupy" color="medium" name="add-outline"></ion-icon>
-        </ion-col>
+        <ng-template #elseBlock1>
+          <ion-icon routerLink="/land/occupy" [queryParams]="{id:land.id}" size="large" color="medium" name="add-outline"></ion-icon>
+        </ng-template>
       </ion-row>
     </ion-grid>
   </ion-item>
 
-  <ion-item class="info" *ngIf="this.city">
+  <ion-item class="info" *ngIf="land">
     <ion-avatar>
       <img src="../assets/img/she.png">
     </ion-avatar>
     <div class="name">
       <ion-text color="medium">
-        {{this.city}}
+        {{city}}
       </ion-text>
-      <ion-text>
-        姓名
+      <ion-text *ngIf="land.owner">
+        {{land.owner.username}}
       </ion-text>
     </div>
     <div slot="end" class="price">
@@ -41,7 +41,7 @@
         领地价格
       </ion-text>
       <ion-text color="danger">
-        9999
+        {{land.price}}
       </ion-text>
     </div>
   </ion-item>
