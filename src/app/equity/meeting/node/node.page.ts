@@ -13,6 +13,7 @@ interface Data {
 })
 export class NodePage implements OnInit {
   node: Data;
+  id: number;
 
   constructor(
       private activeRoute: ActivatedRoute,
