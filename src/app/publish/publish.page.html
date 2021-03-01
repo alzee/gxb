@@ -68,7 +68,10 @@
   <ion-item class="data">
     <ion-label>步骤1</ion-label>
     <ion-input name="desc" placeholder="请输入文字" [(ngModel)]="guide.desc" required clearInput></ion-input>
-    <ion-icon name="image-sharp" (click)="fileUpload.click()"></ion-icon>
+    <ion-icon *ngIf="!guide.img" slot="end" name="image-sharp" (click)="fileUpload.click()"></ion-icon>
+    <ion-thumbnail *ngIf="guide.img" slot="end" (click)="fileUpload.click()">
+      <img [src]="url + guide.img">
+    </ion-thumbnail>
   </ion-item>
     <input class="ion-hide" type="file" (change)="uploadPhoto($event)" #fileUpload>
 

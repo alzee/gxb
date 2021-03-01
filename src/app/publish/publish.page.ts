@@ -13,6 +13,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
   styleUrls: ['./publish.page.scss'],
 })
 export class PublishPage implements OnInit {
+  url = environment.url;
   userData = {
       id: 0
   };
