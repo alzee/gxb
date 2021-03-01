@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
+import { HttpService } from '../services/http.service';
+import { environment } from '../../environments/environment';
+
+interface Data {
+    [propName: string]: any;
+}
 
 @Component({
   selector: 'app-me',
@@ -8,36 +14,28 @@ import { StorageService } from '../services/storage.service';
   styleUrls: ['./me.page.scss'],
 })
 export class MePage implements OnInit {
-  userData = {};
+  url = environment.url;
+  userData: Data;
+  user: Data;
+  total: number;
 
-  constructor(private storageService: StorageService) {
-    this.storageService.get(AuthConstants.AUTH).then((res) => {
-      this.userData = res;
-      console.log(res);
-    });
+  constructor(
+      private httpService: HttpService,
+      private storageService: StorageService
+  ) {
   }
 
   ngOnInit() {
+    this.storageService.get(AuthConstants.AUTH).then((res) => {
+      this.userData = res;
+      console.log(this.userData);
+      this.httpService.get('users/' + this.userData.id).subscribe((res) => {
+          this.user = res;
+          this.user.total = this.user.balanceTask + this.user.balanceTopup;
+          console.log(this.user);
+      });
+    });
   }
-
-  public balance = [
-    {
-      amount: 1234,
-      label: '充值余额',
-    },
-    {
-      amount: 1234,
-      label: '赏金余额',
-    },
-    {
-      amount: 1234,
-      label: '提现总额',
-    },
-    {
-      amount: 1234,
-      label: 'GXB',
-    },
-  ];
 
   public features = [
     {

@@ -6,17 +6,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="user">
   <ion-item class="about">
     <ion-avatar slot="start">
-      <img src="../assets/img/she.png">
+      <img [src]="url + user.avatar">
     </ion-avatar>
     <div>
       <ion-text class="name" color="light">
-        {{ userData.username }}
+        {{ user.username }}
       </ion-text>
       <ion-text color="light">
-        会员ID: {{ userData.id}}
+        会员ID: {{ user.id}}
       </ion-text>
       <ion-icon color="light" size="small" name="copy-outline"></ion-icon>
     </div>
@@ -25,7 +25,7 @@
   <div class="offset ion-padding-horizontal">
     <div class="balance">
       <ion-item class="total">
-        <ion-text slot="start" color="light">账户总额 123 </ion-text>
+        <ion-text slot="start" color="light">账户总额 {{user.total}}</ion-text>
         <ion-button slot="end" fill="outline" color="light" routerLink="/me/withdraw">
           立即提现
           <ion-icon name="chevron-forward-outline"></ion-icon>
@@ -34,11 +34,23 @@
       <ion-item class="misc">
       <ion-grid>
         <ion-row>
-          <ion-col class="ion-text-center" size="3" *ngFor="let i of balance">
-            <ion-text color="danger"><h3>{{i.amount}}</h3></ion-text>
-            <ion-text color="medium" class="label">{{i.label}}</ion-text>
+          <ion-col class="ion-text-center" size="3">
+            <ion-text color="danger"><h3>{{user.balanceTopup}}</h3></ion-text>
+            <ion-text color="medium" class="label">充值余额</ion-text>
           </ion-col>
-          </ion-row>
+          <ion-col class="ion-text-center" size="3">
+            <ion-text color="danger"><h3>{{user.balanceTask}}</h3></ion-text>
+            <ion-text color="medium" class="label">赏金余额</ion-text>
+          </ion-col>
+          <ion-col class="ion-text-center" size="3">
+            <ion-text color="danger"><h3>{{user.total}}</h3></ion-text>
+            <ion-text color="medium" class="label">提现总额</ion-text>
+          </ion-col>
+          <ion-col class="ion-text-center" size="3">
+            <ion-text color="danger"><h3>{{user.gxb}}</h3></ion-text>
+            <ion-text color="medium" class="label">GXB</ion-text>
+          </ion-col>
+        </ion-row>
       </ion-grid>
       </ion-item>
     </div>
