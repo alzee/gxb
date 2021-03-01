@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button color="dark" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>主城</ion-title>
+    <ion-title>领地</ion-title>
     <ion-text color="medium" slot="end">规则</ion-text>
   </ion-toolbar>
 </ion-header>
@@ -24,9 +24,9 @@
     </ion-grid>
   </ion-item>
 
-  <ion-item class="info" *ngIf="land">
+  <ion-item class="info" *ngIf="land.id !== 1">
     <ion-avatar>
-      <img src="../assets/img/she.png">
+      <img [src]="url + land.owner.avatar">
     </ion-avatar>
     <div class="name">
       <ion-text color="medium">

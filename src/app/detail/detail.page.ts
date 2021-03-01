@@ -27,7 +27,7 @@ interface UserData {
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
-  id: string;
+  id: number;
   userData: UserData; 
   data: Data;
   applyData: object;
