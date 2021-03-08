@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-thumbnail class="gxb">
+  <ion-thumbnail class="gxb" (click)="collectGxb()">
     <img src="../../../assets/img/equity_collect_gxb.png">
   </ion-thumbnail>
   <ion-thumbnail class="coins">
@@ -30,7 +30,7 @@
           <img src="../../../assets/img/equity_collect_gxb.png">
         </ion-thumbnail>
         <div>
-          <h4>今日获得1GXB</h4>
+          <h4>获得{{i.amount}}GXB</h4>
           <ion-text color="medium">{{i.date}}</ion-text>
         </div>
         <ion-text slot="end" color="danger">+{{i.amount}}</ion-text>
