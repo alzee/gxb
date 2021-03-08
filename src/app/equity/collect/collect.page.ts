@@ -5,6 +5,10 @@ import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
 import { ToastService } from '../../services/toast.service';
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-collect',
   templateUrl: './collect.page.html',
@@ -13,7 +17,7 @@ import { ToastService } from '../../services/toast.service';
 export class CollectPage implements OnInit {
   hists = [];
   uid: number;
-  postData = {};
+  postData: Data;
   amount: number = 1;
 
   constructor(

@@ -3,6 +3,10 @@ import { HttpService } from '../../../services/http.service';
 import { environment } from '../../../../environments/environment';
 import { ActivatedRoute, Params } from '@angular/router';
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-buy',
   templateUrl: './buy.page.html',
@@ -15,7 +19,7 @@ export class BuyPage implements OnInit {
   count: number = 0;
   price: number;
   shopId: number;
-  shop = {};
+  shop: Data;
 
   constructor(
       private activeRoute: ActivatedRoute,

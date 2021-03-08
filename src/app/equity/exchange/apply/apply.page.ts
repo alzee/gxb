@@ -4,6 +4,10 @@ import { StorageService } from '../../../services/storage.service';
 import { HttpService } from '../../../services/http.service';
 import { environment } from '../../../../environments/environment';
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-apply',
   templateUrl: './apply.page.html',
@@ -15,6 +19,7 @@ export class ApplyPage implements OnInit {
   rate: number;
   equity: number = 0;
   max: number;
+  userData: Data;
 
   constructor(
       private httpService: HttpService,
@@ -23,9 +28,11 @@ export class ApplyPage implements OnInit {
 
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
-      this.uid = res.id;
+      this.userData = res;
+      this.uid = this.userData.id;
       this.httpService.get('users/' + this.uid).subscribe((res) => {
-          this.gxb = res.gxb;
+          this.userData = res;
+          this.gxb = this.userData.gxb;
           console.log(this.gxb);
       });
     });

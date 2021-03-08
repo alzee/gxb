@@ -5,6 +5,10 @@ import { HttpService } from '../services/http.service';
 import { ToastService } from '../services/toast.service';
 import { environment } from '../../environments/environment';
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-approve',
   templateUrl: './approve.page.html',
@@ -20,6 +24,7 @@ export class ApprovePage implements OnInit {
   };
   guides = [];
   workPics = [];
+  apply: Data;
 
   constructor(
     private toastService: ToastService,
@@ -33,8 +38,10 @@ export class ApprovePage implements OnInit {
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.applyid = params['applyid'];
         this.httpService.get('applies/' + this.applyid).subscribe((res) => {
-          this.guides = res.task.guides;
-          this.workPics = res.pic;
+          this.apply = res;
+          this.guides = this.apply.task.guides;
+          this.workPics = this.apply.pic;
+          console.log(this.apply);
           console.log(this.guides);
           console.log(this.workPics);
         });
