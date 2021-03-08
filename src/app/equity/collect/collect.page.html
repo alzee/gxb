@@ -25,35 +25,15 @@
         <h3>最新动态</h3>
       </ion-item>
 
-      <ion-item class="list-item">
+      <ion-item class="list-item" *ngFor="let i of hists">
         <ion-thumbnail>
           <img src="../../../assets/img/equity_collect_gxb.png">
         </ion-thumbnail>
         <div>
           <h4>今日获得1GXB</h4>
-          <ion-text color="medium">2020-12-15</ion-text>
+          <ion-text color="medium">{{i.date}}</ion-text>
         </div>
-        <ion-text slot="end" color="danger">+1</ion-text>
-      </ion-item>
-      <ion-item class="list-item">
-        <ion-thumbnail>
-          <img src="../../../assets/img/equity_collect_gxb.png">
-        </ion-thumbnail>
-        <div>
-          <h4>今日获得1GXB</h4>
-          <ion-text color="medium">2020-12-15</ion-text>
-        </div>
-        <ion-text slot="end" color="danger">+1</ion-text>
-      </ion-item>
-      <ion-item class="list-item">
-        <ion-thumbnail>
-          <img src="../../../assets/img/equity_collect_gxb.png">
-        </ion-thumbnail>
-        <div>
-          <h4>今日获得1GXB</h4>
-          <ion-text color="medium">2020-12-15</ion-text>
-        </div>
-        <ion-text slot="end" color="danger">+1</ion-text>
+        <ion-text slot="end" color="danger">+{{i.amount}}</ion-text>
       </ion-item>
 
     </ion-list>

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./collect.page.scss'],
 })
 export class CollectPage implements OnInit {
+  hists = [];
 
   constructor() { }
 
