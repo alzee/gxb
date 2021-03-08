@@ -26,11 +26,11 @@
     <ion-list>
       <ion-list-header>
         <ion-item>
-          <ion-text color="medium" slot="start">
-            2020-11-22
+          <ion-item>
+            <ion-datetime displayFormat="YYYY-MM" value="{{month}}" doneText="确定" cancelText="取消" [(ngModel)]="month" (ionChange)="showMonth()"></ion-datetime>
             <ion-icon name="chevron-down-outline"></ion-icon>
-          </ion-text>
-          <ion-text color="medium" slot="end">共555元</ion-text>
+          </ion-item>
+          <ion-text color="medium" slot="end">共{{subtotal}}元</ion-text>
         </ion-item>
       </ion-list-header>
       <ion-item class="list-item" *ngFor="let i of hists">

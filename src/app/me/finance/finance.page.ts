@@ -6,28 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./finance.page.scss'],
 })
 export class FinancePage implements OnInit {
+  subtotal: number = 0;
+  month: string;
+  hists = [];
 
-  constructor() { }
+  constructor() {
+    let d = new Date();
+    this.month = d.getFullYear() + '-' + (d.getMonth() + 1);
+  }
 
   ngOnInit() {
   }
-  public hists = [
-    {
-      date: '2020-11-22',
-      amount: '123.55',
-    },
-    {
-      date: '2020-11-22',
-      amount: '123.55',
-    },
-    {
-      date: '2020-11-22',
-      amount: '123.55',
-    },
-    {
-      date: '2020-11-22',
-      amount: '123.55',
-    },
-  ];
 
+  showMonth() {
+    console.log(this.month);
+  }
 }
