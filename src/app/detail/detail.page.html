@@ -103,15 +103,15 @@
           <ion-img [src]="envs.url + i.img" class="w-50"></ion-img>
 
           <ng-container *ngIf="status == 1; else elseBlock3">
-            <ng-container *ngIf="pics[0]; else elseBlock5">
-              <ion-img [src]="envs.url + pics[0]" class="w-50"></ion-img>
+            <ng-container *ngIf="uploads[0]; else elseBlock5">
+              <ion-img [src]="envs.url + uploads[0]" class="w-50"></ion-img>
             </ng-container>
           </ng-container>
 
         </ng-container>
 
         <ng-template #elseBlock3>
-          <ion-img [src]="envs.url + i.img" class="w-50"></ion-img>
+          <ion-img [src]="envs.url + pics[0]" class="w-50"></ion-img>
         </ng-template>
         <ng-template #elseBlock4>
           <ion-img [src]="envs.url + i.img"></ion-img>

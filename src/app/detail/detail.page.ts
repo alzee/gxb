@@ -36,6 +36,7 @@ export class DetailPage implements OnInit {
   status: number;
   applyId: number;
   pics = [];
+  uploads = [];
 
   constructor(
       private activeRoute: ActivatedRoute,
@@ -64,6 +65,7 @@ export class DetailPage implements OnInit {
                   this.applied = true;
                   this.status = this.data.applies[i].status.id;
                   this.applyId = this.data.applies[i].id;
+                  this.pics = this.data.applies[i].pic;
                   break;
               };
               console.log(this.data.applies[i].applicant.id);
@@ -87,7 +89,8 @@ export class DetailPage implements OnInit {
 
   submit() {
       let data = {
-          status: "/api/statuses/2"
+          status: "/api/statuses/2",
+          pic: this.uploads
       };
       this.httpService.patch('applies/' + this.applyId, data).subscribe((res) => {
           console.log(res);
@@ -114,7 +117,8 @@ export class DetailPage implements OnInit {
     this.http.post(url + 'media_objects', formData).subscribe((res) => {
       console.log(res);
       o = res
-      this.pics.push(o.contentUrl);
+      this.uploads.push(o.contentUrl);
+      console.log(this.uploads);
     });
   }
 }
