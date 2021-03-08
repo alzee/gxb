@@ -2,7 +2,6 @@ validation
 topbar
 back button
 skeleton-text
-refresh
 infinite-scroll
 add picture
 pay jump
@@ -13,10 +12,10 @@ api node up/down
 page equity collect
 page equity exchange
 page equity market
-page land trade
 page bid
 page report
 
+page land trade
 page finance
 page dividend
 setting nick
