@@ -10,18 +10,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class MarketPage implements OnInit {
   shops = [];
-  shopId: number;
 
   constructor(
-      private activeRoute: ActivatedRoute,
       private httpService: HttpService
   ) { }
 
   ngOnInit() {
-      this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.shopId = params['id'];
-      });
-
       this.httpService.get('equity_shops?page=1&itemsPerPage=30').subscribe((res) => {
           this.shops = res;
           console.log(res);
