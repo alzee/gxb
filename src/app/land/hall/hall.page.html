@@ -8,12 +8,12 @@
 </ion-header>
 
 <ion-content class="ion-padding-horizontal">
-  <div *ngFor="let i of [].constructor(3)">
+  <div *ngFor="let i of hists">
     <ion-item class="head">
       <ion-thumbnail slot="start">
         <img src="../assets/img/locate.png">
       </ion-thumbnail>
-      <ion-label>十堰市 张湾区</ion-label>
+      <ion-label>{{i.land.name}}</ion-label>
       <ion-text slot="end" color="medium">36分钟前</ion-text>
     </ion-item>
     <div class="pk">
@@ -21,9 +21,9 @@
         <ion-avatar slot="start">
           <img src="../assets/img/she.png">
         </ion-avatar>
-        <ion-text class="name">姓名</ion-text>
-        <ion-text color="medium">现领主购买价格</ion-text>
-        <ion-text class="price">596.58</ion-text>
+        <ion-text class="name">{{i.seller.name}}</ion-text>
+        <ion-text color="medium">原领主购买价格</ion-text>
+        <ion-text class="price">{{i.price}}</ion-text>
       </div>
       <div class="vs">
         <ion-button fill="outline" color="danger" size="small">调整价格</ion-button>
@@ -33,9 +33,9 @@
         <ion-avatar slot="start">
           <img src="../assets/img/she.png">
         </ion-avatar>
-        <ion-text class="name">姓名</ion-text>
+        <ion-text class="name">{{i.buyer.name}}</ion-text>
         <ion-text color="medium">现领主购买价格</ion-text>
-        <ion-text class="price">596.58</ion-text>
+        <ion-text class="price">{{i.price}}</ion-text>
       </div>
     </div>
   </div>
