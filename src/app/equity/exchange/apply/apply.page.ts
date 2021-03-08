@@ -14,6 +14,7 @@ export class ApplyPage implements OnInit {
   gxb: number;
   rate: number;
   equity: number = 0;
+  max: number;
 
   constructor(
       private httpService: HttpService,
@@ -35,4 +36,8 @@ export class ApplyPage implements OnInit {
     });
   }
 
+  buyMax(){
+      this.max = this.gxb / this.rate;
+      this.equity = Math.trunc(this.max);
+  }
 }

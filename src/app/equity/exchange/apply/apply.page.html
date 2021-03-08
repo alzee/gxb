@@ -23,7 +23,7 @@
     <ion-item>
       <ion-text color="medium" slot="start">合计：</ion-text>
       <ion-text color="danger" slot="start"> {{equity * rate}}GXB</ion-text>
-      <ion-text color="primary" slot="end">全部投入</ion-text>
+      <ion-text color="primary" slot="end" (click)="buyMax()">全部投入</ion-text>
     </ion-item>
     <div class="hint">
       <ion-text color="medium">
