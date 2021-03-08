@@ -14,6 +14,7 @@ export class HallPage implements OnInit {
   tasksByDate = [];
   tasksByPrice = [];
   envs = environment;
+  seg = 'all';
 
   constructor(
       //private taskDataService: TaskDataService,
@@ -118,6 +119,8 @@ export class HallPage implements OnInit {
 
     setTimeout(() => {
       console.log('Async operation has ended');
+      this.seg = 'all';
+      this.ngOnInit();
       event.target.complete();
     }, 2000);
   }
