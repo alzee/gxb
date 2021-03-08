@@ -9,7 +9,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-item class="task">
+  <ion-item class="task" *ngIf="applies.length == 0">
+    <ion-text>暂无申请 </ion-text>
+  </ion-item>
+
+  <ion-item class="task" *ngIf="applies">
     <ion-list>
       <ion-item [routerLink]="['/approve']" [queryParams]="{applyid:i.id}" *ngFor="let i of applies">
         <ion-grid>
@@ -40,7 +44,6 @@
           </ion-row>
         </ion-grid>
       </ion-item>
-
     </ion-list>
   </ion-item>
 </ion-content>
