@@ -1,9 +1,19 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>sell</ion-title>
+    <ion-buttons slot="start"> <ion-back-button color="dark" text=""></ion-back-button> </ion-buttons> <ion-title>出售股权</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-item class="data">
+    <ion-label>数量</ion-label>
+    <ion-input name="title" [(ngModel)]="quantity" placeholder="请输入出售数量" required clearInput></ion-input>
+  </ion-item>
+  <ion-item class="data">
+    <ion-label>价格</ion-label>
+    <ion-input name="title" [(ngModel)]="pirce" placeholder="请输入单价" required clearInput></ion-input>
+  </ion-item>
+    <ion-button expand="full" size="large" class="publish" type="submit">
+      发售
+    </ion-button>
 </ion-content>
