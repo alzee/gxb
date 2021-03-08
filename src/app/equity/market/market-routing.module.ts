@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'pay',
     loadChildren: () => import('./pay/pay.module').then( m => m.PayPageModule)
+  },
+  {
+    path: 'sell',
+    loadChildren: () => import('./sell/sell.module').then( m => m.SellPageModule)
   }
 ];
 
