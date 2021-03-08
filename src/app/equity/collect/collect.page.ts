@@ -3,6 +3,7 @@ import { HttpService } from '../../services/http.service';
 import { environment } from '../../../environments/environment';
 import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-collect',
@@ -17,6 +18,7 @@ export class CollectPage implements OnInit {
 
   constructor(
       private storageService: StorageService,
+      private toastService: ToastService,
       private httpService: HttpService
   ) { }
 
@@ -36,6 +38,7 @@ export class CollectPage implements OnInit {
       this.postData.user = '/api/users/' + this.uid;
       this.httpService.post('gxbs', this.postData).subscribe((res) => {
           console.log(res);
+          this.toastService.presentToast('GXB +1');
       });
       console.log('collected');
       this.ngOnInit();
