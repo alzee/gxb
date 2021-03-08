@@ -11,33 +11,17 @@ export class BonusPage implements OnInit {
   gold: number = 0;
   subtotal: number = 0;
   month: string;
+  hists = [];
 
-  constructor(public toastController: ToastController) {
+  constructor(
+    public toastController: ToastController
+  ) {
     let d = new Date();
     this.month = d.getFullYear() + '-' + (d.getMonth() + 1);
   }
 
   ngOnInit() {
   }
-
-  public hists = [
-    {
-      date: '2020-11-22',
-      amount: '123.55',
-    },
-    {
-      date: '2020-11-22',
-      amount: '123.55',
-    },
-    {
-      date: '2020-11-22',
-      amount: '123.55',
-    },
-    {
-      date: '2020-11-22',
-      amount: '123.55',
-    },
-  ];
 
   async showDesc() {
     const toast = await this.toastController.create({
