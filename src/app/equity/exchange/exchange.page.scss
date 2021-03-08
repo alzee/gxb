@@ -33,6 +33,11 @@ ion-content{
         width: 150px;
         height: 64px;
       }
+      div{
+        ion-text{
+          font-size: 12px;
+        }
+      }
     }
     ion-progress-bar{
       height: 6px;

@@ -19,17 +19,17 @@
       </ion-thumbnail>
       <div>
         <p>股权</p>
-        <ion-text color="medium">当前兑换比例1000：1</ion-text>
+        <ion-text color="medium">当前兑换比例{{rate}}：1</ion-text>
       </div>
     </ion-item>
     <ion-item>
-        <ion-text color="medium" slot="start">剩余 1,387,987,458</ion-text>
-        <ion-text color="medium" slot="end">已取 18,387,987</ion-text>
+      <ion-text color="medium" slot="start">剩余 {{remain}}</ion-text>
+      <ion-text color="medium" slot="end">已取 {{taken}}</ion-text>
     </ion-item>
     <ion-item>
       <ion-progress-bar color="warning" value="0.5"></ion-progress-bar>
     </ion-item>
-      <ion-text slot="start">总量： 1,400,000,000</ion-text>
+    <ion-text slot="start">总量：{{total}}</ion-text>
     <ion-button expand="block" routerLink="/equity/exchange/apply">申请兑换</ion-button>
   </div>
 
