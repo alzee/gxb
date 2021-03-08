@@ -17,8 +17,11 @@ interface Data {
 export class CollectPage implements OnInit {
   hists = [];
   uid: number;
-  postData: Data;
-  amount: number = 1;
+  postData ={
+      amount: 1,
+      user: '',
+  } ;
+  //amount: number = 1;
 
   constructor(
       private storageService: StorageService,
@@ -38,7 +41,7 @@ export class CollectPage implements OnInit {
   }
 
   collectGxb() {
-      this.postData.amount = this.amount;
+      //this.postData.amount = this.amount;
       this.postData.user = '/api/users/' + this.uid;
       this.httpService.post('gxbs', this.postData).subscribe((res) => {
           console.log(res);
