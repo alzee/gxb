@@ -7,8 +7,15 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./bonus.page.scss'],
 })
 export class BonusPage implements OnInit {
+  fund: number = 0;
+  gold: number = 0;
+  subtotal: number = 0;
+  month: string;
 
-  constructor(public toastController: ToastController) {}
+  constructor(public toastController: ToastController) {
+    let d = new Date();
+    this.month = d.getFullYear() + '-' + (d.getMonth() + 1);
+  }
 
   ngOnInit() {
   }
@@ -54,4 +61,7 @@ export class BonusPage implements OnInit {
     toast.present();
   }
 
+  showMonth() {
+    console.log(this.month);
+  }
 }
