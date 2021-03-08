@@ -9,29 +9,17 @@
 
 <ion-content color="light">
   <ion-label color="medium">任务图片</ion-label>
-  <div class="ion-padding-horizontal">
+  <div class="ion-padding-horizontal" *ngFor="let i of guides; let j = index">
     <div>
       <ion-label>
-        <ion-badge>1</ion-badge>
+        <ion-badge>{{j + 1}}</ion-badge>
         <ion-text>
-          出于互联网交流的数据隐私安全问题的考虑，请允许我只做简单说明。
+          {{i.desc}}
         </ion-text>
       </ion-label>
       <ion-item class="pic">
-        <ion-img src="../assets/img/pic1.png"></ion-img>
-        <ion-img src="../assets/img/pic1.png"></ion-img>
-      </ion-item>
-    </div>
-    <div>
-      <ion-label>
-        <ion-badge>2</ion-badge>
-        <ion-text>
-          出于互联网交流的数据隐私安全问题的考虑，请允许我只做简单说明。
-        </ion-text>
-      </ion-label>
-      <ion-item class="pic">
-        <ion-img src="../assets/img/pic1.png"></ion-img>
-        <ion-img src="../assets/img/pic1.png"></ion-img>
+        <ion-img [src]="url + i.img" class="w-50"></ion-img>
+        <ion-img [src]="url + workPics[j]" class="w-50"></ion-img>
       </ion-item>
     </div>
   </div>
