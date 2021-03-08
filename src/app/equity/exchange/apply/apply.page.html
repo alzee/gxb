@@ -12,17 +12,17 @@
     <p>
     <ion-text class="label" color="light">GXB余额</ion-text>
     </p>
-    <ion-text class="amount" color="light">576.58</ion-text>
+    <ion-text class="amount" color="light">{{gxb}}</ion-text>
   </div>
 
   <div class="ex">
     <ion-item>
-      <ion-text slot="start">股权</ion-text>
-      <ion-input slot="end"> </ion-input>
+      <ion-label slot="start">股权: </ion-label>
+      <ion-input slot="end" [(ngModel)]="equity"> </ion-input>
     </ion-item>
     <ion-item>
       <ion-text color="medium" slot="start">合计：</ion-text>
-      <ion-text color="danger" slot="start"> 1,387GXB</ion-text>
+      <ion-text color="danger" slot="start"> {{equity * rate}}GXB</ion-text>
       <ion-text color="primary" slot="end">全部投入</ion-text>
     </ion-item>
     <div class="hint">
