@@ -3,6 +3,7 @@ import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 interface Data {
     [propName: string]: any;
@@ -20,21 +21,28 @@ export class MePage implements OnInit {
   total: number;
 
   constructor(
+      private router: Router,
       private httpService: HttpService,
       private storageService: StorageService
   ) {
   }
 
   ngOnInit() {
-    this.storageService.get(AuthConstants.AUTH).then((res) => {
-      this.userData = res;
-      console.log(this.userData);
-      this.httpService.get('users/' + this.userData.id).subscribe((res) => {
-          this.user = res;
-          this.user.total = this.user.balanceTask + this.user.balanceTopup;
-          console.log(this.user);
-      });
-    });
+    this.storageService.get(AuthConstants.AUTH).then(
+        (res) => {
+            this.userData = res;
+            console.log(this.userData);
+            this.httpService.get('users/' + this.userData.id).subscribe((res) => {
+                this.user = res;
+                this.user.total = this.user.balanceTask + this.user.balanceTopup;
+                console.log(this.user);
+            });
+        },
+        (rej) => {
+            this.user = {};
+            //this.router.navigate(['/signin']);
+        }
+    );
   }
 
   public features = [
