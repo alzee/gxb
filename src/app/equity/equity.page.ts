@@ -38,5 +38,10 @@ export class EquityPage implements OnInit {
       img: '../assets/img/talk.png',
       name: '股东话题',
     },
+    {
+      link: '/equity/market/buy',
+      img: '../assets/img/market.png',
+      name: '我的交易'
+    }
   ];
 }
