@@ -14,6 +14,7 @@ export class HomePage implements OnInit {
   //http: HttpService;
   bids = [];
   tasks = [];
+  news = [];
   envs = environment;
   constructor(
       //private taskDataService: TaskDataService,
@@ -32,6 +33,10 @@ export class HomePage implements OnInit {
       });
       this.httpService.get('tasks?page=1&sticky=true&recommended=true&order%5Bsticky%5D=desc').subscribe((res) => {
           this.tasks = res;
+          console.log(res);
+      });
+      this.httpService.get('nodes?page=1&itemsPerPage=1&type.id=3').subscribe((res) => {
+          this.news = res;
           console.log(res);
       });
   }

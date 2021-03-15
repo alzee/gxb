@@ -56,7 +56,7 @@
 
   <ion-item class="alert">
       <ion-icon slot="start" class="speaker" size="small" name="volume-medium-outline"></ion-icon>
-      <ion-text class="message"><p>有效好友达到100，领取补贴现金200元(共计2...)</p></ion-text>
+      <ion-text *ngFor="let i of news" routerLink="/news" [queryParams]="{id: i.id}" class="message"><p>{{i.title}}</p></ion-text>
       <ion-icon slot="end" class="close" size="small" name="close"></ion-icon>
   </ion-item>
 
