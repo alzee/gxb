@@ -93,6 +93,10 @@ const routes: Routes = [
   {
     path: 'applies',
     loadChildren: () => import('./applies/applies.module').then( m => m.AppliesPageModule)
+  },
+  {
+    path: 'news',
+    loadChildren: () => import('./news/news.module').then( m => m.NewsPageModule)
   }
 ];
 @NgModule({

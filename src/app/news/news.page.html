@@ -1,0 +1,27 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>最新动态</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal" *ngIf="!node">
+  <h2><ion-skeleton-text animated style="width: 50%"></ion-skeleton-text></h2>
+  <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+  <p>
+  <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+  <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+  </p>
+  <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+</ion-content>
+
+<ion-content class="ion-padding-horizontal" *ngIf="node">
+  <h2>{{node.title}}</h2>
+  <ion-text color="medium">时间：{{node.date | date: 'yyyy年M月d日'}}</ion-text>
+  <p>
+  </p>
+
+  {{node.body}}
+</ion-content>
