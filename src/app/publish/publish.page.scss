@@ -1,7 +1,15 @@
+ion-content{
+  iton-item{
+    border-bottom: 1px solid red ;
+  }
+}
 ion-label{
   padding: 10px;
   display: block;
   font-size: 14px;
+}
+.data {
+    border-bottom: 1px solid #dadada;
 }
 .data ion-label{
   font-size: 14px;

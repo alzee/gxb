@@ -6,14 +6,14 @@
 
 <ion-content color="light">
   <form (ngSubmit)="postTask()">
-  <ion-item>
+  <ion-item class="data">
     <ion-label>请选择类型</ion-label>
     <ion-select value="1" name="category" [(ngModel)]="category" interface="action-sheet">
       <ion-select-option *ngFor="let i of categories" value="{{i.id}}">{{i.name}}</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-item>
+  <ion-item class="data">
     <ion-label>支持设备</ion-label>
     <ion-select value="1" name="platform" [(ngModel)]="platform" interface="action-sheet">
       <ion-select-option *ngFor="let i of platforms" value="{{i.id}}">{{i.name}}</ion-select-option>
