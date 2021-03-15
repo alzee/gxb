@@ -27,7 +27,7 @@ export class HallPage implements OnInit {
   }
 
   ngOnInit() {
-      this.httpService.get('tasks?page=1&order%5Bsticky%5D=desc').subscribe((res) => {
+      this.httpService.get('tasks?page=1&recommended=true&order%5Bdate%5D=desc').subscribe((res) => {
           this.tasksBySticky = res;
           this.tasks = this.tasksBySticky;
           console.log(res);
