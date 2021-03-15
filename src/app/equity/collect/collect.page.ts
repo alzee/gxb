@@ -46,9 +46,9 @@ export class CollectPage implements OnInit {
       this.httpService.post('gxbs', this.postData).subscribe((res) => {
           console.log(res);
           this.toastService.presentToast('GXB +1');
+          this.ngOnInit();
       });
       console.log('collected');
-      this.ngOnInit();
   }
 
 }

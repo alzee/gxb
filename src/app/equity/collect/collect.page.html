@@ -30,8 +30,8 @@
           <img src="../../../assets/img/equity_collect_gxb.png">
         </ion-thumbnail>
         <div>
-          <h4>获得{{i.amount}}GXB</h4>
-          <ion-text color="medium">{{i.date}}</ion-text>
+          <h4>获得GXB</h4>
+          <ion-text color="medium">{{i.date | date:'yyyy年M月d日'}}</ion-text>
         </div>
         <ion-text slot="end" color="danger">+{{i.amount}}</ion-text>
       </ion-item>
