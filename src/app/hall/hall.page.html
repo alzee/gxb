@@ -50,7 +50,7 @@
               <ion-text class="info">{{i.countApplies}}人已赚|剩余:{{i.remain}}</ion-text>
               <div>
                 <ion-badge class="reg">{{i.category.name}}</ion-badge>
-                <ng-container *ngFor="let j of i.tag">
+                <ng-container *ngFor="let j of i.tag | slice:0:1">
                   <ion-badge class="save">{{j.name}}</ion-badge>
                 </ng-container>
               </div>
