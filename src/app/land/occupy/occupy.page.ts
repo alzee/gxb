@@ -19,6 +19,7 @@ export class OccupyPage implements OnInit {
   days: number = 10;
   price: string = '1';
   land: string;
+  landId: number;
   cover: string;
   title: string = '';
   body: string;
@@ -36,7 +37,12 @@ export class OccupyPage implements OnInit {
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.land = '/api/lands/' + params['id'];
+          this.landId = params['id'];
+          this.land = '/api/lands/' + this.landId;
+          if(this.landId != 1){
+            this.days = 20;
+            this.price= '0.05';
+          }
       });
       if(this.paid){
           console.log('ok');
