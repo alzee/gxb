@@ -8,33 +8,33 @@
 </ion-header>
 
 <ion-content class="ion-padding-horizontal">
-  <div *ngFor="let i of hists">
+  <div *ngFor="let i of sales">
     <ion-item class="head">
       <ion-thumbnail slot="start">
         <img src="../assets/img/locate.png">
       </ion-thumbnail>
-      <ion-label>{{i.land.name}}</ion-label>
+      <ion-label>{{i.name}}</ion-label>
       <ion-text slot="end" color="medium">36分钟前</ion-text>
     </ion-item>
     <div class="pk">
-      <div class="peer">
+      <div class="peer" *ngIf="i.owner">
         <ion-avatar slot="start">
-          <img src="../assets/img/she.png">
+          <img [src]="url + i.owner.avatar">
         </ion-avatar>
-        <ion-text class="name">{{i.seller.name}}</ion-text>
-        <ion-text color="medium">原领主购买价格</ion-text>
-        <ion-text class="price">{{i.price}}</ion-text>
+        <ion-text class="name">{{i.owner.username}}</ion-text>
+        <ion-text color="medium">原购买价格</ion-text>
+        <ion-text class="price">{{i.prePrice}}</ion-text>
       </div>
       <div class="vs">
-        <ion-button fill="outline" color="danger" size="small">调整价格</ion-button>
+        <ion-button fill="outline" disabled="true" color="danger" size="small">调整价格</ion-button>
         <ion-icon name="navigate" color="danger"></ion-icon>
       </div>
-      <div class="peer">
+      <div class="peer" *ngIf="i.owner">
         <ion-avatar slot="start">
-          <img src="../assets/img/she.png">
+          <img [src]="url + i.owner.avatar">
         </ion-avatar>
-        <ion-text class="name">{{i.buyer.name}}</ion-text>
-        <ion-text color="medium">现领主购买价格</ion-text>
+        <ion-text class="name">{{i.owner.username}}</ion-text>
+        <ion-text color="medium">现出售价格</ion-text>
         <ion-text class="price">{{i.price}}</ion-text>
       </div>
     </div>

@@ -9,6 +9,7 @@
 </ion-header>
 
 <ion-content>
+  <ng-container *ngIf="land">
   <ion-item class="cells">
     <ion-grid>
       <ion-row>
@@ -49,6 +50,7 @@
     <ion-text color="medium">
     </ion-text>
   </ion-item>
+  </ng-container>
 
   <ion-item class="btn">
     <ion-button expand="full" size="large" class="other" (click)="openPicker()">

@@ -8,15 +8,16 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./hall.page.scss'],
 })
 export class HallPage implements OnInit {
-  hists = [];
+  url = environment.url;
+  sales = [];
 
   constructor(
       private httpService: HttpService
   ) { }
 
   ngOnInit() {
-      this.httpService.get('land_trades?page=1').subscribe((res) => {
-          this.hists = res;
+      this.httpService.get('lands?page=1&itemsPerPage=5&forSale=true').subscribe((res) => {
+          this.sales = res;
           console.log(res);
       });
   }
