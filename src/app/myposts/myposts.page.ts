@@ -60,11 +60,6 @@ export class MypostsPage implements OnInit {
 
   public actions = [
     {
-      value: 'edit',
-      label: '修改',
-      link: '/edit',
-    },
-    {
       value: 'pause',
       label: '暂停',
       link: '/pause',
