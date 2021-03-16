@@ -10,27 +10,29 @@
 <ion-content color="light">
   <ion-item>
     <ion-text class="label">竞价任务</ion-text>
-    <ion-text>分分钟钟搞定 秒审核</ion-text>
+    <ion-select name="mypost" [(ngModel)]="mypost" interface="action-sheet">
+      <ion-select-option *ngFor="let i of myposts" value="{{i.id}}">{{i.title}}</ion-select-option>
+    </ion-select>
   </ion-item>
   <ion-item>
     <ion-text class="label">出价</ion-text>
-    <ion-input placeholder="当前最低出价100元"></ion-input>元
+    <ion-input placeholder="当前最低出价100元" [(ngModel)]="myBid"></ion-input>元
   </ion-item>
   <ion-item class="position">
     <ion-text class="label">竞拍位置</ion-text>
-    <ion-input placeholder=""></ion-input>
+    <ion-input placeholder="" disabled="true">{{id}}</ion-input>
   </ion-item>
   <ion-label><ion-text color="medium">竞价记录</ion-text></ion-label>
-  <ion-item class="list-item" *ngFor="let i of [].constructor(7)">
+  <ion-item class="list-item" *ngFor="let i of bids">
     <div slot="start">
-      <p>近话所观没再回照名集酸感然求</p>
-      <ion-text color="medium">2020-12-15</ion-text>
+      <p>{{i.task.title}}</p>
+      <ion-text color="medium">{{i.date | date:'yyyy年m月d日'}}</ion-text>
     </div>
-    <ion-text slot="end" color="danger">100元</ion-text>
+    <ion-text slot="end" color="danger">{{i.bid}}元</ion-text>
   </ion-item>
 </ion-content>
 
 <ion-footer>
   <ion-button class="left" expand="full" color="light">一口价</ion-button>
-  <ion-button class="right" expand="full">参与竞价</ion-button>
+  <ion-button class="right" expand="full" (click)="bid()">参与竞价</ion-button>
 </ion-footer>
