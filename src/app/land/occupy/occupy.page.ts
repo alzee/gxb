@@ -21,6 +21,7 @@ export class OccupyPage implements OnInit {
   land: string;
   landId: number;
   cover: string;
+  pics = [];
   title: string = '';
   body: string;
   paid: boolean = false;
@@ -54,6 +55,7 @@ export class OccupyPage implements OnInit {
       this.postData.days = this.days;
       this.postData.price = this.price;
       this.postData.cover = this.cover;
+      this.postData.pics = this.pics;
       this.postData.title = this.title;
       this.postData.body = this.body;
       this.postData.owner = this.owner;
@@ -69,7 +71,7 @@ export class OccupyPage implements OnInit {
       });
   }
 
-  uploadPhoto(fileChangeEvent) {
+  uploadPhoto(fileChangeEvent, type) {
     console.log(fileChangeEvent);
     // Get a reference to the file that has just been added to the input
     const photo = fileChangeEvent.target.files[0];
@@ -85,8 +87,13 @@ export class OccupyPage implements OnInit {
     let o:any; // = { contentUrl?: '' };
     this.http.post(url + 'media_objects', formData).subscribe((res) => {
       console.log(res);
-      o = res
-      this.cover = o.contentUrl;
+      o = res;
+      if(type == 'cover')
+          this.cover = o.contentUrl;
+      if(type == 'pic')
+          this.pics.push(o.contentUrl);
+      console.log(this.pics);
+      console.log(this.cover);
     });
   }
 
