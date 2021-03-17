@@ -10,17 +10,17 @@
 <ion-content color="light">
   <ion-item>
     <ion-text class="label">竞价任务</ion-text>
-    <ion-select name="mypost" [(ngModel)]="mypost" interface="action-sheet">
+    <ion-select name="post" [(ngModel)]="post" interface="action-sheet">
       <ion-select-option *ngFor="let i of myposts" value="{{i.id}}">{{i.title}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-text class="label">出价</ion-text>
-    <ion-input placeholder="当前最低出价100元" [(ngModel)]="myBid"></ion-input>元
+    <ion-input type="number" placeholder="当前最低出价100元" [(ngModel)]="myBid"></ion-input>元
   </ion-item>
   <ion-item class="position">
     <ion-text class="label">竞拍位置</ion-text>
-    <ion-input placeholder="" disabled="true">{{id}}</ion-input>
+    <ion-input type="number" disabled="true">{{position}}</ion-input>
   </ion-item>
   <ion-label><ion-text color="medium">竞价记录</ion-text></ion-label>
   <ion-item class="list-item" *ngFor="let i of bids">

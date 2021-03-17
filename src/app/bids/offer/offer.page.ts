@@ -18,6 +18,11 @@ export class OfferPage implements OnInit {
   bids: Data;
   myBid: number;
   post: number;
+  data: Data = {
+      task: 0,
+      bid: 0,
+      position: 0
+  };
 
   constructor(
       private activeRoute: ActivatedRoute,
@@ -32,16 +37,23 @@ export class OfferPage implements OnInit {
         console.log(res);
         this.myposts = res;
       });
-      this.httpService.get('bids?page=1&itemsPerPage=10&position=' + this.id).subscribe((res) => {
+      this.httpService.get('bids?page=1&itemsPerPage=10&position=' + this.position).subscribe((res) => {
         console.log(res);
         this.bids = res;
       });
   }
 
   bid(){
+    this.data.task = '/api/tasks/' + this.post;
+    this.data.bid = this.myBid;
+    this.data.position = parseInt(this.position);
     console.log(this.myBid);
     console.log(this.post);
     console.log(this.position);
+    this.httpService.post('bids', this.data).subscribe((res) => {
+        console.log(res);
+        this.ngOnInit()
+    });
   }
 
 }
