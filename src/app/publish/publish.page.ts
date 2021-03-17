@@ -176,6 +176,5 @@ export class PublishPage implements OnInit {
   preview(){
       console.log(this.guides);
       console.log(this.reviews);
-      console.log(this.picText);
   }
 }
