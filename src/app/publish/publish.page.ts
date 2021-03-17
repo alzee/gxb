@@ -13,16 +13,24 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
   styleUrls: ['./publish.page.scss'],
 })
 export class PublishPage implements OnInit {
+  arr1 = [1];
+  arr2 = [1];
   url = environment.url;
   userData = {
       id: 0
   };
+  countGuides = 3;
+  countReviews = 3;
   applydays = '';
   category = '';
   platform = '';
   categories = [];
   platforms = [];
   guide = {
+      desc: '',
+      img: ''
+  };
+  review = {
       desc: '',
       img: ''
   };
@@ -123,5 +131,15 @@ export class PublishPage implements OnInit {
       o = res
       this.guide.img = o.contentUrl;
     });
+  }
+
+  add1(){
+      console.log(1);
+      this.arr1.push(1);
+  }
+
+  add2(){
+      console.log(2);
+      this.arr2.push(1);
   }
 }

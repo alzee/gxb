@@ -65,23 +65,34 @@
     <ion-label>链接</ion-label>
     <ion-input placeholder="请输入链接，http开头" required clearInput></ion-input>
   </ion-item>
-  <ion-item class="data">
-    <ion-label>步骤1</ion-label>
+
+  <input class="ion-hide" type="file" (change)="uploadPhoto($event)" #fileUpload>
+
+  <ion-item class="data guide" *ngFor="let i of arr1">
+    <ion-label>操作步骤</ion-label>
     <ion-input name="desc" placeholder="请输入文字" [(ngModel)]="guide.desc" required clearInput></ion-input>
     <ion-icon *ngIf="!guide.img" slot="end" name="image-sharp" (click)="fileUpload.click()"></ion-icon>
     <ion-thumbnail *ngIf="guide.img" slot="end" (click)="fileUpload.click()">
       <img [src]="url + guide.img">
     </ion-thumbnail>
   </ion-item>
-    <input class="ion-hide" type="file" (change)="uploadPhoto($event)" #fileUpload>
+
+  <ion-item class="data review" *ngFor="let i of arr2">
+    <ion-label>验收图文</ion-label>
+    <ion-input name="desc" placeholder="请输入文字" [(ngModel)]="guide.desc" required clearInput></ion-input>
+    <ion-icon *ngIf="!guide.img" slot="end" name="image-sharp" (click)="fileUpload.click()"></ion-icon>
+    <ion-thumbnail *ngIf="guide.img" slot="end" (click)="fileUpload.click()">
+      <img [src]="url + guide.img">
+    </ion-thumbnail>
+  </ion-item>
 
   <ion-grid>
     <ion-row>
       <ion-col size="6" class="ion-text-center">
-        <ion-button size="small" color="danger" shape="round">添加图文步骤</ion-button>
+        <ion-button size="small" color="danger" shape="round" (click)="add1()">添加图文步骤</ion-button>
       </ion-col>
       <ion-col size="6" class="ion-text-center">
-        <ion-button size="small" color="danger" shape="round">添加验收图文</ion-button>
+        <ion-button size="small" color="danger" shape="round" (click)="add2()">添加验收图文</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
