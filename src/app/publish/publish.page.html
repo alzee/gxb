@@ -66,24 +66,25 @@
     <ion-input placeholder="请输入链接，http开头" required clearInput></ion-input>
   </ion-item>
 
-  <input class="ion-hide" type="file" (change)="uploadPhoto($event)" #fileUpload>
 
-  <ion-item class="data guide" *ngFor="let i of arr1">
-    <ion-label>操作步骤</ion-label>
-    <ion-input name="desc" placeholder="请输入文字" [(ngModel)]="guide.desc" required clearInput></ion-input>
-    <ion-icon *ngIf="!guide.img" slot="end" name="image-sharp" (click)="fileUpload.click()"></ion-icon>
-    <ion-thumbnail *ngIf="guide.img" slot="end" (click)="fileUpload.click()">
-      <img [src]="url + guide.img">
+  <ion-item class="data guide" *ngFor="let i of arr1; let j = index">
+    <ion-label>操作步骤{{j+1}}</ion-label>
+    <ion-input name="desc" placeholder="请输入文字" [(ngModel)]="guides[j].desc" required clearInput></ion-input>
+    <ion-icon *ngIf="!guides[j].img" slot="end" name="image-sharp" (click)="fileUpload.click()"></ion-icon>
+    <ion-thumbnail *ngIf="guides[j].img" slot="end" (click)="fileUpload.click()">
+      <img [src]="url + guides[j].img">
     </ion-thumbnail>
+    <input class="ion-hide" type="file" (change)="uploadPhoto($event, 'guide', j)" #fileUpload>
   </ion-item>
 
-  <ion-item class="data review" *ngFor="let i of arr2">
-    <ion-label>验收图文</ion-label>
-    <ion-input name="desc" placeholder="请输入文字" [(ngModel)]="guide.desc" required clearInput></ion-input>
-    <ion-icon *ngIf="!guide.img" slot="end" name="image-sharp" (click)="fileUpload.click()"></ion-icon>
-    <ion-thumbnail *ngIf="guide.img" slot="end" (click)="fileUpload.click()">
-      <img [src]="url + guide.img">
+  <ion-item class="data review" *ngFor="let i of arr2; let j = index">
+    <ion-label>验收图文{{j+1}}</ion-label>
+    <ion-input name="desc" placeholder="请输入文字" [(ngModel)]="reviews[j].desc" required clearInput></ion-input>
+    <ion-icon *ngIf="!reviews[j].img" slot="end" name="image-sharp" (click)="fileUpload.click()"></ion-icon>
+    <ion-thumbnail *ngIf="reviews[j].img" slot="end" (click)="fileUpload.click()">
+      <img [src]="url + reviews[j].img">
     </ion-thumbnail>
+    <input class="ion-hide" type="file" (change)="uploadPhoto($event, 'review', j)" #fileUpload>
   </ion-item>
 
   <ion-grid>
@@ -108,7 +109,7 @@
   </ion-item>
 
   <ion-item class="btn">
-    <ion-button expand="full" size="large" class="preview">
+    <ion-button expand="full" size="large" class="preview" (click)="preview()">
       <ion-icon name="eye-outline"></ion-icon>
       浏览 
     </ion-button>

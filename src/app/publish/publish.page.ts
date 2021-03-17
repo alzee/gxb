@@ -26,6 +26,18 @@ export class PublishPage implements OnInit {
   platform = '';
   categories = [];
   platforms = [];
+  guides = [
+      {
+          desc: '',
+          img: ''
+      }
+  ];
+  reviews = [
+      {
+          desc: '',
+          img: ''
+      }
+  ];
   guide = {
       desc: '',
       img: ''
@@ -45,7 +57,8 @@ export class PublishPage implements OnInit {
       showdays: 0,
       category: '',
       platform: '',
-      guides: []
+      guides: [],
+      reviews: []
   };
 
   constructor(
@@ -92,7 +105,8 @@ export class PublishPage implements OnInit {
       this.postData.applydays = parseInt(this.applydays, 10);
       this.postData.category = '/api/categories/' + this.category;
       this.postData.platform = '/api/platforms/' + this.platform;
-      this.postData.guides.push(this.guide);
+      this.postData.guides.push(this.guides);
+      this.postData.reviews.push(this.reviews);
       let title = this.postData.title.trim();
       let name = this.postData.name.trim();
       let applydays = this.postData.applydays;
@@ -112,8 +126,10 @@ export class PublishPage implements OnInit {
    
    */
 
-  uploadPhoto(fileChangeEvent) {
-    console.log(fileChangeEvent);
+  uploadPhoto(fileChangeEvent, type, i) {
+    //console.log(fileChangeEvent);
+    console.log(type);
+    console.log(i);
     // Get a reference to the file that has just been added to the input
     const photo = fileChangeEvent.target.files[0];
 
@@ -129,17 +145,37 @@ export class PublishPage implements OnInit {
     this.http.post(url + 'media_objects', formData).subscribe((res) => {
       console.log(res);
       o = res
-      this.guide.img = o.contentUrl;
+
+      if(type == 'guide')
+          this.guides[i].img = o.contentUrl;
+      if(type == 'review')
+          this.reviews[i].img = o.contentUrl;
     });
   }
 
   add1(){
-      console.log(1);
+      this.guides.push(
+          {
+              desc: '',
+              img: ''
+          }
+      );
       this.arr1.push(1);
   }
 
   add2(){
-      console.log(2);
+      this.reviews.push(
+          {
+              desc: '',
+              img: ''
+          }
+      );
       this.arr2.push(1);
+  }
+
+  preview(){
+      console.log(this.guides);
+      console.log(this.reviews);
+      console.log(this.picText);
   }
 }
