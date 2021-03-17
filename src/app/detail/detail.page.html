@@ -93,8 +93,17 @@
       <div class="bar"></div>
       <h4>任务描述</h4>
     </ion-item>
-    <input class="ion-hide" type="file" (change)="uploadPhoto($event)" #fileUpload>
-    <div *ngFor="let i of data.guides">
+    <div *ngFor="let i of data.guides[0]">
+      <ion-text>
+        {{i.desc}}
+      </ion-text>
+      <ion-item class="pic">
+          <ion-img [src]="envs.url + i.img"></ion-img>
+      </ion-item>
+    </div>
+
+    <h4>验收图文</h4>
+    <div *ngFor="let i of data.reviews[0]; let j = index">
       <ion-text>
         {{i.desc}}
       </ion-text>
@@ -103,20 +112,21 @@
           <ion-img [src]="envs.url + i.img" class="w-50"></ion-img>
 
           <ng-container *ngIf="status == 1; else elseBlock3">
-            <ng-container *ngIf="uploads[0]; else elseBlock5">
-              <ion-img [src]="envs.url + uploads[0]" class="w-50"></ion-img>
+            <ng-container *ngIf="uploads[j]; else elseBlock5">
+              <ion-img [src]="envs.url + uploads[j]" class="w-50"></ion-img>
             </ng-container>
           </ng-container>
 
         </ng-container>
 
         <ng-template #elseBlock3>
-          <ion-img [src]="envs.url + pics[0]" class="w-50"></ion-img>
+          <ion-img [src]="envs.url + pics[j]" class="w-50"></ion-img>
         </ng-template>
         <ng-template #elseBlock4>
           <ion-img [src]="envs.url + i.img"></ion-img>
         </ng-template>
         <ng-template #elseBlock5>
+          <input class="ion-hide" type="file" (change)="uploadPhoto($event, j)" #fileUpload>
           <ion-thumbnail (click)="fileUpload.click()" class="w-50 v-center">
             <ion-icon size="large" name="image-outline"></ion-icon>
           </ion-thumbnail>

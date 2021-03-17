@@ -99,7 +99,7 @@ export class DetailPage implements OnInit {
       });
   }
 
-  uploadPhoto(fileChangeEvent) {
+  uploadPhoto(fileChangeEvent, i) {
     console.log(fileChangeEvent);
     // Get a reference to the file that has just been added to the input
     const photo = fileChangeEvent.target.files[0];
@@ -117,7 +117,8 @@ export class DetailPage implements OnInit {
     this.http.post(url + 'media_objects', formData).subscribe((res) => {
       console.log(res);
       o = res
-      this.uploads.push(o.contentUrl);
+      //this.uploads.push(o.contentUrl);
+      this.uploads[i] = o.contentUrl;
       console.log(this.uploads);
     });
   }
