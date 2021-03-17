@@ -23,6 +23,7 @@ export class ApprovePage implements OnInit {
     status: "/api/statuses/4",
   };
   guides = [];
+  reviews = [];
   workPics = [];
   apply: Data;
 
@@ -39,10 +40,10 @@ export class ApprovePage implements OnInit {
           this.applyid = params['applyid'];
         this.httpService.get('applies/' + this.applyid).subscribe((res) => {
           this.apply = res;
-          this.guides = this.apply.task.guides;
+          this.reviews = this.apply.task.reviews;
           this.workPics = this.apply.pic;
           console.log(this.apply);
-          console.log(this.guides);
+          console.log(this.reviews);
           console.log(this.workPics);
         });
       });
