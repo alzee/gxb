@@ -17,6 +17,7 @@ export class CellPage implements OnInit {
   id: number;
   data: Data;
   user: string;
+  pics = [];
 
   constructor(
       private activeRoute: ActivatedRoute,
@@ -31,7 +32,8 @@ export class CellPage implements OnInit {
       this.httpService.get('land_posts/' + this.id).subscribe((res) => {
           this.data = res;
           console.log(this.data);
+          this.pics = this.data.pics;
+          console.log(this.pics);
       });
   }
-
 }

@@ -44,5 +44,8 @@
         </p>
       </ion-text>
     </ion-item>
+      <ion-item *ngFor="let i of pics" class="pic">
+          <ion-img [src]="url + i"></ion-img>
+      </ion-item>
   </div>
 </ion-content>
