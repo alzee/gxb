@@ -7,6 +7,10 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-publish',
   templateUrl: './publish.page.html',
@@ -46,7 +50,7 @@ export class PublishPage implements OnInit {
       desc: '',
       img: ''
   };
-  postData = {
+  postData: Data = {
       owner: '',
       title: '',
       name: '',

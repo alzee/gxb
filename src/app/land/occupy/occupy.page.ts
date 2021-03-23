@@ -17,7 +17,7 @@ interface Data {
 export class OccupyPage implements OnInit {
   owner: string = '/api/users/4';
   days: number = 10;
-  price: string = '1';
+  price: number = 1;
   land: string;
   landId: number;
   cover: string;
@@ -42,7 +42,7 @@ export class OccupyPage implements OnInit {
           this.land = '/api/lands/' + this.landId;
           if(this.landId != 1){
             this.days = 20;
-            this.price= '0.05';
+            this.price= 0.05;
           }
       });
       if(this.paid){

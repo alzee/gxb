@@ -68,4 +68,7 @@ export class SignupPage implements OnInit {
             );
         }
     }
+
+    presentToast(){
+    }
 }

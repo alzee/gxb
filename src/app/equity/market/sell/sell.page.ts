@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sell.page.scss'],
 })
 export class SellPage implements OnInit {
+  quantity: number;
+  price: number;
 
   constructor() { }
 
