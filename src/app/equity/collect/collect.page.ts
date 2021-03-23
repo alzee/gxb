@@ -22,7 +22,7 @@ export class CollectPage implements OnInit {
       amount: 1,
       user: '',
   } ;
-  const animation: Animation;
+  animation: Animation;
   //amount: number = 1;
 
   constructor(
