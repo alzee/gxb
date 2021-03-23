@@ -51,18 +51,18 @@ export class PublishPage implements OnInit {
       img: ''
   };
   postData: Data = {
-      owner: '',
-      title: '',
-      name: '',
-      applydays: 0,
-      approvedays: 0,
-      prepaid: '',
-      quantity: 0,
-      showdays: 0,
-      category: '',
-      platform: '',
-      guides: [],
-      reviews: []
+      //owner: '',
+      //title: '',
+      //name: '',
+      //applydays: 0,
+      //approvedays: 0,
+      //prepaid: '',
+      //quantity: 0,
+      //showdays: 0,
+      //category: '',
+      //platform: '',
+      //guides: [],
+      //reviews: []
   };
 
   constructor(
