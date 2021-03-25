@@ -6,7 +6,7 @@
     <ion-title>发布管理</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-segment value="all">
+    <ion-segment (ionChange)="segmentChanged($event)" value="all" [(ngModel)]="seg">
       <ion-segment-button [value]="i.value" *ngFor="let i of statuses">
         <ion-label>{{i.label}}</ion-label>
       </ion-segment-button>

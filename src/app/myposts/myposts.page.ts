@@ -16,7 +16,13 @@ export class MypostsPage implements OnInit {
       id: 0
   };
   tasks = [];
+  all = [];
+  preApprove = [];
+  approved = [];
+  paused = [];
+  stopped = [];
   envs = environment;
+  seg = 'all';
 
   constructor(
       private storageService: StorageService,
@@ -30,11 +36,55 @@ export class MypostsPage implements OnInit {
           this.userData = res;
           this.httpService.get('tasks?order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res) => {
               console.log(res);
-              this.tasks = res;
+              this.all= res;
+              this.tasks = this.all;
+              let that = this;
+              this.all.forEach(function(i){
+                  console.log(i);
+                  if(i.approved){
+                      that.approved.push(i);
+                  }
+                  else{
+                      that.preApprove.push(i);
+                  }
+                  if(i.paused){
+                      that.paused.push(i);
+                  }
+                  if(i.stopped){
+                      that.stopped.push(i);
+                  }
+              });
+              console.log(this.preApprove);
+              console.log(this.approved);
+              console.log(this.paused);
+              console.log(this.stopped);
           });
       }, (rej) => {
           this.router.navigate(['/signin']);
       });
+  }
+
+  segmentChanged(ev: any) {
+    this.tasks = this.all;
+    switch(ev.detail.value){
+        case this.statuses[0].value:
+            this.tasks = this.all;
+            break;
+        case this.statuses[1].value:
+            this.tasks = this.preApprove;
+            break;
+        case this.statuses[2].value:
+            this.tasks = this.approved;
+            break;
+        case this.statuses[3].value:
+            this.tasks = this.paused;
+            break;
+        case this.statuses[4].value:
+            this.tasks = this.stopped;
+            break;
+
+    }
+    console.log('Segment changed', ev.detail.value);
   }
 
   async pause(i) {
@@ -139,8 +189,12 @@ export class MypostsPage implements OnInit {
       label: '全部',
     },
     {
+      value: 'done',
+      label: '待审核',
+    },
+    {
       value: 'published',
-      label: '已上架',
+      label: '已审核',
     },
     {
       value: 'paused',
@@ -148,11 +202,7 @@ export class MypostsPage implements OnInit {
     },
     {
       value: 'prePub',
-      label: '待上架',
-    },
-    {
-      value: 'done',
-      label: '已完成',
+      label: '已下架',
     },
   ];
 }
