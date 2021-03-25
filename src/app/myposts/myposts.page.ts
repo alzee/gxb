@@ -4,6 +4,7 @@ import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-myposts',
@@ -20,7 +21,8 @@ export class MypostsPage implements OnInit {
   constructor(
       private storageService: StorageService,
       private httpService: HttpService,
-      private router: Router
+      private router: Router,
+      public alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -33,6 +35,102 @@ export class MypostsPage implements OnInit {
       }, (rej) => {
           this.router.navigate(['/signin']);
       });
+  }
+
+  async pause(i) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: '暂停任务！',
+      message: '暂停后任务不会再有新的申请。已申请的不受影响。你可随时恢复该任务。',
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: '确认',
+          handler: () => {
+            console.log('Confirm Okay');
+            console.log('pause');
+            let data = {
+                "paused": true
+            }
+            this.httpService.patch('tasks/' + this.tasks[i].id, data).subscribe((res) => {
+                console.log(res.paused);
+                this.tasks[i] = res;
+            });
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async unpause(i) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: '恢复任务！',
+      message: '恢复后任务可以继续接受新的申请。',
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: '确认',
+          handler: () => {
+            console.log('Confirm Okay');
+            console.log('pause');
+            let data = {
+                "paused": false
+            }
+            this.httpService.patch('tasks/' + this.tasks[i].id, data).subscribe((res) => {
+                console.log(res.paused);
+                this.tasks[i] = res;
+            });
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async stop(i) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: '下架任务！',
+      message: '下架后任务无法再接受新的申请。<strong>下架后无法恢复！</strong>',
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          cssClass: 'danger',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: '确认',
+          cssClass: 'danger',
+          handler: () => {
+            console.log('Confirm Okay');
+            console.log('pause');
+            let data = {
+                "stopped": true
+            }
+            this.httpService.patch('tasks/' + this.tasks[i].id, data).subscribe((res) => {
+                this.tasks[i] = res;
+            });
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   public statuses = [

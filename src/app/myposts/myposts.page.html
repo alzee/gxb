@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content color="light">
-  <ion-card *ngFor="let i of tasks">
+  <ion-card *ngFor="let i of tasks; let j = index">
     <ion-item class="info">
       <ion-thumbnail slot="start">
         <img *ngIf="i.owner.avatar; else elseBlock" [src]="envs.url + i.owner.avatar">
@@ -57,7 +57,12 @@
     </ion-item>
     <ion-item class="actions">
       <ion-label color="medium" [routerLink]="['/applies']" [queryParams]="{task:i.id}" >审核</ion-label>
-      <ion-label color="medium" [routerLink]="j.link" *ngFor="let j of actions">{{j.label}}</ion-label>
+      <ion-label color="medium" (click)="pause(j)" *ngIf="!i.paused">暂停</ion-label>
+      <ion-label color="medium" (click)="unpause(j)" *ngIf="i.paused">恢复</ion-label>
+      <ion-label color="medium" (click)="stop(j)" *ngIf="!i.stopped">下架</ion-label>
+      <ion-label color="medium" *ngIf="i.stopped">已下架</ion-label>
+      <ion-label color="medium" [routerLink]="link">置顶</ion-label>
+      <ion-label color="medium" [routerLink]="link">推荐</ion-label>
     </ion-item>
   </ion-card>
 
