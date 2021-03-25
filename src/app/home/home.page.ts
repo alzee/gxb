@@ -13,30 +13,20 @@ export class HomePage implements OnInit {
   //http = HttpService;
   //http: HttpService;
   bids = [];
-  bids1 = [];
   tasks = [];
   date: Date = new Date();
   today = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
   news = [];
   envs = environment;
   constructor(
-      //private taskDataService: TaskDataService,
       private httpService: HttpService
   ) {
-     // taskDataService.data.subscribe((res) => {
-     //     this.tasks = res;
-     //     console.log(res);
-     // });
   }
 
   ngOnInit() {
-      //this.httpService.get('tasks?order%5BbidPosition%5D=asc&bidPosition%5Bgt%5D=0&page=1').subscribe((res) => {
-      //    this.bids = res;
-      //    console.log(res);
-      //});
-      for (let i = 1; i <= 4; i++){
-          this.httpService.get(`bids?page=1&itemsPerPage=1&position=${i}&order%5Bdate%5D=desc&date%5Bbefore%5D=${this.today}`).subscribe((res) => {
-              this.bids.push(res[0]);
+      for (let i = 0; i < 4; i++){
+          this.httpService.get(`bids?page=1&itemsPerPage=1&position=${i+1}&order%5Bdate%5D=desc&date%5Bbefore%5D=${this.today}`).subscribe((res) => {
+              this.bids[i] = res[0];
               console.log(this.bids);
           });
       }

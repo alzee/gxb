@@ -12,7 +12,7 @@
     <ion-grid>
       <ion-row>
         <ion-col class="item" size="6" *ngFor="let i of bids; let j = index">
-          <ion-item>
+          <ion-item *ngIf="i">
             <div>
               <ion-item>
               <ion-badge slot="start" color="medium">{{j+1}}</ion-badge>
@@ -23,7 +23,24 @@
               </ion-item>
               <p>
               <del>
-                <ion-text class="del" color="medium">一口价:{{i.price}}元</ion-text>
+                <ion-text class="del" color="medium">一口价:{{buyItNow}}元</ion-text>
+              </del>
+              </p>
+              <ion-button shape="round" expand="full" routerLink="/bids/offer" [queryParams]="{id:j+1}">我要竞价</ion-button>
+            </div>
+          </ion-item>
+          <ion-item *ngIf="!i">
+            <div>
+              <ion-item>
+              <ion-badge slot="start" color="medium">{{j+1}}</ion-badge>
+              <ion-text class="price" color="danger">
+              <ion-text color="medium">现价:</ion-text>
+              {{min}}
+              </ion-text>
+              </ion-item>
+              <p>
+              <del>
+                <ion-text class="del" color="medium">一口价:{{buyItNow}}元</ion-text>
               </del>
               </p>
               <ion-button shape="round" expand="full" routerLink="/bids/offer" [queryParams]="{id:j+1}">我要竞价</ion-button>
