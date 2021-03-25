@@ -18,7 +18,7 @@
   <div class="ex">
     <ion-item>
       <ion-label slot="start">股权: </ion-label>
-      <ion-input slot="end" [(ngModel)]="equity"> </ion-input>
+      <ion-input slot="end" type="number" [(ngModel)]="equity"> </ion-input>
     </ion-item>
     <ion-item>
       <ion-text color="medium" slot="start">合计：</ion-text>
@@ -30,7 +30,7 @@
         <p>温馨提示：</p>
         兑换过程中按获得金股数扣除相应的GXB</ion-text>
     </div>
-    <ion-button expand="block">兑换</ion-button>
+    <ion-button expand="block" (click)="apply()">兑换</ion-button>
   </div>
 
   <div class="desc item-container">
