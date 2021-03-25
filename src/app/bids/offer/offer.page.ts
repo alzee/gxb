@@ -14,6 +14,8 @@ interface Data {
   styleUrls: ['./offer.page.scss'],
 })
 export class OfferPage implements OnInit {
+  date: Date = new Date();
+  today = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
   position: number;
   myposts: Data;
   bids: array<Data>;
@@ -42,7 +44,7 @@ export class OfferPage implements OnInit {
         console.log(res);
         this.myposts = res;
       });
-      this.httpService.get('bids?page=1&order%5Bdate%5D=desc&itemsPerPage=10&position=' + this.position).subscribe((res) => {
+      this.httpService.get(`bids?page=1&order%5Bdate%5D=desc&itemsPerPage=10&position=${this.position}&date%5Bafter%5D=${this.today}`).subscribe((res) => {
         console.log(res);
         this.bids = res;
         if(this.bids.length > 0)

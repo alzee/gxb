@@ -12,24 +12,6 @@ export class BidsPage implements OnInit {
   date: Date = new Date();
   today = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
   min: number = 19;
-  bids0 = [
-    {
-      "bid": 99,
-      "price": 300
-    },
-    {
-      "bid": 99,
-      "price": 260
-    },
-    {
-      "bid": 99,
-      "price": 220
-    },
-    {
-      "bid": 99,
-      "price": 180
-    },
-  ];
 
   constructor(
       private httpService: HttpService
