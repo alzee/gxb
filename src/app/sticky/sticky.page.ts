@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { HttpService } from '../services/http.service';
+import { ToastService } from '../services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sticky',
@@ -6,10 +10,48 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sticky.page.scss'],
 })
 export class StickyPage implements OnInit {
+  price: number = 9;
+  days: number = 1;
+  total: number = this.price * this.days;
+  tid: number;
+  title: string;
+  thatDay = new Date();
 
-  constructor() { }
+  constructor(
+      private httpService: HttpService,
+      private activeRoute: ActivatedRoute,
+      private router: Router,
+      private toastService: ToastService
+  ) { }
 
   ngOnInit() {
+      this.activeRoute.queryParams.subscribe((params: Params) => {
+          this.tid = params['tid'];
+          this.title = params['title'];
+      });
   }
 
+  validate(){
+    if(!this.days){
+      return 1;
+    }
+  }
+
+  sticky(){
+    if(this.validate() == 1){
+      this.toastService.presentToast('请填写天数');
+    }
+    else{
+      console.log(this.thatDay);
+      this.thatDay.setDate(this.thatDay.getDate() + this.days);
+      console.log(this.thatDay);
+      let data = {
+        "stickyUntil": this.thatDay
+      };
+      this.httpService.patch('tasks/' + this.tid, data).subscribe((res) => {
+          console.log(res);
+          this.router.navigate(['/myposts']);
+      });
+    }
+  }
 }
