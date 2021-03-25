@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { environment } from '../../../environments/environment';
+import { ToastService } from '../../services/toast.service';
 
 interface Data {
     [propName: string]: any;
@@ -15,9 +16,11 @@ interface Data {
 export class OfferPage implements OnInit {
   position: number;
   myposts: Data;
-  bids: Data;
+  bids: array<Data>;
   myBid: number;
   post: number;
+  min: number = 19;
+  step: number = 5;
   data: Data = {
       task: 0,
       bid: 0,
@@ -27,7 +30,9 @@ export class OfferPage implements OnInit {
   constructor(
       private activeRoute: ActivatedRoute,
       private httpService: HttpService,
-  ) { }
+      private toastService: ToastService
+  ) {
+  }
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
@@ -37,10 +42,19 @@ export class OfferPage implements OnInit {
         console.log(res);
         this.myposts = res;
       });
-      this.httpService.get('bids?page=1&itemsPerPage=10&position=' + this.position).subscribe((res) => {
+      this.httpService.get('bids?page=1&order%5Bdate%5D=desc&itemsPerPage=10&position=' + this.position).subscribe((res) => {
         console.log(res);
         this.bids = res;
+        if(this.bids.length > 0)
+            this.min = this.bids[0].bid + this.step;
       });
+  }
+
+  validate(){
+      if(!this.post)
+          return 1;
+      if(!this.myBid || this.myBid < this.min)
+          return 2;
   }
 
   bid(){
@@ -50,10 +64,21 @@ export class OfferPage implements OnInit {
     console.log(this.myBid);
     console.log(this.post);
     console.log(this.position);
-    this.httpService.post('bids', this.data).subscribe((res) => {
-        console.log(res);
-        this.ngOnInit()
-    });
+    switch (this.validate()) {
+        case 1:
+            console.log('choose post');
+            this.toastService.presentToast('请选择任务');
+            break;
+        case 2:
+            console.log('min');
+            this.toastService.presentToast('最低出价' + this.min + '元');
+            break;
+        default:
+            this.httpService.post('bids', this.data).subscribe((res) => {
+            console.log(res);
+            this.ngOnInit()
+        });
+    }
   }
 
 }
