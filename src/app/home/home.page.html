@@ -19,24 +19,26 @@
   <ion-item class="bid">
     <ion-grid>
       <ion-row>
-        <ion-col [routerLink]="['/detail']" [queryParams]="{id: i.id}" class="item" size="6" *ngFor="let i of bids">
+        <ng-container *ngFor="let i of bids">
+        <ion-col [routerLink]="['/detail']" [queryParams]="{id: i.task.id}" class="item" size="6" *ngIf="i">
           <ion-row>
             <ion-col size="auto">
               <ion-avatar>
-                <img *ngIf="i.owner.avatar; else elseBlock" [src]="envs.url + i.owner.avatar">
+                <img *ngIf="i.task.owner.avatar; else elseBlock" [src]="envs.url + i.task.owner.avatar">
                 <ng-template #elseBlock>
                   <img src="../assets/img/she.png">
                 </ng-template>
               </ion-avatar>
             </ion-col>
             <ion-col>
-              <ion-text class="title">{{i.title}}</ion-text>
-              <ion-text class="info">{{i.category.name}}</ion-text>
-              <ion-text class="info">编号: {{i.id}}</ion-text>
-              <ion-text class="price">+{{i.price}}元</ion-text>
+              <ion-text class="title">{{i.task.title}}</ion-text>
+              <ion-text class="info">{{i.task.category.name}}</ion-text>
+              <ion-text class="info">编号: {{i.task.id}}</ion-text>
+              <ion-text class="price">{{i.task.price}}元</ion-text>
             </ion-col>
           </ion-row>
         </ion-col>
+        </ng-container>
       </ion-row>
     </ion-grid>
   </ion-item>
