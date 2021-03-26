@@ -56,7 +56,6 @@ export class PublishPage implements OnInit {
       //name: '',
       //applydays: 0,
       //approvedays: 0,
-      //prepaid: '',
       //quantity: 0,
       //showdays: 0,
       //category: '',
@@ -115,7 +114,6 @@ export class PublishPage implements OnInit {
       let name = this.postData.name.trim();
       let applydays = this.postData.applydays;
       let approvedays = this.postData.approvedays;
-      let prepaid = this.postData.prepaid;
       let quantity = this.postData.quantity;
       let showdays = this.postData.showdays;
       //return (
