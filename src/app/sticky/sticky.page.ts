@@ -51,7 +51,7 @@ export class StickyPage implements OnInit {
       this.httpService.patch('tasks/' + this.tid, data).subscribe((res) => {
           console.log(res);
           this.toastService.presentToast('置顶成功！');
-          this.router.navigate(['/myposts']);
+          this.router.navigate(['/myposts'], { replaceUrl: true });
       });
     }
   }
