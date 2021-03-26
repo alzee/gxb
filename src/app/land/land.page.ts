@@ -30,6 +30,7 @@ export class LandPage implements OnInit {
   ngOnInit() {
       this.httpService.get('land_posts?itemsPerPage=35&land=1').subscribe((res) => {
           this.posts = res;
+          this.land.id = 1;
           this.posts.length = 35;
           console.log(this.posts);
       });
