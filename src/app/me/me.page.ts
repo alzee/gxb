@@ -89,7 +89,7 @@ export class MePage implements OnInit {
     {
       link: '/signin',
       img: '../assets/img/equity.png',
-      name: '我的会员',
+      name: '我的红包',
     },
     {
       link: '/refer',
