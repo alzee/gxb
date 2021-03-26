@@ -16,7 +16,7 @@
       <ion-label>{{i.name}}</ion-label>
       <ion-text slot="end" color="medium">36分钟前</ion-text>
     </ion-item>
-    <div class="pk">
+    <div class="pk" routerLink="/land/pay" [queryParams]="{total: i.price}">
       <div class="peer" *ngIf="i.owner">
         <ion-avatar slot="start">
           <img [src]="url + i.owner.avatar">
