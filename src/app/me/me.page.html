@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-icon color="light" slot="start" name="chatbubble-ellipses-outline"></ion-icon>
     <ion-title color="light">个人中心</ion-title>
-    <ion-icon color="light" slot="end" name="settings-outline" *ngIf="user" routerLink="/me/setting" [queryParams]="{id: user.id}"></ion-icon>
+    <ion-icon color="light" slot="end" name="settings-outline" *ngIf="user && userData" routerLink="/me/setting" [queryParams]="{id: user.id}"></ion-icon>
     <ion-icon color="light" slot="end" name="settings-outline" *ngIf="!userData" routerLink="/signin"></ion-icon>
   </ion-toolbar>
 </ion-header>
@@ -15,14 +15,18 @@
     <ion-avatar slot="start" *ngIf="!userData">
       <img src="../assets/img/avatar.png">
     </ion-avatar>
-    <div>
+    <div *ngIf="userData">
       <ion-text class="name" color="light">
         {{ user.username }}
       </ion-text>
       <ion-text color="light">
         会员ID: {{ user.id}}
       </ion-text>
-      <ion-icon color="light" size="small" name="copy-outline"></ion-icon>
+    </div>
+    <div *ngIf="!userData">
+      <ion-text class="name" color="light" routerLink="/signin">
+        登录
+      </ion-text>
     </div>
   </ion-item>
 
