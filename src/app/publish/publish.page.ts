@@ -61,8 +61,8 @@ export class PublishPage implements OnInit {
       //showdays: 0,
       //category: '',
       //platform: '',
-      //guides: [],
-      //reviews: []
+      guides: [],
+      reviews: []
   };
 
   constructor(
