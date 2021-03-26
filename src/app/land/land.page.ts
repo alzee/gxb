@@ -123,4 +123,13 @@ export class LandPage implements OnInit {
       return options;
   }
 
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      this.ngOnInit();
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 500);
+  }
 }

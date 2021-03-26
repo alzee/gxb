@@ -9,6 +9,10 @@
 </ion-header>
 
 <ion-content>
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content refreshingText="下拉回到主城"></ion-refresher-content>
+</ion-refresher>
+
   <ng-container *ngIf="land">
   <ion-item class="cells">
     <ion-grid>
@@ -45,10 +49,6 @@
         {{land.price}}
       </ion-text>
     </div>
-  </ion-item>
-  <ion-item class="info" *ngIf="land.id == 1">
-    <ion-text color="medium">
-    </ion-text>
   </ion-item>
   </ng-container>
 
