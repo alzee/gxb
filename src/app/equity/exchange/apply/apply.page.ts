@@ -59,6 +59,8 @@ export class ApplyPage implements OnInit {
   validate(){
     if(this.equity == 0)
       return 1
+    if(this.equity * this.rate > this.gxb)
+      return 2
   }
 
   apply0(){
@@ -107,6 +109,8 @@ export class ApplyPage implements OnInit {
             console.log(gxbAfter, equityAfter);
             if(this.validate() == 1){
               this.toastService.presentToast('请输入购买的股权数量');
+            }else if(this.validate() == 2){
+              this.toastService.presentToast('GXB 不够');
             }
             else{
               let data = {
