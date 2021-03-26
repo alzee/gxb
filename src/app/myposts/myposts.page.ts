@@ -109,7 +109,6 @@ export class MypostsPage implements OnInit {
                 "paused": true
             }
             this.httpService.patch('tasks/' + this.tasks[i].id, data).subscribe((res) => {
-                console.log(res.paused);
                 this.tasks[i] = res;
             });
           }
@@ -141,7 +140,6 @@ export class MypostsPage implements OnInit {
                 "paused": false
             }
             this.httpService.patch('tasks/' + this.tasks[i].id, data).subscribe((res) => {
-                console.log(res.paused);
                 this.tasks[i] = res;
             });
           }

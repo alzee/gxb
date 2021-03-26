@@ -18,7 +18,7 @@ export class OfferPage implements OnInit {
   today = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
   position: number;
   myposts: Data;
-  bids: array<Data>;
+  bids: Array<Data>;
   myBid: number;
   post: number;
   min: number = 19;

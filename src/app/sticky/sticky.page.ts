@@ -3,7 +3,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { ToastService } from '../services/toast.service';
 import { Router } from '@angular/router';
-import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-sticky',
