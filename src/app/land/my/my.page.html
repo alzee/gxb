@@ -44,7 +44,7 @@
       <ion-text>{{i.name}}</ion-text>
       <div slot="end">
         <ion-text class="price">{{i.price}}</ion-text>
-        <ion-item routerLink="/land/hall" >
+        <ion-item routerLink="/land/changeprice" [queryParams]="{id: i.id, name: i.name, price: i.price}">
           <ion-text color="danger" class="label">价格调整</ion-text>
         </ion-item>
       </div>

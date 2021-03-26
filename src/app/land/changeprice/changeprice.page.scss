@@ -1,0 +1,19 @@
+ion-header{
+}
+ion-toolbar{
+  --background: none;
+}
+ion-content{
+  ion-button{
+    margin: 22px 16px;
+  }
+  .data{
+    ion-label{
+      width: 80px;
+    }
+  }
+}
+ion-item{
+  --padding-start: 16px;
+  --padding-end: 16px;
+}

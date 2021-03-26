@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>调整领地价格</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="data">
+    <ion-label>领地</ion-label>
+    <ion-input value="{{name}}" required readonly></ion-input>
+  </ion-item>
+  <ion-item class="data">
+    <ion-label>原价格</ion-label>
+    <ion-input type="number" value="{{price}}" required readonly></ion-input>
+  </ion-item>
+  <ion-item class="data">
+    <ion-label>新价格</ion-label>
+    <ion-input type="number" [(ngModel)]="newPrice" placeholder="请输入要调整的价格" required clearInput></ion-input>
+  </ion-item>
+    <ion-button expand="block" size="large" type="submit" (click)="changePrice()">
+      提交
+    </ion-button>
+</ion-content>
