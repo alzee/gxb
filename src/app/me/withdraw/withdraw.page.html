@@ -10,20 +10,20 @@
 
 <ion-content color="light">
   <ion-label><ion-text color="medium">提现类型</ion-text></ion-label>
-  <ion-radio-group value="1">
+  <ion-radio-group value="1" [(ngModel)]="type">
     <ion-item>
-      <ion-label>充值余额  可提(47.05元)</ion-label>
+      <ion-label>充值余额  可提({{topup}}元)</ion-label>
       <ion-radio slot="start" value="1"></ion-radio>
     </ion-item>
 
     <ion-item>
-      <ion-label>提现余额  可提(15.89元)</ion-label>
+      <ion-label>任务奖励  可提({{reward}}元)</ion-label>
       <ion-radio slot="start" value="2"></ion-radio>
     </ion-item>
   </ion-radio-group>
   <ion-label><ion-text color="medium">提现金额</ion-text></ion-label>
   <ion-item class="price">
-    <ion-text slot="start" color="danger">¥ 2586.00</ion-text>
+    <ion-input type="number" slot="start" color="danger" [(ngModel)]="amount"></ion-input>
     <ion-text slot="end">元</ion-text>
   </ion-item>
   <ion-text color="medium">充值余额（手续费10%，VIP会员5%）</ion-text>
@@ -31,12 +31,12 @@
   <ion-label><ion-text color="medium">选择提现方式</ion-text></ion-label>
   <ion-radio-group value="ali">
   <ion-item>
-    <ion-icon name="logo-alipay" color="secondary"></ion-icon>
-    <ion-text>支付宝</ion-text>
+    <ion-icon name="logo-wechat" color="success"></ion-icon>
+    <ion-text>微信</ion-text>
     <ion-radio slot="end" value="ali"></ion-radio>
   </ion-item>
   </ion-radio-group>
-  <ion-button expand="block">立即提现</ion-button>
+  <ion-button expand="block" (click)="withdraw()">立即提现</ion-button>
   <ion-text color="medium">
     提现时间：周一至周五的工作日上班时间，24小时内到
     账，请耐心等待。
