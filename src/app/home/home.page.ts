@@ -19,7 +19,8 @@ export class HomePage implements OnInit {
   envs = environment;
   slideOpts = {
       autoplay: {
-          delay: 2000
+          delay: 2000,
+          disableOnInteraction: false
       },
       slidesPerView: 1,
       direction: 'vertical',
