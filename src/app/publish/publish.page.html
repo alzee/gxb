@@ -33,14 +33,20 @@
     <ion-label>任务数量</ion-label>
     <ion-input name="quantity" [(ngModel)]="postData.quantity" type="number" placeholder=""> </ion-input>
   </ion-item>
+
   <ion-item class="data">
     <ion-label>接单时间</ion-label>
-    <ion-input name="applydays" [(ngModel)]="applydays" type="number" placeholder=""> </ion-input>
+    <ion-select value="1" name="applyHours" [(ngModel)]="applyHours" interface="action-sheet" cancelText="取消">
+      <ion-select-option *ngFor="let i of hourOptions" value="{{i.time}}">{{i.label}}</ion-select-option>
+    </ion-select>
   </ion-item>
   <ion-item class="data">
-    <ion-label>审核天数</ion-label>
-    <ion-input name="approvedays" [(ngModel)]="postData.approvedays" type="number" placeholder=""> </ion-input>
+    <ion-label>审核时间</ion-label>
+    <ion-select value="1" name="approveHours" [(ngModel)]="approveHours" interface="action-sheet" cancelText="取消">
+      <ion-select-option *ngFor="let i of hourOptions" value="{{i.time}}">{{i.label}}</ion-select-option>
+    </ion-select>
   </ion-item>
+
   <ion-item class="data">
     <ion-label>展现天数</ion-label>
     <ion-input name="showdays" [(ngModel)]="postData.showdays" type="number" placeholder="请选择"> </ion-input>

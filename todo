@@ -1,30 +1,36 @@
-validation
-topbar
-back button
-skeleton-text
-infinite-scroll
-pay jump
-cities
-admin entity
+major:
+  - validation
+  - topbar
+  - back button
+  - skeleton-text
+  - infinite-scroll
+  - pay jump
+  - cities
+  - admin entity
+  - 提交前检查是否已上传图片
+  - 交换市场
+  - 领地交易
+  - setting nick
+  - setting password
+  - setting phone
+  - setting pay pass
+  - page refer
+  - sticky/recommend datetime comparison
+  - myposts segment auto update
+  - api node up/down
+  - page report
+  - 
+  - angular guard
+  - 推广
+  - page publish validate
+  - page publish per price
+  - page publish preview
+  - page home infinite-scroll
+  - page hall infinite-scroll
+  - page home slide news
+minor:
 
-提交前检查是否已上传图片
-交换市场
-领地交易
-setting nick
-setting password
-setting phone
-setting pay pass
-page refer
-sticky/recommend datetime comparison
-myposts segment auto update
-api node up/down
-page report
+question:
+  - 展现天数和接单时间是不是重复
 
-angular guard
-推广
-page publish validate
-page publish per price
-page publish preview
-page home infinite-scroll
-page hall infinite-scroll
-page home slide news
+# vim:ft=yaml

@@ -23,9 +23,36 @@ export class PublishPage implements OnInit {
   userData = {
       id: 0
   };
+  hourOptions = [
+      {
+          time: 3,
+          label: '3小时'
+      },
+      {
+          time: 6,
+          label: '6小时'
+      },
+      {
+          time: 24,
+          label: '1天'
+      },
+      {
+          time: 72,
+          label: '3天'
+      },
+      {
+          time: 125,
+          label: '5天'
+      },
+      {
+          time: 175,
+          label: '7天'
+      }
+  ];
+  applyHours: number;
+  approveHours: number;
   countGuides = 3;
   countReviews = 3;
-  applydays = '';
   category = '';
   platform = '';
   categories = [];
@@ -54,8 +81,8 @@ export class PublishPage implements OnInit {
       //owner: '',
       //title: '',
       //name: '',
-      //applydays: 0,
-      //approvedays: 0,
+      //applyHours: 0,
+      //approveHours: 0,
       //quantity: 0,
       //showdays: 0,
       //category: '',
@@ -104,16 +131,21 @@ export class PublishPage implements OnInit {
   }
 
   validateInputs() {
+      let applyUntil = new Date();
+      applyUntil.setHours(applyUntil.getHours() + parseInt(this.applyHours));
+      let approveUntil = new Date();
+      approveUntil.setHours(approveUntil.getHours() + parseInt(this.approveHours));
+      /*
       this.postData.owner = 'api/users/' + this.userData.id;
-      this.postData.applydays = parseInt(this.applydays, 10);
+      this.postData.applyHours = parseInt(this.applyHours, 10);
       this.postData.category = '/api/categories/' + this.category;
       this.postData.platform = '/api/platforms/' + this.platform;
       this.postData.guides.push(this.guides);
       this.postData.reviews.push(this.reviews);
       let title = this.postData.title.trim();
       let name = this.postData.name.trim();
-      let applydays = this.postData.applydays;
-      let approvedays = this.postData.approvedays;
+      let applyHours = this.postData.applyHours;
+      let approveHours = this.postData.approveHours;
       let quantity = this.postData.quantity;
       let showdays = this.postData.showdays;
       //return (
@@ -122,11 +154,8 @@ export class PublishPage implements OnInit {
       //        username.length > 0 &&
       //        password.length > 0
       //);
+      */
   }
-  /*
-{"title":"1","name":"1","applydays":1,"approvedays":1,"prepaid":1,"quantity":1,"showdays":1,"category":"/api/categories/1","price":1,"description":"1", "sticky": true, "recommended": true, "owner":"/api/users/4", "platform": "/api/platforms/1"}
-   
-   */
 
   uploadPhoto(fileChangeEvent, type, i) {
     //console.log(fileChangeEvent);
@@ -176,7 +205,6 @@ export class PublishPage implements OnInit {
   }
 
   preview(){
-      console.log(this.guides);
-      console.log(this.reviews);
+      this.validateInputs();
   }
 }
