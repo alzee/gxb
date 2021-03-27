@@ -27,6 +27,10 @@ const routes: Routes = [
   {
     path: 'topic',
     loadChildren: () => import('./topic/topic.module').then( m => m.TopicPageModule)
+  },
+  {
+    path: 'ranking',
+    loadChildren: () => import('./ranking/ranking.module').then( m => m.RankingPageModule)
   }
 ];
 

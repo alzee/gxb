@@ -39,9 +39,9 @@ export class EquityPage implements OnInit {
       name: '股东话题',
     },
     {
-      link: '/equity/market/buy',
+      link: '/equity/ranking',
       img: '../assets/img/market.png',
-      name: '我的交易'
+      name: '排行榜'
     }
   ];
 }
