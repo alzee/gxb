@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 })
 export class HallPage implements OnInit {
   tasks = [];
-  tasksBySticky = [];
+  tasksByRecommend = [];
   tasksByDate = [];
   tasksByPrice = [];
   envs = environment;
@@ -27,9 +27,9 @@ export class HallPage implements OnInit {
   }
 
   ngOnInit() {
-      this.httpService.get('tasks?page=1&recommended=true&order%5Bdate%5D=desc').subscribe((res) => {
-          this.tasksBySticky = res;
-          this.tasks = this.tasksBySticky;
+      this.httpService.get('tasks?page=1&order%5BrecommendUntil%5D=desc').subscribe((res) => {
+          this.tasksByRecommend = res;
+          this.tasks = this.tasksByRecommend;
           console.log(res);
       });
       this.httpService.get('tasks?page=1&order%5Bdate%5D=desc').subscribe((res) => {
@@ -46,7 +46,7 @@ export class HallPage implements OnInit {
     this.tasks = this.tasksByPrice;
     switch(ev.detail.value){
         case this.sorts[0].value:
-            this.tasks = this.tasksBySticky;
+            this.tasks = this.tasksByRecommend;
             break;
         case this.sorts[1].value:
             this.tasks = this.tasksByDate;
