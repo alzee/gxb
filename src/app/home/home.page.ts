@@ -14,22 +14,25 @@ export class HomePage implements OnInit {
   //http: HttpService;
   bids = [];
   tasks = [];
-  date: Date = new Date();
-  today = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
+  bondary: string;
   news = [];
   envs = environment;
   constructor(
       private httpService: HttpService
   ) {
+      const date: Date = new Date();
+      // imply 00:00:00
+      this.bondary = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
   }
 
   ngOnInit() {
       for (let i = 0; i < 4; i++){
-          this.httpService.get(`bids?page=1&itemsPerPage=1&position=${i+1}&order%5Bdate%5D=desc&date%5Bbefore%5D=${this.today}`).subscribe((res) => {
+          this.httpService.get(`bids?page=1&itemsPerPage=1&position=${i+1}&order%5Bdate%5D=desc&date%5Bbefore%5D=${this.bondary}`).subscribe((res) => {
               this.bids[i] = res[0];
               console.log(this.bids);
           });
       }
+      console.log(this.bondary);
       this.httpService.get('tasks?page=1&order%5BstickyUntil%5D=desc').subscribe((res) => {
           this.tasks = res;
           console.log(res);
@@ -39,45 +42,6 @@ export class HomePage implements OnInit {
           console.log(res);
       });
   }
-
-  public bids0 = [
-    {
-      avatar: '../assets/img/she.png',
-      title: '任务名称',
-      cate: '账号注册',
-      proc: '正在进行',
-      no: 12345,
-      price: 55.5,
-      link: '/detail',
-    },
-    {
-      avatar: '../assets/img/she.png',
-      title: '任务名称',
-      cate: '账号注册',
-      proc: '正在进行',
-      no: 12345,
-      price: 55.5,
-      link: '/detail',
-    },
-    {
-      avatar: '../assets/img/she.png',
-      title: '任务名称',
-      cate: '账号注册',
-      proc: '正在进行',
-      no: 12345,
-      price: 55.5,
-      link: '/detail',
-    },
-    {
-      avatar: '../assets/img/she.png',
-      title: '任务名称',
-      cate: '账号注册',
-      proc: '正在进行',
-      no: 12345,
-      price: 55.5,
-      link: '/detail',
-    },
-  ];
 
   public features = [
     {
@@ -109,31 +73,6 @@ export class HomePage implements OnInit {
       link: '/equity',
       img: '../assets/img/equity.png',
       name: '股权',
-    },
-  ];
-
-  public tasks0 = [
-    {
-      boss: 'jess',
-      avatar: '../assets/img/she.png',
-      title: '任务名称',
-      runner: 88,
-      left: 12,
-      cate: ['reg'],
-      sticky: true,
-      price: 55.5,
-      link: '/detail',
-    },
-    {
-      boss: 'mike',
-      avatar: '../assets/img/she.png',
-      title: '任务名称',
-      runner: 88,
-      left: 12,
-      cate: ['reg', 'save'],
-      sticky: false,
-      price: 55.5,
-      link: '/detail',
     },
   ];
 
