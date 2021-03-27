@@ -24,7 +24,7 @@ export class EquityPage implements OnInit {
       name: '兑股权',
     },
     {
-      link: '/equity/market',
+      link: '/equity/market/my',
       img: '../assets/img/market.png',
       name: '交换市场',
     },

@@ -13,16 +13,16 @@ const routes: Routes = [
     loadChildren: () => import('./rule/rule.module').then( m => m.RulePageModule)
   },
   {
-    path: 'buy',
-    loadChildren: () => import('./buy/buy.module').then( m => m.BuyPageModule)
-  },
-  {
     path: 'pay',
     loadChildren: () => import('./pay/pay.module').then( m => m.PayPageModule)
   },
   {
     path: 'sell',
     loadChildren: () => import('./sell/sell.module').then( m => m.SellPageModule)
+  },
+  {
+    path: 'my',
+    loadChildren: () => import('./my/my.module').then( m => m.MyPageModule)
   }
 ];
 

@@ -23,7 +23,7 @@
   <div class="item-container">
     <ion-item class="item-header">
       <div class="bar"></div>
-      <h4>历史成交</h4>
+      <h4>我的成交历史</h4>
     </ion-item>
     <ion-grid>
       <ion-row class="header">
@@ -32,6 +32,9 @@
         </ion-col>
         <ion-col>
           <ion-text color="medium">数量</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text color="medium">类型</ion-text>
         </ion-col>
         <ion-col>
           <ion-text color="medium">价格(RMB)</ion-text>
@@ -56,6 +59,6 @@
 <ion-footer>
   <ion-item>
     <ion-button class="sell" size="large" expand="full" routerLink="/equity/market/sell">卖出</ion-button>
-    <ion-button class="buy" size="large" expand="full" routerLink="/equity/market/pay">买入</ion-button>
+    <ion-button class="buy" size="large" expand="full" routerLink="/equity/market">买入</ion-button>
   </ion-item>
 </ion-footer>

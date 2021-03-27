@@ -8,11 +8,11 @@ interface Data {
 }
 
 @Component({
-  selector: 'app-buy',
-  templateUrl: './buy.page.html',
-  styleUrls: ['./buy.page.scss'],
+  selector: 'app-my',
+  templateUrl: './my.page.html',
+  styleUrls: ['./my.page.scss'],
 })
-export class BuyPage implements OnInit {
+export class MyPage implements OnInit {
   hists = [];
   max: number = 0;
   min: number = 0;
@@ -41,5 +41,4 @@ export class BuyPage implements OnInit {
           console.log(res);
       });
   }
-
 }
