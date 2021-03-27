@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hall',
@@ -17,6 +18,7 @@ export class HallPage implements OnInit {
   seg = 'all';
 
   constructor(
+      private router: Router,
       private httpService: HttpService
   ) {
       //taskDataService.data.subscribe((res) => {
@@ -103,6 +105,7 @@ export class HallPage implements OnInit {
   search(){
     if(this.keyword){
       console.log(this.keyword);
+      this.router.navigate(['/search', {keyword: this.keyword}]);
     }
   }
 }

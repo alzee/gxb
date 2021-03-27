@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TaskDataService } from '../services/task-data.service';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +27,7 @@ export class HomePage implements OnInit {
       height: 40
   };
   constructor(
+      private router: Router,
       private httpService: HttpService
   ) {
       const date: Date = new Date();
@@ -96,6 +98,7 @@ export class HomePage implements OnInit {
   search(){
     if(this.keyword){
       console.log(this.keyword);
+      this.router.navigate(['/search', {keyword: this.keyword}]);
     }
   }
 }
