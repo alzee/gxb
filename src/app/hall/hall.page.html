@@ -15,8 +15,10 @@
 
 <ion-content>
   <ion-item class="search">
-        <ion-searchbar class="ion-no-padding ion-padding-end" placeholder="请输入任务编号、关键词搜索"></ion-searchbar>
-        <ion-text slot="end">搜索</ion-text>
+      <form (ngSubmit)="search()" slot="start">
+        <ion-searchbar enterkeyhint="search" class="ion-no-padding ion-padding-end" name="keyword" [(ngModel)]="keyword" placeholder="请输入任务编号、关键词搜索"></ion-searchbar>
+        <ion-button type="submit">搜索</ion-button>
+      </form>
   </ion-item>
 
   <ion-segment (ionChange)="segmentChanged($event)" value="all" [(ngModel)]="seg">
@@ -33,7 +35,7 @@
 </ion-refresher>
 <ion-item class="task">
     <ion-list>
-      <ion-item  [routerLink]="['/detail']" [queryParams]="{id: i.id}" *ngFor="let i of tasks">
+      <ion-item [routerLink]="['/detail']" [queryParams]="{id: i.id}" *ngFor="let i of tasks">
         <ion-grid>
           <ion-row>
             <ion-col class="pic" size="auto">

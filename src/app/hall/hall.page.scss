@@ -37,8 +37,14 @@ ion-segment-button{
   //--padding-start: 0;
   //--padding-end: 0;
   //--inner-padding-end: 0;
-  ion-searchbar{
-    --background: #fff;
+  form{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    ion-searchbar{
+      --background: #fff;
+    }
   }
 }
 

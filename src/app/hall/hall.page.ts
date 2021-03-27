@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskDataService } from '../services/task-data.service';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 
@@ -9,6 +8,7 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./hall.page.scss'],
 })
 export class HallPage implements OnInit {
+  keyword: string;
   tasks = [];
   tasksByRecommend = [];
   tasksByDate = [];
@@ -17,7 +17,6 @@ export class HallPage implements OnInit {
   seg = 'all';
 
   constructor(
-      //private taskDataService: TaskDataService,
       private httpService: HttpService
   ) {
       //taskDataService.data.subscribe((res) => {
@@ -84,30 +83,6 @@ export class HallPage implements OnInit {
     '推广引流',
     '其它任务',
   ];
-  public tasks0 = [
-    {
-      boss: 'jess',
-      avatar: '../assets/img/she.png',
-      title: '任务名称',
-      runner: 88,
-      left: 12,
-      cate: ['reg'],
-      sticky: true,
-      price: 55.5,
-      link: '/detail',
-    },
-    {
-      boss: 'mike',
-      avatar: '../assets/img/she.png',
-      title: '任务名称',
-      runner: 88,
-      left: 12,
-      cate: ['reg', 'save'],
-      sticky: false,
-      price: 55.5,
-      link: '/detail',
-    },
-  ];
 
   customActionSheetOptions: any = {
     header: 'Colors',
@@ -123,5 +98,11 @@ export class HallPage implements OnInit {
       this.ngOnInit();
       event.target.complete();
     }, 2000);
+  }
+
+  search(){
+    if(this.keyword){
+      console.log(this.keyword);
+    }
   }
 }

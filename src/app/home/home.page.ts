@@ -9,9 +9,7 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-
-  //http = HttpService;
-  //http: HttpService;
+  keyword: string;
   bids = [];
   tasks = [];
   bondary: string;
@@ -93,5 +91,11 @@ export class HomePage implements OnInit {
       console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
+  }
+
+  search(){
+    if(this.keyword){
+      console.log(this.keyword);
+    }
   }
 }
