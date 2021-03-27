@@ -36,7 +36,7 @@ export class CollectPage implements OnInit {
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
       this.uid = res.id;
-      this.httpService.get('gxbs?page=1&itemsPerPage=30&user=' + this.uid).subscribe((res) => {
+      this.httpService.get('gxbs?page=1&order%5Bdate%5D=desc&itemsPerPage=30&user=' + this.uid).subscribe((res) => {
           this.hists = res;
           console.log(res);
           console.log(this.uid);
