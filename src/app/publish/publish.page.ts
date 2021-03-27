@@ -41,11 +41,11 @@ export class PublishPage implements OnInit {
           label: '3天'
       },
       {
-          time: 125,
+          time: 120,
           label: '5天'
       },
       {
-          time: 175,
+          time: 168,
           label: '7天'
       }
   ];
@@ -54,7 +54,7 @@ export class PublishPage implements OnInit {
   countGuides = 3;
   countReviews = 3;
   category = '';
-  platform = '';
+  //platform = '';
   categories = [];
   platforms = [];
   guides = [
@@ -135,11 +135,11 @@ export class PublishPage implements OnInit {
       applyUntil.setHours(applyUntil.getHours() + parseInt(this.applyHours));
       let approveUntil = new Date();
       approveUntil.setHours(approveUntil.getHours() + parseInt(this.approveHours));
-      /*
       this.postData.owner = 'api/users/' + this.userData.id;
-      this.postData.applyHours = parseInt(this.applyHours, 10);
+      this.postData.applyUntil = applyUntil;
+      this.postData.approveUntil = approveUntil;
       this.postData.category = '/api/categories/' + this.category;
-      this.postData.platform = '/api/platforms/' + this.platform;
+      //this.postData.platform = '/api/platforms/' + this.platform;
       this.postData.guides.push(this.guides);
       this.postData.reviews.push(this.reviews);
       let title = this.postData.title.trim();
@@ -154,7 +154,6 @@ export class PublishPage implements OnInit {
       //        username.length > 0 &&
       //        password.length > 0
       //);
-      */
   }
 
   uploadPhoto(fileChangeEvent, type, i) {
