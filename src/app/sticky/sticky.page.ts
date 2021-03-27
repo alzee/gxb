@@ -11,9 +11,7 @@ import { Router } from '@angular/router';
 })
 export class StickyPage implements OnInit {
   stickyUntil:Datetime;
-  price: number = 9;
-  days: number = 1;
-  total: number = this.price * this.days;
+  price: number;
   tid: number;
   title: string;
 
@@ -22,7 +20,9 @@ export class StickyPage implements OnInit {
       private activeRoute: ActivatedRoute,
       private router: Router,
       private toastService: ToastService
-  ) { }
+  ) {
+      this.price = 9;
+  }
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {

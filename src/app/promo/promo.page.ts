@@ -10,19 +10,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./promo.page.scss'],
 })
 export class PromoPage implements OnInit {
-  price: number = 9;
-  days: number = 1;
-  total: number = this.price * this.days;
+  recommendUntil:Datetime;
+  price: number;
   tid: number;
   title: string;
-  thatDay = new Date();
 
   constructor(
       private httpService: HttpService,
       private activeRoute: ActivatedRoute,
       private router: Router,
       private toastService: ToastService
-  ) { }
+  ) {
+      this.price = 9;
+      this.recommendUntil= new Date();
+      this.recommendUntil.setHours(this.recommendUntil.getHours() + 24);
+  }
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
@@ -32,21 +34,14 @@ export class PromoPage implements OnInit {
   }
 
   validate(){
-    if(!this.days){
-      return 1;
-    }
   }
 
   recomm(){
     if(this.validate() == 1){
-      this.toastService.presentToast('请填写天数');
     }
     else{
-      console.log(this.thatDay);
-      this.thatDay.setDate(this.thatDay.getDate() + this.days);
-      console.log(this.thatDay);
       let data = {
-        "recommendUntil": this.thatDay
+        "recommendUntil": this.recommendUntil
       };
       this.httpService.patch('tasks/' + this.tid, data).subscribe((res) => {
           console.log(res);

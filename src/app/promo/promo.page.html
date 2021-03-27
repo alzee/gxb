@@ -13,13 +13,12 @@
     <ion-input value="{{title}}" required readonly></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>展示天数</ion-label>
-    <ion-input type="number" placeholder="填写天数" required clearInput [(ngModel)]="days"></ion-input>
-    <ion-badge color="danger">{{price}}元/天</ion-badge>
+    <ion-label>结束时间</ion-label>
+    <ion-input type="number" readonly>{{recommendUntil | date: "MM月dd日 HH:mm"}}</ion-input>
   </ion-item>
   <ion-label class="label" color="medium">支付金额</ion-label>
   <ion-item class="price">
-    <ion-text color="danger">¥ {{price * days}}</ion-text>
+    <ion-text color="danger">¥ {{price}}</ion-text>
   </ion-item>
   <ion-button expand="block" (click)="recomm()">立即支付</ion-button>
 
