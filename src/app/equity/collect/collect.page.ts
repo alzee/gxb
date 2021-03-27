@@ -72,9 +72,9 @@ export class CollectPage implements OnInit {
       this.postData.user = '/api/users/' + this.uid;
       this.httpService.post('gxbs', this.postData).subscribe((res) => {
           console.log(res);
+          this.hists.unshift(res);
           this.toastService.presentToast('GXB +1');
           this.dismiss();
-          //this.ngOnInit();
       });
       console.log('collected');
   }
