@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./sticky.page.scss'],
 })
 export class StickyPage implements OnInit {
+  stickyUntil:Datetime;
   price: number = 9;
   days: number = 1;
   total: number = this.price * this.days;
   tid: number;
   title: string;
-  thatDay = new Date();
 
   constructor(
       private httpService: HttpService,
@@ -29,24 +29,19 @@ export class StickyPage implements OnInit {
           this.tid = params['tid'];
           this.title = params['title'];
       });
+      this.stickyUntil = new Date();
+      this.stickyUntil.setHours(this.stickyUntil.getHours() + 24);
   }
 
   validate(){
-    if(!this.days){
-      return 1;
-    }
   }
 
   sticky(){
     if(this.validate() == 1){
-      this.toastService.presentToast('请填写天数');
     }
     else{
-      console.log(this.thatDay);
-      this.thatDay.setDate(this.thatDay.getDate() + this.days);
-      console.log(this.thatDay);
       let data = {
-        "stickyUntil": this.thatDay
+        "stickyUntil": this.stickyUntil
       };
       this.httpService.patch('tasks/' + this.tid, data).subscribe((res) => {
           console.log(res);

@@ -13,9 +13,11 @@
     <ion-input value="{{title}}" required readonly></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>展示天数</ion-label>
-    <ion-input type="number" placeholder="填写天数" required clearInput [(ngModel)]="days"></ion-input>
+    <ion-label>截至时间</ion-label>
+    <ion-input type="number" required readonly value="">{{stickyUntil | date: "MM月dd日 HH:mm"}}</ion-input>
+    <ng-template>
     <ion-badge color="danger">{{price}}元/天</ion-badge>
+    </ng-template>
   </ion-item>
   <ion-label class="label" color="medium">支付金额</ion-label>
   <ion-item class="price">
