@@ -30,7 +30,7 @@ export class HomePage implements OnInit {
               console.log(this.bids);
           });
       }
-      this.httpService.get('tasks?page=1&sticky=true&recommended=true&order%5Bsticky%5D=desc').subscribe((res) => {
+      this.httpService.get('tasks?page=1&order%5BstickyUntil%5D=desc').subscribe((res) => {
           this.tasks = res;
           console.log(res);
       });
