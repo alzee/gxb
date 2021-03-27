@@ -57,9 +57,13 @@
   </ion-item>
 
   <ion-item class="alert">
-      <ion-icon slot="start" class="speaker" size="small" name="volume-medium-outline"></ion-icon>
-      <ion-text *ngFor="let i of news" routerLink="/news" [queryParams]="{id: i.id}" class="message"><p>{{i.title}}</p></ion-text>
-      <ion-icon slot="end" class="close" size="small" name="close"></ion-icon>
+    <ion-slides [options]="slideOpts" slot="start">
+      <ion-slide *ngFor="let i of news">
+        <ion-icon slot="start" class="speaker" size="small" name="volume-medium-outline"></ion-icon>
+        <ion-text routerLink="/news" [queryParams]="{id: i.id}" class="message"><p>{{i.title}}</p></ion-text>
+        <ion-icon slot="end" class="close" size="small" name="close"></ion-icon>
+      </ion-slide>
+    </ion-slides>
   </ion-item>
 
   <ion-item class="task">

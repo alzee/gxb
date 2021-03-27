@@ -17,6 +17,15 @@ export class HomePage implements OnInit {
   bondary: string;
   news = [];
   envs = environment;
+  slideOpts = {
+      autoplay: {
+          delay: 2000
+      },
+      slidesPerView: 1,
+      direction: 'vertical',
+      loop: true,
+      height: 40
+  };
   constructor(
       private httpService: HttpService
   ) {
@@ -37,7 +46,7 @@ export class HomePage implements OnInit {
           this.tasks = res;
           console.log(res);
       });
-      this.httpService.get('nodes?page=1&itemsPerPage=1&type.id=3').subscribe((res) => {
+      this.httpService.get('nodes?page=1&itemsPerPage=3&type.id=3').subscribe((res) => {
           this.news = res;
           console.log(res);
       });
