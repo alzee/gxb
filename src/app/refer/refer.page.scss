@@ -8,20 +8,23 @@ ion-content{
   p{
     margin: 0;
   }
+  ion-button{
+      opacity: 1;
+  }
   --background: linear-gradient(90deg, #0098FF 0%, #0072FF 100%);
   .poster{
     background: url(../../assets/img/refer_bg.png) top/contain no-repeat;
     height: 550px;
     text-align: center;
     ion-thumbnail{
-      --size: 117px;
+      --size: 110px;
       position: relative;
-      top: 316px;
+      top: 300px;
       margin: auto;
     }
     ion-text{
       position: relative;
-      top: 348px;
+      top: 324px;
       font-size: 18px;
     }
   }
