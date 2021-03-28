@@ -14,12 +14,9 @@ major:
   - setting password
   - setting phone
   - setting pay pass
-  - page refer
-  - sticky/recommend datetime comparison
   - myposts segment auto update
   - api node up/down
-  - page report
-  - 
+  - 我的红包
   - angular guard
   - 推广
   - page publish validate
@@ -28,6 +25,7 @@ major:
   - page home infinite-scroll
   - page hall infinite-scroll
   - page home slide news
+  - 举报维权
 minor:
 
 question:
