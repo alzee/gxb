@@ -11,10 +11,10 @@
 
   <div class="banner">
     <p>我的邀请码<p>
-    <ion-text color="primary">888888</ion-text>
+    <ion-text color="primary">{{code}}</ion-text>
   </div>
 
-  <ion-img src="../../../assets/img/qr0.png"></ion-img>
-  <ion-button expand="block" download href="#">保存图片</ion-button>
+  <ion-img [src]="picUrl"></ion-img>
+  <ion-button expand="block" download [href]="picUrl">保存图片</ion-button>
 
 </ion-content>
