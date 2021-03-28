@@ -1,9 +1,20 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>qr</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">二维码海报</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding-horizontal">
+
+  <div class="banner">
+    <p>我的邀请码<p>
+    <ion-text color="primary">888888</ion-text>
+  </div>
+
+  <ion-img src="../../../assets/img/qr0.png"></ion-img>
+  <ion-button expand="block" download href="#">保存图片</ion-button>
 
 </ion-content>

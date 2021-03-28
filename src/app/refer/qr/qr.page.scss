@@ -1,0 +1,32 @@
+ion-header{
+    ion-toolbar{
+      --background: none;
+    }
+}
+ion-content{
+  --offset-top: 46px !important;
+  --background: #F5F5F5 url("../../../assets/img/bg_qr.png") top/contain no-repeat;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  >ion-item{
+    margin-bottom: 10px;
+  }
+  ion-item{
+    --border-radius: .25em;
+  }
+  .banner{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    background: #ffffff;
+    border-radius: .5em;
+    padding: 16px;
+    p{
+      margin: 0;
+    }
+  }
+  ion-img{
+    margin: 80px auto 16px;
+    width: 60%;
+  }
+}
