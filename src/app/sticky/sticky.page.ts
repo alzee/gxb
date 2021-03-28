@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sticky.page.scss'],
 })
 export class StickyPage implements OnInit {
-  stickyUntil:Datetime;
+  stickyUntil:Date;
   price: number;
   tid: number;
   title: string;
@@ -33,7 +33,8 @@ export class StickyPage implements OnInit {
       this.stickyUntil.setHours(this.stickyUntil.getHours() + 24);
   }
 
-  validate(){
+  validate(): number {
+      return 0
   }
 
   sticky(){

@@ -25,8 +25,7 @@ export class SearchPage implements OnInit {
       });
 
       this.httpService.get('tasks?page=1').subscribe((res) => {
-          this.tasksByRecommend = res;
-          this.tasks = this.tasksByRecommend;
+          this.tasks = res;
           console.log(res);
       });
   }

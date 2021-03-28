@@ -132,9 +132,9 @@ export class PublishPage implements OnInit {
 
   validateInputs() {
       let applyUntil = new Date();
-      applyUntil.setHours(applyUntil.getHours() + parseInt(this.applyHours));
+      applyUntil.setHours(applyUntil.getHours() + this.applyHours);
       let approveUntil = new Date();
-      approveUntil.setHours(approveUntil.getHours() + parseInt(this.approveHours));
+      approveUntil.setHours(approveUntil.getHours() + this.approveHours);
       this.postData.owner = 'api/users/' + this.userData.id;
       this.postData.applyUntil = applyUntil;
       this.postData.approveUntil = approveUntil;

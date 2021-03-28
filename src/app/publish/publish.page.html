@@ -38,8 +38,8 @@
 
   <ion-item class="data">
     <ion-label>接单时间</ion-label>
-    <ion-select value="1" name="applyHours" [(ngModel)]="applyHours" interface="action-sheet" cancelText="取消">
-      <ion-select-option *ngFor="let i of hourOptions" value="{{i.time}}">{{i.label}}</ion-select-option>
+    <ion-select [value]="1" name="applyHours" [(ngModel)]="applyHours" interface="action-sheet" cancelText="取消">
+      <ion-select-option *ngFor="let i of hourOptions" [value]="i.time">{{i.label}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item class="data">

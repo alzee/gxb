@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./promo.page.scss'],
 })
 export class PromoPage implements OnInit {
-  recommendUntil:Datetime;
+  recommendUntil:Date;
   price: number;
   tid: number;
   title: string;
@@ -33,7 +33,8 @@ export class PromoPage implements OnInit {
       });
   }
 
-  validate(){
+  validate(): number {
+      return 0
   }
 
   recomm(){
