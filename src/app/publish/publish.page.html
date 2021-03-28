@@ -13,15 +13,6 @@
     </ion-select>
   </ion-item>
 
-  <ng-template>
-  <ion-item class="data">
-    <ion-label>支持设备</ion-label>
-    <ion-select value="1" name="platform" [(ngModel)]="platform" interface="action-sheet" cancelText="取消">
-      <ion-select-option *ngFor="let i of platforms" value="{{i.id}}">{{i.name}}</ion-select-option>
-    </ion-select>
-  </ion-item>
-  </ng-template>
-
   <ion-label color="medium"></ion-label>
   <ion-item class="data">
     <ion-label>任务标题</ion-label>
