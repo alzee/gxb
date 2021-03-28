@@ -1,0 +1,28 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>我的红包</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light" class="ion-padding-horizontal">
+  <ion-list>
+    <ion-item *ngFor="let i of coupons">
+      <div class="card">
+        <p>
+        <span>￥</span>
+        <span class="amount">5</span>
+        </p>
+        <p>优惠券</p>
+      </div>
+      <div class="info">
+        <div class="name">5元优惠券</div>
+        <div class="more">￥5.00 x1</div>
+        <div class="more">有效期：2020-12-30</div>
+      </div>
+      <ion-button shape="round" slot="end" color="danger" fill="outline"><span>立即使用</span></ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

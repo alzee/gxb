@@ -1,0 +1,35 @@
+ion-content{
+  ion-list{
+    background: none;
+    ion-item{
+      --border-radius: .5em;
+      margin: 16px 0;
+      .card{
+        background: #0072FFFF;
+        border-radius: .5em;
+        text-align: center;
+        width: 90px;
+        color: #ffffff;
+        padding: 16px 0;
+        margin-right: 16px;
+        p{
+          margin: 0;
+          .amount{
+            font-size: 30px;
+          }
+        }
+      }
+      .info{
+        .more{
+          color: #9B9B9BFF;
+          font-size: 12px;
+        }
+      }
+      ion-button{
+        span{
+          padding: 0 6px;
+        }
+      }
+    }
+  }
+}

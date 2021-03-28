@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'withdraw',
     loadChildren: () => import('./withdraw/withdraw.module').then( m => m.WithdrawPageModule)
+  },
+  {
+    path: 'coupon',
+    loadChildren: () => import('./coupon/coupon.module').then( m => m.CouponPageModule)
   }
 ];
 

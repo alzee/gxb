@@ -16,9 +16,7 @@ major:
   - setting pay pass
   - myposts segment auto update
   - api node up/down
-  - 我的红包
   - angular guard
-  - 推广
   - page publish validate
   - page publish per price
   - page publish preview
