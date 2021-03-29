@@ -13,8 +13,9 @@ ion-content{
   .gxb{
     --size: 28px;
     position: relative;
-    left: 274px;
-    top: 78px;
+    left: 224px;
+    top: 115px;
+    z-index: 1;
   }
   .coins{
     width: 350px;
@@ -22,6 +23,7 @@ ion-content{
     margin: auto;
     position: relative;
     bottom: -83px;
+    z-index: -1;
   }
   .bag{
     width: 318px;

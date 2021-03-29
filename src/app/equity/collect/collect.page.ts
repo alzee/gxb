@@ -50,7 +50,7 @@ export class CollectPage implements OnInit {
     .iterations(Infinity)
     .keyframes([
       { offset: 0, transform: 'scale(1)', opacity: '1' },
-      { offset: 0.5, transform: 'scale(1.3)', opacity: '1' },
+      { offset: 0.5, transform: 'scale(1.5)', opacity: '1' },
       { offset: 1, transform: 'scale(1)', opacity: '1' }
     ]);
     this.animation.play();
