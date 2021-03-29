@@ -4,6 +4,34 @@ ion-header{
     }
 }
 ion-content{
+  .mygxb{
+      --background: none;
+      --padding-end: 0;
+      position: absolute;
+      right: 0;
+      top: 72px;
+      margin: 0;
+      overflow: visible;
+      ion-avatar{
+          position: absolute;
+          width: 44px;
+          height: 44px;
+          margin: 0 4px;
+          left: -26px;
+      }
+      div{
+          background: #f7d3d1;
+          height: 44px;
+          width: 100%;
+          p{
+              margin: 13px 10px 13px 26px;
+              ion-text{
+                  font-weight: 900;
+                  color: #FF3B2F;
+              }
+          }
+      }
+  }
   h4{
     margin: 0;
     font-size: 16px;
