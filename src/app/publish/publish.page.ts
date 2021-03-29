@@ -123,7 +123,7 @@ export class PublishPage implements OnInit {
   }
 
   postTask() {
-      //this.validateInputs();
+      this.validateInputs();
       this.httpService.post('tasks', this.postData).subscribe((res) => {
           console.log(res);
           this.router.navigate(['/myposts']);
