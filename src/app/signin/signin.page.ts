@@ -42,14 +42,15 @@ export class SigninPage implements OnInit {
                 (res: any) => {
                     if (res) {
                         // Storing the User data.
-                        this.storageService.store(AuthConstants.AUTH, res);
+                        this.storageService.store(AuthConstants.AUTH, res.data);
                         this.router.navigate(['/tabs/home']);
                     } else {
                         this.toastService.presentToast('用户名或密码错误');
                     }
                 },
                 (error: any) => {
-                    this.toastService.presentToast('网络异常');
+                    //this.toastService.presentToast('网络异常');
+                    this.toastService.presentToast('用户名或密码错误');
                 }
             );
         } else {

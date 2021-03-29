@@ -11,6 +11,7 @@ ion-content{
       right: 0;
       top: 72px;
       margin: 0;
+      width: 125px;
       overflow: visible;
       ion-avatar{
           position: absolute;
@@ -24,7 +25,8 @@ ion-content{
           height: 44px;
           width: 100%;
           p{
-              margin: 13px 10px 13px 26px;
+              text-align: center;
+              margin: 13px 0 0 26px;
               ion-text{
                   font-weight: 900;
                   color: #FF3B2F;
