@@ -12,18 +12,21 @@
       <img src="../../assets/img/logo.png">
     </ion-thumbnail>
   </ion-item>
-  <ion-input class="input ion-margin-bottom" name="username" [(ngModel)]="postData.username" autofocus="true" clearInput="true" placeholder="请输入您的账号"> </ion-input>
-  <ion-input class="input ion-margin-bottom" name="password" [(ngModel)]="postData.password" type="password" clearInput="true" placeholder="请设置您的登录密码"> </ion-input>
-  <ion-input class="input ion-margin-bottom" name="phone" [(ngModel)]="postData.phone" clearInput="true" placeholder="请输入您的手机号码"> </ion-input>
-    <ion-input class="input ion-margin-bottom" placeholder="请输入您的验证码">
-      <ion-button class="sms" type="button" size="small" (click)="presentToast()">获取验证码 </ion-button>
+  <form (ngSubmit)="signup()" #regForm="ngForm">
+  <ion-input required minlength='4' class="input ion-margin-bottom" name="username" [(ngModel)]="username" autofocus="true" clearInput="true" placeholder="请输入您的账号"> </ion-input>
+  <ion-input required minlength='8' class="input ion-margin-bottom" name="password" [(ngModel)]="password" type="password" clearInput="true" placeholder="请设置您的登录密码"> </ion-input>
+  <ion-input required pattern="^[0-9()\-+\s]+$" minlength='11' maxlength='11' class="input ion-margin-bottom" type="tel" name="phone" [(ngModel)]="phone" clearInput="true" placeholder="请输入您的手机号码"></ion-input>
+  <ion-item class="vcode">
+    <ion-input slot="start" [disabled]="!smsResp" required minlength='4' maxlength='4' [(ngModel)]="vCode" name="vCode" class="input ion-margin-bottom" placeholder="验证码">
     </ion-input>
+    <ion-button slot="end" [disabled]="!phone" class="sms" type="button" size="" (click)="getSms()">获取验证码</ion-button>
+  </ion-item>
   <ion-input class="input" clearInput="true" placeholder="请输入邀请码"> </ion-input>
 
   <ion-item class="small-links">
-    <ion-checkbox color="primary"></ion-checkbox>
+    <ion-checkbox required [(ngModel)]="term.isChecked" name="isChecked" color="primary"></ion-checkbox>
     <ion-label><span>注册代表同意<a>《用户协议》</a><a>《隐私条款》</a></span></ion-label>
   </ion-item>
-  <ion-button expand="block" (click)="signupAction()" class="submit">确定</ion-button>
-
+  <ion-button [disabled]="regForm.invalid" expand="block" type="submit" class="submit">确定</ion-button>
+  </form>
 </ion-content>

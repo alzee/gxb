@@ -49,3 +49,13 @@ ion-button.sms{
 ion-thumbnail{
     --border-radius: 50%;
 }
+.vcode{
+  align-items: flex-start;
+  ion-input{
+    --padding-start: 15px;
+  }
+  ion-button{
+    height: 40px;
+    margin: 0;
+  }
+}
