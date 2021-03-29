@@ -6,9 +6,10 @@ const url = 'http://b.gxb';
 //const url = 'https://backend.drgxb.com';
 export const environment = {
   production: false,
+  smsPass: '111',
   apiUrl: url + '/api/',
   imgUrl: url + '/uploads/files/img/',
-  url: url
+  url: url,
 };
 
 /*
