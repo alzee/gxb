@@ -16,8 +16,12 @@ interface Data {
   styleUrls: ['./collect.page.scss'],
 })
 export class CollectPage implements OnInit {
+  env = environment;
   hists = [];
+  myGxb: number;
+  avatarUrl: string;
   uid: number;
+  userData = {};
   postData ={
       amount: 1,
       user: '',
@@ -35,7 +39,11 @@ export class CollectPage implements OnInit {
 
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
-      this.uid = res.id;
+      console.log(res);
+      this.userData = res;
+      this.uid = this.userData.id;
+      this.myGxb = this.userData.gxb;
+      this.avatarUrl = this.userData.avatar;
       this.httpService.get('gxbs?page=1&order%5Bdate%5D=desc&itemsPerPage=30&user=' + this.uid).subscribe((res) => {
           this.hists = res;
           console.log(res);
