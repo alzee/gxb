@@ -14,11 +14,13 @@
     </ion-thumbnail>
   </ion-item>
 
-  <ion-input class="input ion-margin-bottom" name="username" [(ngModel)]="postData.username" autofocus="true" clearInput="true" placeholder="请输入您的账号"> </ion-input>
-  <ion-input class="input" type="password" name="password" [(ngModel)]="postData.password" clearInput="true" placeholder="请输入您的密码"> </ion-input>
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+  <ion-input required class="input ion-margin-bottom" name="username" [(ngModel)]="postData.username" autofocus="true" clearInput="true" placeholder="请输入您的账号"> </ion-input>
+  <ion-input required class="input" type="password" name="password" [(ngModel)]="postData.password" clearInput="true" placeholder="请输入您的密码"> </ion-input>
   <ion-text class="small-links ion-text-end">
     <p>忘记密码？</p>
   </ion-text>
-  <ion-button (click)="loginAction()" expand="block" class="">登录</ion-button>
+  <ion-button [disabled]="loginForm.invalid" expand="block" type="submit">登录</ion-button>
+  </form>
 
 </ion-content>

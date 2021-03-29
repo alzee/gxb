@@ -36,7 +36,7 @@ export class SigninPage implements OnInit {
         );
     }
 
-    loginAction() {
+    login() {
         if (this.validateInputs()) {
             this.authService.login(this.postData).subscribe(
                 (res: any) => {
