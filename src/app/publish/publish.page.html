@@ -19,8 +19,8 @@
     <ion-input name="title" [(ngModel)]="postData.title" placeholder="请输入任务标题" required clearInput></ion-input>
   </ion-item>
   <ion-item class="data">
-    <ion-label>项目名称</ion-label>
-    <ion-input name="name" [(ngModel)]="postData.name" placeholder="请输入项目名称" required clearInput></ion-input>
+    <ion-label>任务名称</ion-label>
+    <ion-input name="name" [(ngModel)]="postData.name" placeholder="请输入任务名称" required clearInput></ion-input>
   </ion-item>
   <ion-item class="data">
     <ion-label>任务数量</ion-label>
@@ -42,7 +42,7 @@
 
   <ion-item class="data">
     <ion-label>展现天数</ion-label>
-    <ion-input name="showdays" [(ngModel)]="postData.showdays" type="number" placeholder="请选择"> </ion-input>
+    <ion-input name="showdays" [(ngModel)]="postData.showdays" type="number" placeholder=""> </ion-input>
   </ion-item>
   <ion-item class="data">
     <ion-label>悬赏单价</ion-label>
@@ -106,9 +106,9 @@
   <ion-item class="btn">
     <ion-button expand="full" size="large" class="preview" (click)="preview()">
       <ion-icon name="eye-outline"></ion-icon>
-      浏览 
+      预览
     </ion-button>
-    <ion-button expand="full" size="large" class="publish" type="submit">
+    <ion-button disabled expand="full" size="large" class="publish" type="submit" #submitBtn>
       申请发布
     </ion-button>
   </ion-item>
