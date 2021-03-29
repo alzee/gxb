@@ -68,11 +68,12 @@ export class SignupPage implements OnInit {
                         console.log(res);
                         if (res) {
                             // Storing the User data.
-                            this.storageService
-                            .store(AuthConstants.AUTH, res)
-                            .then(res => {
-                                this.router.navigate(['/tabs/home']);
-                            });
+                            //this.storageService.store(AuthConstants.AUTH, res.data)
+                            //.then(res => {
+                            //    this.router.navigate(['/tabs/home']);
+                            //});
+                            this.toastService.presentToast('注册成功');
+                            this.router.navigate(['/signin']);
                         } else {
                             this.toastService.presentToast(
                                 '用户名已存在'
@@ -87,7 +88,6 @@ export class SignupPage implements OnInit {
     }
 
     getSms(){
-      console.log(this.regForm);
       console.log(this.phone);
       console.log(this.smsType);
       console.log(this.smsPass);

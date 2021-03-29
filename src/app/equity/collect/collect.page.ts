@@ -21,7 +21,7 @@ export class CollectPage implements OnInit {
   myGxb: number;
   avatarUrl: string;
   uid: number;
-  userData = {};
+  userData: Data;
   postData ={
       amount: 1,
       user: '',
