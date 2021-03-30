@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 import { AuthConstants } from '../config/auth-constants';
@@ -92,6 +93,7 @@ export class PublishPage implements OnInit {
   };
 
   constructor(
+      private formBuilder: FormBuilder,
       private httpService: HttpService,
       private http: HttpClient,
       private storageService: StorageService,
@@ -119,7 +121,14 @@ export class PublishPage implements OnInit {
           (rej) => {
               this.router.navigate(['/signin']);
           }
-      )
+      );
+      this.form = this.formBuilder.group({
+          acceptTerms: [false, Validators.requiredTrue],
+          username: [''],
+          password: [''],
+          phone: [''],
+          vCode: ['']
+      });
   }
 
   postTask() {
