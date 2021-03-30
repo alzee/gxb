@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 import { AuthConstants } from '../config/auth-constants';
@@ -18,6 +17,7 @@ interface Data {
   styleUrls: ['./publish.page.scss'],
 })
 export class PublishPage implements OnInit {
+  form: FormGroup;
   arr1 = [1];
   arr2 = [1];
   url = environment.url;

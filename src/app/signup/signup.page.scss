@@ -63,9 +63,11 @@ ion-thumbnail{
     --border-radius: 50%;
 }
 .vcode{
-  align-items: flex-start;
+  --background: #FAFAFA;
+  --border-radius: 8px;
+  margin-bottom: 16px;
   ion-input{
-    --padding-start: 15px;
+    margin: 0;
   }
   ion-button{
     //height: 40px;
