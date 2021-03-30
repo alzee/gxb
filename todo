@@ -3,7 +3,6 @@ major:
   - topbar
   - back button
   - skeleton-text
-  - infinite-scroll
   - pay jump
   - cities
   - admin entity
@@ -22,11 +21,10 @@ major:
   - page publish preview
   - page home infinite-scroll
   - page hall infinite-scroll
-  - page home slide news
   - 举报维权
   - 暂无内容
-  - gxb 位置/头像
-  - show/hide password
+  - 忘记密码
+  - 登录后 我的
 minor:
 
 question:
