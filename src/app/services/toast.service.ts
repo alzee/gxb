@@ -11,6 +11,7 @@ export class ToastService {
         const toast = await this.toastController.create({
             message: infoMessage,
             position: 'middle',
+            color: 'warning',
             duration: 2000
         });
         toast.present();

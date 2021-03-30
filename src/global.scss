@@ -35,3 +35,9 @@ ion-item{
   --padding-start: 0;
   --padding-end: 0;
 }
+ion-toast{
+    opacity: 0.9;
+    text-align: center;
+    //color: var(--ion-color-light);
+    //--background: var(--ion-color-dark);
+}
