@@ -17,7 +17,7 @@
   <ion-input required minlength='8' class="input ion-margin-bottom" name="password" [(ngModel)]="password" type="password" clearInput="true" placeholder="请设置您的登录密码"> </ion-input>
   <ion-input required pattern="^[0-9()\-+\s]+$" minlength='11' maxlength='11' class="input ion-margin-bottom" type="tel" name="phone" [(ngModel)]="phone" clearInput="true" placeholder="请输入您的手机号码"></ion-input>
   <ion-item class="vcode">
-    <ion-input slot="start" [disabled]="!smsResp" required minlength='6' maxlength='6' [(ngModel)]="vCode" name="vCode" class="input ion-margin-bottom" placeholder="验证码">
+    <ion-input slot="start" [readonly]="!smsResp" required minlength='6' maxlength='6' [(ngModel)]="vCode" name="vCode" class="input ion-margin-bottom" placeholder="验证码">
     </ion-input>
     <ion-button slot="end" [disabled]="!phone || codeSent" class="sms" type="button" size="" (click)="getSms()">{{getCodeBtnText}}</ion-button>
   </ion-item>
@@ -25,7 +25,7 @@
 
   <ion-item class="small-links">
     <ion-checkbox required [(ngModel)]="term.isChecked" name="isChecked" color="primary"></ion-checkbox>
-    <ion-label><span>注册代表同意<a>《用户协议》</a><a>《隐私条款》</a></span></ion-label>
+    <ion-label>注册代表同意<a>《用户协议》</a><a>《隐私条款》</a></ion-label>
   </ion-item>
   <ion-button [disabled]="regForm.invalid" expand="block" type="submit" class="submit">确定</ion-button>
   </form>
