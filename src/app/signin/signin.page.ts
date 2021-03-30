@@ -11,6 +11,7 @@ import { ToastService } from '../services/toast.service';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage implements OnInit {
+    passType: string;
     postData = {
         username: '',
         password: ''
@@ -23,7 +24,9 @@ export class SigninPage implements OnInit {
         private toastService: ToastService
     ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.passType = 'password';
+    }
 
     validateInputs() {
         let username = this.postData.username.trim();
@@ -55,6 +58,15 @@ export class SigninPage implements OnInit {
             );
         } else {
             this.toastService.presentToast('请输入用户名和密码');
+        }
+    }
+
+    togglePassType(){
+        if(this.passType == 'text'){
+            this.passType = 'password';
+        }
+        else{
+            this.passType = 'text';
         }
     }
 

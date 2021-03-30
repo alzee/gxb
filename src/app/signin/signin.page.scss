@@ -1,3 +1,10 @@
+form{
+  ion-item{
+    --background: #FAFAFA;
+    --border-radius: 8px;
+    --padding-end: 15px;
+  }
+}
 .input{
   background: #FAFAFA;
   opacity: 1;
@@ -5,8 +12,11 @@
   --padding-top: 10px;
   --padding-bottom: 10px;
   --padding-end: 15px;
-  --padding-start: 15px;
+  --padding-start: 15px !important;
   --placeholder-color: #B2B2B2;
+}
+ion-icon{
+  font-size: 24px;
 }
 .small-links{
   color: #787878;
