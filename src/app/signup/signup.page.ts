@@ -14,6 +14,7 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
+    passType: string;
     form: FormGroup;
     getCodeBtnText: string;
     codeSent: boolean;
@@ -42,6 +43,7 @@ export class SignupPage implements OnInit {
         this.getCodeBtnText = "获取验证码";
         this.codeSent = false;
         this.remaining = 59;
+        this.passType = 'password';
     }
 
     ngOnInit() {
@@ -144,5 +146,14 @@ export class SignupPage implements OnInit {
           this.smsResp= res;
           console.log(res);
       });
+    }
+
+    togglePassType(){
+        if(this.passType == 'text'){
+            this.passType = 'password';
+        }
+        else{
+            this.passType = 'text';
+        }
     }
 }

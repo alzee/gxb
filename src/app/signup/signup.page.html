@@ -24,7 +24,11 @@
   <ion-label color="danger" *ngIf="password.errors.minlength"> * 密码8至16位 </ion-label>
   <ion-label color="danger" *ngIf="password.errors.pattern"> * 必须包含大写字母、小写字母及数字 </ion-label>
 </ng-container>
-  <ion-input required minlength='8' maxlength="16" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]+$" class="input ion-margin-bottom" name="password" formControlName="password" type="password" clearInput="true" placeholder="请设置您的登录密码"> </ion-input>
+<ion-item class="password">
+  <ion-input required minlength='8' maxlength="16" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]+$" class="input" name="password" formControlName="password" [type]="passType" placeholder="请设置您的登录密码"> </ion-input>
+<ion-icon name="eye" *ngIf="passType == 'text'" (click)="togglePassType()"></ion-icon>
+<ion-icon name="eye-off" *ngIf="passType == 'password'" (click)="togglePassType()"></ion-icon>
+</ion-item>
 <ng-container *ngIf="phone.invalid && (phone.dirty || phone.touched)">
   <ion-label color="danger" *ngIf="phone.errors.required"> * 请输入手机号 </ion-label>
   <ion-label color="danger" *ngIf="phone.errors.pattern"> * 请输入正确的手机号 </ion-label>

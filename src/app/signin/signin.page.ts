@@ -69,5 +69,4 @@ export class SigninPage implements OnInit {
             this.passType = 'text';
         }
     }
-
 }
