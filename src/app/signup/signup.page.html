@@ -17,9 +17,9 @@
   <ion-input required minlength='8' class="input ion-margin-bottom" name="password" [(ngModel)]="password" type="password" clearInput="true" placeholder="请设置您的登录密码"> </ion-input>
   <ion-input required pattern="^[0-9()\-+\s]+$" minlength='11' maxlength='11' class="input ion-margin-bottom" type="tel" name="phone" [(ngModel)]="phone" clearInput="true" placeholder="请输入您的手机号码"></ion-input>
   <ion-item class="vcode">
-    <ion-input slot="start" [disabled]="!smsResp" required minlength='4' maxlength='4' [(ngModel)]="vCode" name="vCode" class="input ion-margin-bottom" placeholder="验证码">
+    <ion-input slot="start" [disabled]="!smsResp" required minlength='6' maxlength='6' [(ngModel)]="vCode" name="vCode" class="input ion-margin-bottom" placeholder="验证码">
     </ion-input>
-    <ion-button slot="end" [disabled]="!phone" class="sms" type="button" size="" (click)="getSms()">获取验证码</ion-button>
+    <ion-button slot="end" [disabled]="!phone || codeSent" class="sms" type="button" size="" (click)="getSms()">{{getCodeBtnText}}</ion-button>
   </ion-item>
   <ion-input class="input" clearInput="true" placeholder="请输入邀请码"> </ion-input>
 

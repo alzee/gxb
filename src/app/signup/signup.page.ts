@@ -13,6 +13,9 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
+    getCodeBtnText: string;
+    codeSent: boolean;
+    remaining: number;
     smsType: string = 'register';
     smsPass: string;
     smsResp;
@@ -37,6 +40,9 @@ export class SignupPage implements OnInit {
         private router: Router
     ) {
         this.smsPass = environment.smsPass;
+        this.getCodeBtnText = "获取验证码";
+        this.codeSent = false;
+        this.remaining = 59;
     }
 
     ngOnInit() {}
@@ -45,8 +51,11 @@ export class SignupPage implements OnInit {
         if(!this.smsResp){
             return 1
         }
-        else if(this.vCode != this.smsResp.code){
+        else if(this.smsResp.code == 'timeout'){
             return 2
+        }
+        else if(this.vCode != this.smsResp.code){
+            return 3
         }
     }
 
@@ -57,6 +66,9 @@ export class SignupPage implements OnInit {
                 this.toastService.presentToast('请获取验证码');
                 break;
             case 2:
+                this.toastService.presentToast('验证码超时，请重新获取');
+                break;
+            case 3:
                 this.toastService.presentToast('验证码错误');
                 break;
             default:
@@ -96,6 +108,20 @@ export class SignupPage implements OnInit {
       //}
       this.httpService.get(`sms?phone=${this.phone}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
           this.toastService.presentToast('验证码已发送');
+          this.getCodeBtnText = `重新发送(${this.remaining})`;
+          let that = this;
+          let interval = setInterval(function(){
+              that.remaining -= 1;
+              that.getCodeBtnText = `重新发送(${that.remaining})`;
+              if (that.remaining == 0){
+                  clearInterval(interval);
+                  that.getCodeBtnText = '获取验证码';
+                  that.codeSent = false;
+                  that.remaining = 59;
+                  that.smsResp.code = 'timeout';
+              }
+          }, 1000);
+          this.codeSent = true;
           this.smsResp= res;
           console.log(res);
       });
