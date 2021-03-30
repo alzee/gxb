@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthConstants } from '../config/auth-constants';
 import { AuthService } from '../services/auth.service';
@@ -13,16 +14,13 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
+    form: FormGroup;
     getCodeBtnText: string;
     codeSent: boolean;
     remaining: number;
     smsType: string = 'register';
     smsPass: string;
     smsResp;
-    username: string;
-    password: string;
-    phone: string;
-    vCode: string;
     term = {
         isChecked: true
     }
@@ -33,6 +31,7 @@ export class SignupPage implements OnInit {
     };
 
     constructor(
+        private formBuilder: FormBuilder,
         private authService: AuthService,
         private toastService: ToastService,
         private storageService: StorageService,
@@ -45,7 +44,15 @@ export class SignupPage implements OnInit {
         this.remaining = 59;
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.form = this.formBuilder.group({
+            acceptTerms: [false, Validators.requiredTrue],
+            username: [''],
+            password: [''],
+            phone: [''],
+            vCode: ['']
+        });
+    }
 
     validateInputs() {
         if(!this.smsResp){
@@ -54,7 +61,7 @@ export class SignupPage implements OnInit {
         else if(this.smsResp.code == 'timeout'){
             return 2
         }
-        else if(this.vCode != this.smsResp.code){
+        else if(this.form.value.vCode != this.smsResp.code){
             return 3
         }
     }
@@ -72,9 +79,9 @@ export class SignupPage implements OnInit {
                 this.toastService.presentToast('验证码错误');
                 break;
             default:
-                this.postData.username = this.username;
-                this.postData.password = this.password;
-                this.postData.phone = this.phone;
+                this.postData.username = this.form.value.username;
+                this.postData.password = this.form.value.password;
+                this.postData.phone = this.form.value.phone;
                 this.authService.signup(this.postData).subscribe(
                     (res: any) => {
                         console.log(res);
@@ -100,9 +107,9 @@ export class SignupPage implements OnInit {
     }
 
     getSms(){
-      console.log(this.phone);
       console.log(this.smsType);
       console.log(this.smsPass);
+      console.log(this.form);
       //if(){
       //    this.toastService.presentToast('请获取验证码');
       //}
