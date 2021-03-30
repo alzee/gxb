@@ -15,8 +15,8 @@
   </ion-item>
 
   <form (ngSubmit)="login()" #loginForm="ngForm">
-  <ion-input required class="input ion-margin-bottom" name="username" [(ngModel)]="postData.username" autofocus="true" clearInput="true" placeholder="请输入您的账号"> </ion-input>
-  <ion-input required class="input" type="password" name="password" [(ngModel)]="postData.password" clearInput="true" placeholder="请输入您的密码"> </ion-input>
+  <ion-input required minlength="6" class="input ion-margin-bottom" name="username" [(ngModel)]="postData.username" autofocus="true" clearInput="true" placeholder="请输入您的账号"> </ion-input>
+  <ion-input required minlength="8" class="input" type="password" name="password" [(ngModel)]="postData.password" clearInput="true" placeholder="请输入您的密码"> </ion-input>
   <ion-text class="small-links ion-text-end">
     <p>忘记密码？</p>
   </ion-text>
