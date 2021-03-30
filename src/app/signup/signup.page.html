@@ -13,13 +13,28 @@
     </ion-thumbnail>
   </ion-item>
   <form (ngSubmit)="signup()" [formGroup]="form">
-  <ion-input required minlength='4' class="input ion-margin-bottom" name="username" formControlName="username" autofocus="true" clearInput="true" placeholder="请输入您的账号"> </ion-input>
-  <ion-input required minlength='8' class="input ion-margin-bottom" name="password" formControlName="password" type="password" clearInput="true" placeholder="请设置您的登录密码"> </ion-input>
-  <ion-input required pattern="^[0-9()\-+\s]+$" minlength='11' maxlength='11' class="input ion-margin-bottom" type="tel" name="phone" formControlName="phone" clearInput="true" placeholder="请输入您的手机号码"></ion-input>
+<ng-container *ngIf="username.invalid && (username.dirty || username.touched)">
+  <ion-label color="danger" *ngIf="username.errors.required"> * 请填写账号 </ion-label>
+  <ion-label color="danger" *ngIf="username.errors.minlength"> * 账号须大于6位 </ion-label>
+  <ion-label color="danger" *ngIf="username.errors.pattern"> * 账号只能包含数字、字母和下划线 </ion-label>
+</ng-container>
+  <ion-input required minlength='6' maxlength="16" pattern="^[a-z0-9_-]+$" class="input ion-margin-bottom" name="username" formControlName="username" autofocus="true" clearInput="true" placeholder="请输入您的账号"> </ion-input>
+<ng-container *ngIf="password.invalid && (password.dirty || password.touched)">
+  <ion-label color="danger" *ngIf="password.errors.required"> * 请设置密码 </ion-label>
+  <ion-label color="danger" *ngIf="password.errors.minlength"> * 密码8至16位 </ion-label>
+  <ion-label color="danger" *ngIf="password.errors.pattern"> * 密码须为大写字母、小写字母及数字组合，可包含特殊字符 </ion-label>
+</ng-container>
+  <ion-input required minlength='8' maxlength="16" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]+$" class="input ion-margin-bottom" name="password" formControlName="password" type="password" clearInput="true" placeholder="请设置您的登录密码"> </ion-input>
+<ng-container *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+  <ion-label color="danger" *ngIf="phone.errors.required"> * 请输入手机号 </ion-label>
+  <ion-label color="danger" *ngIf="phone.errors.pattern"> * 请输入正确的手机号 </ion-label>
+</ng-container>
+  <ion-input required minlength='11' maxlength='11' pattern="^1[3-9]\d{9}$" class="input ion-margin-bottom" type="tel" name="phone" formControlName="phone" clearInput="true" placeholder="请输入您的手机号码"></ion-input>
+
   <ion-item class="vcode">
     <ion-input slot="start" [readonly]="!smsResp" required minlength='6' maxlength='6' formControlName="vCode" name="vCode" class="input ion-margin-bottom" placeholder="验证码">
     </ion-input>
-    <ion-button slot="end" [disabled]="!form.value.phone || codeSent" class="sms" type="button" size="" (click)="getSms()">{{getCodeBtnText}}</ion-button>
+    <ion-button slot="end" [disabled]="phone.invalid || codeSent" class="sms" type="button" size="" (click)="getSms()">{{getCodeBtnText}}</ion-button>
   </ion-item>
   <ion-input class="input" clearInput="true" placeholder="请输入邀请码"> </ion-input>
 

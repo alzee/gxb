@@ -54,6 +54,18 @@ export class SignupPage implements OnInit {
         });
     }
 
+    get username(){
+      return this.form.get('username');
+    }
+
+    get password(){
+      return this.form.get('password');
+    }
+
+    get phone(){
+      return this.form.get('phone');
+    }
+
     validateInputs() {
         if(!this.smsResp){
             return 1
