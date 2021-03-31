@@ -101,6 +101,10 @@ const routes: Routes = [
   {
     path: 'search',
     loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+  },
+  {
+    path: 'terms',
+    loadChildren: () => import('./terms/terms.module').then( m => m.TermsPageModule)
   }
 ];
 @NgModule({
