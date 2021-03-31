@@ -68,6 +68,10 @@ export class SignupPage implements OnInit {
       return this.form.get('phone');
     }
 
+    get vCode(){
+      return this.form.get('vCode');
+    }
+
     validateInputs() {
         if(!this.smsResp){
             return 1
@@ -75,7 +79,7 @@ export class SignupPage implements OnInit {
         else if(this.smsResp.code == 'timeout'){
             return 2
         }
-        else if(this.form.value.vCode != this.smsResp.code){
+        else if(this.vCode.value != this.smsResp.code){
             return 3
         }
     }
@@ -93,9 +97,9 @@ export class SignupPage implements OnInit {
                 this.toastService.presentToast('验证码错误');
                 break;
             default:
-                this.postData.username = this.form.value.username;
-                this.postData.password = this.form.value.password;
-                this.postData.phone = this.form.value.phone;
+                this.postData.username = this.username.value;
+                this.postData.password = this.password.value;
+                this.postData.phone = this.phone.value;
                 this.authService.signup(this.postData).subscribe(
                     (res: any) => {
                         console.log(res);
@@ -127,7 +131,7 @@ export class SignupPage implements OnInit {
       //if(){
       //    this.toastService.presentToast('请获取验证码');
       //}
-      this.httpService.get(`sms?phone=${this.phone}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
+      this.httpService.get(`sms?phone=${this.phone.value}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
           this.toastService.presentToast('验证码已发送');
           this.getCodeBtnText = `重新发送(${this.remaining})`;
           let that = this;
