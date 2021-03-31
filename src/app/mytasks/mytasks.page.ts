@@ -54,7 +54,6 @@ export class MytasksPage implements OnInit {
               this.applies4 = res;
           });
       }, (rej) => {
-          this.router.navigate(['/signin']);
       })
   }
 

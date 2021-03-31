@@ -45,7 +45,6 @@ export class MePage implements OnInit {
               this.user = {};
               delete this.userData;
               //delete this.user;
-              //this.router.navigate(['/signin'], {relativeTo: '/'});
           }
       );
   }

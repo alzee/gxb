@@ -60,7 +60,6 @@ export class MypostsPage implements OnInit {
               console.log(this.stopped);
           });
       }, (rej) => {
-          this.router.navigate(['/signin']);
       });
   }
 

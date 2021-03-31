@@ -99,6 +99,9 @@ export class PublishPage implements OnInit {
       private storageService: StorageService,
       private router: Router
   ) {
+  }
+
+  ngOnInit() {
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
       });
@@ -111,17 +114,6 @@ export class PublishPage implements OnInit {
           console.log(res);
           this.platforms = res;
       });
-  }
-
-  ngOnInit() {
-      this.storageService.get(AuthConstants.AUTH).then(
-          (res) => {
-              this.userData = res;
-          },
-          (rej) => {
-              this.router.navigate(['/signin']);
-          }
-      );
       this.form = this.formBuilder.group({
           acceptTerms: [false, Validators.requiredTrue],
           username: [''],
