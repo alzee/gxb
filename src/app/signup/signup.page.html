@@ -44,7 +44,7 @@
 
   <ion-item class="small-links">
     <ion-checkbox required  formControlName="acceptTerms" color="primary"></ion-checkbox>
-    <ion-label>注册代表同意<a>《用户协议》</a><a>《隐私条款》</a></ion-label>
+    <ion-label>注册代表同意<a routerLink="/terms">《用户协议》</a><a routerLink="/privacy">《隐私条款》</a></ion-label>
   </ion-item>
   <ion-button [disabled]="form.invalid" expand="block" type="submit" class="submit">确定</ion-button>
   </form>
