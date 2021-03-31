@@ -5,6 +5,9 @@ ion-label{
 }
 .price{
   font-size: 32px;
+  span{
+    margin-right: 8px;
+  }
 }
 ion-item{
   --padding-start: 16px;
