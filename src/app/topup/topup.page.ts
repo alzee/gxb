@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./topup.page.scss'],
 })
 export class TopupPage implements OnInit {
+  amount: number;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  topup(){
+    console.log(this.amount);
   }
 
 }

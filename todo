@@ -1,5 +1,4 @@
 major:
-  - validation
   - topbar
   - back button
   - skeleton-text
@@ -24,7 +23,6 @@ major:
   - 举报维权
   - 暂无内容
   - 忘记密码
-  - 登录后 我的
 minor:
 
 question:

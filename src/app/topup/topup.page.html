@@ -11,7 +11,7 @@
 
   <ion-label color="medium">充值金额</ion-label>
   <ion-item>
-    <ion-text class="price" color="danger">¥ 2586.00</ion-text>
+    <ion-input class="price" color="danger" type="number" [(ngModel)]="amount">¥ </ion-input>
     <ion-text slot="end">元</ion-text>
   </ion-item>
 
@@ -20,11 +20,11 @@
     <ion-item class="input">
       <ion-icon name="logo-wechat" color="success"></ion-icon>
       <ion-label>
-        支付宝
+        微信支付
       </ion-label>
       <ion-radio slot="end" value="ali"></ion-radio>
     </ion-item>
   </ion-radio-group>
 
-  <ion-button expand="block">立即充值</ion-button>
+  <ion-button expand="block" (click)="topup()">立即充值</ion-button>
 </ion-content>
