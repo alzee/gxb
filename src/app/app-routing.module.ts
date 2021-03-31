@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -36,30 +37,37 @@ const routes: Routes = [
   },
   {
     path: 'mytasks',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./mytasks/mytasks.module').then( m => m.MytasksPageModule)
   },
   {
     path: 'publish',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./publish/publish.module').then( m => m.PublishPageModule)
   },
   {
     path: 'myposts',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./myposts/myposts.module').then( m => m.MypostsPageModule)
   },
   {
     path: 'bonus',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./bonus/bonus.module').then( m => m.BonusPageModule)
   },
   {
     path: 'approve',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./approve/approve.module').then( m => m.ApprovePageModule)
   },
   {
     path: 'sticky',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./sticky/sticky.module').then( m => m.StickyPageModule)
   },
   {
     path: 'promo',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./promo/promo.module').then( m => m.PromoPageModule)
   },
   {
@@ -68,14 +76,17 @@ const routes: Routes = [
   },
   {
     path: 'bids',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./bids/bids.module').then( m => m.BidsPageModule)
   },
   {
     path: 'topup',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./topup/topup.module').then( m => m.TopupPageModule)
   },
   {
     path: 'report',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./report/report.module').then( m => m.ReportPageModule)
   },
   {
@@ -84,14 +95,17 @@ const routes: Routes = [
   },
   {
     path: 'vip',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./vip/vip.module').then( m => m.VipPageModule)
   },
   {
     path: 'refer',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./refer/refer.module').then( m => m.ReferPageModule)
   },
   {
     path: 'applies',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./applies/applies.module').then( m => m.AppliesPageModule)
   },
   {

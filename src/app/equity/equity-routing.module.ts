@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '../auth.guard';
 
 import { EquityPage } from './equity.page';
 
@@ -10,14 +11,17 @@ const routes: Routes = [
   },
   {
     path: 'collect',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./collect/collect.module').then( m => m.CollectPageModule)
   },
   {
     path: 'exchange',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./exchange/exchange.module').then( m => m.ExchangePageModule)
   },
   {
     path: 'market',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./market/market.module').then( m => m.MarketPageModule)
   },
   {
