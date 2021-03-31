@@ -109,6 +109,10 @@ const routes: Routes = [
   {
     path: 'privacy',
     loadChildren: () => import('./privacy/privacy.module').then( m => m.PrivacyPageModule)
+  },
+  {
+    path: 'support',
+    loadChildren: () => import('./support/support.module').then( m => m.SupportPageModule)
   }
 ];
 @NgModule({

@@ -45,7 +45,7 @@ export class MePage implements OnInit {
               this.user = {};
               delete this.userData;
               //delete this.user;
-              this.router.navigate(['/signin'], {relativeTo: '/'});
+              //this.router.navigate(['/signin'], {relativeTo: '/'});
           }
       );
   }
@@ -104,27 +104,27 @@ export class MePage implements OnInit {
   ];
   public system = [
     {
-      link: '/mytasks',
+      link: '/support',
       img: '../assets/img/bag.png',
       name: '联系客服',
     },
     {
-      link: '/signin',
+      link: '/terms',
       img: '../assets/img/flag.png',
       name: '服务协议',
     },
     {
-      link: '/signin',
+      link: '/privacy',
       img: '../assets/img/note.png',
       name: '隐私条款',
     },
     {
-      link: '/signin',
+      link: '/faq',
       img: '../assets/img/wallet.png',
       name: '常见问题',
     },
     {
-      link: '/signin',
+      link: '/about',
       img: '../assets/img/wallet.png',
       name: '关于我们',
     },
