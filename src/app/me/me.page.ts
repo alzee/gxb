@@ -28,21 +28,26 @@ export class MePage implements OnInit {
   }
 
   ngOnInit() {
-    this.storageService.get(AuthConstants.AUTH).then(
-        (res) => {
-            this.userData = res;
-            console.log(this.userData);
-            this.httpService.get('users/' + this.userData.id).subscribe((res) => {
-                this.user = res;
-                this.user.total = this.user.balanceTask + this.user.balanceTopup;
-                console.log(this.user);
-            });
-        },
-        (rej) => {
-            this.user = {};
-            //this.router.navigate(['/signin']);
-        }
-    );
+  }
+
+  ionViewWillEnter(){
+      this.storageService.get(AuthConstants.AUTH).then(
+          (res) => {
+              this.userData = res;
+              console.log(this.userData);
+              this.httpService.get('users/' + this.userData.id).subscribe((res) => {
+                  this.user = res;
+                  this.user.total = this.user.balanceTask + this.user.balanceTopup;
+                  console.log(this.user);
+              });
+          },
+          (rej) => {
+              this.user = {};
+              delete this.userData;
+              //delete this.user;
+              this.router.navigate(['/signin'], {relativeTo: '/'});
+          }
+      );
   }
 
   public features = [
