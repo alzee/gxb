@@ -10,6 +10,10 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 interface Data {
     [propName: string]: any;
 }
+interface guide0{
+    desc?: string;
+    img?: string
+}
 
 @Component({
   selector: 'app-publish',
@@ -64,6 +68,8 @@ export class PublishPage implements OnInit {
           img: ''
       }
   ];
+  //guides: guide0[] = [];
+
   reviews = [
       {
           desc: '',
@@ -127,11 +133,11 @@ export class PublishPage implements OnInit {
           //guides: [[ {desc: '', img} ]],
           //reviews: [[ {desc: '', img} ]],
           acceptTerms: [false, Validators.requiredTrue],
-          username: [''],
-          password: [''],
-          phone: [''],
-          vCode: ['']
       });
+  }
+
+  get f(){
+      return this.form.controls;
   }
 
   postTask() {
@@ -217,6 +223,8 @@ export class PublishPage implements OnInit {
 
   preview(){
       //this.validateInputs();
-      console.log(this.form.controls);
+      console.log(this.f);
+      console.log(this.guides[0].img);
+      console.log(this.reviews[0].img);
   }
 }
