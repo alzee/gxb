@@ -16,8 +16,8 @@
       <p><ion-text>{{myGxb}} GXB</ion-text></p>
     </div>
   </ion-item>
-  <ion-thumbnail class="gxb" (click)="collectGxb()" id="text">
-    <img src="../../../assets/img/equity_collect_gxb.png">
+  <ion-thumbnail class="gxb" id="text">
+    <img *ngIf="!collected" (click)="collectGxb()" src="../../../assets/img/equity_collect_gxb.png">
   </ion-thumbnail>
   <ion-thumbnail class="coins">
     <img src="../../../assets/img/equity_collect_coins.png">

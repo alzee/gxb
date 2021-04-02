@@ -22,6 +22,7 @@ export class CollectPage implements OnInit {
   avatarUrl: string;
   uid: number;
   userData: Data;
+  collected: boolean = false;
   postData ={
       amount: 1,
       user: '',
@@ -44,10 +45,14 @@ export class CollectPage implements OnInit {
       this.uid = this.userData.id;
       this.myGxb = this.userData.gxb;
       this.avatarUrl = this.userData.avatar;
-      this.httpService.get('gxbs?page=1&order%5Bdate%5D=desc&itemsPerPage=30&user=' + this.uid).subscribe((res) => {
+      this.httpService.get('gxbs?page=1&order%5Bdate%5D=desc&itemsPerPage=30&user.id=' + this.uid).subscribe((res) => {
           this.hists = res;
           console.log(res);
-          console.log(this.uid);
+          if(this.hists[0]){
+              if(new Date(this.hists[0].date).setHours(0,0,0,0) == new Date().setHours(0,0,0,0)){
+                  this.collected = true;
+              }
+          }
       });
     });
 
@@ -81,7 +86,7 @@ export class CollectPage implements OnInit {
       this.httpService.post('gxbs', this.postData).subscribe((res) => {
           console.log(res);
           this.hists.unshift(res);
-          this.toastService.presentToast('GXB +1');
+          this.toastService.presentToast('GXB +1 <p>每天1次机会，记得明天再来哦</p>');
           this.dismiss();
       });
       console.log('collected');
