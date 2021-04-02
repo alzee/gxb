@@ -4,7 +4,6 @@ major:
   - skeleton-text
   - pay jump
   - cities
-  - admin entity
   - 交换市场
   - 领地交易
   - setting nick
@@ -19,7 +18,6 @@ major:
   - 举报维权
   - 暂无内容
   - 忘记密码
-  - gxb/equity/balance add/minus
 minor:
 
 question:
