@@ -6,6 +6,7 @@ import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 interface Data {
     [propName: string]: any;
@@ -87,6 +88,7 @@ export class PublishPage implements OnInit {
   };
 
   constructor(
+      public alertController: AlertController,
       private formBuilder: FormBuilder,
       private httpService: HttpService,
       private http: HttpClient,
@@ -223,5 +225,15 @@ export class PublishPage implements OnInit {
               }
           }
       )
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: '提示',
+      //subHeader: 'Subtitle',
+      message: '金额将充入余额并冻结，任务结束后解冻剩余部分。',
+    });
+
+    await alert.present();
   }
 }

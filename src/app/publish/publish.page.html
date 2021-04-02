@@ -24,11 +24,6 @@
     <ion-label>任务名称</ion-label>
     <ion-input name="name" formControlName="name" placeholder="请输入任务名称" required clearInput></ion-input>
   </ion-item>
-    <ion-label color="danger" *ngIf="f.quantity.invalid && f.quantity.errors.required"> * 请输入任务数量</ion-label>
-  <ion-item class="data">
-    <ion-label>任务数量</ion-label>
-    <ion-input required name="quantity" formControlName="quantity" type="number" placeholder=""> </ion-input>
-  </ion-item>
 
   <ion-label color="danger" *ngIf="f.applyHours.invalid && f.applyHours.errors.required"> * 请选择接单时间</ion-label>
   <ion-item class="data">
@@ -50,6 +45,13 @@
     <ion-label>展现天数</ion-label>
     <ion-input required name="showdays" formControlName="showdays" type="number" placeholder=""> </ion-input>
   </ion-item>
+
+  <ion-label color="danger" *ngIf="f.quantity.invalid && f.quantity.errors.required"> * 请输入任务数量</ion-label>
+  <ion-item class="data">
+    <ion-label>发布数量</ion-label>
+    <ion-input required name="quantity" formControlName="quantity" type="number" placeholder=""> </ion-input>
+  </ion-item>
+
   <ion-label color="danger" *ngIf="f.price.invalid && f.price.errors.required"> * 请输入悬赏单价</ion-label>
   <ion-label color="danger" *ngIf="f.price.invalid && f.price.errors.min"> * 悬赏单价最低 {{min}} 元</ion-label>
   <ion-item class="data">
@@ -57,7 +59,13 @@
     <ion-input [min]="min" name="price" formControlName="price" type="number" placeholder="最低出价{{min}}元" required clearInput></ion-input>
   </ion-item>
 
-    <ion-label color="danger" *ngIf="f.description.invalid && f.description.errors.required"> * 请输入任务说明</ion-label>
+  <ion-item class="pay" *ngIf="f.quantity.valid && f.price.valid">
+    <ion-text (click)="presentAlert()">充值金额</ion-text> 
+    <ion-icon (click)="presentAlert()" size="small" name="help-circle-outline"></ion-icon>
+    <ion-note slot="end" color="danger">{{f.quantity.value * f.price.value}} 元</ion-note>
+  </ion-item>
+
+  <ion-label color="danger" *ngIf="f.description.invalid && f.description.errors.required"> * 请输入任务说明</ion-label>
   <ion-item class="desc data">
     <ion-textarea required name="description" formControlName="description" placeholder="请输入任务介绍" autoGrow clearOnEdit>
     </ion-textarea>
