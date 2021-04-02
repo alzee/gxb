@@ -133,7 +133,7 @@ export class PublishPage implements OnInit {
       this.validateInputs();
       this.httpService.post('tasks', this.postData).subscribe((res) => {
           console.log(res);
-          this.router.navigate(['/myposts']);
+          this.router.navigate(['/myposts'], {replaceUrl: true});
       });
   }
 
