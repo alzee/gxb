@@ -115,6 +115,17 @@ export class PublishPage implements OnInit {
           this.platforms = res;
       });
       this.form = this.formBuilder.group({
+          category: [''],
+          title: [''],
+          name: [''],
+          quantity: [''],
+          applyHours: [''],
+          approveHours: [''],
+          showdays: [''],
+          price: [''],
+          description: [''],
+          //guides: [[ {desc: '', img} ]],
+          //reviews: [[ {desc: '', img} ]],
           acceptTerms: [false, Validators.requiredTrue],
           username: [''],
           password: [''],
@@ -205,6 +216,7 @@ export class PublishPage implements OnInit {
   }
 
   preview(){
-      this.validateInputs();
+      //this.validateInputs();
+      console.log(this.form.controls);
   }
 }
