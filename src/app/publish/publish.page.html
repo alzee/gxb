@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content color="light">
-  <form (ngSubmit)="postTask()" [formGroup]="form">
+  <form (ngSubmit)="checkBalance()" [formGroup]="form">
     <ion-label color="danger" *ngIf="f.category.invalid && f.category.errors.required"> * 请选择类型</ion-label>
   <ion-item class="data">
     <ion-label>请选择类型</ion-label>
@@ -60,15 +60,9 @@
   </ion-item>
 
   <ion-item class="pay" *ngIf="f.quantity.valid && f.price.valid">
-    <ion-text (click)="presentAlert()">合计金额</ion-text> 
-    <ion-icon (click)="presentAlert()" size="small" name="help-circle-outline"></ion-icon>
+    <ion-text (click)="showTip()">合计金额</ion-text> 
+    <ion-icon (click)="showTip()" size="small" name="help-circle-outline"></ion-icon>
     <ion-note slot="end" color="danger">{{f.quantity.value * f.price.value}} 元</ion-note>
-  </ion-item>
-
-  <ion-label color="danger" *ngIf="f.description.invalid && f.description.errors.required"> * 请输入任务说明</ion-label>
-  <ion-item class="desc data">
-    <ion-textarea required name="description" formControlName="description" placeholder="请输入任务介绍" autoGrow clearOnEdit>
-    </ion-textarea>
   </ion-item>
 
   <ion-label color="medium"></ion-label>
@@ -105,6 +99,12 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-label color="danger" *ngIf="f.description.invalid && f.description.errors.required"> * 请输入任务说明</ion-label>
+  <ion-item class="desc data">
+    <ion-textarea required name="description" formControlName="description" placeholder="请输入任务介绍" autoGrow clearOnEdit>
+    </ion-textarea>
+  </ion-item>
 
   <ion-item class="data">
     <ion-label>任务链接</ion-label>

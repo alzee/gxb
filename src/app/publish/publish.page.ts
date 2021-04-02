@@ -129,7 +129,7 @@ export class PublishPage implements OnInit {
       return this.form.controls;
   }
 
-  postTask() {
+  publish() {
       this.validateInputs();
       this.httpService.post('tasks', this.postData).subscribe((res) => {
           console.log(res);
@@ -209,8 +209,9 @@ export class PublishPage implements OnInit {
   }
 
   preview(){
-      this.validateInputs();
+      //this.validateInputs();
       console.log(this.f);
+      this.checkBalance();
   }
 
   getCateMin(){
@@ -227,7 +228,7 @@ export class PublishPage implements OnInit {
       )
   }
 
-  async presentAlert() {
+  async showTip() {
     const alert = await this.alertController.create({
       header: '提示',
       //subHeader: 'Subtitle',
@@ -235,5 +236,65 @@ export class PublishPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async confirmPublish() {
+    const alert = await this.alertController.create({
+      header: '发布任务',
+      //subHeader: '',
+      message: `您账户相应金额(${this.f.quantity.value * this.f.price.value}元)将被冻结，任务结束后解冻剩余部分！`,
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: '确定',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.publish();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async confirmTopup() {
+    const alert = await this.alertController.create({
+      header: '余额不足',
+      message: '账户余额不足，将转入充值页面！',
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: '确定',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.router.navigate(['/topup']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  checkBalance(){
+      if(1){
+          this.confirmPublish();
+      }
+      else{
+          this.confirmTopup();
+      }
   }
 }
