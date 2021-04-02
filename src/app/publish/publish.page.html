@@ -99,12 +99,12 @@
 
   <ion-item class="data">
     <ion-label>任务链接</ion-label>
-    <ion-input placeholder="请输入链接，http开头" required clearInput></ion-input>
+    <ion-input placeholder="请输入链接，http开头" formControlName="link" clearInput></ion-input>
   </ion-item>
 
   <ion-item class="data">
     <ion-label>文字验收</ion-label>
-    <ion-input placeholder="要求对方输入手机号、昵称、ID等" required clearInput></ion-input>
+    <ion-input placeholder="要求对方输入手机号、昵称、ID等" formControlName="note" clearInput></ion-input>
   </ion-item>
 
   <ion-label color="danger" *ngIf="f.acceptTerms.invalid && f.acceptTerms.errors.required"> * 请阅读并选择同意条款</ion-label>

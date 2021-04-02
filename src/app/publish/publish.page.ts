@@ -130,6 +130,8 @@ export class PublishPage implements OnInit {
           showdays: [''],
           price: [''],
           description: [''],
+          link: [''],
+          note: [''],
           //guides: [[ {desc: '', img} ]],
           //reviews: [[ {desc: '', img} ]],
           acceptTerms: [false, Validators.requiredTrue],
@@ -150,22 +152,30 @@ export class PublishPage implements OnInit {
 
   validateInputs() {
       let applyUntil = new Date();
-      applyUntil.setHours(applyUntil.getHours() + this.applyHours);
+      applyUntil.setHours(applyUntil.getHours() + this.f.applyHours.value);
       let approveUntil = new Date();
-      approveUntil.setHours(approveUntil.getHours() + this.approveHours);
+      approveUntil.setHours(approveUntil.getHours() + this.f.approveHours.value);
       this.postData.owner = 'api/users/' + this.userData.id;
+      this.postData.category = '/api/categories/' + this.f.category.value;
+      this.postData.title = this.f.title.value;
+      this.postData.name = this.f.name.value;
+      this.postData.quantity = this.f.quantity.value;
       this.postData.applyUntil = applyUntil;
       this.postData.approveUntil = approveUntil;
-      this.postData.category = '/api/categories/' + this.category;
+      this.postData.showdays = this.f.showdays.value;
+      this.postData.price = this.f.price.value;
+      this.postData.description = this.f.description.value;
+      this.postData.link = this.f.link.value;
+      this.postData.note = this.f.note.value;
       //this.postData.platform = '/api/platforms/' + this.platform;
       this.postData.guides.push(this.guides);
       this.postData.reviews.push(this.reviews);
-      let title = this.postData.title.trim();
-      let name = this.postData.name.trim();
-      let applyHours = this.postData.applyHours;
-      let approveHours = this.postData.approveHours;
-      let quantity = this.postData.quantity;
-      let showdays = this.postData.showdays;
+      //let title = this.postData.title.trim();
+      //let name = this.postData.name.trim();
+      //let applyHours = this.postData.applyHours;
+      //let approveHours = this.postData.approveHours;
+      //let quantity = this.postData.quantity;
+      //let showdays = this.postData.showdays;
       //return (
       //    this.postData.username &&
       //        this.postData.password &&
@@ -222,8 +232,8 @@ export class PublishPage implements OnInit {
   }
 
   preview(){
-      //this.validateInputs();
-      console.log(this.f);
+      this.validateInputs();
+      console.log(this.postData);
       console.log(this.guides[0].img);
       console.log(this.reviews[0].img);
   }
