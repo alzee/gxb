@@ -51,9 +51,10 @@
     <ion-input required name="showdays" formControlName="showdays" type="number" placeholder=""> </ion-input>
   </ion-item>
     <ion-label color="danger" *ngIf="f.price.invalid && f.price.errors.required"> * 请输入悬赏单价</ion-label>
+    <ion-label color="danger" *ngIf="f.price.invalid && f.price.errors.min"> * 悬赏单价最低 {{min}} 元</ion-label>
   <ion-item class="data">
     <ion-label>悬赏单价</ion-label>
-    <ion-input name="price" formControlName="price" type="number" placeholder="最低出价0.5元" required clearInput></ion-input>
+    <ion-input [min]="min" name="price" formControlName="price" type="number" placeholder="最低出价{{min}}元" required clearInput></ion-input>
   </ion-item>
 
     <ion-label color="danger" *ngIf="f.description.invalid && f.description.errors.required"> * 请输入任务说明</ion-label>

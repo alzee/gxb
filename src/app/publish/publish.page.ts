@@ -10,10 +10,6 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 interface Data {
     [propName: string]: any;
 }
-interface guide0{
-    desc?: string;
-    img?: string
-}
 
 @Component({
   selector: 'app-publish',
@@ -25,6 +21,7 @@ export class PublishPage implements OnInit {
   arr1 = [1];
   arr2 = [1];
   url = environment.url;
+  min: number;
   userData = {
       id: 0
   };
@@ -54,22 +51,13 @@ export class PublishPage implements OnInit {
           label: '7天'
       }
   ];
-  applyHours: number;
-  approveHours: number;
-  countGuides = 3;
-  countReviews = 3;
-  category = '';
-  //platform = '';
   categories = [];
-  platforms = [];
   guides = [
       {
           desc: '',
           img: ''
       }
   ];
-  //guides: guide0[] = [];
-
   reviews = [
       {
           desc: '',
@@ -108,6 +96,7 @@ export class PublishPage implements OnInit {
   }
 
   ngOnInit() {
+      this.min = 2;
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
       });
@@ -115,10 +104,6 @@ export class PublishPage implements OnInit {
       this.httpService.get('categories?itemsPerPage=50').subscribe((res) => {
           console.log(res);
           this.categories = res;
-      });
-      this.httpService.get('platforms?itemsPerPage=50').subscribe((res) => {
-          console.log(res);
-          this.platforms = res;
       });
       this.form = this.formBuilder.group({
           category: [''],
@@ -128,7 +113,7 @@ export class PublishPage implements OnInit {
           applyHours: [''],
           approveHours: [''],
           showdays: [''],
-          price: [''],
+          price: [, Validators.min(this.min)],
           description: [''],
           link: [''],
           note: [''],
@@ -167,15 +152,8 @@ export class PublishPage implements OnInit {
       this.postData.description = this.f.description.value;
       this.postData.link = this.f.link.value;
       this.postData.note = this.f.note.value;
-      //this.postData.platform = '/api/platforms/' + this.platform;
       this.postData.guides.push(this.guides);
       this.postData.reviews.push(this.reviews);
-      //let title = this.postData.title.trim();
-      //let name = this.postData.name.trim();
-      //let applyHours = this.postData.applyHours;
-      //let approveHours = this.postData.approveHours;
-      //let quantity = this.postData.quantity;
-      //let showdays = this.postData.showdays;
       //return (
       //    this.postData.username &&
       //        this.postData.password &&
@@ -233,6 +211,7 @@ export class PublishPage implements OnInit {
 
   preview(){
       this.validateInputs();
+      console.log(this.f);
       console.log(this.postData);
       console.log(this.guides[0].img);
       console.log(this.reviews[0].img);
