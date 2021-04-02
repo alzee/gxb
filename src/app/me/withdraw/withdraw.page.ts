@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { ToastService } from '../../services/toast.service';
+import { StorageService } from '../../services/storage.service';
+import { AuthConstants } from '../../config/auth-constants';
+
+interface Data {
+    [propName: string]: any;
+}
 
 @Component({
   selector: 'app-withdraw',
@@ -9,21 +15,34 @@ import { ToastService } from '../../services/toast.service';
 })
 export class WithdrawPage implements OnInit {
   topup: number;
-  reward: number;
+  earnings: number;
   amount: number;
   type: number;
-
+  userData = {
+      id: 0
+  };
+  user: Data;
 
   constructor(
       private httpService: HttpService,
+      private storageService: StorageService,
       private toastService: ToastService
   ) {
-    this.topup = 10;
-    this.reward = 20;
+    this.topup = 0;
+    this.earnings = 0;
     //this.type = 1;
   }
 
   ngOnInit(){
+      this.storageService.get(AuthConstants.AUTH).then((res) => {
+          this.userData = res;
+          this.httpService.get('users/' + this.userData.id).subscribe((res) => {
+              console.log(res);
+              this.user = res;
+              this.topup = this.user.topup;
+              this.earnings = this.user.earnings;
+          });
+      });
   }
 
   validate(){
@@ -36,7 +55,7 @@ export class WithdrawPage implements OnInit {
         return 1;
     }
     if(this.type == 2){
-      if(this.amount > this.reward)
+      if(this.amount > this.earnings)
         return 2;
     }
   }

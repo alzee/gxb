@@ -14,6 +14,11 @@ ion-content{
   .price{
     margin-bottom: 16px;
     font-size: 22px;
+    ion-input{
+      span{
+        margin-right: 6px;
+      }
+    }
     ion-text:first-child{
       font-size: 42px;
     }
