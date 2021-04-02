@@ -274,8 +274,9 @@ export class PublishPage implements OnInit {
 
   async confirmTopup() {
     const alert = await this.alertController.create({
-      header: '余额不足',
-      message: '账户可用余额不足，将转入充值页面！',
+      header: `可用余额(${this.availableBalance}元)不足`,
+      subHeader: `需充值${this.f.quantity.value * this.f.price.value - this.availableBalance}元`,
+      message: '转入充值页面？',
       buttons: [
         {
           text: '取消',
@@ -288,7 +289,7 @@ export class PublishPage implements OnInit {
           text: '确定',
           handler: () => {
             console.log('Confirm Okay');
-            this.router.navigate(['/topup']);
+            this.router.navigate(['/topup'], {queryParams: {amount: this.f.quantity.value * this.f.price.value - this.availableBalance}});
           }
         }
       ]
