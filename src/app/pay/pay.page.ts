@@ -22,16 +22,16 @@ export class PayPage implements OnInit {
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.total = params['total'];
       });
-      this.router.events.pipe(filter((e: any) => e instanceof RoutesRecognized),
-                              pairwise()
-                             ).subscribe((e: any) => {
-                               this.prevUrl = e[0].urlAfterRedirects; // previous url
-                               console.log(this.prevUrl);
-                             });
+      //this.router.events.pipe(filter((e: any) => e instanceof RoutesRecognized),
+      //                        pairwise()
+      //                       ).subscribe((e: any) => {
+      //                         this.prevUrl = e[0].urlAfterRedirects; // previous url
+      //                         console.log(this.prevUrl);
+      //                       });
   }
 
   pay() {
     //this._location.back();
-    this.router.navigate(["land/occupy"]);
+    this.router.navigate(["land/occupy"], {queryParams: {paid: 'n'}});
   }
 }

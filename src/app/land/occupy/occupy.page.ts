@@ -24,7 +24,7 @@ export class OccupyPage implements OnInit {
   pics = [];
   title: string = '';
   body: string;
-  paid: boolean = false;
+  paid: sring;
   url: string = environment.url;
   postData: Data = {};
 
@@ -37,6 +37,11 @@ export class OccupyPage implements OnInit {
   ) { }
 
   ngOnInit() {
+      //this.httpService.post('land_posts', this.postData).subscribe((res) => {
+      //    console.log(res);
+      //    //this._location.back();
+      //    this.router.navigate(['/land']);
+      //});
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.landId = params['id'];
           this.land = '/api/lands/' + this.landId;
@@ -45,10 +50,17 @@ export class OccupyPage implements OnInit {
             this.price= 0.05;
           }
       });
-      if(this.paid){
-          console.log('ok');
-          //this.publish();
-      }
+  }
+
+  //ionViewWillEnter(){
+  ionViewDidEnter(){
+      this.activeRoute.queryParams.subscribe((params: Params) => {
+          this.paid = params['paid'];
+          if(this.paid == 'y'){
+              console.log(typeof this.paid);
+              //this.publish();
+          }
+      });
   }
 
   validateInputs() {
