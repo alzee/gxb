@@ -13,20 +13,20 @@
     <ion-text color="danger" class="price"> ¥ {{total}} </ion-text>
   </ion-item>
   <ion-label color="medium">选择支付方式</ion-label>
-  <ion-radio-group value="1">
+  <ion-radio-group value="0">
     <ion-item class="input">
       <ion-icon name="wallet" color="warning"></ion-icon>
       <ion-label>
         余额支付
       </ion-label>
-      <ion-radio slot="end" value="1"></ion-radio>
+      <ion-radio slot="end" value="0"></ion-radio>
     </ion-item>
     <ion-item class="input">
       <ion-icon name="logo-wechat" color="success"></ion-icon>
       <ion-label>
         微信支付
       </ion-label>
-      <ion-radio slot="end" value="2"></ion-radio>
+      <ion-radio slot="end" value="1"></ion-radio>
     </ion-item>
   </ion-radio-group>
   <ion-button expand="block" (click)="pay()">立即支付</ion-button>

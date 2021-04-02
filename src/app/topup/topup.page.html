@@ -9,22 +9,25 @@
 
 <ion-content color="light">
 
+  <form (ngSubmit)="topup()" [formGroup]="form">
   <ion-label color="medium">充值金额</ion-label>
+  <ion-label color="danger" *ngIf="amount.invalid && amount.errors.min"> * 最低充值 {{min}} 元</ion-label>
   <ion-item>
-    <ion-input class="price" color="danger" type="number" [(ngModel)]="amount"><span>¥  </span> </ion-input>
+    <ion-input required class="price" color="danger" type="number" formControlName="amount"><span>¥  </span> </ion-input>
     <ion-text slot="end">元</ion-text>
   </ion-item>
 
   <ion-label color="medium">选择充值方式</ion-label>
-  <ion-radio-group value="ali">
+  <ion-radio-group value="1">
     <ion-item class="input">
       <ion-icon name="logo-wechat" color="success"></ion-icon>
       <ion-label>
         微信支付
       </ion-label>
-      <ion-radio slot="end" value="ali"></ion-radio>
+      <ion-radio slot="end" value="1"></ion-radio>
     </ion-item>
   </ion-radio-group>
 
-  <ion-button expand="block" (click)="topup()">立即充值</ion-button>
+  <ion-button [disabled]="form.invalid" type="submit" expand="block">立即充值</ion-button>
+  </form>
 </ion-content>
