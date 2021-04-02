@@ -9,7 +9,7 @@
     <ion-label color="danger" *ngIf="f.category.invalid && f.category.errors.required"> * 请选择类型</ion-label>
   <ion-item class="data">
     <ion-label>请选择类型</ion-label>
-    <ion-select required  name="category" formControlName="category" interface="action-sheet" cancelText="取消">
+    <ion-select (ionChange)="getCateMin()" required  name="category" formControlName="category" interface="action-sheet" cancelText="取消">
       <ion-select-option *ngFor="let i of categories" value="{{i.id}}">{{i.name}}</ion-select-option>
     </ion-select>
   </ion-item>
@@ -50,8 +50,8 @@
     <ion-label>展现天数</ion-label>
     <ion-input required name="showdays" formControlName="showdays" type="number" placeholder=""> </ion-input>
   </ion-item>
-    <ion-label color="danger" *ngIf="f.price.invalid && f.price.errors.required"> * 请输入悬赏单价</ion-label>
-    <ion-label color="danger" *ngIf="f.price.invalid && f.price.errors.min"> * 悬赏单价最低 {{min}} 元</ion-label>
+  <ion-label color="danger" *ngIf="f.price.invalid && f.price.errors.required"> * 请输入悬赏单价</ion-label>
+  <ion-label color="danger" *ngIf="f.price.invalid && f.price.errors.min"> * 悬赏单价最低 {{min}} 元</ion-label>
   <ion-item class="data">
     <ion-label>悬赏单价</ion-label>
     <ion-input [min]="min" name="price" formControlName="price" type="number" placeholder="最低出价{{min}}元" required clearInput></ion-input>

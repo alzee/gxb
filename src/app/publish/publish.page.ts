@@ -96,7 +96,7 @@ export class PublishPage implements OnInit {
   }
 
   ngOnInit() {
-      this.min = 2;
+      this.min = 1;
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
       });
@@ -215,5 +215,18 @@ export class PublishPage implements OnInit {
       console.log(this.postData);
       console.log(this.guides[0].img);
       console.log(this.reviews[0].img);
+  }
+
+  getCateMin(){
+      let that = this;
+      this.categories.forEach(
+          function(i){
+              if(i.id == that.f.category.value){
+                  that.min = i.rate;
+                  console.log(that.min);
+                  return;
+              }
+          }
+      )
   }
 }
