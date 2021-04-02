@@ -23,9 +23,11 @@ export class PublishPage implements OnInit {
   arr2 = [1];
   url = environment.url;
   min: number;
+  availableBalance: number;
   userData = {
       id: 0
   };
+  user: Data;
   hourOptions = [
       {
           time: 3,
@@ -101,6 +103,12 @@ export class PublishPage implements OnInit {
       this.min = 1;
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
+          this.httpService.get('users/' + this.userData.id).subscribe((res) => {
+              console.log(res);
+              this.user = res;
+              this.availableBalance = this.user.topup + this.user.earnings;
+              console.log(this.availableBalance);
+          });
       });
 
       this.httpService.get('categories?itemsPerPage=50').subscribe((res) => {
@@ -232,7 +240,7 @@ export class PublishPage implements OnInit {
     const alert = await this.alertController.create({
       header: '提示',
       //subHeader: 'Subtitle',
-      message: '账户中相应金额将被冻结，任务结束后解冻剩余部分。',
+      message: '账户中相应的可用余额将被冻结，任务结束后解冻剩余部分。',
     });
 
     await alert.present();
@@ -242,7 +250,7 @@ export class PublishPage implements OnInit {
     const alert = await this.alertController.create({
       header: '发布任务',
       //subHeader: '',
-      message: `您账户相应金额(${this.f.quantity.value * this.f.price.value}元)将被冻结，任务结束后解冻剩余部分！`,
+      message: `您账户中相应金额(${this.f.quantity.value * this.f.price.value}元)将被冻结，任务结束后解冻剩余部分！`,
       buttons: [
         {
           text: '取消',
@@ -267,7 +275,7 @@ export class PublishPage implements OnInit {
   async confirmTopup() {
     const alert = await this.alertController.create({
       header: '余额不足',
-      message: '账户余额不足，将转入充值页面！',
+      message: '账户可用余额不足，将转入充值页面！',
       buttons: [
         {
           text: '取消',
@@ -290,11 +298,13 @@ export class PublishPage implements OnInit {
   }
 
   checkBalance(){
-      if(1){
-          this.confirmPublish();
+      console.log(this.availableBalance);
+      console.log(this.f.quantity.value * this.f.price.value);
+      if(this.availableBalance < (this.f.quantity.value * this.f.price.value)){
+          this.confirmTopup();
       }
       else{
-          this.confirmTopup();
+          this.confirmPublish();
       }
   }
 }
