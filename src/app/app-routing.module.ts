@@ -85,6 +85,11 @@ const routes: Routes = [
     loadChildren: () => import('./topup/topup.module').then( m => m.TopupPageModule)
   },
   {
+    path: 'pay',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pay/pay.module').then( m => m.PayPageModule)
+  },
+  {
     path: 'report',
     canActivate: [AuthGuard],
     loadChildren: () => import('./report/report.module').then( m => m.ReportPageModule)

@@ -60,7 +60,7 @@
   </ion-item>
 
   <ion-item class="pay" *ngIf="f.quantity.valid && f.price.valid">
-    <ion-text (click)="presentAlert()">充值金额</ion-text> 
+    <ion-text (click)="presentAlert()">合计金额</ion-text> 
     <ion-icon (click)="presentAlert()" size="small" name="help-circle-outline"></ion-icon>
     <ion-note slot="end" color="danger">{{f.quantity.value * f.price.value}} 元</ion-note>
   </ion-item>

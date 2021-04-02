@@ -29,11 +29,6 @@ const routes: Routes = [
     loadChildren: () => import('./hall/hall.module').then( m => m.HallPageModule)
   },
   {
-    path: 'pay',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./pay/pay.module').then( m => m.PayPageModule)
-  },
-  {
     path: 'changeprice',
     canActivate: [AuthGuard],
     loadChildren: () => import('./changeprice/changeprice.module').then( m => m.ChangepricePageModule)

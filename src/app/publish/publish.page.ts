@@ -231,7 +231,7 @@ export class PublishPage implements OnInit {
     const alert = await this.alertController.create({
       header: '提示',
       //subHeader: 'Subtitle',
-      message: '金额将充入余额并冻结，任务结束后解冻剩余部分。',
+      message: '账户中相应金额将被冻结，任务结束后解冻剩余部分。',
     });
 
     await alert.present();
