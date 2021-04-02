@@ -43,21 +43,27 @@
       <ion-grid>
         <ion-row>
           <ion-col class="ion-text-center" size="3">
-            <ion-text color="danger"><h3>{{user.balanceTopup}}</h3></ion-text>
+            <ion-text color="danger"><h3>{{user.topup}}</h3></ion-text>
             <ion-text color="medium" class="label">充值余额</ion-text>
           </ion-col>
           <ion-col class="ion-text-center" size="3">
-            <ion-text color="danger"><h3>{{user.balanceTask}}</h3></ion-text>
-            <ion-text color="medium" class="label">赏金余额</ion-text>
+            <ion-text color="danger"><h3>{{user.earnings}}</h3></ion-text>
+            <ion-text color="medium" class="label">任务奖励</ion-text>
           </ion-col>
           <ion-col class="ion-text-center" size="3">
-            <ion-text color="danger"><h3>{{user.total}}</h3></ion-text>
-            <ion-text color="medium" class="label">提现总额</ion-text>
+            <ion-text color="danger"><h3>{{user.frozen}}</h3></ion-text>
+            <ion-text color="medium" class="label">冻结中</ion-text>
           </ion-col>
+          <ion-col class="ion-text-center" size="3">
+            <ion-text color="danger"><h3>{{user.topup + user.earnings - user.frozen}}</h3></ion-text>
+            <ion-text color="medium" class="label">可提现</ion-text>
+          </ion-col>
+          <ng-template>
           <ion-col class="ion-text-center" size="3">
             <ion-text color="danger"><h3>{{user.gxb}}</h3></ion-text>
             <ion-text color="medium" class="label">GXB</ion-text>
           </ion-col>
+          </ng-template>
         </ion-row>
       </ion-grid>
       </ion-item>

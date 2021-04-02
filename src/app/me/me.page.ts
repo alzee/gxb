@@ -37,7 +37,7 @@ export class MePage implements OnInit {
               console.log(this.userData);
               this.httpService.get('users/' + this.userData.id).subscribe((res) => {
                   this.user = res;
-                  this.user.total = this.user.balanceTask + this.user.balanceTopup;
+                  this.user.total = this.user.earnings + this.user.topup;
                   console.log(this.user);
               });
           },
