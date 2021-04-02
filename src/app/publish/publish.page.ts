@@ -163,9 +163,6 @@ export class PublishPage implements OnInit {
   }
 
   uploadPhoto(fileChangeEvent, type, i) {
-    //console.log(fileChangeEvent);
-    console.log(type);
-    console.log(i);
     // Get a reference to the file that has just been added to the input
     const photo = fileChangeEvent.target.files[0];
 
@@ -212,9 +209,6 @@ export class PublishPage implements OnInit {
   preview(){
       this.validateInputs();
       console.log(this.f);
-      console.log(this.postData);
-      console.log(this.guides[0].img);
-      console.log(this.reviews[0].img);
   }
 
   getCateMin(){
@@ -222,8 +216,9 @@ export class PublishPage implements OnInit {
       this.categories.forEach(
           function(i){
               if(i.id == that.f.category.value){
+                  that.f.price.setValidators([Validators.min(i.rate), Validators.required]);
+                  that.f.price.updateValueAndValidity();
                   that.min = i.rate;
-                  console.log(that.min);
                   return;
               }
           }
