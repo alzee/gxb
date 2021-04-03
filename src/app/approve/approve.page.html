@@ -40,5 +40,5 @@
 
   <ion-label class="hint" color="medium">温馨提示：发布的任务涉黄、毒、赌，传销，虚假宣传，暴力恐
     怖，谣言诈骗等违规违法信息将不予通过。</ion-label>
-  <ion-button [disabled]="approved || denied || !choice" expand="block" (click)="approve()">提交审核结果</ion-button>
+  <ion-button [disabled]="approved || denied || choice == -1" expand="block" (click)="approve()">提交审核结果</ion-button>
 </ion-content>

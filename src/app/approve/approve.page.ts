@@ -22,7 +22,7 @@ export class ApprovePage implements OnInit {
   approveCode: number;
   denyCode: number;
   code: number;
-  choice: number;
+  choice = -1;
   msg: string;
   guides = [];
   reviews = [];
@@ -60,16 +60,19 @@ export class ApprovePage implements OnInit {
               console.log(this.workPics);
           });
       });
+      console.log(this.choice);
   }
 
   approve() {
+      let code;
+      let msg;
       if (this.choice === 1){
-          const code = this.approveCode;
-          const msg = '已审核通过！';
+          code = this.approveCode;
+          msg = '已审核通过！';
       }
       else{
-          const code = this.denyCode;
-          const msg = '已拒绝！';
+          code = this.denyCode;
+          msg = '已拒绝！';
       }
       this.httpService.patch('applies/' + this.applyid, {status: '/api/statuses/' + code}).subscribe((res) => {
           console.log(res);
@@ -80,6 +83,6 @@ export class ApprovePage implements OnInit {
   }
 
   check(e){
-      this.choice = e.detail.value;
+      this.choice = parseInt(e.detail.value, 10);
   }
 }

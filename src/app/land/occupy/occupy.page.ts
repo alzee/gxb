@@ -47,7 +47,7 @@ export class OccupyPage implements OnInit {
       //     this.router.navigate(['/land']);
       // });
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.landId = paramsr.id;
+          this.landId = params.id;
           this.land = '/api/lands/' + this.landId;
           if (this.landId !== 1) {
             this.days = 20;
