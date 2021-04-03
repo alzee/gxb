@@ -22,6 +22,7 @@ export class ApprovePage implements OnInit {
   approveCode: number = 4;
   denyCode: number = 3;
   code:number;
+  choice:number;
   msg: string;
   guides = [];
   reviews = [];

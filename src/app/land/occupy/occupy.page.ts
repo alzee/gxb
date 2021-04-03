@@ -24,7 +24,7 @@ export class OccupyPage implements OnInit {
   pics = [];
   title: string = '';
   body: string;
-  paid: sring;
+  paid: string;
   url: string = environment.url;
   postData: Data = {};
 
