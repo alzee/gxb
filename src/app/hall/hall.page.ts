@@ -98,7 +98,7 @@ export class HallPage implements OnInit {
   }
 
   search(){
-    if(this.keyword){
+    if (this.keyword) {
       console.log(this.keyword);
       this.router.navigate(['/search'], {queryParams: {keyword: this.keyword}});
     }

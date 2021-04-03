@@ -59,21 +59,21 @@ export class MypostsPage implements OnInit {
           this.userData = res;
           this.httpService.get('tasks?order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res) => {
               console.log(res);
-              this.all= res;
+              this.all = res;
               this.tasks = this.all;
-              let that = this;
+              const that = this;
               this.all.forEach(function(i){
                   console.log(i);
-                  if(i.approved){
+                  if (i.approved){
                       that.approved.push(i);
                   }
-                  else{
+                  else {
                       that.preApprove.push(i);
                   }
-                  if(i.paused){
+                  if (i.paused){
                       that.paused.push(i);
                   }
-                  if(i.stopped){
+                  if (i.stopped){
                       that.stopped.push(i);
                   }
               });
@@ -88,7 +88,7 @@ export class MypostsPage implements OnInit {
 
   segmentChanged(ev: any) {
     this.tasks = this.all;
-    switch(ev.detail.value){
+    switch (ev.detail.value) {
         case this.statuses[0].value:
             this.tasks = this.all;
             break;
@@ -127,9 +127,9 @@ export class MypostsPage implements OnInit {
           handler: () => {
             console.log('Confirm Okay');
             console.log('pause');
-            let data = {
-                "paused": true
-            }
+            const data = {
+                paused: true
+            };
             this.httpService.patch('tasks/' + this.tasks[i].id, data).subscribe((res) => {
                 this.tasks[i] = res;
             });
@@ -158,9 +158,9 @@ export class MypostsPage implements OnInit {
           handler: () => {
             console.log('Confirm Okay');
             console.log('pause');
-            let data = {
-                "paused": false
-            }
+            const data = {
+                paused: false
+            };
             this.httpService.patch('tasks/' + this.tasks[i].id, data).subscribe((res) => {
                 this.tasks[i] = res;
             });
@@ -190,9 +190,9 @@ export class MypostsPage implements OnInit {
           handler: () => {
             console.log('Confirm Okay');
             console.log('pause');
-            let data = {
-                "stopped": true
-            }
+            const data = {
+                stopped: true
+            };
             this.httpService.patch('tasks/' + this.tasks[i].id, data).subscribe((res) => {
                 this.tasks[i] = res;
             });

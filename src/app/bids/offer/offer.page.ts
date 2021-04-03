@@ -38,7 +38,7 @@ export class OfferPage implements OnInit {
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.position = parseInt(params.id);
+          this.position = parseInt(params.id, 10);
       });
       this.httpService.get('tasks?order%5Bdate%5D=desc').subscribe((res) => {
         console.log(res);

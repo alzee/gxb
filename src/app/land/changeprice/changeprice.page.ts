@@ -23,7 +23,7 @@ export class ChangepricePage implements OnInit {
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.id = params.id;
-          this.price = parseInt(params.price);
+          this.price = parseInt(params.price, 10);
           this.name = params.name;
           console.log(this.id);
       });

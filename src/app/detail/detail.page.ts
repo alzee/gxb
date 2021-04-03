@@ -55,15 +55,15 @@ export class DetailPage implements OnInit {
           this.data = res;
           console.log(this.data);
           console.log(this.data.applies);
-          for ( let i = 0; i < this.data.applies.length; i++){
-              if (this.data.applies[i].applicant.id === this.userData.id){
+          for (let i of this.data.applies){
+              if (i.applicant.id === this.userData.id){
                   this.applied = true;
-                  this.status = this.data.applies[i].status.id;
-                  this.applyId = this.data.applies[i].id;
-                  this.pics = this.data.applies[i].pic;
+                  this.status = i.status.id;
+                  this.applyId = i.id;
+                  this.pics = i.pic;
                   break;
               }
-              console.log(this.data.applies[i].applicant.id);
+              console.log(i.applicant.id);
               // console.log(this.userData.id);
           }
       });

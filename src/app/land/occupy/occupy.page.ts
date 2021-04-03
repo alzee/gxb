@@ -56,7 +56,7 @@ export class OccupyPage implements OnInit {
   ionViewDidEnter(){
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.paid = params.paid;
-          if (this.paid == 'y'){
+          if (this.paid === 'y'){
               console.log(typeof this.paid);
               // this.publish();
           }

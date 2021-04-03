@@ -82,7 +82,7 @@ export class MytasksPage implements OnInit {
 
   segmentChanged(ev: any) {
     this.applies = this.applies0;
-    switch(ev.detail.value){
+    switch (ev.detail.value){
         case this.statuses[0].value:
             this.applies = this.applies0;
             break;
