@@ -4,8 +4,9 @@ major:
   - skeleton-text
   - pay jump
   - cities
-  - 交换市场
   - 领地交易
+  - 兑股权
+  - 交换市场
   - setting nick
   - setting password
   - setting phone
@@ -18,6 +19,8 @@ major:
   - 举报维权
   - 暂无内容
   - 忘记密码
+  - occupy validate
+  - withdraw validate
 minor:
 
 question:
