@@ -15,14 +15,14 @@ interface Data {
   styleUrls: ['./occupy.page.scss'],
 })
 export class OccupyPage implements OnInit {
-  owner: string = '/api/users/4';
-  days: number = 10;
-  price: number = 1;
+  owner: string;
+  days: number;
+  price: number;
   land: string;
   landId: number;
   cover: string;
   pics = [];
-  title: string = '';
+  title: string;
   body: string;
   paid: string;
   url: string = environment.url;
@@ -34,7 +34,11 @@ export class OccupyPage implements OnInit {
       private http: HttpClient,
       private router: Router,
       private location: Location
-  ) { }
+  ) {
+      this.owner = '/api/users/4';
+      this.days = 10;
+      this.price = 1;
+  }
 
   ngOnInit() {
       // this.httpService.post('land_posts', this.postData).subscribe((res) => {

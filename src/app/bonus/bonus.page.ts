@@ -7,15 +7,18 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./bonus.page.scss'],
 })
 export class BonusPage implements OnInit {
-  fund: number = 0;
-  gold: number = 0;
-  subtotal: number = 0;
+  fund: number;
+  gold: number;
+  subtotal: number;
   month: string;
   hists = [];
 
   constructor(
     public toastController: ToastController
   ) {
+    this.fund = 0;
+    this.gold = 0;
+    this.subtotal = 0;
     const d = new Date();
     this.month = d.getFullYear() + '-' + (d.getMonth() + 1);
   }

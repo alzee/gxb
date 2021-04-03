@@ -14,9 +14,9 @@ interface Data {
 })
 export class MyPage implements OnInit {
   hists = [];
-  max: number = 0;
-  min: number = 0;
-  count: number = 0;
+  max: number;
+  min: number;
+  count: number;
   price: number;
   shopId: number;
   shop: Data;
@@ -24,7 +24,11 @@ export class MyPage implements OnInit {
   constructor(
       private activeRoute: ActivatedRoute,
       private httpService: HttpService
-  ) { }
+  ) {
+      this.max = 0;
+      this.min = 0;
+      this.count = 0;
+  }
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {

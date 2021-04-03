@@ -20,7 +20,7 @@ export class ApplyPage implements OnInit {
   uid: number;
   gxb: number;
   rate: number;
-  equity: number = 0;
+  equity: number;
   equityBefore: number;
   max: number;
   userData: Data;
@@ -31,7 +31,9 @@ export class ApplyPage implements OnInit {
       private toastService: ToastService,
       public alertController: AlertController,
       private router: Router,
-  ) { }
+  ) {
+      this.equity = 0;
+  }
 
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {

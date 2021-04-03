@@ -10,12 +10,15 @@ import { environment } from '../../../environments/environment';
 export class ExchangePage implements OnInit {
   rate: number;
   total: number;
-  remain: number = 0;
-  taken: number = 0;
+  remain: number;
+  taken: number;
 
   constructor(
       private httpService: HttpService
-  ) { }
+  ) {
+      this.remain = 0;
+      this.taken = 0;
+  }
 
   ngOnInit() {
       this.httpService.get('configs?page=1&label=exchangePirce').subscribe((res) => {

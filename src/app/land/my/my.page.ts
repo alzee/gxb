@@ -11,19 +11,25 @@ import { environment } from '../../../environments/environment';
 })
 export class MyPage implements OnInit {
   envs = environment;
-  income: number = 0;
-  profit: number = 0;
-  transProfit: number = 0;
+  income: number;
+  profit: number;
+  transProfit: number;
   myLands = [];
   sold = [];
   uid: number;
-  seg: string = 'my';
-  showSold: boolean = false;
+  seg: string;
+  showSold: boolean;
 
   constructor(
       private storageService: StorageService,
       private httpService: HttpService
-  ) { }
+  ) {
+      this.income = 0;
+      this.profit = 0;
+      this.transProfit = 0;
+      this.seg = 'my';
+      this.showSold = false;
+  }
 
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {

@@ -19,7 +19,7 @@ export class SignupPage implements OnInit {
     getCodeBtnText: string;
     codeSent: boolean;
     remaining: number;
-    smsType: string = 'register';
+    smsType = 'register';
     smsPass: string;
     smsResp;
     term = {

@@ -6,11 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./finance.page.scss'],
 })
 export class FinancePage implements OnInit {
-  subtotal: number = 0;
+  subtotal: number;
   month: string;
   hists = [];
 
   constructor() {
+    this.subtotal = 0;
     const d = new Date();
     this.month = d.getFullYear() + '-' + (d.getMonth() + 1);
   }

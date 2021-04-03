@@ -22,7 +22,7 @@ export class CollectPage implements OnInit {
   avatarUrl: string;
   uid: number;
   userData: Data;
-  collected: boolean = false;
+  collected: boolean;
   postData = {
       amount: 1,
       user: '',
@@ -35,6 +35,7 @@ export class CollectPage implements OnInit {
       private httpService: HttpService,
       private animationCtrl: AnimationController
   ) {
+      this.collected = false;
   }
 
   ngOnInit() {

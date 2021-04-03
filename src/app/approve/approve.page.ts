@@ -16,11 +16,11 @@ interface Data {
 })
 export class ApprovePage implements OnInit {
   url = environment.url;
-  applyid = '';
+  applyid: string;
   approved: boolean;
   denied: boolean;
-  approveCode: number = 4;
-  denyCode: number = 3;
+  approveCode: number;
+  denyCode: number;
   code: number;
   choice: number;
   msg: string;
@@ -36,6 +36,8 @@ export class ApprovePage implements OnInit {
       private location: Location,
       private router: Router
   ) {
+      this.denyCode = 3;
+      this.approveCode = 4;
   }
 
   ngOnInit() {

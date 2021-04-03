@@ -14,15 +14,15 @@ interface Data {
   styleUrls: ['./offer.page.scss'],
 })
 export class OfferPage implements OnInit {
-  date: Date = new Date();
-  today = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
+  date: Date;
+  today: string;
   position: number;
   myposts: Data;
   bids: Array<Data>;
   myBid: number;
   post: number;
-  min: number = 19;
-  step: number = 5;
+  min: number;
+  step: number;
   data: Data = {
       task: 0,
       bid: 0,
@@ -34,6 +34,10 @@ export class OfferPage implements OnInit {
       private httpService: HttpService,
       private toastService: ToastService
   ) {
+      this.date = new Date();
+      this.today = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
+      this.min = 19;
+      this.step = 5;
   }
 
   ngOnInit() {

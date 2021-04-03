@@ -8,14 +8,19 @@ import { HttpService } from '../services/http.service';
 })
 export class BidsPage implements OnInit {
   bids = [];
-  buyItNow: number = 99;
-  date: Date = new Date();
-  today = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
-  min: number = 19;
+  date: Date;
+  buyItNow: number;
+  today: string;
+  min: number;
 
   constructor(
       private httpService: HttpService
-  ) { }
+  ) {
+      this.buyItNow = 99;
+      this.date = new Date();
+      this.today = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
+      this.min = 19;
+  }
 
   ngOnInit() {
       for (let i = 0; i < 4; i++){

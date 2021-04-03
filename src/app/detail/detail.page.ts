@@ -26,7 +26,7 @@ export class DetailPage implements OnInit {
   userData: UserData;
   data: Data;
   applyData: object;
-  applied: boolean = false;
+  applied: boolean;
   envs = environment;
   status: number;
   applyId: number;
@@ -41,6 +41,7 @@ export class DetailPage implements OnInit {
       private router: Router,
       private toastService: ToastService
   ) {
+      this.applied = false;
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
       });
