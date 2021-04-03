@@ -61,16 +61,16 @@ export class ApprovePage implements OnInit {
 
   approve() {
       if(this.choice == 1){
-          this.code = this.approveCode;
-          this.msg = '已审核通过！';
+          var code = this.approveCode;
+          var msg = '已审核通过！';
       }
       else{
-          this.code = this.denyCode;
-          this.msg = '已拒绝！';
+          var code = this.denyCode;
+          var msg = '已拒绝！';
       }
-      this.httpService.patch('applies/' + this.applyid, {status: "/api/statuses/" + this.code}).subscribe((res) => {
+      this.httpService.patch('applies/' + this.applyid, {status: "/api/statuses/" + code}).subscribe((res) => {
           console.log(res);
-          this.toastService.presentToast(this.msg);
+          this.toastService.presentToast(msg);
           this._location.back();
       });
       console.log(this.choice);
