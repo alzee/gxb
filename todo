@@ -21,6 +21,9 @@ major:
   - 忘记密码
   - occupy validate
   - withdraw validate
+  - finance
+  - refer code
+  - coupon
 minor:
 
 question:
