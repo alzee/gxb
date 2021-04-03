@@ -114,8 +114,8 @@ export class MePage implements OnInit {
           (res) => {
               this.userData = res;
               console.log(this.userData);
-              this.httpService.get('users/' + this.userData.id).subscribe((res) => {
-                  this.user = res;
+              this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
+                  this.user = res1;
                   this.user.total = this.user.earnings + this.user.topup;
                   console.log(this.user);
               });

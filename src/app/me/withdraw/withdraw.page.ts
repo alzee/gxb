@@ -35,9 +35,9 @@ export class WithdrawPage implements OnInit {
   ngOnInit(){
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
-          this.httpService.get('users/' + this.userData.id).subscribe((res) => {
-              console.log(res);
-              this.user = res;
+          this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
+              console.log(res1);
+              this.user = res1;
               this.topup = this.user.topup;
               this.earnings = this.user.earnings;
           });

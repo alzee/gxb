@@ -61,7 +61,7 @@ export class SettingPage implements OnInit {
       console.log(res);
       o = res;
       this.user.avatar = o.contentUrl;
-      this.httpService.patch('users/' + this.user.id, {avatar: this.user.avatar}).subscribe((res) => {
+      this.httpService.patch('users/' + this.user.id, {avatar: this.user.avatar}).subscribe((res1) => {
       });
     });
   }

@@ -37,8 +37,8 @@ export class ApplyPage implements OnInit {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
       this.userData = res;
       this.uid = this.userData.id;
-      this.httpService.get('users/' + this.uid).subscribe((res) => {
-          this.userData = res;
+      this.httpService.get('users/' + this.uid).subscribe((res1) => {
+          this.userData = res1;
           this.gxb = this.userData.gxb;
           this.equityBefore = this.userData.equity;
           console.log(this.gxb);

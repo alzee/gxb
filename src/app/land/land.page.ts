@@ -72,10 +72,10 @@ export class LandPage implements OnInit {
                 this.land = res[0];
                 if (!this.land){
                     const data = {name: this.city};
-                    this.httpService.post('lands?', data).subscribe((res) => {
-                        this.land = res;
-                        this.httpService.get('land_posts?itemsPerPage=35&land=' + this.land.id).subscribe((res) => {
-                            this.posts = res;
+                    this.httpService.post('lands?', data).subscribe((res1) => {
+                        this.land = res1;
+                        this.httpService.get('land_posts?itemsPerPage=35&land=' + this.land.id).subscribe((res2) => {
+                            this.posts = res2;
                             this.posts.length = 35;
                             console.log(this.posts);
                         });
@@ -83,8 +83,8 @@ export class LandPage implements OnInit {
                 }
                 else{
                     console.log(this.land);
-                    this.httpService.get('land_posts?itemsPerPage=35&land=' + this.land.id).subscribe((res) => {
-                        this.posts = res;
+                    this.httpService.get('land_posts?itemsPerPage=35&land=' + this.land.id).subscribe((res1) => {
+                        this.posts = res1;
                         this.posts.length = 35;
                         console.log(this.posts);
                     });

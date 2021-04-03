@@ -55,7 +55,7 @@ export class DetailPage implements OnInit {
           this.data = res;
           console.log(this.data);
           console.log(this.data.applies);
-          for (let i of this.data.applies){
+          for (const i of this.data.applies){
               if (i.applicant.id === this.userData.id){
                   this.applied = true;
                   this.status = i.status.id;

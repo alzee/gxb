@@ -55,26 +55,26 @@ export class MytasksPage implements OnInit {
   ngOnInit() {
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
-          this.httpService.get('applies?page=1&itemsPerPage=30&order%5Bdate%5D=desc&applicant.id=' + this.userData.id).subscribe((res) => {
-              console.log(res);
-              this.applies0 = res;
+          this.httpService.get('applies?page=1&itemsPerPage=30&order%5Bdate%5D=desc&applicant.id=' + this.userData.id).subscribe((res1) => {
+              console.log(res1);
+              this.applies0 = res1;
               this.applies = this.applies0;
           });
-          this.httpService.get('applies?status.id=1&applicant.id=' + this.userData.id).subscribe((res) => {
-              console.log(res);
-              this.applies1 = res;
+          this.httpService.get('applies?status.id=1&applicant.id=' + this.userData.id).subscribe((res1) => {
+              console.log(res1);
+              this.applies1 = res1;
           });
-          this.httpService.get('applies?status.id=2&applicant.id=' + this.userData.id).subscribe((res) => {
-              console.log(res);
-              this.applies2 = res;
+          this.httpService.get('applies?status.id=2&applicant.id=' + this.userData.id).subscribe((res1) => {
+              console.log(res1);
+              this.applies2 = res1;
           });
-          this.httpService.get('applies?status.id=3&applicant.id=' + this.userData.id).subscribe((res) => {
-              console.log(res);
-              this.applies3 = res;
+          this.httpService.get('applies?status.id=3&applicant.id=' + this.userData.id).subscribe((res1) => {
+              console.log(res1);
+              this.applies3 = res1;
           });
-          this.httpService.get('applies?status.id=4&applicant.id=' + this.userData.id).subscribe((res) => {
-              console.log(res);
-              this.applies4 = res;
+          this.httpService.get('applies?status.id=4&applicant.id=' + this.userData.id).subscribe((res1) => {
+              console.log(res1);
+              this.applies4 = res1;
           });
       }, (rej) => {
       });
