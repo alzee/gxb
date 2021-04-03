@@ -18,6 +18,8 @@ export class ApprovePage implements OnInit {
   url = environment.url;
   pass: boolean;
   applyid = '';
+  approved: boolean;
+  approveCode: number = 4;
   data = {
     //status: "/api/statuses/3",
     status: "/api/statuses/4",
@@ -36,10 +38,14 @@ export class ApprovePage implements OnInit {
   ) { }
 
   ngOnInit() {
+      this.approved = false;
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.applyid = params['applyid'];
         this.httpService.get('applies/' + this.applyid).subscribe((res) => {
           this.apply = res;
+          if(this.apply.status.id == 4){
+              this.approved = true;
+          }
           this.reviews = this.apply.task.reviews;
           this.workPics = this.apply.pic;
           console.log(this.apply);

@@ -26,9 +26,9 @@
 
   <ion-label color="medium">审核</ion-label>
   <ion-item class="check">
-    <ion-checkbox checked (click)="checkPass()"></ion-checkbox>
+    <ion-checkbox checked [disabled]="approved" (click)="checkPass()"></ion-checkbox>
     <ion-label>通过</ion-label>
-    <ion-checkbox (click)="checkPass()" #noPass></ion-checkbox>
+    <ion-checkbox [disabled]="approved" (click)="checkPass()" #noPass></ion-checkbox>
     <ion-label>拒绝</ion-label>
   </ion-item>
 
@@ -49,5 +49,5 @@
 
   <ion-label class="hint" color="medium">温馨提示：发布的任务涉黄、毒、赌，传销，虚假宣传，暴力恐
     怖，谣言诈骗等违规违法信息将不予通过。</ion-label>
-  <ion-button expand="block" (click)="approve()">提交审核结果</ion-button>
+  <ion-button [disabled]="approved" expand="block" (click)="approve()">提交审核结果</ion-button>
 </ion-content>
