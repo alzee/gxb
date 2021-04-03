@@ -98,7 +98,6 @@ export class PublishPage implements OnInit {
               console.log(res1);
               this.user = res1;
               this.availableBalance = this.user.topup + this.user.earnings;
-              console.log(this.availableBalance);
           });
       });
 
@@ -107,14 +106,14 @@ export class PublishPage implements OnInit {
           this.categories = res;
       });
       this.form = this.formBuilder.group({
-          category: [''],
+          category: [],
           title: [''],
           name: [''],
           quantity: [''],
           applyHours: [''],
           approveHours: [''],
           showdays: [''],
-          price: [, Validators.min(this.min)],
+          price: ['', Validators.min(this.min)],
           description: [''],
           link: [''],
           note: [''],
@@ -213,17 +212,14 @@ export class PublishPage implements OnInit {
   }
 
   getCateMin(){
-      const that = this;
-      this.categories.forEach(
-          function(i){
-              if (i.id === that.f.category.value){
-                  that.f.price.setValidators([Validators.min(i.rate), Validators.required]);
-                  that.f.price.updateValueAndValidity();
-                  that.min = i.rate;
-                  return;
-              }
+      for (const i of this.categories){
+          if (i.id === parseInt(this.f.category.value, 10)){
+              this.f.price.setValidators([Validators.min(i.rate), Validators.required]);
+              this.f.price.updateValueAndValidity();
+              this.min = i.rate;
+              break;
           }
-      );
+      }
   }
 
   async showTip() {

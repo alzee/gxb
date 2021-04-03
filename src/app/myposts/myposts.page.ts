@@ -61,22 +61,21 @@ export class MypostsPage implements OnInit {
               console.log(res1);
               this.all = res1;
               this.tasks = this.all;
-              const that = this;
-              this.all.forEach(function(i){
+              for (const i of this.all) {
                   console.log(i);
                   if (i.approved){
-                      that.approved.push(i);
+                      this.approved.push(i);
                   }
                   else {
-                      that.preApprove.push(i);
+                      this.preApprove.push(i);
                   }
                   if (i.paused){
-                      that.paused.push(i);
+                      this.paused.push(i);
                   }
                   if (i.stopped){
-                      that.stopped.push(i);
+                      this.stopped.push(i);
                   }
-              });
+              }
               console.log(this.preApprove);
               console.log(this.approved);
               console.log(this.paused);

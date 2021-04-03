@@ -9,7 +9,7 @@
     <ion-label color="danger" *ngIf="f.category.invalid && f.category.errors.required"> * 请选择类型</ion-label>
   <ion-item class="data">
     <ion-label>请选择类型</ion-label>
-    <ion-select (ionChange)="getCateMin()" required  name="category" formControlName="category" interface="action-sheet" cancelText="取消">
+    <ion-select (ionChange)="getCateMin()" required name="category" formControlName="category" interface="action-sheet" cancelText="取消">
       <ion-select-option *ngFor="let i of categories" value="{{i.id}}">{{i.name}}</ion-select-option>
     </ion-select>
   </ion-item>

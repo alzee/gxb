@@ -127,7 +127,7 @@ export class SignupPage implements OnInit {
           this.toastService.presentToast('验证码已发送');
           this.getCodeBtnText = `重新发送(${this.remaining})`;
           const that = this;
-          const interval = setInterval(function(){
+          const interval = setInterval(() => {
               that.remaining -= 1;
               that.getCodeBtnText = `重新发送(${that.remaining})`;
               if (that.remaining === 0){
