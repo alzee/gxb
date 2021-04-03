@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coupon.page.scss'],
 })
 export class CouponPage implements OnInit {
-  coupons = [1,1,1,1,1];
+  coupons = [1, 1, 1, 1, 1];
 
   constructor() { }
 

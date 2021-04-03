@@ -24,7 +24,7 @@ export class SignupPage implements OnInit {
     smsResp;
     term = {
         isChecked: true
-    }
+    };
     postData = {
         username: '',
         password: '',
@@ -40,7 +40,7 @@ export class SignupPage implements OnInit {
         private router: Router
     ) {
         this.smsPass = environment.smsPass;
-        this.getCodeBtnText = "获取验证码";
+        this.getCodeBtnText = '获取验证码';
         this.codeSent = false;
         this.remaining = 59;
         this.passType = 'password';
@@ -73,20 +73,20 @@ export class SignupPage implements OnInit {
     }
 
     validateInputs() {
-        if(!this.smsResp){
-            return 1
+        if (!this.smsResp){
+            return 1;
         }
-        else if(this.smsResp.code == 'timeout'){
-            return 2
+        else if (this.smsResp.code === 'timeout'){
+            return 2;
         }
-        else if(this.vCode.value != this.smsResp.code){
-            return 3
+        else if (this.vCode.value !== this.smsResp.code){
+            return 3;
         }
     }
 
     signup() {
         console.log(this.smsResp);
-        switch(this.validateInputs()){
+        switch (this.validateInputs()){
             case 1:
                 this.toastService.presentToast('请获取验证码');
                 break;
@@ -104,11 +104,6 @@ export class SignupPage implements OnInit {
                     (res: any) => {
                         console.log(res);
                         if (res) {
-                            // Storing the User data.
-                            //this.storageService.store(AuthConstants.AUTH, res.data)
-                            //.then(res => {
-                            //    this.router.navigate(['/tabs/home']);
-                            //});
                             this.toastService.presentToast('注册成功');
                             this.router.navigate(['/signin']);
                         } else {
@@ -128,17 +123,14 @@ export class SignupPage implements OnInit {
       console.log(this.smsType);
       console.log(this.smsPass);
       console.log(this.form);
-      //if(){
-      //    this.toastService.presentToast('请获取验证码');
-      //}
       this.httpService.get(`sms?phone=${this.phone.value}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
           this.toastService.presentToast('验证码已发送');
           this.getCodeBtnText = `重新发送(${this.remaining})`;
-          let that = this;
-          let interval = setInterval(function(){
+          const that = this;
+          const interval = setInterval(function(){
               that.remaining -= 1;
               that.getCodeBtnText = `重新发送(${that.remaining})`;
-              if (that.remaining == 0){
+              if (that.remaining === 0){
                   clearInterval(interval);
                   that.getCodeBtnText = '获取验证码';
                   that.codeSent = false;
@@ -147,13 +139,13 @@ export class SignupPage implements OnInit {
               }
           }, 1000);
           this.codeSent = true;
-          this.smsResp= res;
+          this.smsResp = res;
           console.log(res);
       });
     }
 
     togglePassType(){
-        if(this.passType == 'text'){
+        if (this.passType === 'text'){
             this.passType = 'password';
         }
         else{

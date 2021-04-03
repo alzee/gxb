@@ -29,8 +29,8 @@ export class SigninPage implements OnInit {
     }
 
     validateInputs() {
-        let username = this.postData.username.trim();
-        let password = this.postData.password.trim();
+        const username = this.postData.username.trim();
+        const password = this.postData.password.trim();
         return (
             this.postData.username &&
                 this.postData.password &&
@@ -52,7 +52,7 @@ export class SigninPage implements OnInit {
                     }
                 },
                 (error: any) => {
-                    //this.toastService.presentToast('网络异常');
+                    // this.toastService.presentToast('网络异常');
                     this.toastService.presentToast('用户名或密码错误');
                 }
             );
@@ -62,7 +62,7 @@ export class SigninPage implements OnInit {
     }
 
     togglePassType(){
-        if(this.passType == 'text'){
+        if (this.passType === 'text'){
             this.passType = 'password';
         }
         else{

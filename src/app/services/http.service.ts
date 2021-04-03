@@ -10,7 +10,7 @@ export class HttpService {
 
     post(serviceName: string, data: any) {
         const headers = new HttpHeaders('Content-Type: application/ld+json');
-        const options = { headers: headers, withCredintials: false };
+        const options = { headers, withCredintials: false };
         const url = environment.apiUrl + serviceName;
 
         return this.http.post(url, JSON.stringify(data), options);
@@ -18,7 +18,7 @@ export class HttpService {
 
     patch(serviceName: string, data: any) {
         const headers = new HttpHeaders('Content-Type: application/merge-patch+json');
-        const options = { headers: headers, withCredintials: false };
+        const options = { headers, withCredintials: false };
         const url = environment.apiUrl + serviceName;
 
         return this.http.patch(url, JSON.stringify(data), options);
@@ -26,7 +26,7 @@ export class HttpService {
 
     get(serviceName: string) {
         const headers = new HttpHeaders('accept: application/json');
-        const options = { headers: headers, withCredintials: false };
+        const options = { headers, withCredintials: false };
         const url = environment.apiUrl + serviceName;
         return this.http.get<any[]>(url);
     }

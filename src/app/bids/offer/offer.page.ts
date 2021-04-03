@@ -38,25 +38,30 @@ export class OfferPage implements OnInit {
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.position = parseInt(params['id']);
+          this.position = parseInt(params.id);
       });
       this.httpService.get('tasks?order%5Bdate%5D=desc').subscribe((res) => {
         console.log(res);
         this.myposts = res;
       });
-      this.httpService.get(`bids?page=1&order%5Bdate%5D=desc&itemsPerPage=10&position=${this.position}&date%5Bafter%5D=${this.today}`).subscribe((res) => {
+      this.httpService.get(
+          `bids?page=1&order%5Bdate%5D=desc&itemsPerPage=10&position=${this.position}&date%5Bafter%5D=${this.today}`
+      ).subscribe((res) => {
         console.log(res);
         this.bids = res;
-        if(this.bids.length > 0)
+        if (this.bids.length > 0) {
             this.min = this.bids[0].bid + this.step;
+        }
       });
   }
 
   validate(){
-      if(!this.post)
+      if (!this.post) {
           return 1;
-      if(!this.myBid || this.myBid < this.min)
+      }
+      if (!this.myBid || this.myBid < this.min) {
           return 2;
+      }
   }
 
   bid(){
@@ -78,7 +83,7 @@ export class OfferPage implements OnInit {
         default:
             this.httpService.post('bids', this.data).subscribe((res) => {
             console.log(res);
-            this.ngOnInit()
+            this.ngOnInit();
         });
     }
   }

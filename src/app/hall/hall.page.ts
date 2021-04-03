@@ -16,51 +16,12 @@ export class HallPage implements OnInit {
   tasksByPrice = [];
   envs = environment;
   seg = 'all';
+  customActionSheetOptions: any = {
+    header: 'Colors',
+    subHeader: 'Select your favorite color'
+  };
 
-  constructor(
-      private router: Router,
-      private httpService: HttpService
-  ) {
-      //taskDataService.data.subscribe((res) => {
-      //    this.tasks = res;
-      //    console.log(res);
-      //});
-  }
-
-  ngOnInit() {
-      this.httpService.get('tasks?page=1&order%5BrecommendUntil%5D=desc').subscribe((res) => {
-          this.tasksByRecommend = res;
-          this.tasks = this.tasksByRecommend;
-          console.log(res);
-      });
-      this.httpService.get('tasks?page=1&order%5Bdate%5D=desc').subscribe((res) => {
-          this.tasksByDate = res;
-          console.log(res);
-      });
-      this.httpService.get('tasks?page=1&order%5Bprice%5D=desc').subscribe((res) => {
-          this.tasksByPrice = res;
-          console.log(res);
-      });
-  }
-
-  segmentChanged(ev: any) {
-    this.tasks = this.tasksByPrice;
-    switch(ev.detail.value){
-        case this.sorts[0].value:
-            this.tasks = this.tasksByRecommend;
-            break;
-        case this.sorts[1].value:
-            this.tasks = this.tasksByDate;
-            break;
-        case this.sorts[2].value:
-            this.tasks = this.tasksByPrice;
-            break;
-
-    }
-    console.log('Segment changed', ev.detail.value);
-  }
-
-  public sorts= [
+  public sorts = [
     {
       value: 'all',
       label: '悬赏大厅',
@@ -86,10 +47,44 @@ export class HallPage implements OnInit {
     '其它任务',
   ];
 
-  customActionSheetOptions: any = {
-    header: 'Colors',
-    subHeader: 'Select your favorite color'
-  };
+  constructor(
+      private router: Router,
+      private httpService: HttpService
+  ) {
+  }
+
+  ngOnInit() {
+      this.httpService.get('tasks?page=1&order%5BrecommendUntil%5D=desc').subscribe((res) => {
+          this.tasksByRecommend = res;
+          this.tasks = this.tasksByRecommend;
+          console.log(res);
+      });
+      this.httpService.get('tasks?page=1&order%5Bdate%5D=desc').subscribe((res) => {
+          this.tasksByDate = res;
+          console.log(res);
+      });
+      this.httpService.get('tasks?page=1&order%5Bprice%5D=desc').subscribe((res) => {
+          this.tasksByPrice = res;
+          console.log(res);
+      });
+  }
+
+  segmentChanged(ev: any) {
+    this.tasks = this.tasksByPrice;
+    switch (ev.detail.value) {
+        case this.sorts[0].value:
+            this.tasks = this.tasksByRecommend;
+            break;
+        case this.sorts[1].value:
+            this.tasks = this.tasksByDate;
+            break;
+        case this.sorts[2].value:
+            this.tasks = this.tasksByPrice;
+            break;
+
+    }
+    console.log('Segment changed', ev.detail.value);
+  }
 
   doRefresh(event) {
     console.log('Begin async operation');

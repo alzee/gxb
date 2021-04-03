@@ -6,12 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vip.page.scss'],
 })
 export class VipPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   vip = [
     {
       label: 'V1体验卡2天',
@@ -47,4 +41,8 @@ export class VipPage implements OnInit {
     },
   ];
 
+  constructor() { }
+
+  ngOnInit() {
+  }
 }

@@ -16,7 +16,7 @@ export class BonusPage implements OnInit {
   constructor(
     public toastController: ToastController
   ) {
-    let d = new Date();
+    const d = new Date();
     this.month = d.getFullYear() + '-' + (d.getMonth() + 1);
   }
 

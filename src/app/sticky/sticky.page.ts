@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sticky.page.scss'],
 })
 export class StickyPage implements OnInit {
-  stickyUntil:Date;
+  stickyUntil: Date;
   price: number;
   tid: number;
   title: string;
@@ -26,23 +26,23 @@ export class StickyPage implements OnInit {
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.tid = params['tid'];
-          this.title = params['title'];
+          this.tid = params.tid;
+          this.title = params.title;
       });
       this.stickyUntil = new Date();
       this.stickyUntil.setHours(this.stickyUntil.getHours() + 24);
   }
 
   validate(): number {
-      return 0
+      return 0;
   }
 
   sticky(){
-    if(this.validate() == 1){
+    if (this.validate() === 1){
     }
-    else{
-      let data = {
-        "stickyUntil": this.stickyUntil
+    else {
+      const data = {
+        stickyUntil: this.stickyUntil
       };
       this.httpService.patch('tasks/' + this.tid, data).subscribe((res) => {
           console.log(res);

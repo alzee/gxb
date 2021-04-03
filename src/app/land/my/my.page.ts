@@ -17,7 +17,7 @@ export class MyPage implements OnInit {
   myLands = [];
   sold = [];
   uid: number;
-  seg: string = "my";
+  seg: string = 'my';
   showSold: boolean = false;
 
   constructor(
@@ -39,9 +39,11 @@ export class MyPage implements OnInit {
   segChanged(ev: any) {
     console.log('Segment changed', ev.detail.value);
     console.log(this.seg);
-    if(this.seg == 'my')
+    if (this.seg === 'my') {
       this.showSold = false;
-    else
+    }
+    else {
       this.showSold = true;
+    }
   }
 }

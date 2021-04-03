@@ -22,6 +22,29 @@ export class MytasksPage implements OnInit {
   };
   envs = environment;
 
+  public statuses = [
+    {
+      value: '0',
+      label: '全部',
+    },
+    {
+      value: '1',
+      label: '待提交',
+    },
+    {
+      value: '2',
+      label: '审核中',
+    },
+    {
+      value: '3',
+      label: '不合格',
+    },
+    {
+      value: '4',
+      label: '已完成',
+    },
+  ];
+
   constructor(
       private storageService: StorageService,
       private httpService: HttpService,
@@ -54,7 +77,7 @@ export class MytasksPage implements OnInit {
               this.applies4 = res;
           });
       }, (rej) => {
-      })
+      });
   }
 
   segmentChanged(ev: any) {
@@ -78,28 +101,4 @@ export class MytasksPage implements OnInit {
     }
     console.log('Segment changed', ev.detail.value);
   }
-
-  public statuses = [
-    {
-      value: '0',
-      label: '全部',
-    },
-    {
-      value: '1',
-      label: '待提交',
-    },
-    {
-      value: '2',
-      label: '审核中',
-    },
-    {
-      value: '3',
-      label: '不合格',
-    },
-    {
-      value: '4',
-      label: '已完成',
-    },
-  ];
-
 }

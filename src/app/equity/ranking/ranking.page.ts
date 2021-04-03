@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ranking.page.scss'],
 })
 export class RankingPage implements OnInit {
-  users = [1,1,1,1,1,1,1,1];
+  users = [1, 1, 1, 1, 1, 1, 1, 1];
 
   constructor() { }
 

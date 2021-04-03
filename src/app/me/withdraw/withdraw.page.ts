@@ -30,7 +30,6 @@ export class WithdrawPage implements OnInit {
   ) {
     this.topup = 0;
     this.earnings = 0;
-    //this.type = 1;
   }
 
   ngOnInit(){
@@ -46,22 +45,26 @@ export class WithdrawPage implements OnInit {
   }
 
   validate(){
-    if(!this.amount)
+    if (!this.amount){
       return 4;
-    if(!this.type)
-      return 3;
-    if(this.type == 1){
-      if(this.amount > this.topup)
-        return 1;
     }
-    if(this.type == 2){
-      if(this.amount > this.earnings)
+    if (!this.type) {
+      return 3;
+    }
+    if (this.type === 1) {
+      if (this.amount > this.topup) {
+        return 1;
+      }
+    }
+    if (this.type === 2) {
+      if (this.amount > this.earnings) {
         return 2;
+      }
     }
   }
 
   withdraw(){
-    switch(this.validate()){
+    switch (this.validate()){
       case 1:
         this.toastService.presentToast('提现金额不足');
         console.log('提现金额不足');

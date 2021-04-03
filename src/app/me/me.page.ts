@@ -19,36 +19,6 @@ export class MePage implements OnInit {
   userData: Data;
   user: Data;
   total: number;
-
-  constructor(
-      private router: Router,
-      private httpService: HttpService,
-      private storageService: StorageService
-  ) {
-  }
-
-  ngOnInit() {
-  }
-
-  ionViewWillEnter(){
-      this.storageService.get(AuthConstants.AUTH).then(
-          (res) => {
-              this.userData = res;
-              console.log(this.userData);
-              this.httpService.get('users/' + this.userData.id).subscribe((res) => {
-                  this.user = res;
-                  this.user.total = this.user.earnings + this.user.topup;
-                  console.log(this.user);
-              });
-          },
-          (rej) => {
-              this.user = {};
-              delete this.userData;
-              //delete this.user;
-          }
-      );
-  }
-
   public features = [
     {
       link: '/myposts',
@@ -128,4 +98,33 @@ export class MePage implements OnInit {
       name: '关于我们',
     },
   ];
+
+  constructor(
+      private router: Router,
+      private httpService: HttpService,
+      private storageService: StorageService
+  ) {
+  }
+
+  ngOnInit() {
+  }
+
+  ionViewWillEnter(){
+      this.storageService.get(AuthConstants.AUTH).then(
+          (res) => {
+              this.userData = res;
+              console.log(this.userData);
+              this.httpService.get('users/' + this.userData.id).subscribe((res) => {
+                  this.user = res;
+                  this.user.total = this.user.earnings + this.user.topup;
+                  console.log(this.user);
+              });
+          },
+          (rej) => {
+              this.user = {};
+              delete this.userData;
+              // delete this.user;
+          }
+      );
+  }
 }

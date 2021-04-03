@@ -33,32 +33,32 @@ export class OccupyPage implements OnInit {
       private httpService: HttpService,
       private http: HttpClient,
       private router: Router,
-      private _location: Location
+      private location: Location
   ) { }
 
   ngOnInit() {
-      //this.httpService.post('land_posts', this.postData).subscribe((res) => {
-      //    console.log(res);
-      //    //this._location.back();
-      //    this.router.navigate(['/land']);
-      //});
+      // this.httpService.post('land_posts', this.postData).subscribe((res) => {
+      //     console.log(res);
+      //     //this.location.back();
+      //     this.router.navigate(['/land']);
+      // });
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.landId = params['id'];
+          this.landId = paramsr.id;
           this.land = '/api/lands/' + this.landId;
-          if(this.landId != 1){
+          if (this.landId !== 1) {
             this.days = 20;
-            this.price= 0.05;
+            this.price = 0.05;
           }
       });
   }
 
-  //ionViewWillEnter(){
+  // ionViewWillEnter(){
   ionViewDidEnter(){
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.paid = params['paid'];
-          if(this.paid == 'y'){
+          this.paid = params.paid;
+          if (this.paid == 'y'){
               console.log(typeof this.paid);
-              //this.publish();
+              // this.publish();
           }
       });
   }
@@ -78,7 +78,7 @@ export class OccupyPage implements OnInit {
       this.validateInputs();
       this.httpService.post('land_posts', this.postData).subscribe((res) => {
           console.log(res);
-          //this._location.back();
+          // this.location.back();
           this.router.navigate(['/land']);
       });
   }
@@ -89,21 +89,23 @@ export class OccupyPage implements OnInit {
     const photo = fileChangeEvent.target.files[0];
 
     // Create a form data object using the FormData API
-    let formData = new FormData();
+    const formData = new FormData();
 
     // Add the file that was just added to the form data
-    formData.append("file", photo, photo.name);
+    formData.append('file', photo, photo.name);
 
     // POST formData to server using HttpClient
     const url = environment.apiUrl;
-    let o:any; // = { contentUrl?: '' };
+    let o: any; // = { contentUrl?: '' };
     this.http.post(url + 'media_objects', formData).subscribe((res) => {
       console.log(res);
       o = res;
-      if(type == 'cover')
+      if (type === 'cover') {
           this.cover = o.contentUrl;
-      if(type == 'pic')
+      }
+      if (type === 'pic') {
           this.pics.push(o.contentUrl);
+      }
       console.log(this.pics);
       console.log(this.cover);
     });

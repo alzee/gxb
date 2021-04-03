@@ -21,8 +21,8 @@ export class ApprovePage implements OnInit {
   denied: boolean;
   approveCode: number = 4;
   denyCode: number = 3;
-  code:number;
-  choice:number;
+  code: number;
+  choice: number;
   msg: string;
   guides = [];
   reviews = [];
@@ -30,24 +30,24 @@ export class ApprovePage implements OnInit {
   apply: Data;
 
   constructor(
-    private toastService: ToastService,
+      private toastService: ToastService,
       private activeRoute: ActivatedRoute,
       private httpService: HttpService,
-      private _location: Location,
+      private location: Location,
       private router: Router
   ) {
   }
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.applyid = params['applyid'];
+          this.applyid = params.applyid;
           this.httpService.get('applies/' + this.applyid).subscribe((res) => {
               this.apply = res;
-              if(this.apply.status.id == this.approveCode){
+              if (this.apply.status.id === this.approveCode) {
                   this.approved = true;
                   this.choice = 1;
               }
-              if(this.apply.status.id == this.denyCode){
+              if (this.apply.status.id === this.denyCode) {
                   this.denied = true;
                   this.choice = 0;
               }
@@ -61,18 +61,18 @@ export class ApprovePage implements OnInit {
   }
 
   approve() {
-      if(this.choice == 1){
-          var code = this.approveCode;
-          var msg = '已审核通过！';
+      if (this.choice === 1){
+          const code = this.approveCode;
+          const msg = '已审核通过！';
       }
       else{
-          var code = this.denyCode;
-          var msg = '已拒绝！';
+          const code = this.denyCode;
+          const msg = '已拒绝！';
       }
-      this.httpService.patch('applies/' + this.applyid, {status: "/api/statuses/" + code}).subscribe((res) => {
+      this.httpService.patch('applies/' + this.applyid, {status: '/api/statuses/' + code}).subscribe((res) => {
           console.log(res);
           this.toastService.presentToast(msg);
-          this._location.back();
+          this.location.back();
       });
       console.log(this.choice);
   }

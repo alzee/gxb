@@ -7,30 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShopPage implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   public stats = [
     {
-      label: "保证金",
+      label: '保证金',
       value: 250,
     },
     {
-      label: "发布任务",
+      label: '发布任务',
       value: 50,
     },
     {
-      label: "接任务",
+      label: '接任务',
       value: 150,
     },
     {
-      label: "被投诉",
+      label: '被投诉',
       value: 2,
     },
     {
-      label: "申请",
+      label: '申请',
       value: 20,
     },
   ];
@@ -59,4 +54,9 @@ export class ShopPage implements OnInit {
       link: '/detail',
     },
   ];
+
+  constructor() { }
+
+  ngOnInit() {
+  }
 }

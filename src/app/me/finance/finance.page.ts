@@ -11,7 +11,7 @@ export class FinancePage implements OnInit {
   hists = [];
 
   constructor() {
-    let d = new Date();
+    const d = new Date();
     this.month = d.getFullYear() + '-' + (d.getMonth() + 1);
   }
 

@@ -76,15 +76,6 @@ export class PublishPage implements OnInit {
       img: ''
   };
   postData: Data = {
-      //owner: '',
-      //title: '',
-      //name: '',
-      //applyHours: 0,
-      //approveHours: 0,
-      //quantity: 0,
-      //showdays: 0,
-      //category: '',
-      //platform: '',
       guides: [],
       reviews: []
   };
@@ -127,8 +118,6 @@ export class PublishPage implements OnInit {
           description: [''],
           link: [''],
           note: [''],
-          //guides: [[ {desc: '', img} ]],
-          //reviews: [[ {desc: '', img} ]],
           acceptTerms: [false, Validators.requiredTrue],
       });
   }
@@ -146,9 +135,9 @@ export class PublishPage implements OnInit {
   }
 
   validateInputs() {
-      let applyUntil = new Date();
+      const applyUntil = new Date();
       applyUntil.setHours(applyUntil.getHours() + this.f.applyHours.value);
-      let approveUntil = new Date();
+      const approveUntil = new Date();
       approveUntil.setHours(approveUntil.getHours() + this.f.approveHours.value);
       this.postData.owner = 'api/users/' + this.userData.id;
       this.postData.category = '/api/categories/' + this.f.category.value;
@@ -164,12 +153,12 @@ export class PublishPage implements OnInit {
       this.postData.note = this.f.note.value;
       this.postData.guides.push(this.guides);
       this.postData.reviews.push(this.reviews);
-      //return (
-      //    this.postData.username &&
-      //        this.postData.password &&
-      //        username.length > 0 &&
-      //        password.length > 0
-      //);
+      // return (
+      //     this.postData.username &&
+      //         this.postData.password &&
+      //         username.length > 0 &&
+      //         password.length > 0
+      // );
   }
 
   uploadPhoto(fileChangeEvent, type, i) {
@@ -177,22 +166,24 @@ export class PublishPage implements OnInit {
     const photo = fileChangeEvent.target.files[0];
 
     // Create a form data object using the FormData API
-    let formData = new FormData();
+    const formData = new FormData();
 
     // Add the file that was just added to the form data
-    formData.append("file", photo, photo.name);
+    formData.append('file', photo, photo.name);
 
     // POST formData to server using HttpClient
     const url = environment.apiUrl;
-    let o:any; // = { contentUrl?: '' };
+    let o: any; // = { contentUrl?: '' };
     this.http.post(url + 'media_objects', formData).subscribe((res) => {
       console.log(res);
-      o = res
+      o = res;
 
-      if(type == 'guide')
+      if (type === 'guide') {
           this.guides[i].img = o.contentUrl;
-      if(type == 'review')
+      }
+      if (type === 'review') {
           this.reviews[i].img = o.contentUrl;
+      }
     });
   }
 
@@ -217,29 +208,27 @@ export class PublishPage implements OnInit {
   }
 
   preview(){
-      //this.validateInputs();
       console.log(this.f);
       this.checkBalance();
   }
 
   getCateMin(){
-      let that = this;
+      const that = this;
       this.categories.forEach(
           function(i){
-              if(i.id == that.f.category.value){
+              if (i.id === that.f.category.value){
                   that.f.price.setValidators([Validators.min(i.rate), Validators.required]);
                   that.f.price.updateValueAndValidity();
                   that.min = i.rate;
                   return;
               }
           }
-      )
+      );
   }
 
   async showTip() {
     const alert = await this.alertController.create({
       header: '提示',
-      //subHeader: 'Subtitle',
       message: '账户中相应的可用余额将被冻结，任务结束后解冻剩余部分。',
     });
 
@@ -249,7 +238,6 @@ export class PublishPage implements OnInit {
   async confirmPublish() {
     const alert = await this.alertController.create({
       header: '发布任务',
-      //subHeader: '',
       message: `您账户中相应金额(${this.f.quantity.value * this.f.price.value}元)将被冻结，任务结束后解冻剩余部分！`,
       buttons: [
         {
@@ -301,10 +289,10 @@ export class PublishPage implements OnInit {
   checkBalance(){
       console.log(this.availableBalance);
       console.log(this.f.quantity.value * this.f.price.value);
-      if(this.availableBalance < (this.f.quantity.value * this.f.price.value)){
+      if (this.availableBalance < (this.f.quantity.value * this.f.price.value)){
           this.confirmTopup();
       }
-      else{
+      else {
           this.confirmPublish();
       }
   }

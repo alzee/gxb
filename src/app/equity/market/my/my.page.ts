@@ -28,7 +28,7 @@ export class MyPage implements OnInit {
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.shopId = params['id'];
+          this.shopId = params.id;
           this.httpService.get('equity_shops?page=1&id=' + this.shopId).subscribe((res) => {
               this.shop = res[0];
               this.price = this.shop.price;

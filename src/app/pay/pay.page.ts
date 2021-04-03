@@ -15,23 +15,23 @@ export class PayPage implements OnInit {
   constructor(
       private activeRoute: ActivatedRoute,
       private router: Router,
-      private _location: Location
+      private location: Location
   ) { }
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.total = params['total'];
+          this.total = params.total;
       });
-      //this.router.events.pipe(filter((e: any) => e instanceof RoutesRecognized),
-      //                        pairwise()
-      //                       ).subscribe((e: any) => {
-      //                         this.prevUrl = e[0].urlAfterRedirects; // previous url
-      //                         console.log(this.prevUrl);
-      //                       });
+      // this.router.events.pipe(filter((e: any) => e instanceof RoutesRecognized),
+      //                         pairwise()
+      //                        ).subscribe((e: any) => {
+      //                          this.prevUrl = e[0].urlAfterRedirects; // previous url
+      //                          console.log(this.prevUrl);
+      //                        });
   }
 
   pay() {
-    //this._location.back();
-    this.router.navigate(["land/occupy"], {queryParams: {paid: 'n'}});
+    // this.location.back();
+    this.router.navigate(['land/occupy'], {queryParams: {paid: 'n'}});
   }
 }

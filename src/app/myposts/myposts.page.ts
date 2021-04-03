@@ -24,6 +24,29 @@ export class MypostsPage implements OnInit {
   envs = environment;
   seg = 'all';
 
+  public statuses = [
+    {
+      value: 'all',
+      label: '全部',
+    },
+    {
+      value: 'done',
+      label: '待审核',
+    },
+    {
+      value: 'published',
+      label: '已审核',
+    },
+    {
+      value: 'paused',
+      label: '已暂停',
+    },
+    {
+      value: 'prePub',
+      label: '已下架',
+    },
+  ];
+
   constructor(
       private storageService: StorageService,
       private httpService: HttpService,
@@ -179,27 +202,4 @@ export class MypostsPage implements OnInit {
     });
     await alert.present();
   }
-
-  public statuses = [
-    {
-      value: 'all',
-      label: '全部',
-    },
-    {
-      value: 'done',
-      label: '待审核',
-    },
-    {
-      value: 'published',
-      label: '已审核',
-    },
-    {
-      value: 'paused',
-      label: '已暂停',
-    },
-    {
-      value: 'prePub',
-      label: '已下架',
-    },
-  ];
 }

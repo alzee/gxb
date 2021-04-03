@@ -22,22 +22,22 @@ export class ChangepricePage implements OnInit {
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.id = params['id'];
-          this.price = parseInt(params['price']);
-          this.name = params['name'];
+          this.id = params.id;
+          this.price = parseInt(params.price);
+          this.name = params.name;
           console.log(this.id);
       });
   }
 
   changePrice(){
     console.log(this.newPrice);
-    let data = {
-      "price": this.newPrice,
-      "prePrice": this.price
+    const data = {
+      price: this.newPrice,
+      prePrice: this.price
     };
     this.httpService.patch('lands/' + this.id, data).subscribe((res) => {
       console.log(res);
-      //this.toastService.presentToast('价格调整');
+      // this.toastService.presentToast('价格调整');
       this.ngOnInit();
     });
   }

@@ -23,12 +23,11 @@ export class CollectPage implements OnInit {
   uid: number;
   userData: Data;
   collected: boolean = false;
-  postData ={
+  postData = {
       amount: 1,
       user: '',
   } ;
   animation: Animation;
-  //amount: number = 1;
 
   constructor(
       private storageService: StorageService,
@@ -48,8 +47,8 @@ export class CollectPage implements OnInit {
       this.httpService.get('gxbs?page=1&order%5Bdate%5D=desc&itemsPerPage=10&user.id=' + this.uid).subscribe((res) => {
           this.hists = res;
           console.log(res);
-          if(this.hists[0]){
-              if(new Date(this.hists[0].date).setHours(0,0,0,0) == new Date().setHours(0,0,0,0)){
+          if (this.hists[0]){
+              if (new Date(this.hists[0].date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)){
                   this.collected = true;
               }
           }
@@ -81,7 +80,7 @@ export class CollectPage implements OnInit {
   }
 
   collectGxb() {
-      //this.postData.amount = this.amount;
+      // this.postData.amount = this.amount;
       this.postData.user = '/api/users/' + this.uid;
       this.httpService.post('gxbs', this.postData).subscribe((res) => {
           console.log(res);

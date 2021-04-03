@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PickerController } from "@ionic/angular";
-import { PickerOptions } from "@ionic/core";
+import { PickerController } from '@ionic/angular';
+import { PickerOptions } from '@ionic/core';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
-import cities from "./pca.json";
+import cities from './pca.json';
 
 interface Data {
     [propName: string]: any;
@@ -22,20 +22,6 @@ export class LandPage implements OnInit {
   url = environment.url;
   posts = [];
 
-  constructor(
-      private pickerController: PickerController,
-      private httpService: HttpService
-             ) {}
-
-  ngOnInit() {
-      this.httpService.get('land_posts?itemsPerPage=35&land=1').subscribe((res) => {
-          this.posts = res;
-          this.land.id = 1;
-          this.posts.length = 35;
-          console.log(this.posts);
-      });
-  }
-
   multiColumnOptions = [
     [
       '湖北',
@@ -52,7 +38,21 @@ export class LandPage implements OnInit {
       '房县',
       '丹江口市'
     ]
-  ]
+  ];
+
+  constructor(
+      private pickerController: PickerController,
+      private httpService: HttpService
+             ) {}
+
+  ngOnInit() {
+      this.httpService.get('land_posts?itemsPerPage=35&land=1').subscribe((res) => {
+          this.posts = res;
+          this.land.id = 1;
+          this.posts.length = 35;
+          console.log(this.posts);
+      });
+  }
 
   async openPicker(){
     const picker = await this.pickerController.create({
@@ -70,7 +70,7 @@ export class LandPage implements OnInit {
             this.city = value['col-2'].text;
             this.httpService.get('lands?name=' + this.city).subscribe((res) => {
                 this.land = res[0];
-                if(!this.land){
+                if (!this.land){
                     const data = {name: this.city};
                     this.httpService.post('lands?', data).subscribe((res) => {
                         this.land = res;
@@ -99,9 +99,9 @@ export class LandPage implements OnInit {
   }
 
   getColumns(numColumns) {
-      let columns = [];
-      let numOptions = 5;
-      let columnOptions = this.multiColumnOptions;
+      const columns = [];
+      const numOptions = 5;
+      const columnOptions = this.multiColumnOptions;
       for (let i = 0; i < numColumns; i++) {
           columns.push({
               name: `col-${i}`,
@@ -113,12 +113,12 @@ export class LandPage implements OnInit {
   }
 
   getColumnOptions(columnIndex, numOptions, columnOptions) {
-      let options = [];
+      const options = [];
       for (let i = 0; i < numOptions; i++) {
           options.push({
               text: columnOptions[columnIndex][i % numOptions],
               value: i
-          })
+          });
       }
 
       return options;

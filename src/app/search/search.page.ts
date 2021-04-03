@@ -20,7 +20,7 @@ export class SearchPage implements OnInit {
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.keyword = params['keyword'];
+          this.keyword = params.keyword;
           console.log(this.keyword);
       });
 

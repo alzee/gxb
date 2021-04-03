@@ -15,25 +15,6 @@ export class AppliesPage implements OnInit {
   taskId = '';
   applies = [];
   envs = environment;
-
-  constructor(
-      private activeRoute: ActivatedRoute,
-      private storageService: StorageService,
-      private httpService: HttpService,
-      private router: Router,
-  ) {
-  }
-
-  ngOnInit() {
-      this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.taskId = params['task'];
-          this.httpService.get('applies?task.id=' + this.taskId).subscribe((res) => {
-              console.log(res);
-              this.applies = res;
-          });
-      });
-  }
-
   public statuses = [
     {
       value: '0',
@@ -57,4 +38,21 @@ export class AppliesPage implements OnInit {
     },
   ];
 
+  constructor(
+      private activeRoute: ActivatedRoute,
+      private storageService: StorageService,
+      private httpService: HttpService,
+      private router: Router,
+  ) {
+  }
+
+  ngOnInit() {
+      this.activeRoute.queryParams.subscribe((params: Params) => {
+          this.taskId = params.task;
+          this.httpService.get('applies?task.id=' + this.taskId).subscribe((res) => {
+              console.log(res);
+              this.applies = res;
+          });
+      });
+  }
 }

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./promo.page.scss'],
 })
 export class PromoPage implements OnInit {
-  recommendUntil:Date;
+  recommendUntil: Date;
   price: number;
   tid: number;
   title: string;
@@ -22,27 +22,27 @@ export class PromoPage implements OnInit {
       private toastService: ToastService
   ) {
       this.price = 9;
-      this.recommendUntil= new Date();
+      this.recommendUntil = new Date();
       this.recommendUntil.setHours(this.recommendUntil.getHours() + 24);
   }
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.tid = params['tid'];
-          this.title = params['title'];
+          this.tid = params.tid;
+          this.title = params.title;
       });
   }
 
   validate(): number {
-      return 0
+      return 0;
   }
 
   recomm(){
-    if(this.validate() == 1){
+    if (this.validate() === 1) {
     }
-    else{
-      let data = {
-        "recommendUntil": this.recommendUntil
+    else {
+      const data = {
+        recommendUntil: this.recommendUntil
       };
       this.httpService.patch('tasks/' + this.tid, data).subscribe((res) => {
           console.log(res);

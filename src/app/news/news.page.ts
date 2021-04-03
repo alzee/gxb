@@ -15,7 +15,7 @@ interface Data {
 export class NewsPage implements OnInit {
   node: Data;
   id: number;
-  //pipe = new DatePipe('en-US');
+  // pipe = new DatePipe('en-US');
 
   constructor(
       private activeRoute: ActivatedRoute,
@@ -24,10 +24,10 @@ export class NewsPage implements OnInit {
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.id = params['id'];
+          this.id = params.id;
           this.httpService.get('nodes/' + this.id).subscribe((res) => {
             this.node = res;
-            //this.node.date = this.pipe.transform(Date.now(), 'short');
+            // this.node.date = this.pipe.transform(Date.now(), 'short');
             console.log(this.node);
           });
       });

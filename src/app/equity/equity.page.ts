@@ -7,11 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EquityPage implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   public features = [
     {
       link: '/equity/collect',
@@ -44,4 +39,9 @@ export class EquityPage implements OnInit {
       name: '排行榜'
     }
   ];
+
+  constructor() { }
+
+  ngOnInit() {
+  }
 }

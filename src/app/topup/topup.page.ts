@@ -22,13 +22,14 @@ export class TopupPage implements OnInit {
       });
 
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          if(params['amount']){
-              this.min = params['amount'];
+          if (params.amount){
+              this.min = params.amount;
               this.amount.setValue(this.min);
               this.amount.setValidators(Validators.min(this.min));
           }
-          else
+          else {
               this.min = 0;
+          }
           console.log(this.min);
       });
   }

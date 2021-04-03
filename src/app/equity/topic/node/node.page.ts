@@ -22,7 +22,7 @@ export class NodePage implements OnInit {
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.id = params['id'];
+          this.id = params.id;
       });
 
       this.httpService.get('nodes/' + this.id).subscribe((res) => {

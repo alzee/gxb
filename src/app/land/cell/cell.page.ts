@@ -26,7 +26,7 @@ export class CellPage implements OnInit {
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.id = params['id'];
+          this.id = params.id;
       });
 
       this.httpService.get('land_posts/' + this.id).subscribe((res) => {

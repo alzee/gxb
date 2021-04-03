@@ -26,32 +26,6 @@ export class HomePage implements OnInit {
       loop: true,
       height: 40
   };
-  constructor(
-      private router: Router,
-      private httpService: HttpService
-  ) {
-      const date: Date = new Date();
-      // imply 00:00:00
-      this.bondary = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-  }
-
-  ngOnInit() {
-      for (let i = 0; i < 4; i++){
-          this.httpService.get(`bids?page=1&itemsPerPage=1&position=${i+1}&order%5Bdate%5D=desc&date%5Bbefore%5D=${this.bondary}`).subscribe((res) => {
-              this.bids[i] = res[0];
-              console.log(this.bids);
-          });
-      }
-      console.log(this.bondary);
-      this.httpService.get('tasks?page=1&order%5BstickyUntil%5D=desc').subscribe((res) => {
-          this.tasks = res;
-          console.log(res);
-      });
-      this.httpService.get('nodes?page=1&itemsPerPage=3&type.id=3').subscribe((res) => {
-          this.news = res;
-          console.log(res);
-      });
-  }
 
   public features = [
     {
@@ -86,6 +60,35 @@ export class HomePage implements OnInit {
     },
   ];
 
+  constructor(
+      private router: Router,
+      private httpService: HttpService
+  ) {
+      const date: Date = new Date();
+      // imply 00:00:00
+      this.bondary = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+  }
+
+  ngOnInit() {
+      for (let i = 0; i < 4; i++){
+          this.httpService.get(
+              `bids?page=1&itemsPerPage=1&position=${i + 1}&order%5Bdate%5D=desc&date%5Bbefore%5D=${this.bondary}`
+          ).subscribe((res) => {
+              this.bids[i] = res[0];
+              console.log(this.bids);
+          });
+      }
+      console.log(this.bondary);
+      this.httpService.get('tasks?page=1&order%5BstickyUntil%5D=desc').subscribe((res) => {
+          this.tasks = res;
+          console.log(res);
+      });
+      this.httpService.get('nodes?page=1&itemsPerPage=3&type.id=3').subscribe((res) => {
+          this.news = res;
+          console.log(res);
+      });
+  }
+
   doRefresh(event) {
     console.log('Begin async operation');
 
@@ -96,7 +99,7 @@ export class HomePage implements OnInit {
   }
 
   search(){
-    if(this.keyword){
+    if (this.keyword) {
       console.log(this.keyword);
       this.router.navigate(['/search'], {queryParams: {keyword: this.keyword}});
     }

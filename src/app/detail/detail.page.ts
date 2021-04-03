@@ -9,15 +9,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastService } from '../services/toast.service';
 
 interface Data {
-    //owner: object;
-    //applies: any[];
-    //id?: any;
-    //title: string;
     [propName: string]: any;
 }
 
 interface UserData {
-    //id: number;
     [propName: string]: any;
 }
 
@@ -28,7 +23,7 @@ interface UserData {
 })
 export class DetailPage implements OnInit {
   id: number;
-  userData: UserData; 
+  userData: UserData;
   data: Data;
   applyData: object;
   applied: boolean = false;
@@ -53,7 +48,7 @@ export class DetailPage implements OnInit {
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.id = params['id'];
+          this.id = params.id;
       });
 
       this.httpService.get('tasks/' + this.id).subscribe((res) => {
@@ -61,24 +56,24 @@ export class DetailPage implements OnInit {
           console.log(this.data);
           console.log(this.data.applies);
           for ( let i = 0; i < this.data.applies.length; i++){
-              if(this.data.applies[i].applicant.id === this.userData.id){
+              if (this.data.applies[i].applicant.id === this.userData.id){
                   this.applied = true;
                   this.status = this.data.applies[i].status.id;
                   this.applyId = this.data.applies[i].id;
                   this.pics = this.data.applies[i].pic;
                   break;
-              };
+              }
               console.log(this.data.applies[i].applicant.id);
-              //console.log(this.userData.id);
+              // console.log(this.userData.id);
           }
       });
   }
 
   apply() {
-      let data = {
-          task: "/api/tasks/" + this.id,
-          applicant: "/api/users/" + this.userData.id,
-          status: "/api/statuses/1"
+      const data = {
+          task: '/api/tasks/' + this.id,
+          applicant: '/api/users/' + this.userData.id,
+          status: '/api/statuses/1'
       };
       this.httpService.post('applies', data).subscribe((res) => {
           console.log(res);
@@ -88,8 +83,8 @@ export class DetailPage implements OnInit {
   }
 
   submit() {
-      let data = {
-          status: "/api/statuses/2",
+      const data = {
+          status: '/api/statuses/2',
           pic: this.uploads
       };
       this.httpService.patch('applies/' + this.applyId, data).subscribe((res) => {
@@ -105,19 +100,19 @@ export class DetailPage implements OnInit {
     const photo = fileChangeEvent.target.files[0];
 
     // Create a form data object using the FormData API
-    let formData = new FormData();
+    const formData = new FormData();
 
     // Add the file that was just added to the form data
-    formData.append("file", photo, photo.name);
+    formData.append('file', photo, photo.name);
 
     // POST formData to server using HttpClient
     const url = environment.apiUrl;
-    let o:any; // = { contentUrl?: '' };
-    let that = this;
+    let o: any; // = { contentUrl?: '' };
+    const that = this;
     this.http.post(url + 'media_objects', formData).subscribe((res) => {
       console.log(res);
-      o = res
-      //this.uploads.push(o.contentUrl);
+      o = res;
+      // this.uploads.push(o.contentUrl);
       this.uploads[i] = o.contentUrl;
       console.log(this.uploads);
     });

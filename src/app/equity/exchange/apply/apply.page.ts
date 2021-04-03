@@ -57,26 +57,28 @@ export class ApplyPage implements OnInit {
   }
 
   validate(){
-    if(this.equity == 0)
-      return 1
-    if(this.equity * this.rate > this.gxb)
-      return 2
+    if (this.equity === 0) {
+      return 1;
+    }
+    if (this.equity * this.rate > this.gxb) {
+      return 2;
+    }
   }
 
   apply0(){
     // subtract gxb
-    let gxbAfter = this.gxb - this.equity * this.rate;
+    const gxbAfter = this.gxb - this.equity * this.rate;
     // add equity
-    let equityAfter = this.equityBefore + this.equity;
+    const equityAfter = this.equityBefore + this.equity;
     // subtract platform equity
     console.log(gxbAfter, equityAfter);
-    if(this.validate() == 1){
+    if (this.validate() === 1) {
       this.toastService.presentToast('请输入购买的股权数量');
     }
     else{
-      let data = {
-        "gxb": gxbAfter,
-        "equity": equityAfter
+      const data = {
+        gxb: gxbAfter,
+        equity: equityAfter
       };
       this.httpService.patch('users/' + this.uid, data).subscribe((res) => {
         console.log(res);
@@ -102,20 +104,20 @@ export class ApplyPage implements OnInit {
           cssClass: 'danger',
           handler: () => {
             // subtract gxb
-            let gxbAfter = this.gxb - this.equity * this.rate;
+            const gxbAfter = this.gxb - this.equity * this.rate;
             // add equity
-            let equityAfter = this.equityBefore + this.equity;
+            const equityAfter = this.equityBefore + this.equity;
             // subtract platform equity
             console.log(gxbAfter, equityAfter);
-            if(this.validate() == 1){
+            if (this.validate() === 1) {
               this.toastService.presentToast('请输入购买的股权数量');
-            }else if(this.validate() == 2){
+            }else if (this.validate() === 2) {
               this.toastService.presentToast('GXB 不够');
             }
             else{
-              let data = {
-                "gxb": gxbAfter,
-                "equity": equityAfter
+              const data = {
+                gxb: gxbAfter,
+                equity: equityAfter
               };
               this.httpService.patch('users/' + this.uid, data).subscribe((res) => {
                 console.log(res);

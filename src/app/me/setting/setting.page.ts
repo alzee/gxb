@@ -29,7 +29,7 @@ export class SettingPage implements OnInit {
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.id = params['id'];
+          this.id = params.id;
       });
 
       this.httpService.get('users/' + this.id).subscribe((res) => {
@@ -49,19 +49,19 @@ export class SettingPage implements OnInit {
     const photo = fileChangeEvent.target.files[0];
 
     // Create a form data object using the FormData API
-    let formData = new FormData();
+    const formData = new FormData();
 
     // Add the file that was just added to the form data
-    formData.append("file", photo, photo.name);
+    formData.append('file', photo, photo.name);
 
     // POST formData to server using HttpClient
     const url = environment.apiUrl;
-    let o:any; // = { contentUrl?: '' };
+    let o: any; // = { contentUrl?: '' };
     this.http.post(url + 'media_objects', formData).subscribe((res) => {
       console.log(res);
-      o = res
+      o = res;
       this.user.avatar = o.contentUrl;
-      this.httpService.patch('users/' + this.user.id, {"avatar": this.user.avatar}).subscribe((res) => {
+      this.httpService.patch('users/' + this.user.id, {avatar: this.user.avatar}).subscribe((res) => {
       });
     });
   }
