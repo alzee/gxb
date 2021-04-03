@@ -83,7 +83,7 @@ export class DetailPage implements OnInit {
       this.httpService.post('applies', data).subscribe((res) => {
           console.log(res);
           this.toastService.presentToast('申请成功');
-          this.router.navigate(['/mytasks']);
+          this.router.navigate(['/mytasks'], {replaceUrl: true});
       });
   }
 
