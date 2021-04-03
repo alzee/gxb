@@ -16,14 +16,13 @@ interface Data {
 })
 export class ApprovePage implements OnInit {
   url = environment.url;
-  pass: boolean;
   applyid = '';
   approved: boolean;
+  denied: boolean;
   approveCode: number = 4;
-  data = {
-    //status: "/api/statuses/3",
-    status: "/api/statuses/4",
-  };
+  denyCode: number = 3;
+  code:number;
+  msg: string;
   guides = [];
   reviews = [];
   workPics = [];
@@ -35,34 +34,49 @@ export class ApprovePage implements OnInit {
       private httpService: HttpService,
       private _location: Location,
       private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
-      this.approved = false;
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.applyid = params['applyid'];
-        this.httpService.get('applies/' + this.applyid).subscribe((res) => {
-          this.apply = res;
-          if(this.apply.status.id == 4){
-              this.approved = true;
-          }
-          this.reviews = this.apply.task.reviews;
-          this.workPics = this.apply.pic;
-          console.log(this.apply);
-          console.log(this.reviews);
-          console.log(this.workPics);
-        });
+          this.httpService.get('applies/' + this.applyid).subscribe((res) => {
+              this.apply = res;
+              if(this.apply.status.id == this.approveCode){
+                  this.approved = true;
+                  this.choice = 1;
+              }
+              if(this.apply.status.id == this.denyCode){
+                  this.denied = true;
+                  this.choice = 0;
+              }
+              this.reviews = this.apply.task.reviews;
+              this.workPics = this.apply.pic;
+              console.log(this.apply);
+              console.log(this.reviews);
+              console.log(this.workPics);
+          });
       });
   }
 
   approve() {
-      this.httpService.patch('applies/' + this.applyid, this.data).subscribe((res) => {
-        console.log(res);
-        this.toastService.presentToast('审核通过');
-        this._location.back();
+      if(this.choice == 1){
+          this.code = this.approveCode;
+          this.msg = '已审核通过！';
+      }
+      else{
+          this.code = this.denyCode;
+          this.msg = '已拒绝！';
+      }
+      this.httpService.patch('applies/' + this.applyid, {status: "/api/statuses/" + this.code}).subscribe((res) => {
+          console.log(res);
+          this.toastService.presentToast(this.msg);
+          this._location.back();
       });
+      console.log(this.choice);
   }
 
-  checkPass(){
+  check(e){
+      this.choice = e.detail.value;
   }
 }

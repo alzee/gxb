@@ -25,29 +25,20 @@
   </div>
 
   <ion-label color="medium">审核</ion-label>
-  <ion-item class="check">
-    <ion-checkbox checked [disabled]="approved" (click)="checkPass()"></ion-checkbox>
-    <ion-label>通过</ion-label>
-    <ion-checkbox [disabled]="approved" (click)="checkPass()" #noPass></ion-checkbox>
-    <ion-label>拒绝</ion-label>
-  </ion-item>
-
-  <!--
-  <ion-radio-group value="biff">
+  <ion-radio-group (ionChange)="check($event)" value="{{choice}}">
     <ion-item>
-      <div slot="start">
+    <ion-item>
       <ion-label>通过</ion-label>
-      <ion-radio slot="start" value="biff"></ion-radio>
-      </div>
-      <div slot="end">
+      <ion-radio [disabled]="approved || denied" slot="start" value="1"></ion-radio>
+    </ion-item>
+    <ion-item>
       <ion-label>拒绝</ion-label>
-      <ion-radio slot="start" value="griff"></ion-radio>
-      </div>
+      <ion-radio [disabled]="approved || denied" slot="start" value="0"></ion-radio>
+    </ion-item>
     </ion-item>
   </ion-radio-group>
-  -->
 
   <ion-label class="hint" color="medium">温馨提示：发布的任务涉黄、毒、赌，传销，虚假宣传，暴力恐
     怖，谣言诈骗等违规违法信息将不予通过。</ion-label>
-  <ion-button [disabled]="approved" expand="block" (click)="approve()">提交审核结果</ion-button>
+  <ion-button [disabled]="approved || denied || !choice" expand="block" (click)="approve()">提交审核结果</ion-button>
 </ion-content>

@@ -31,4 +31,12 @@ ion-content{
   ion-button{
     margin: 16px;
   }
+  ion-radio-group{
+    >ion-item{
+      --padding-start: 16px;
+      ion-item{
+        width: 50%;
+      }
+    }
+  }
 }
