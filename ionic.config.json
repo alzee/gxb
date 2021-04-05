@@ -1,7 +1,10 @@
 {
   "name": "达人共享宝",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
   "type": "angular"
 }
