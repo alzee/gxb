@@ -5,4 +5,5 @@
     <string name="package_name">com.drgxb.app</string>
     <string name="custom_url_scheme">com.drgxb.app</string>
     <string name="launcher_name">达人共享宝</string>
+    <string name="wechatappid">wx7ca4c9fed713fbe4</string>
 </resources>

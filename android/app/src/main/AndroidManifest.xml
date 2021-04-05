@@ -30,6 +30,20 @@
             </intent-filter>
 
         </activity>
+        <activity android:exported="true" android:label="@string/launcher_name" android:launchMode="singleTask" android:name=".wxapi.WXEntryActivity" android:taskAffinity="io.ionic.starter">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="@string/wechatappid" />
+            </intent-filter>
+        </activity>
+        <activity android:exported="true" android:label="@string/launcher_name" android:launchMode="singleTop" android:name=".wxapi.WXPayEntryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="@string/wechatappid" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
