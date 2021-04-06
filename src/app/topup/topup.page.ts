@@ -60,23 +60,22 @@ export class TopupPage implements OnInit {
   topup(){
       this.httpService.get('prepayid').subscribe((res) => {
           console.log(res);
-          this.data = res;
-          console.log(this.data);
-          this.partnerid = this.data.mchid;
-          this.prepayid = this.data.prepay_id;
-          this.noncestr = this.data.nonce;
-          this.timestamp = this.data.timestamp;
-          this.sig = this.data.sig;
+          const params = res;
 
-          let params = {
-              partnerid: this.partnerid,
-              // partnerid: '1606036532',
-              prepayid: this.prepayid,
-              noncestr: this.noncestr,
-              timestamp: this.timestamp,
-              sign: this.sig
-          };
+          //let params = {
+          //    partnerid: this.partnerid,
+          //    // partnerid: '1606036532',
+          //    prepayid: this.prepayid,
+          //    noncestr: this.noncestr,
+          //    timestamp: this.timestamp,
+          //    sign: this.sig
+          //};
           console.log(params);
+              this.wechat.sendPaymentRequest(params).then((res) => {
+                  console.log(params);
+              }, reason => {
+                  console.log('fucing reason: ', reason);
+              });
           this.platform.ready().then(() => {
               // this.wechat.isInstalled(function (installed) {
               //     this.toastService.presentToast("Wechat installed: " + (installed ? "Yes" : "No"));
@@ -84,15 +83,6 @@ export class TopupPage implements OnInit {
               //     this.toastService.presentToast("Failed: " + reason);
               // });
               
-              // this.wechat.sendPaymentRequest(params).then((res) => {
-              //     alert(params);
-              // }, reason => {
-              // });
-              this.wechat.sendPaymentRequest(params, function () {
-                  alert("Success");
-              }, function (reason) {
-                  alert("Failed: " + reason);
-              });
           });
       });
   }
