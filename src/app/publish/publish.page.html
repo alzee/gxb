@@ -87,6 +87,7 @@
   <ion-label color="medium"></ion-label>
 
   <ion-item class="data guide" *ngFor="let i of arr1; let j = index">
+    <ion-note></ion-note>
     <ion-label>操作步骤{{j+1}}</ion-label>
     <ion-input name="desc" placeholder="请输入文字说明" [(ngModel)]="guides[j].desc" [ngModelOptions]="{standalone: true}" required clearInput></ion-input>
     <ion-note>
@@ -100,6 +101,7 @@
   </ion-item>
 
   <ion-item class="data review" *ngFor="let i of arr2; let j = index">
+    <ion-note></ion-note>
     <ion-label>验收图文{{j+1}}</ion-label>
     <ion-input name="desc" placeholder="请输入文字说明" [(ngModel)]="reviews[j].desc" [ngModelOptions]="{standalone: true}" required clearInput></ion-input>
     <ion-note>
@@ -136,11 +138,13 @@
   </ion-item>
 
   <ion-item class="data">
+    <ion-note></ion-note>
     <ion-label>任务链接</ion-label>
     <ion-input placeholder="请输入链接，http开头" formControlName="link" clearInput></ion-input>
   </ion-item>
 
   <ion-item class="data">
+    <ion-note></ion-note>
     <ion-label>文字验收</ion-label>
     <ion-input placeholder="要求对方输入手机号、昵称、ID等" formControlName="note" clearInput></ion-input>
   </ion-item>
