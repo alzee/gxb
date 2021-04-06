@@ -70,12 +70,6 @@ export class TopupPage implements OnInit {
           //    timestamp: this.timestamp,
           //    sign: this.sig
           //};
-          console.log(params);
-              this.wechat.sendPaymentRequest(params).then((res) => {
-                  console.log(params);
-              }, reason => {
-                  console.log('fucing reason: ', reason);
-              });
           this.platform.ready().then(() => {
               // this.wechat.isInstalled(function (installed) {
               //     this.toastService.presentToast("Wechat installed: " + (installed ? "Yes" : "No"));
@@ -83,6 +77,20 @@ export class TopupPage implements OnInit {
               //     this.toastService.presentToast("Failed: " + reason);
               // });
               
+              this.wechat.sendPaymentRequest(params).then((res) => {
+                  console.log(params);
+              }, reason => {
+                  console.log('failed : ', reason);
+              });
+
+              // this.wechat.share({
+              //     text: "This is just a plain string",
+              //     // scene: this.wechat.Scene.TIMELINE   // share to Timeline
+              // }).then((res) => {
+              //     console.log('ok');
+              // }, reason => {
+              //     console.log('no: ', reason);
+              // });
           });
       });
   }
