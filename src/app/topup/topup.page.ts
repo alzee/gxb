@@ -58,7 +58,7 @@ export class TopupPage implements OnInit {
   }
 
   topup(){
-      this.httpService.get('prepayid').subscribe((res) => {
+      this.httpService.get('prepayid/' + this.amount.value * 100).subscribe((res) => {
           console.log(res);
           const params = res;
 
