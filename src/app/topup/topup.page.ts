@@ -3,6 +3,8 @@ import { ActivatedRoute, Router, Params, RoutesRecognized } from '@angular/route
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ToastService } from '../services/toast.service';
 import { HttpService } from '../services/http.service';
+import { StorageService } from '../services/storage.service';
+import { AuthConstants } from '../config/auth-constants';
 import { Platform } from '@ionic/angular';
 import { Wechat } from '@ionic-native/wechat/ngx';
 
@@ -19,11 +21,7 @@ export class TopupPage implements OnInit {
   min: number;
   form: FormGroup;
   data: Data;
-  partnerid: string;
-  prepayid: string;
-  noncestr: string;
-  timestamp: string;
-  sig: string;
+  userData: Data;
 
 
   constructor(
@@ -32,10 +30,16 @@ export class TopupPage implements OnInit {
       private toastService: ToastService,
       private formBuilder: FormBuilder,
       private activeRoute: ActivatedRoute,
-      private httpService: HttpService
+      private httpService: HttpService,
+      private storageService: StorageService
   ) { }
 
   ngOnInit() {
+      this.storageService.get(AuthConstants.AUTH).then(
+          (res) => {
+              this.userData = res;
+          });
+
       this.form = this.formBuilder.group({
           amount: []
       });
@@ -71,6 +75,16 @@ export class TopupPage implements OnInit {
 
               this.wechat.sendPaymentRequest(params).then((res1) => {
                   console.log(params);
+
+                  // verify order
+
+                  // add balance shold put in /api/paid, right?
+                  // const data = {
+                  // };
+                  // this.httpService.path('users/' + this.userData.id, data).subscribe((res) => {
+                  //     console.log(res);
+                  //     // this.toastService.presentToast('充值成功！');
+                  // });
               }, reason => {
                   console.log('failed : ', reason);
               });
