@@ -6,57 +6,76 @@
 
 <ion-content color="light">
   <form (ngSubmit)="checkBalance()" [formGroup]="form">
-    <ion-label color="danger" *ngIf="f.category.invalid && f.category.errors.required"> * 请选择类型</ion-label>
   <ion-item class="data">
+    <ion-note>
+      <ion-text color="danger" *ngIf="f.category.invalid && f.category.errors.required">﹡</ion-text>
+    </ion-note>
     <ion-label>请选择类型</ion-label>
     <ion-select (ionChange)="getCateMin()" required name="category" formControlName="category" interface="action-sheet" cancelText="取消">
       <ion-select-option *ngFor="let i of categories" value="{{i.id}}">{{i.name}}</ion-select-option>
     </ion-select>
   </ion-item>
 
-    <ion-label color="danger" *ngIf="f.title.invalid && f.title.errors.required"> * 请输入任务标题</ion-label>
   <ion-item class="data">
+    <ion-note>
+      <ion-text color="danger" *ngIf="f.title.invalid && f.title.errors.required">﹡</ion-text>
+    </ion-note>
     <ion-label>任务标题</ion-label>
     <ion-input name="title" formControlName="title" placeholder="请输入任务标题" required clearInput></ion-input>
   </ion-item>
-    <ion-label color="danger" *ngIf="f.name.invalid && f.name.errors.required"> * 请输入任务名称</ion-label>
+
   <ion-item class="data">
+    <ion-note>
+      <ion-text color="danger" *ngIf="f.name.invalid && f.name.errors.required">﹡</ion-text>
+    </ion-note>
     <ion-label>任务名称</ion-label>
     <ion-input name="name" formControlName="name" placeholder="请输入任务名称" required clearInput></ion-input>
   </ion-item>
 
-  <ion-label color="danger" *ngIf="f.applyHours.invalid && f.applyHours.errors.required"> * 请选择接单时间</ion-label>
   <ion-item class="data">
+    <ion-note>
+      <ion-text color="danger" *ngIf="f.applyHours.invalid && f.applyHours.errors.required">﹡</ion-text>
+    </ion-note>
     <ion-label>接单时间</ion-label>
     <ion-select required [value]="1" name="applyHours" formControlName="applyHours" interface="action-sheet" cancelText="取消">
       <ion-select-option *ngFor="let i of hourOptions" [value]="i.time">{{i.label}}</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-label color="danger" *ngIf="f.approveHours.invalid && f.approveHours.errors.required"> * 请选择审核时间</ion-label>
+
   <ion-item class="data">
+    <ion-note>
+      <ion-text color="danger"*ngIf="f.approveHours.invalid && f.approveHours.errors.required">﹡</ion-text>
+    </ion-note>
     <ion-label>审核时间</ion-label>
     <ion-select required value="1" name="approveHours" formControlName="approveHours" interface="action-sheet" cancelText="取消">
       <ion-select-option *ngFor="let i of hourOptions" value="{{i.time}}">{{i.label}}</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-label color="danger" *ngIf="f.showdays.invalid && f.showdays.errors.required"> * 请输入展示天数</ion-label>
   <ion-item class="data">
+    <ion-note>
+      <ion-text color="danger" *ngIf="f.showdays.invalid && f.showdays.errors.required">﹡</ion-text>
+    </ion-note>
     <ion-label>展现天数</ion-label>
-    <ion-input required name="showdays" formControlName="showdays" type="number" placeholder=""> </ion-input>
+    <ion-input clearInput required name="showdays" formControlName="showdays" type="number" placeholder="请输入展示天数"> </ion-input>
   </ion-item>
 
-  <ion-label color="danger" *ngIf="f.quantity.invalid && f.quantity.errors.required"> * 请输入任务数量</ion-label>
   <ion-item class="data">
+    <ion-note>
+      <ion-text color="danger" *ngIf="f.quantity.invalid && f.quantity.errors.required">﹡</ion-text>
+    </ion-note>
     <ion-label>发布数量</ion-label>
-    <ion-input required name="quantity" formControlName="quantity" type="number" placeholder=""> </ion-input>
+    <ion-input clearInput required name="quantity" formControlName="quantity" type="number" placeholder="请输入任务数量"> </ion-input>
   </ion-item>
 
-  <ion-label color="danger" *ngIf="f.price.invalid && f.price.errors.required"> * 请输入悬赏单价</ion-label>
-  <ion-label color="danger" *ngIf="f.price.invalid && f.price.errors.min"> * 悬赏单价最低 {{min}} 元</ion-label>
   <ion-item class="data">
+    <ion-note>
+      <ion-text color="danger" *ngIf="f.price.invalid && f.price.errors.required">﹡</ion-text>
+    </ion-note>
     <ion-label>悬赏单价</ion-label>
-    <ion-input [min]="min" name="price" formControlName="price" type="number" placeholder="最低出价{{min}}元" required clearInput></ion-input>
+    <ion-input [min]="min" name="price" formControlName="price" type="number" placeholder="最低出价{{min}}元" required clearInput>
+  <ion-text class="hint" color="danger" *ngIf="f.price.invalid && f.price.errors.min"> 单价最低 {{min}} 元</ion-text>
+    </ion-input>
   </ion-item>
 
   <ion-item class="pay" *ngIf="f.quantity.valid && f.price.valid">
@@ -67,10 +86,12 @@
 
   <ion-label color="medium"></ion-label>
 
-  <ion-label color="danger" *ngIf="!guides[0].img"> * 请至少上传一张操作步骤图片</ion-label>
   <ion-item class="data guide" *ngFor="let i of arr1; let j = index">
     <ion-label>操作步骤{{j+1}}</ion-label>
     <ion-input name="desc" placeholder="请输入文字说明" [(ngModel)]="guides[j].desc" [ngModelOptions]="{standalone: true}" required clearInput></ion-input>
+    <ion-note>
+      <ion-text color="danger" *ngIf="!guides[0].img">﹡</ion-text>
+    </ion-note>
     <ion-icon *ngIf="!guides[j].img" slot="end" name="image-sharp" (click)="fileUpload.click()"></ion-icon>
     <ion-thumbnail *ngIf="guides[j].img" slot="end" (click)="fileUpload.click()">
       <img [src]="url + guides[j].img">
@@ -78,10 +99,12 @@
     <input class="ion-hide" type="file" (change)="uploadPhoto($event, 'guide', j)" #fileUpload>
   </ion-item>
 
-  <ion-label color="danger" *ngIf="!reviews[0].img"> * 请至少上传一张验收图片</ion-label>
   <ion-item class="data review" *ngFor="let i of arr2; let j = index">
     <ion-label>验收图文{{j+1}}</ion-label>
     <ion-input name="desc" placeholder="请输入文字说明" [(ngModel)]="reviews[j].desc" [ngModelOptions]="{standalone: true}" required clearInput></ion-input>
+    <ion-note>
+      <ion-text color="danger" *ngIf="!reviews[0].img">﹡</ion-text>
+    </ion-note>
     <ion-icon *ngIf="!reviews[j].img" slot="end" name="image-sharp" (click)="fileUpload.click()"></ion-icon>
     <ion-thumbnail *ngIf="reviews[j].img" slot="end" (click)="fileUpload.click()">
       <img [src]="url + reviews[j].img">
@@ -100,7 +123,13 @@
     </ion-row>
   </ion-grid>
 
-  <ion-label color="danger" *ngIf="f.description.invalid && f.description.errors.required"> * 请输入任务说明</ion-label>
+  <ion-item class="data" color="none">
+    <ion-note>
+      <ion-text color="danger" *ngIf="f.description.invalid && f.description.errors.required">﹡</ion-text>
+    </ion-note>
+    <ion-label>
+      任务说明</ion-label>
+  </ion-item>
   <ion-item class="desc data">
     <ion-textarea required name="description" formControlName="description" placeholder="请输入任务介绍" autoGrow clearOnEdit>
     </ion-textarea>
@@ -116,10 +145,14 @@
     <ion-input placeholder="要求对方输入手机号、昵称、ID等" formControlName="note" clearInput></ion-input>
   </ion-item>
 
-  <ion-label color="danger" *ngIf="f.acceptTerms.invalid && f.acceptTerms.errors.required"> * 请阅读并选择同意条款</ion-label>
   <ion-item class="policy" color="undefined">
     <ion-checkbox size="small" color="primary" class="ion-no-margin" formControlName="acceptTerms"></ion-checkbox>
-    <ion-label color="medium">我已阅读并同意遵守《发布规则》的全部内容</ion-label>
+    <ion-label color="medium" *ngIf="f.acceptTerms.valid">
+      我已阅读并同意遵守《发布规则》的全部内容
+    </ion-label>
+    <ion-label color="danger" *ngIf="f.acceptTerms.invalid && f.acceptTerms.errors.required">
+      我已阅读并同意遵守《发布规则》的全部内容
+    </ion-label>
   </ion-item>
 
   <ion-item class="btn">
