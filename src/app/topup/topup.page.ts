@@ -62,22 +62,14 @@ export class TopupPage implements OnInit {
           console.log(res);
           const params = res;
 
-          //let params = {
-          //    partnerid: this.partnerid,
-          //    // partnerid: '1606036532',
-          //    prepayid: this.prepayid,
-          //    noncestr: this.noncestr,
-          //    timestamp: this.timestamp,
-          //    sign: this.sig
-          //};
           this.platform.ready().then(() => {
               // this.wechat.isInstalled(function (installed) {
               //     this.toastService.presentToast("Wechat installed: " + (installed ? "Yes" : "No"));
               // }, function (reason) {
               //     this.toastService.presentToast("Failed: " + reason);
               // });
-              
-              this.wechat.sendPaymentRequest(params).then((res) => {
+
+              this.wechat.sendPaymentRequest(params).then((res1) => {
                   console.log(params);
               }, reason => {
                   console.log('failed : ', reason);
