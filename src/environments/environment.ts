@@ -4,6 +4,7 @@
 
 export enum FinanceType {
     topup = 1,
+    postTask = 2,
     pay,
 }
 

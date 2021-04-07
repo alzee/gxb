@@ -24,9 +24,7 @@ export class PublishPage implements OnInit {
   url = environment.url;
   min: number;
   availableBalance: number;
-  userData = {
-      id: 0
-  };
+  userData: Data;
   user: Data;
   hourOptions = [
       {
@@ -248,6 +246,15 @@ export class PublishPage implements OnInit {
           handler: () => {
             console.log('Confirm Okay');
             this.publish();
+            const data = {
+                amount: this.f.quantity.value * this.f.price.value,
+                type: 2,
+                user: '/api/users/' + this.userData.id,
+            };
+            this.httpService.post('finances', data).subscribe((res) => {
+                console.log(res);
+                const params = res;
+            });
           }
         }
       ]
