@@ -26,6 +26,7 @@ major:
   - coupon
   - ionic app update inside app
 minor:
+  - should can not input negitive
 
 question:
   - 展现天数和接单时间是不是重复

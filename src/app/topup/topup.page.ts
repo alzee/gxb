@@ -19,7 +19,7 @@ interface Data {
   styleUrls: ['./topup.page.scss'],
 })
 export class TopupPage implements OnInit {
-  min: number;
+  min = 5;
   form: FormGroup;
   data: Data;
   userData: Data;
@@ -43,7 +43,7 @@ export class TopupPage implements OnInit {
           });
 
       this.form = this.formBuilder.group({
-          amount: []
+          amount: [, Validators.min(this.min)]
       });
 
       this.activeRoute.queryParams.subscribe((params: Params) => {
@@ -51,9 +51,6 @@ export class TopupPage implements OnInit {
               this.min = params.amount;
               this.amount.setValue(this.min);
               this.amount.setValidators(Validators.min(this.min));
-          }
-          else {
-              this.min = 0;
           }
           console.log(this.min);
       });

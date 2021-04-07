@@ -11,9 +11,9 @@
 
   <form (ngSubmit)="topup()" [formGroup]="form">
   <ion-label color="medium">充值金额</ion-label>
-  <ion-label color="danger" *ngIf="amount.invalid && amount.errors.min"> * 最低充值 {{min}} 元</ion-label>
   <ion-item>
-    <ion-input required class="price" color="danger" type="number" formControlName="amount"><span>¥  </span> </ion-input>
+    <ion-input required inputmode="numeric" class="price" color="danger" type="number" formControlName="amount"><span>¥  </span> </ion-input>
+    <ion-note color="danger" *ngIf="amount.invalid && amount.errors.min"> * 最低充值 {{min}} 元</ion-note>
     <ion-text slot="end">元</ion-text>
   </ion-item>
 
