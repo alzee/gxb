@@ -18,7 +18,8 @@
   <ion-label color="danger" *ngIf="username.errors.minlength"> * 账号须大于6位 </ion-label>
   <ion-label color="danger" *ngIf="username.errors.pattern"> * 账号只能包含数字、字母和下划线 </ion-label>
 </ng-container>
-  <ion-input required minlength='6' maxlength="16" pattern="^[a-z0-9_-]+$" class="input ion-margin-bottom" name="username" formControlName="username" autofocus="true" clearInput="true" placeholder="请输入您的账号"> </ion-input>
+  <ion-label color="danger" *ngIf="username.valid && usernameDup == 1"> * 该用户名已注册 </ion-label>
+  <ion-input (ionChange)="checkUsernameDup()" required minlength='6' maxlength="16" pattern="^[a-z0-9_-]+$" class="input ion-margin-bottom" name="username" formControlName="username" autofocus="true" clearInput="true" placeholder="请输入您的账号"> </ion-input>
 <ng-container *ngIf="password.invalid && (password.dirty || password.touched)">
   <ion-label color="danger" *ngIf="password.errors.required"> * 请设置密码 </ion-label>
   <ion-label color="danger" *ngIf="password.errors.minlength"> * 密码8至16位 </ion-label>
@@ -33,7 +34,7 @@
   <ion-label color="danger" *ngIf="phone.errors.required"> * 请输入手机号 </ion-label>
   <ion-label color="danger" *ngIf="phone.errors.pattern"> * 请输入正确的手机号 </ion-label>
 </ng-container>
-  <ion-label color="danger" *ngIf="phone.valid && phoneDup == 1"> * 手机号已注册 </ion-label>
+  <ion-label color="danger" *ngIf="phone.valid && phoneDup == 1"> * 该手机号已注册 </ion-label>
   <ion-input (ionChange)="checkPhoneDup()" required [readonly]="smsResp" minlength='11' maxlength='11' pattern="^1[3-9]\d{9}$" class="input ion-margin-bottom" type="tel" name="phone" formControlName="phone" clearInput="true" placeholder="请输入您的手机号码"></ion-input>
 
   <ion-item class="vcode">
@@ -47,6 +48,6 @@
     <ion-checkbox required  formControlName="acceptTerms" color="primary"></ion-checkbox>
     <ion-label>注册代表同意<a routerLink="/terms">《用户协议》</a><a routerLink="/privacy">《隐私条款》</a></ion-label>
   </ion-item>
-  <ion-button [disabled]="form.invalid || phoneDup !=2 " expand="block" type="submit" class="submit">确定</ion-button>
+  <ion-button [disabled]="form.invalid || usernameDup != 2 || phoneDup != 2" expand="block" type="submit" class="submit">确定</ion-button>
   </form>
 </ion-content>

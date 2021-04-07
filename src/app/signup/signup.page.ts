@@ -19,7 +19,7 @@ export class SignupPage implements OnInit {
     getCodeBtnText: string;
     codeSent: boolean;
     phoneDup = 0;
-    usernameDup = true ;
+    usernameDup = 0;
     remaining: number;
     smsType = 'register';
     smsPass: string;
@@ -135,7 +135,6 @@ export class SignupPage implements OnInit {
     }
 
     checkPhoneDup(){
-        // assume phone.valid
         this.phoneDup = 0;
         if (this.phone.valid) {
             this.httpService.get('users?page=1&itemsPerPage=1&phone=' + this.phone.value).subscribe((res) => {
@@ -150,17 +149,15 @@ export class SignupPage implements OnInit {
     }
 
     checkUsernameDup(){
-        // assume username.valid
-        this.usernameDup = true;
+        this.usernameDup = 0;
         if (this.username.valid) {
             this.httpService.get('users?page=1&itemsPerPage=1&username=' + this.username.value).subscribe((res) => {
-                if (res.length === 0) {
-                    this.usernameDup = false;
-                    console.log(this.usernameDup);
+                if (res.length > 0) {
+                    this.usernameDup = 1;
                 }
-                // else {
-                //     this.usernameDup = true;
-                // }
+                else {
+                    this.usernameDup = 2;
+                }
             });
         }
     }
