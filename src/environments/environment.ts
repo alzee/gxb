@@ -2,8 +2,12 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+export enum FinanceType {
+    topup = 1,
+    pay,
+}
+
 const url = 'http://b.gxb';
-// const url = 'https://backend.drgxb.com';
 export const environment = {
   production: false,
   smsPass: 'test',
