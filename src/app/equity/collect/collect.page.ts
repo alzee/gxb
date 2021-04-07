@@ -22,10 +22,14 @@ export class CollectPage implements OnInit {
   avatarUrl: string;
   uid: number;
   userData: Data;
-  collected: boolean;
+  user: Data;
+  collected = false;
+  type = 1;
+  amount = 1;
   postData = {
-      amount: 1,
+      amount: this.amount,
       user: '',
+      type: this.type
   } ;
   animation: Animation;
 
@@ -35,7 +39,6 @@ export class CollectPage implements OnInit {
       private httpService: HttpService,
       private animationCtrl: AnimationController
   ) {
-      this.collected = false;
   }
 
   ngOnInit() {
@@ -43,13 +46,21 @@ export class CollectPage implements OnInit {
       console.log(res);
       this.userData = res;
       this.uid = this.userData.id;
-      this.myGxb = this.userData.gxb;
       this.avatarUrl = this.userData.avatar;
-      this.httpService.get('gxbs?page=1&order%5Bdate%5D=desc&itemsPerPage=10&user.id=' + this.uid).subscribe((res1) => {
-          this.hists = res1;
-          console.log(res1);
+
+      this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
+          this.user = res1;
+          this.myGxb = this.user.gxb;
+      });
+
+      this.httpService.get('gxbs?page=1&order%5Bdate%5D=desc&itemsPerPage=10&user.id=' + this.uid).subscribe((res2) => {
+          this.hists = res2;
+          console.log(res2);
+          console.log(typeof res2[0].type);
+          console.log(this.type);
           if (this.hists[0]){
-              if (new Date(this.hists[0].date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)){
+              if (new Date(this.hists[0].date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)
+                 && this.hists[0].type === this.type){
                   this.collected = true;
               }
           }
@@ -88,6 +99,7 @@ export class CollectPage implements OnInit {
           this.hists.unshift(res);
           this.toastService.presentToast('GXB +1 <p>每天1次机会，记得明天再来哦</p>');
           this.dismiss();
+          this.myGxb = this.myGxb + this.amount;
       });
       console.log('collected');
   }

@@ -7,6 +7,10 @@ export enum FinanceType {
     pay,
 }
 
+export enum GxbType {
+    collect = 1,
+}
+
 const url = 'http://b.gxb';
 export const environment = {
   production: false,
