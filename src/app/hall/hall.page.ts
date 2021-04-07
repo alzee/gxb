@@ -54,16 +54,16 @@ export class HallPage implements OnInit {
   }
 
   ngOnInit() {
-      this.httpService.get('tasks?page=1&order%5BrecommendUntil%5D=desc').subscribe((res) => {
+      this.httpService.get('tasks?page=1&paused=false&stopped=false&order%5BrecommendUntil%5D=desc').subscribe((res) => {
           this.tasksByRecommend = res;
           this.tasks = this.tasksByRecommend;
           console.log(res);
       });
-      this.httpService.get('tasks?page=1&order%5Bdate%5D=desc').subscribe((res) => {
+      this.httpService.get('tasks?page=1&paused=false&stopped=false&order%5Bdate%5D=desc').subscribe((res) => {
           this.tasksByDate = res;
           console.log(res);
       });
-      this.httpService.get('tasks?page=1&order%5Bprice%5D=desc').subscribe((res) => {
+      this.httpService.get('tasks?page=1&paused=false&stopped=false&order%5Bprice%5D=desc').subscribe((res) => {
           this.tasksByPrice = res;
           console.log(res);
       });

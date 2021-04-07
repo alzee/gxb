@@ -72,14 +72,14 @@ export class HomePage implements OnInit {
   ngOnInit() {
       for (let i = 0; i < 4; i++){
           this.httpService.get(
-              `bids?page=1&itemsPerPage=1&position=${i + 1}&order%5Bdate%5D=desc&date%5Bbefore%5D=${this.bondary}`
+              `bids?page=1&itemsPerPage=1&paused=false&stopped=false&position=${i + 1}&order%5Bdate%5D=desc&date%5Bbefore%5D=${this.bondary}`
           ).subscribe((res) => {
               this.bids[i] = res[0];
               console.log(this.bids);
           });
       }
       console.log(this.bondary);
-      this.httpService.get('tasks?page=1&order%5BstickyUntil%5D=desc').subscribe((res) => {
+      this.httpService.get('tasks?page=1&paused=false&stopped=false&order%5BstickyUntil%5D=desc').subscribe((res) => {
           this.tasks = res;
           console.log(res);
       });
