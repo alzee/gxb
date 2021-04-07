@@ -76,10 +76,6 @@ export class MypostsPage implements OnInit {
                       this.stopped.push(i);
                   }
               }
-              console.log(this.preApprove);
-              console.log(this.approved);
-              console.log(this.paused);
-              console.log(this.stopped);
           });
       }, (rej) => {
       });

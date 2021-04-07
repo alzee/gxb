@@ -3,6 +3,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { environment } from '../../../environments/environment';
 import { ToastService } from '../../services/toast.service';
+import { AuthConstants } from '../../config/auth-constants';
+import { StorageService } from '../../services/storage.service';
 
 interface Data {
     [propName: string]: any;
@@ -30,6 +32,7 @@ export class OfferPage implements OnInit {
   };
 
   constructor(
+      private storageService: StorageService,
       private activeRoute: ActivatedRoute,
       private httpService: HttpService,
       private toastService: ToastService
@@ -41,12 +44,15 @@ export class OfferPage implements OnInit {
   }
 
   ngOnInit() {
+      this.storageService.get(AuthConstants.AUTH).then((res) => {
+          this.userData = res;
+          this.httpService.get('tasks?paused=false&stopped=false&order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res) => {
+              console.log(res);
+              this.myposts = res;
+          });
+      });
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.position = parseInt(params.id, 10);
-      });
-      this.httpService.get('tasks?order%5Bdate%5D=desc').subscribe((res) => {
-        console.log(res);
-        this.myposts = res;
       });
       this.httpService.get(
           `bids?page=1&order%5Bdate%5D=desc&itemsPerPage=10&position=${this.position}&date%5Bafter%5D=${this.today}`

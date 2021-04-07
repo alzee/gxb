@@ -10,7 +10,7 @@
 <ion-content color="light">
   <ion-item>
     <ion-label class="label">竞价任务</ion-label>
-    <ion-select name="post" [(ngModel)]="post" interface="action-sheet">
+    <ion-select cancelText="取消" name="post" [(ngModel)]="post" interface="action-sheet">
       <ion-select-option *ngFor="let i of myposts" value="{{i.id}}">{{i.title}}</ion-select-option>
     </ion-select>
   </ion-item>
