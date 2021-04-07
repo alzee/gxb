@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidatorFn, AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthConstants } from '../config/auth-constants';
 import { AuthService } from '../services/auth.service';
@@ -18,6 +18,8 @@ export class SignupPage implements OnInit {
     form: FormGroup;
     getCodeBtnText: string;
     codeSent: boolean;
+    phoneDup = 0;
+    usernameDup = true ;
     remaining: number;
     smsType = 'register';
     smsPass: string;
@@ -51,10 +53,23 @@ export class SignupPage implements OnInit {
             acceptTerms: [false, Validators.requiredTrue],
             username: [''],
             password: [''],
+            // phone: ['', this.phoneDupValidator()],
             phone: [''],
             vCode: ['']
         });
     }
+
+    /*
+    phoneDupValidator(): ValidatorFn{
+        return (control: AbstractControl): {[key: string]: any} | null => {
+            if(!control.errors){
+                console.log(control.errors);
+            }
+            const isUsed = false;
+            return isUsed ? { invalidPhone: true } : null;
+        };
+    }
+    */
 
     get username(){
       return this.form.get('username');
@@ -118,6 +133,38 @@ export class SignupPage implements OnInit {
             );
         }
     }
+
+    checkPhoneDup(){
+        // assume phone.valid
+        this.phoneDup = 0;
+        if (this.phone.valid) {
+            this.httpService.get('users?page=1&itemsPerPage=1&phone=' + this.phone.value).subscribe((res) => {
+                if (res.length > 0) {
+                    this.phoneDup = 1;
+                }
+                else {
+                    this.phoneDup = 2;
+                }
+            });
+        }
+    }
+
+    checkUsernameDup(){
+        // assume username.valid
+        this.usernameDup = true;
+        if (this.username.valid) {
+            this.httpService.get('users?page=1&itemsPerPage=1&username=' + this.username.value).subscribe((res) => {
+                if (res.length === 0) {
+                    this.usernameDup = false;
+                    console.log(this.usernameDup);
+                }
+                // else {
+                //     this.usernameDup = true;
+                // }
+            });
+        }
+    }
+
 
     getSms(){
       console.log(this.smsType);

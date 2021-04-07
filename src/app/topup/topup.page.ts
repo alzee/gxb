@@ -7,6 +7,7 @@ import { StorageService } from '../services/storage.service';
 import { AuthConstants } from '../config/auth-constants';
 import { Platform } from '@ionic/angular';
 import { Wechat } from '@ionic-native/wechat/ngx';
+import { Location } from '@angular/common';
 
 interface Data {
     [propName: string]: any;
@@ -31,6 +32,7 @@ export class TopupPage implements OnInit {
       private formBuilder: FormBuilder,
       private activeRoute: ActivatedRoute,
       private httpService: HttpService,
+      private location: Location,
       private storageService: StorageService
   ) { }
 
@@ -85,6 +87,8 @@ export class TopupPage implements OnInit {
                   //     console.log(res);
                   //     // this.toastService.presentToast('充值成功！');
                   // });
+
+                  this.location.back();
               }, reason => {
                   console.log('failed : ', reason);
               });
