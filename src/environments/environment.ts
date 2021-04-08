@@ -5,7 +5,7 @@
 export enum FinanceType {
     topup = 1,
     postTask = 2,
-    pay,
+    pay = 3,
 }
 
 export enum GxbType {

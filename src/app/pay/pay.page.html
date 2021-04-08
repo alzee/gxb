@@ -10,14 +10,16 @@
 <ion-content color="light">
   <ion-label color="medium">支付金额</ion-label>
   <ion-item class="input">
-    <ion-text color="danger" class="price"> ¥ {{total}} </ion-text>
+    <ion-text color="danger" class="price"> ¥ {{amount}} </ion-text>
   </ion-item>
   <ion-label color="medium">选择支付方式</ion-label>
-  <ion-radio-group value="0">
+  <ion-radio-group (ionChange)="changePayMethod($event)" value="{{payMethod}}">
     <ion-item class="input">
       <ion-icon name="wallet" color="warning"></ion-icon>
       <ion-label>
         余额支付
+        <ion-text *ngIf="availableBalance >= amount" color="success">{{availableBalance}}元</ion-text>
+        <ion-text *ngIf="availableBalance < amount" color="danger">{{availableBalance}}元 可用余额不足</ion-text>
       </ion-label>
       <ion-radio slot="end" value="0"></ion-radio>
     </ion-item>
@@ -30,5 +32,4 @@
     </ion-item>
   </ion-radio-group>
   <ion-button expand="block" (click)="pay()">立即支付</ion-button>
-
 </ion-content>
