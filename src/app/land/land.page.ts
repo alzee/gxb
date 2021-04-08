@@ -46,6 +46,9 @@ export class LandPage implements OnInit {
              ) {}
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter(){
       this.httpService.get('land_posts?itemsPerPage=35&land=1').subscribe((res) => {
           this.posts = res;
           this.land.id = 1;
