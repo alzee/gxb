@@ -9,7 +9,12 @@ interface Data {
   providedIn: 'root'
 })
 export class DataService {
-  private messageSource = new BehaviorSubject({});
+  private messageSource = new BehaviorSubject({
+    orderData: {},
+    postData: {},
+    url: '',
+    user: ''
+  });
   currentMessage = this.messageSource.asObservable();
 
   constructor() { }

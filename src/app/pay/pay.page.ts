@@ -9,6 +9,7 @@ import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
 import { Platform } from '@ionic/angular';
 import { Wechat } from '@ionic-native/wechat/ngx';
+import { ToastService } from '../services/toast.service';
 
 interface Data {
     [propName: string]: any;
@@ -26,6 +27,7 @@ export class PayPage implements OnInit {
   message: Data;
   url: string;
   postData: Data;
+  orderData: Data;
   userData: Data;
   availableBalance: number;
   payMethod = 0;
@@ -38,14 +40,16 @@ export class PayPage implements OnInit {
       private httpService: HttpService,
       private router: Router,
       private location: Location,
+      private toastService: ToastService,
       private data: DataService
   ) { }
 
   ngOnInit() {
       this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
-      this.amount = this.message.price;
       this.url = this.message.url;
-      this.postData = this.message.data;
+      this.postData = this.message.postData;
+      this.orderData = this.message.orderData;
+      this.amount = this.orderData.amount;
       console.log(this.message);
 
       this.storageService.get(AuthConstants.AUTH).then((res) => {
@@ -74,23 +78,26 @@ export class PayPage implements OnInit {
   }
 
   pay() {
-    if (this.payMethod === 0) {
-        // balance
-        this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
-            console.log(res1);
-            this.user = res1;
-            this.availableBalance = this.user.topup + this.user.earnings;
+    if (this.payMethod === 0) { // balance
+        this.orderData.user = '/api/users/' + this.userData.id;
+        // console.log(this.url, this.postData, this.orderData);
+
+        this.httpService.post('finances', this.orderData).subscribe((res) => {
+            console.log(res);
+            this.httpService.patch(this.url, this.postData).subscribe((res1) => {
+                console.log(res1);
+                this.toastService.presentToast(this.orderData.note + ' 支付完成');
+                this.location.back();
+            });
         });
-        this.location.back();
         // this.router.navigate(['land/occupy'], {queryParams: {paid: 'n'}});
     }
-    else {
-        // wechat
+    else { // wechat
         const data = {
             uid: this.userData.id,
             amount: this.amount,
-            type: 3,
-            note: '支付'
+            type: 4,
+            note: this.orderData.note
         };
         this.httpService.post('prepayid', data).subscribe((res) => {
             console.log(res);
@@ -99,6 +106,7 @@ export class PayPage implements OnInit {
             this.platform.ready().then(() => {
                 this.wechat.sendPaymentRequest(params).then((res1) => {
                     console.log(params);
+                    this.toastService.presentToast(this.orderData.note + ' 支付完成');
                     this.location.back();
                 }, reason => {
                     console.log('failed : ', reason);

@@ -17,11 +17,13 @@ interface Data {
 })
 export class StickyPage implements OnInit {
   stickyUntil: Date;
-  price: number;
+  amount = 9;
   tid: number;
   title: string;
   subscription: Subscription;
   message: Data;
+  orderType = 2;
+  orderNote = '任务置顶';
 
   constructor(
       private httpService: HttpService,
@@ -30,7 +32,6 @@ export class StickyPage implements OnInit {
       private toastService: ToastService,
       private data: DataService
   ) {
-      this.price = 9;
   }
 
   ngOnInit() {
@@ -55,15 +56,20 @@ export class StickyPage implements OnInit {
       const postData = {
         stickyUntil: this.stickyUntil
       };
+      const orderData = {
+        type: this.orderType,
+        note: this.orderNote,
+        amount: this.amount
+      };
       this.message = {
-          price: this.price,
+          orderData,
           postData,
-          url: 'tasks/' + this.tid
+          url: 'tasks/' + this.tid,
 
       };
       this.data.changeMessage(this.message);
       this.router.navigate(['/pay'], { replaceUrl: true });
-      // this.httpService.patch('tasks/' + this.tid, data).subscribe((res) => {
+      // this.httpService.patch('tasks/' + this.tid, postData).subscribe((res) => {
       //     console.log(res);
       //     this.toastService.presentToast('置顶成功！');
       //     // this.router.navigate(['/myposts'], { replaceUrl: true });
