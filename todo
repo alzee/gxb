@@ -2,7 +2,6 @@ major:
   - topbar
   - back button
   - skeleton-text
-  - pay jump
   - cities
   - 领地交易
   - 兑股权
@@ -27,6 +26,12 @@ major:
   - ionic app update inside app
 minor:
   - should can not input negitive
+  - rmb unit
+  - public pay should like others
+  - task cate cascade:remove
+  - admin entity
+  - gxb/equity/balance add/minus
+  - php add text to pic
 
 question:
   - 展现天数和接单时间是不是重复
