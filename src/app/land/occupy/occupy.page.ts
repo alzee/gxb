@@ -4,6 +4,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpService } from '../../services/http.service';
 import {Location} from '@angular/common';
+import { DataService } from '../../services/data.service';
+import { Subscription } from 'rxjs';
 
 interface Data {
     [propName: string]: any;
@@ -27,13 +29,18 @@ export class OccupyPage implements OnInit {
   paid: string;
   url: string = environment.url;
   postData: Data = {};
+  subscription: Subscription;
+  message: Data;
+  orderType = 2;
+  orderNote = '占领格子';
 
   constructor(
       private activeRoute: ActivatedRoute,
       private httpService: HttpService,
       private http: HttpClient,
       private router: Router,
-      private location: Location
+      private location: Location,
+      private data: DataService
   ) {
       this.owner = '/api/users/4';
       this.days = 10;
@@ -41,11 +48,8 @@ export class OccupyPage implements OnInit {
   }
 
   ngOnInit() {
-      // this.httpService.post('land_posts', this.postData).subscribe((res) => {
-      //     console.log(res);
-      //     //this.location.back();
-      //     this.router.navigate(['/land']);
-      // });
+      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
+
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.landId = params.id;
           this.land = '/api/lands/' + this.landId;
@@ -69,7 +73,7 @@ export class OccupyPage implements OnInit {
 
   validateInputs() {
       this.postData.days = this.days;
-      this.postData.price = this.price;
+      this.postData.price = this.price * 100;
       this.postData.cover = this.cover;
       this.postData.pics = this.pics;
       this.postData.title = this.title;
@@ -80,11 +84,21 @@ export class OccupyPage implements OnInit {
 
   publish() {
       this.validateInputs();
-      this.httpService.post('land_posts', this.postData).subscribe((res) => {
-          console.log(res);
-          // this.location.back();
-          this.router.navigate(['/land']);
-      });
+
+      const postData = this.postData;
+      const orderData = {
+        type: this.orderType,
+        note: this.orderNote,
+        amount: this.price * this.days,
+      };
+      this.message = {
+          orderData,
+          postData,
+          url: 'land_posts',
+          httpMethod: 'post'
+      };
+      this.data.changeMessage(this.message);
+      this.router.navigate(['/pay'], { replaceUrl: true });
   }
 
   uploadPhoto(fileChangeEvent, type) {
@@ -114,5 +128,4 @@ export class OccupyPage implements OnInit {
       console.log(this.cover);
     });
   }
-
 }

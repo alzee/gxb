@@ -32,7 +32,7 @@
   <ion-label color="medium">在城市格子上展示的天数</ion-label>
   <ion-item>
     <ion-label>展示天数</ion-label>
-    <ion-input placeholder="最低10天起步" [(ngModel)]="days"></ion-input>
+    <ion-input type="number" placeholder="最低10天起步" [(ngModel)]="days"></ion-input>
   </ion-item>
 
   <ion-label></ion-label>
@@ -46,5 +46,5 @@
     <ion-text color="danger">¥ {{days * price}}</ion-text>
   </ion-item>
 
-  <ion-button expand="block" routerLink="/pay" [queryParams]="{total: days * price}">发布</ion-button>
+  <ion-button expand="block" (click)="publish()">发布</ion-button>
 </ion-content>
