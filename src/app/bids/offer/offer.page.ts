@@ -46,9 +46,9 @@ export class OfferPage implements OnInit {
   ngOnInit() {
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
-          this.httpService.get('tasks?paused=false&stopped=false&order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res) => {
-              console.log(res);
-              this.myposts = res;
+          this.httpService.get('tasks?paused=false&stopped=false&order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res1) => {
+              console.log(res1);
+              this.myposts = res1;
           });
       });
       this.activeRoute.queryParams.subscribe((params: Params) => {
