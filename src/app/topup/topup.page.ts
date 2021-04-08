@@ -94,7 +94,7 @@ export class TopupPage implements OnInit {
 
                   // this.location.back();
                   this.toastService.presentToast('充值成功！');
-                  this.router.navigate(['/me']);
+                  this.router.navigate(['/tabs/me']);
               }, reason => {
                   console.log('failed : ', reason);
               });
