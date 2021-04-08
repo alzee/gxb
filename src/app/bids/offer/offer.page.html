@@ -26,7 +26,7 @@
   <ion-item class="list-item" *ngFor="let i of bids">
     <div slot="start">
       <p>{{i.task.title}}</p>
-      <ion-text color="medium">{{i.date | date:'yyyy年MM月dd日 HH:mm:ss' :'GMT'}}</ion-text>
+      <ion-text color="medium">{{i.date | date:'yyyy年MM月dd日 HH:mm:ss'}}</ion-text>
     </div>
     <ion-text slot="end" color="danger">{{i.bid}}元</ion-text>
   </ion-item>

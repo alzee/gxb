@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { environment } from '../../../environments/environment';
 import { ToastService } from '../../services/toast.service';
 import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
+import { DataService } from '../../services/data.service';
+import { Subscription } from 'rxjs';
 
 interface Data {
     [propName: string]: any;
@@ -26,17 +28,23 @@ export class OfferPage implements OnInit {
   min: number;
   step: number;
   userData: Data;
-  data: Data = {
+  postData: Data = {
       task: 0,
       bid: 0,
       position: 0
   };
+  subscription: Subscription;
+  message: Data;
+  orderType = 2;
+  orderNote = '任务竞价';
 
   constructor(
       private storageService: StorageService,
       private activeRoute: ActivatedRoute,
+      private router: Router,
       private httpService: HttpService,
-      private toastService: ToastService
+      private toastService: ToastService,
+      private data: DataService
   ) {
       this.date = new Date();
       this.today = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
@@ -45,6 +53,8 @@ export class OfferPage implements OnInit {
   }
 
   ngOnInit() {
+      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
+
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
           this.httpService.get('tasks?paused=false&stopped=false&order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res1) => {
@@ -76,9 +86,9 @@ export class OfferPage implements OnInit {
   }
 
   bid(){
-    this.data.task = '/api/tasks/' + this.post;
-    this.data.bid = this.myBid;
-    this.data.position = this.position;
+    this.postData.task = '/api/tasks/' + this.post;
+    this.postData.bid = this.myBid;
+    this.postData.position = this.position;
     console.log(this.myBid);
     console.log(this.post);
     console.log(this.position);
@@ -92,11 +102,25 @@ export class OfferPage implements OnInit {
             this.toastService.presentToast('最低出价' + this.min + '元');
             break;
         default:
-            this.httpService.post('bids', this.data).subscribe((res) => {
-            console.log(res);
-            this.ngOnInit();
-        });
-    }
-  }
+            // this.httpService.post('bids', this.postData).subscribe((res) => {
+            // console.log(res);
+            // this.ngOnInit();
 
+            const postData = this.postData;
+            const orderData = {
+                type: this.orderType,
+                note: this.orderNote,
+                amount: this.postData.bid
+            };
+            this.message = {
+                orderData,
+                postData,
+                url: 'bids',
+                httpMethod: 'post'
+            };
+            this.data.changeMessage(this.message);
+            this.router.navigate(['/pay'], { replaceUrl: true });
+
+        }
+    }
 }
