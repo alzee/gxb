@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { HttpService } from '../services/http.service';
 import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
-import { Platform } from '@ionic/angular';
+import { Platform, LoadingController, NavController } from '@ionic/angular';
 import { Wechat } from '@ionic-native/wechat/ngx';
 import { ToastService } from '../services/toast.service';
 
@@ -35,6 +35,8 @@ export class PayPage implements OnInit {
   payMethod = 0;
 
   constructor(
+      public navCtrl: NavController,
+      public loadingController: LoadingController,
       private wechat: Wechat,
       private platform: Platform,
       private storageService: StorageService,
@@ -91,14 +93,16 @@ export class PayPage implements OnInit {
                 this.httpService.patch(this.url, this.postData).subscribe((res1) => {
                     console.log(res1);
                     this.toastService.presentToast(this.orderData.note + ' 支付完成');
-                    this.location.back();
+                    // this.location.back();
+                    this.navCtrl.back();
                 });
             }
             else if (this.httpMethod === 'post') {
                 this.httpService.post(this.url, this.postData).subscribe((res1) => {
                     console.log(res1);
                     this.toastService.presentToast(this.orderData.note + ' 支付完成');
-                    this.location.back();
+                    // this.location.back();
+                    this.navCtrl.back();
                 });
             }
 
@@ -119,8 +123,14 @@ export class PayPage implements OnInit {
             this.platform.ready().then(() => {
                 this.wechat.sendPaymentRequest(params).then((res1) => {
                     console.log(params);
-                    this.toastService.presentToast(this.orderData.note + ' 支付完成');
-                    this.location.back();
+                    this.presentLoading().then(
+                        (res2) => {
+                            this.toastService.presentToast(this.orderData.note + ' 支付完成');
+                            // this.router.navigate(['/tabs/me'], {replaceUrl: true});
+                            this.navCtrl.back();
+                        }, reason => {
+                        }
+                    );
                 }, reason => {
                     console.log('failed : ', reason);
                 });
@@ -132,5 +142,17 @@ export class PayPage implements OnInit {
   changePayMethod(e){
       this.payMethod = parseInt(e.detail.value, 10);
       console.log(this.payMethod);
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      // cssClass: 'my-custom-class',
+      message: '正在支付...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
   }
 }
