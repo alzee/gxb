@@ -26,6 +26,7 @@ export class TopupPage implements OnInit {
 
 
   constructor(
+      private router: Router,
       private wechat: Wechat,
       private platform: Platform,
       private toastService: ToastService,
@@ -91,7 +92,9 @@ export class TopupPage implements OnInit {
                   //     // this.toastService.presentToast('充值成功！');
                   // });
 
-                  this.location.back();
+                  // this.location.back();
+                  this.toastService.presentToast('充值成功！');
+                  this.router.navigate(['/me']);
               }, reason => {
                   console.log('failed : ', reason);
               });
