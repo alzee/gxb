@@ -30,6 +30,7 @@ export class PayPage implements OnInit {
   postData: Data;
   orderData: Data;
   userData: Data;
+  user: Data;
   availableBalance: number;
   payMethod = 0;
 

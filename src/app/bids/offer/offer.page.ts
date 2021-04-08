@@ -25,6 +25,7 @@ export class OfferPage implements OnInit {
   post: number;
   min: number;
   step: number;
+  userData: Data;
   data: Data = {
       task: 0,
       bid: 0,

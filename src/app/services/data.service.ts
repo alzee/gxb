@@ -20,7 +20,7 @@ export class DataService {
 
   constructor() { }
 
-  changeMessage(message: Data) {
+  changeMessage(message) {
     this.messageSource.next(message);
   }
 

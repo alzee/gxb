@@ -6,6 +6,10 @@ import { DataService } from '../services/data.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-promo',
   templateUrl: './promo.page.html',
