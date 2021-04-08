@@ -13,6 +13,7 @@ export class DataService {
     orderData: {},
     postData: {},
     url: '',
+    httpMethod: '',
     user: ''
   });
   currentMessage = this.messageSource.asObservable();

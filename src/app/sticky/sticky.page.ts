@@ -65,6 +65,7 @@ export class StickyPage implements OnInit {
           orderData,
           postData,
           url: 'tasks/' + this.tid,
+          httpMethod: 'patch'
       };
       this.data.changeMessage(this.message);
       this.router.navigate(['/pay'], { replaceUrl: true });

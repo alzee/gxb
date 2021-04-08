@@ -26,6 +26,7 @@ export class PayPage implements OnInit {
   subscription: Subscription;
   message: Data;
   url: string;
+  httpMethod: string;
   postData: Data;
   orderData: Data;
   userData: Data;
@@ -47,6 +48,7 @@ export class PayPage implements OnInit {
   ngOnInit() {
       this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
       this.url = this.message.url;
+      this.httpMethod = this.message.httpMethod;
       this.postData = this.message.postData;
       this.orderData = this.message.orderData;
       this.amount = this.orderData.amount;
@@ -84,11 +86,21 @@ export class PayPage implements OnInit {
 
         this.httpService.post('finances', this.orderData).subscribe((res) => {
             console.log(res);
-            this.httpService.patch(this.url, this.postData).subscribe((res1) => {
-                console.log(res1);
-                this.toastService.presentToast(this.orderData.note + ' 支付完成');
-                this.location.back();
-            });
+            if (this.httpMethod === 'patch') {
+                this.httpService.patch(this.url, this.postData).subscribe((res1) => {
+                    console.log(res1);
+                    this.toastService.presentToast(this.orderData.note + ' 支付完成');
+                    this.location.back();
+                });
+            }
+            else if (this.httpMethod === 'post') {
+                this.httpService.post(this.url, this.postData).subscribe((res1) => {
+                    console.log(res1);
+                    this.toastService.presentToast(this.orderData.note + ' 支付完成');
+                    this.location.back();
+                });
+            }
+
         });
         // this.router.navigate(['land/occupy'], {queryParams: {paid: 'n'}});
     }
