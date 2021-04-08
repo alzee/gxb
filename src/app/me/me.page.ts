@@ -4,6 +4,7 @@ import { StorageService } from '../services/storage.service';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 interface Data {
     [propName: string]: any;
@@ -100,6 +101,7 @@ export class MePage implements OnInit {
   ];
 
   constructor(
+      public navCtrl: NavController,
       private router: Router,
       private httpService: HttpService,
       private storageService: StorageService
@@ -126,5 +128,16 @@ export class MePage implements OnInit {
               // delete this.user;
           }
       );
+  }
+
+  ionViewDidEnter(){
+  }
+  ionViewWillLeave(){
+      console.log('ttt');
+  }
+
+  go(){
+      this.navCtrl.navigateForward('/topup');
+      // this.navCtrl.navigateRoot('/topup');
   }
 }
