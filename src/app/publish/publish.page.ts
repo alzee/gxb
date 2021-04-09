@@ -145,7 +145,7 @@ export class PublishPage implements OnInit {
       this.postData.quantity = this.f.quantity.value;
       this.postData.applyUntil = applyUntil;
       this.postData.approveUntil = approveUntil;
-      this.postData.showUntil = showUntil
+      this.postData.showUntil = showUntil;
       this.postData.price = this.f.price.value;
       this.postData.description = this.f.description.value;
       this.postData.link = this.f.link.value;
