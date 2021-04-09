@@ -85,7 +85,7 @@ export class HomePage implements OnInit {
       });
       this.httpService.get('nodes?page=1&itemsPerPage=3&type.id=3').subscribe((res) => {
           this.news = res;
-          console.log(res);
+          // console.log(res);
       });
   }
 
@@ -104,5 +104,9 @@ export class HomePage implements OnInit {
       console.log(this.keyword);
       this.router.navigate(['/search'], {queryParams: {keyword: this.keyword}});
     }
+  }
+
+  isFuture(time: string){
+    return new Date(time).getTime() > new Date().getTime();
   }
 }
