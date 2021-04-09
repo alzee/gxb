@@ -248,7 +248,7 @@ export class PublishPage implements OnInit {
             this.publish();
             const data = {
                 amount: this.f.quantity.value * this.f.price.value,
-                type: 2,
+                type: 0,
                 user: '/api/users/' + this.userData.id,
             };
             this.httpService.post('finances', data).subscribe((res) => {

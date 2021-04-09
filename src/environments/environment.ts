@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export enum FinanceType {
+    postTask = 0,
     topup = 1,
-    // postTask = 2,
-    pay = 2,
+    otherpay = 2,
     wxpay = 4
 }
 

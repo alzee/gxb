@@ -32,7 +32,6 @@ minor:
   - admin entity
   - gxb/equity/balance add/minus
   - php add text to pic
-  - 任务发布后冻结金额增加
 
 question:
   - 展现天数和接单时间是不是重复
