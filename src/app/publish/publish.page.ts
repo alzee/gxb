@@ -136,6 +136,8 @@ export class PublishPage implements OnInit {
       applyUntil.setHours(applyUntil.getHours() + this.f.applyHours.value);
       const approveUntil = new Date();
       approveUntil.setHours(approveUntil.getHours() + this.f.approveHours.value);
+      const showUntil = new Date();
+      showUntil.setDate(showUntil.getDate() + this.f.showdays.value);
       this.postData.owner = 'api/users/' + this.userData.id;
       this.postData.category = '/api/categories/' + this.f.category.value;
       this.postData.title = this.f.title.value;
@@ -143,13 +145,14 @@ export class PublishPage implements OnInit {
       this.postData.quantity = this.f.quantity.value;
       this.postData.applyUntil = applyUntil;
       this.postData.approveUntil = approveUntil;
-      this.postData.showdays = this.f.showdays.value;
+      this.postData.showUntil = showUntil
       this.postData.price = this.f.price.value;
       this.postData.description = this.f.description.value;
       this.postData.link = this.f.link.value;
       this.postData.note = this.f.note.value;
       this.postData.guides.push(this.guides);
       this.postData.reviews.push(this.reviews);
+      console.log(this.postData);
       // return (
       //     this.postData.username &&
       //         this.postData.password &&
@@ -205,6 +208,7 @@ export class PublishPage implements OnInit {
   }
 
   preview(){
+      this.validateInputs();
       console.log(this.f);
       this.checkBalance();
   }
