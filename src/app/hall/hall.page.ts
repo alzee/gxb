@@ -103,4 +103,8 @@ export class HallPage implements OnInit {
       this.router.navigate(['/search'], {queryParams: {keyword: this.keyword}});
     }
   }
+
+  isFuture(time: string){
+    return new Date(time).getTime() > new Date().getTime();
+  }
 }
