@@ -19,7 +19,6 @@ export class MePage implements OnInit {
   url = environment.url;
   userData: Data;
   user: Data;
-  total: number;
   public features = [
     {
       link: '/myposts',
@@ -118,7 +117,8 @@ export class MePage implements OnInit {
               console.log(this.userData);
               this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
                   this.user = res1;
-                  this.user.total = this.user.earnings + this.user.topup;
+                  this.user.total = this.user.earnings + this.user.topup + this.user.frozen;
+                  this.user.availableBalance = this.user.earnings + this.user.topup;
                   console.log(this.user);
               });
           },
@@ -132,6 +132,7 @@ export class MePage implements OnInit {
 
   ionViewDidEnter(){
   }
+
   ionViewWillLeave(){
       console.log('ttt');
   }
