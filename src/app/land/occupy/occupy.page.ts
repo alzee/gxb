@@ -6,6 +6,8 @@ import { HttpService } from '../../services/http.service';
 import {Location} from '@angular/common';
 import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs';
+import { AuthConstants } from '../../config/auth-constants';
+import { StorageService } from '../../services/storage.service';
 
 interface Data {
     [propName: string]: any;
@@ -17,7 +19,6 @@ interface Data {
   styleUrls: ['./occupy.page.scss'],
 })
 export class OccupyPage implements OnInit {
-  owner: string;
   days: number;
   price: number;
   land: string;
@@ -29,12 +30,14 @@ export class OccupyPage implements OnInit {
   paid: string;
   url: string = environment.url;
   postData: Data = {};
+  userData: Data;
   subscription: Subscription;
   message: Data;
   orderType = 2;
   orderNote = '占领格子';
 
   constructor(
+      private storageService: StorageService,
       private activeRoute: ActivatedRoute,
       private httpService: HttpService,
       private http: HttpClient,
@@ -42,13 +45,17 @@ export class OccupyPage implements OnInit {
       private location: Location,
       private data: DataService
   ) {
-      this.owner = '/api/users/4';
       this.days = 10;
       this.price = 1;
   }
 
   ngOnInit() {
       this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
+
+      this.storageService.get(AuthConstants.AUTH).then(
+        (res) => {
+          this.userData = res;
+        });
 
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.landId = params.id;
@@ -78,7 +85,7 @@ export class OccupyPage implements OnInit {
       this.postData.pics = this.pics;
       this.postData.title = this.title;
       this.postData.body = this.body;
-      this.postData.owner = this.owner;
+      this.postData.owner = '/api/users/' + this.userData.id;
       this.postData.land = this.land;
   }
 
