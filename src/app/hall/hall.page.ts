@@ -94,7 +94,7 @@ export class HallPage implements OnInit {
       this.seg = 'all';
       this.ngOnInit();
       event.target.complete();
-    }, 2000);
+    }, 1000);
   }
 
   search(){

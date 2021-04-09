@@ -94,8 +94,9 @@ export class HomePage implements OnInit {
 
     setTimeout(() => {
       console.log('Async operation has ended');
+      this.ngOnInit();
       event.target.complete();
-    }, 2000);
+    }, 1000);
   }
 
   search(){
