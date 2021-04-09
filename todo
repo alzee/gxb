@@ -24,6 +24,7 @@ major:
   - refer code
   - coupon
   - ionic app update inside app
+  - 分红金币
 minor:
   - should can not input negitive
   - rmb unit
