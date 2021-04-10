@@ -7,13 +7,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light" class="ion-padding-horizontal" *ngIf="data">
+<ion-content color="light" class="ion-padding-horizontal" *ngIf="task">
   <ion-card class="info">
     <ion-item class="id">
       <ion-thumbnail>
         <img src="../assets/img/heart.png">
       </ion-thumbnail>
-      <ion-text color="medium">编号: {{data.id}}</ion-text>
+      <ion-text color="medium">编号: {{task.id}}</ion-text>
       <ion-item slot="end" class="speed">
         <ion-text color="medium">店铺审核速度</ion-text>
         <ion-thumbnail>
@@ -30,24 +30,24 @@
     <ion-item class="main">
       <div>
         <h4>
-          {{data.title}}
+          {{task.title}}
         </h4>
         <ion-text color="medium">简单关注 | 急速审核</ion-text>
       </div>
-      <ion-text class="price" slot="end" color="danger">{{data.price}}元</ion-text>
+      <ion-text class="price" slot="end" color="danger">{{task.price}}元</ion-text>
     </ion-item>
     <ion-grid class="data">
       <ion-row>
         <ion-col>
-          <h4>{{data.remain}}</h4>
+          <h4>{{task.remain}}</h4>
           <ion-text color="medium">剩余数量</ion-text>
         </ion-col>
         <ion-col>
-          <h4>{{data.applydays}}h</h4>
+          <h4>{{workMinutesRemainString}}</h4>
           <ion-text color="medium">做单时间</ion-text>
         </ion-col>
         <ion-col>
-          <h4>{{data.approvedays}}d</h4>
+          <h4>{{reviewMinutesRemainString}}</h4>
           <ion-text color="medium">审核时间</ion-text>
         </ion-col>
       </ion-row>
@@ -56,14 +56,14 @@
 
   <ion-item class="about">
     <ion-avatar routerLink="/shop">
-      <img *ngIf="data.owner.avatar; else block1" [src]="envs.url + data.owner.avatar">
+      <img *ngIf="task.owner.avatar; else block1" [src]="envs.url + task.owner.avatar">
       <ng-template #block1>
         <img src="../assets/img/she.png">
       </ng-template>
     </ion-avatar>
     <div>
-      <ion-text>{{data.owner.username}}</ion-text>
-      <ion-text class="uid" color="medium"><p>{{data.owner.id}}</p></ion-text>
+      <ion-text>{{task.owner.username}}</ion-text>
+      <ion-text class="uid" color="medium"><p>{{task.owner.id}}</p></ion-text>
     </div>
     <div slot="end" class="actions">
       <ion-thumbnail>
@@ -83,7 +83,7 @@
     </ion-item>
     <ion-item>
       <ion-text>
-        {{data.description}}
+        {{task.description}}
       </ion-text>
     </ion-item>
   </div>
@@ -93,7 +93,7 @@
       <div class="bar"></div>
       <h4>任务描述</h4>
     </ion-item>
-    <div *ngFor="let i of data.guides[0]">
+    <div *ngFor="let i of task.guides[0]">
       <ion-text>
         {{i.desc}}
       </ion-text>
@@ -103,7 +103,7 @@
     </div>
 
     <h4>验收图文</h4>
-    <div *ngFor="let i of data.reviews[0]; let j = index">
+    <div *ngFor="let i of task.reviews[0]; let j = index">
       <ion-text>
         {{i.desc}}
       </ion-text>

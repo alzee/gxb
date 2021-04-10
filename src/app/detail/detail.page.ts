@@ -24,12 +24,17 @@ interface UserData {
 export class DetailPage implements OnInit {
   id: number;
   userData: UserData;
-  data: Data;
-  applyData: object;
+  task: Data;
   applied: boolean;
+  myApply: Data;
   envs = environment;
-  status: number;
+  statusId = 0;
   applyId: number;
+  workMinutesRemain: number;
+  workMinutesRemainString: string;
+  reviewMinutesRemain: number;
+  reviewMinutesRemainString: string;
+  minutesPast = 0;
   pics = [];
   uploads = [];
 
@@ -53,30 +58,68 @@ export class DetailPage implements OnInit {
       });
 
       this.httpService.get('tasks/' + this.id).subscribe((res) => {
-          this.data = res;
-          console.log(this.data);
-          console.log(this.data.applies);
-          for (const i of this.data.applies){
+          this.task = res;
+          console.log(this.task);
+          console.log(this.task.applies);
+          for (const i of this.task.applies){
               if (i.applicant.id === this.userData.id){
+                  this.myApply = i;
                   this.applied = true;
-                  this.status = i.status.id;
+                  this.statusId = i.status.id;
                   this.applyId = i.id;
                   this.pics = i.pic;
+                  console.log(this.myApply.date);
+                  this.minutesPast = Math.round((new Date().getTime() - new Date(this.myApply.date).getTime()) / 1000 / 60);
                   break;
               }
-              console.log(i.applicant.id);
-              // console.log(this.userData.id);
+          }
+          switch (this.statusId) {
+              case 0:
+                  this.workMinutesRemain = this.task.workHours * 60;
+                  this.reviewMinutesRemain = this.task.reviewHours * 60;
+                  break;
+              case 1:
+                  this.workMinutesRemain = this.task.workHours * 60 - this.minutesPast;
+                  this.reviewMinutesRemain = this.task.reviewHours * 60;
+                  break;
+              case 2:
+                  this.workMinutesRemain = 0;
+                  this.reviewMinutesRemain = this.task.reviewHours * 60 - this.minutesPast;
+                  break;
+              default:
+                  this.workMinutesRemain = 0;
+                  this.reviewMinutesRemain = 0;
+          }
+
+          if (this.workMinutesRemain < 60) {
+              this.workMinutesRemainString = this.workMinutesRemain + 'm';
+          }
+          else if (this.workMinutesRemain < 1440) {
+              this.workMinutesRemainString = Math.trunc(this.workMinutesRemain / 60) + 'h';
+          }
+          else {
+              this.workMinutesRemainString = Math.trunc(this.workMinutesRemain / 1440) + 'd';
+          }
+
+          if (this.reviewMinutesRemain < 60) {
+              this.reviewMinutesRemainString = this.reviewMinutesRemain + 'm';
+          }
+          else if (this.reviewMinutesRemain < 1440) {
+              this.reviewMinutesRemainString = Math.trunc(this.reviewMinutesRemain / 60) + 'h';
+          }
+          else {
+              this.reviewMinutesRemainString = Math.trunc(this.reviewMinutesRemain / 1440) + 'd';
           }
       });
   }
 
   apply() {
-      const data = {
+      const postData = {
           task: '/api/tasks/' + this.id,
           applicant: '/api/users/' + this.userData.id,
           status: '/api/statuses/1'
       };
-      this.httpService.post('applies', data).subscribe((res) => {
+      this.httpService.post('applies', postData).subscribe((res) => {
           console.log(res);
           this.toastService.presentToast('申请成功');
           this.router.navigate(['/mytasks'], {replaceUrl: true});
@@ -84,11 +127,11 @@ export class DetailPage implements OnInit {
   }
 
   submit() {
-      const data = {
+      const postData = {
           status: '/api/statuses/2',
           pic: this.uploads
       };
-      this.httpService.patch('applies/' + this.applyId, data).subscribe((res) => {
+      this.httpService.patch('applies/' + this.applyId, postData).subscribe((res) => {
           console.log(res);
           this.toastService.presentToast('已提交');
           this.ngOnInit();
