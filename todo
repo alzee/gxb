@@ -33,11 +33,11 @@ minor:
   - admin entity
   - gxb/equity/balance add/minus
   - php add text to pic
+  - people bid at same time happens. Should check current min price every time bid()
 
 question:
 
 feedback:
-  - 首页竞价一口价点击没反应
   - 全民分红没做
   - 城市格子我发布的还是展示admin账号，下面看广告的人的数据没做
   - 领地主城的广告出价与别的城市的是不同，这个你又忘记修改了
