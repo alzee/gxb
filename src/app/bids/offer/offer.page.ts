@@ -27,12 +27,14 @@ export class OfferPage implements OnInit {
   post: number;
   min: number;
   step: number;
-  buyNow: number = 99;
+  buyNowPrice: number = 99;
+  buyOut = false;
   userData: Data;
   postData: Data = {
       task: 0,
       bid: 0,
-      position: 0
+      position: 0,
+      isBuyNow: false
   };
   subscription: Subscription;
   message: Data;
@@ -73,6 +75,9 @@ export class OfferPage implements OnInit {
         this.bids = res;
         if (this.bids.length > 0) {
             this.min = this.bids[0].bid + this.step;
+            if (this.bids[0].isBuyNow) {
+                this.buyOut = true;
+            }
         }
       });
   }
@@ -86,10 +91,14 @@ export class OfferPage implements OnInit {
       }
   }
 
-  bid(){
+  bid(isBuyNow: boolean){
+    if (isBuyNow) {
+        this.myBid = this.buyNowPrice;
+    }
     this.postData.task = '/api/tasks/' + this.post;
     this.postData.bid = this.myBid;
     this.postData.position = this.position;
+    this.postData.isBuyNow = isBuyNow
     console.log(this.myBid);
     console.log(this.post);
     console.log(this.position);
@@ -111,7 +120,7 @@ export class OfferPage implements OnInit {
             const orderData = {
                 type: this.orderType,
                 note: this.orderNote,
-                amount: this.postData.bid
+                amount: this.postData.bid,
             };
             this.message = {
                 orderData,

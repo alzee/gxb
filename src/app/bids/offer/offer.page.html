@@ -10,13 +10,16 @@
 <ion-content color="light">
   <ion-item>
     <ion-label class="label">竞价任务</ion-label>
-    <ion-select cancelText="取消" name="post" [(ngModel)]="post" interface="action-sheet">
+    <ion-select [disabled]="buyOut" cancelText="取消" name="post" [(ngModel)]="post" interface="action-sheet">
       <ion-select-option *ngFor="let i of myposts" value="{{i.id}}">{{i.title}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-label class="label">出价</ion-label>
+    <ion-input *ngIf="buyOut" disabled type="number" placeholder="已一口价买断" [(ngModel)]="myBid"></ion-input>
+    <ng-container *ngIf="!buyOut">
     <ion-input type="number" placeholder="当前最低出价{{min}}元" [(ngModel)]="myBid"></ion-input>元
+    </ng-container>
   </ion-item>
   <ion-item class="position">
     <ion-label class="label">竞拍位置</ion-label>
@@ -33,6 +36,6 @@
 </ion-content>
 
 <ion-footer>
-  <ion-button [disabled]="min > buyNow" class="left" expand="full" color="light">一口价</ion-button>
-  <ion-button class="right" expand="full" (click)="bid()">参与竞价</ion-button>
+  <ion-button [disabled]="min > buyNowPrice || buyOut" class="left" expand="full" color="light" (click)="bid(true)">一口价</ion-button>
+  <ion-button [disabled]="buyOut" class="right" expand="full" (click)="bid(false)">参与竞价</ion-button>
 </ion-footer>
