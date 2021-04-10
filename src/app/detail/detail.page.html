@@ -56,7 +56,7 @@
 
   <ion-item class="about">
     <ion-avatar routerLink="/shop">
-      <img *ngIf="data.owner.avatar; else block1" [src]="envs.imgUrl + data.owner.avatar">
+      <img *ngIf="data.owner.avatar; else block1" [src]="envs.url + data.owner.avatar">
       <ng-template #block1>
         <img src="../assets/img/she.png">
       </ng-template>
