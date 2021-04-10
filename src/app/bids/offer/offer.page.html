@@ -33,6 +33,6 @@
 </ion-content>
 
 <ion-footer>
-  <ion-button class="left" expand="full" color="light">一口价</ion-button>
+  <ion-button [disabled]="min > buyNow" class="left" expand="full" color="light">一口价</ion-button>
   <ion-button class="right" expand="full" (click)="bid()">参与竞价</ion-button>
 </ion-footer>
