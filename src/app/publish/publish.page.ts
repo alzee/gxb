@@ -105,7 +105,7 @@ export class PublishPage implements OnInit {
           quantity: [''],
           workHours: [''],
           reviewHours: [''],
-          showdays: [''],
+          // showdays: [''],
           price: ['', Validators.min(this.min)],
           description: [''],
           link: [''],
@@ -131,18 +131,18 @@ export class PublishPage implements OnInit {
       // applyUntil.setHours(applyUntil.getHours() + this.f.workHours.value);
       // const approveUntil = new Date();
       // approveUntil.setHours(approveUntil.getHours() + this.f.reviewHours.value);
-      const showUntil = new Date();
-      showUntil.setDate(showUntil.getDate() + this.f.showdays.value);
+      // const showUntil = new Date();
+      // showUntil.setDate(showUntil.getDate() + this.f.showdays.value);
+      // this.postData.applyUntil = applyUntil;
+      // this.postData.approveUntil = approveUntil;
+      // this.postData.showUntil = showUntil;
       this.postData.owner = 'api/users/' + this.userData.id;
       this.postData.category = '/api/categories/' + this.f.category.value;
       this.postData.title = this.f.title.value;
       this.postData.name = this.f.name.value;
       this.postData.quantity = this.f.quantity.value;
-      // this.postData.applyUntil = applyUntil;
-      // this.postData.approveUntil = approveUntil;
       this.postData.workHours = this.f.workHours.value;
       this.postData.reviewHours = this.f.reviewHours.value;
-      this.postData.showUntil = showUntil;
       this.postData.price = this.f.price.value;
       this.postData.description = this.f.description.value;
       this.postData.link = this.f.link.value;
