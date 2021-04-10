@@ -53,7 +53,7 @@ export class MePage implements OnInit {
     {
       link: '/bonus',
       img: '../assets/img/equity.png',
-      name: '全分分红',
+      name: '全民分红',
     },
     {
       link: '/report',
