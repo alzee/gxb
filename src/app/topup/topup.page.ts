@@ -91,6 +91,9 @@ export class TopupPage implements OnInit {
           // this.navCtrl.navigateBack('/tabs/me');
           // this.navCtrl.navigateForward('/tabs/me');
           // this.navCtrl.back();
+                          this.toastService.presentToast('充值成功！');
+                          // this.router.navigate(['/tabs/me'], {replaceUrl: true});
+                          this.navCtrl.back();
 
           this.platform.ready().then(() => {
               // this.wechat.isInstalled(function (installed) {

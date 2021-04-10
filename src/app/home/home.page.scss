@@ -111,12 +111,21 @@ ion-content{
       padding: 0 10px;
       ion-list-header{
         padding-left: 0;
+        ion-col{
+            padding: 5px 0;
+        }
         .bar{
           background-color: #0072FF;
           width: 4px;
           height: 38%;
           border-radius: .5em;
           margin-right: 6px;
+        }
+        h3{
+          font-size: 18px;
+        }
+        h5{
+          font-size: 14px;
         }
         ion-col{
         display: flex;

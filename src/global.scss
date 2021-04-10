@@ -41,3 +41,10 @@ ion-toast{
     //color: var(--ion-color-light);
     //--background: var(--ion-color-dark);
 }
+ion-searchbar {
+    .searchbar-input-container {
+        input{
+            font-size: 14px !important;
+        }
+    }
+}
