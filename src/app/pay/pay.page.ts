@@ -82,32 +82,33 @@ export class PayPage implements OnInit {
       //                        });
   }
 
+  updateInfo(){
+      if (this.httpMethod === 'patch') {
+          this.httpService.patch(this.url, this.postData).subscribe((res1) => {
+              console.log(res1);
+              this.toastService.presentToast(this.orderData.note + ' 支付完成');
+              // this.location.back();
+              this.navCtrl.back();
+          });
+      }
+      else if (this.httpMethod === 'post') {
+          this.httpService.post(this.url, this.postData).subscribe((res1) => {
+              console.log(res1);
+              this.toastService.presentToast(this.orderData.note + ' 支付完成');
+              // this.location.back();
+              this.navCtrl.back();
+          });
+      }
+  }
+
   pay() {
     if (this.payMethod === 0) { // balance
         this.orderData.user = '/api/users/' + this.userData.id;
-        // console.log(this.url, this.postData, this.orderData);
 
         this.httpService.post('finances', this.orderData).subscribe((res) => {
             console.log(res);
-            if (this.httpMethod === 'patch') {
-                this.httpService.patch(this.url, this.postData).subscribe((res1) => {
-                    console.log(res1);
-                    this.toastService.presentToast(this.orderData.note + ' 支付完成');
-                    // this.location.back();
-                    this.navCtrl.back();
-                });
-            }
-            else if (this.httpMethod === 'post') {
-                this.httpService.post(this.url, this.postData).subscribe((res1) => {
-                    console.log(res1);
-                    this.toastService.presentToast(this.orderData.note + ' 支付完成');
-                    // this.location.back();
-                    this.navCtrl.back();
-                });
-            }
-
+            this.updateInfo();
         });
-        // this.router.navigate(['land/occupy'], {queryParams: {paid: 'n'}});
     }
     else { // wechat
         const data = {
@@ -125,9 +126,7 @@ export class PayPage implements OnInit {
                     console.log(params);
                     this.presentLoading().then(
                         (res2) => {
-                            this.toastService.presentToast(this.orderData.note + ' 支付完成');
-                            // this.router.navigate(['/tabs/me'], {replaceUrl: true});
-                            this.navCtrl.back();
+                            this.updateInfo();
                         }, reason => {
                         }
                     );
