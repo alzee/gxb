@@ -92,11 +92,6 @@ export class PublishPage implements OnInit {
       this.min = 1;
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
-          this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
-              console.log(res1);
-              this.user = res1;
-              this.availableBalance = this.user.topup + this.user.earnings;
-          });
       });
 
       this.httpService.get('categories?itemsPerPage=50').subscribe((res) => {
@@ -294,13 +289,15 @@ export class PublishPage implements OnInit {
   }
 
   checkBalance(){
-      console.log(this.availableBalance);
-      console.log(this.f.quantity.value * this.f.price.value);
-      if (this.availableBalance < (this.f.quantity.value * this.f.price.value)){
-          this.confirmTopup();
-      }
-      else {
-          this.confirmPublish();
-      }
+      this.httpService.get('users/' + this.userData.id).subscribe((res) => {
+          this.user = res;
+          this.availableBalance = this.user.topup + this.user.earnings;
+          if (this.availableBalance < (this.f.quantity.value * this.f.price.value)){
+              this.confirmTopup();
+          }
+          else {
+              this.confirmPublish();
+          }
+      });
   }
 }
