@@ -20,6 +20,7 @@ export class HomePage implements OnInit {
   bidQuery = 'page=1&itemsPerPage=1&paused=false&stopped=false&order%5Bdate%5D=desc';
   taskQuery = 'paused=false&stopped=false&order%5BstickyUntil%5D=desc';
   newsQuery = 'page=1&itemsPerPage=3&type.id=3';
+  infiniteScroll: IonInfiniteScroll;
   slideOpts = {
       autoplay: {
           delay: 2000,
@@ -66,7 +67,6 @@ export class HomePage implements OnInit {
 
   constructor(
       private router: Router,
-      private infiniteScroll: IonInfiniteScroll,
       private httpService: HttpService
   ) {
       const date: Date = new Date();
