@@ -16,6 +16,10 @@ export class HallPage implements OnInit {
   tasksByPrice = [];
   envs = environment;
   seg = 'all';
+  query = 'paused=false&stopped=false';
+  pageR = 1;
+  pageD = 1;
+  pageP = 1;
   customActionSheetOptions: any = {
     header: 'Colors',
     subHeader: 'Select your favorite color'
@@ -54,24 +58,38 @@ export class HallPage implements OnInit {
   }
 
   ngOnInit() {
-      this.httpService.get('tasks?page=1&paused=false&stopped=false&order%5BrecommendUntil%5D=desc').subscribe((res) => {
-          this.tasksByRecommend = res;
+      this.getTaskByPrice();
+      this.getTaskByDate();
+  }
+
+  ionViewWillEnter(){
+      this.getTaskByRecomm();
+  }
+
+  getTaskByRecomm(){
+      this.httpService.get(`tasks?page=${this.pageR}&${this.query}&order%5BrecommendUntil%5D=desc`).subscribe((res) => {
+          this.tasksByRecommend = [...this.tasksByRecommend, ...res];
           this.tasks = this.tasksByRecommend;
-          console.log(res);
       });
-      this.httpService.get('tasks?page=1&paused=false&stopped=false&order%5Bdate%5D=desc').subscribe((res) => {
-          this.tasksByDate = res;
-          console.log(res);
+  }
+
+  getTaskByDate(){
+      this.httpService.get(`tasks?page=${this.pageD}&${this.query}&order%5Bdate%5D=desc`).subscribe((res) => {
+          this.tasksByDate = [...this.tasksByDate, ...res];
+          this.tasks = this.tasksByDate;
       });
-      this.httpService.get('tasks?page=1&paused=false&stopped=false&order%5Bprice%5D=desc').subscribe((res) => {
-          this.tasksByPrice = res;
-          console.log(res);
+  }
+
+  getTaskByPrice(){
+      this.httpService.get(`tasks?page=${this.pageP}&${this.query}&order%5Bprice%5D=desc`).subscribe((res) => {
+          this.tasksByPrice = [...this.tasksByPrice, ...res];
+          this.tasks = this.tasksByPrice;
       });
   }
 
   segmentChanged(ev: any) {
-    this.tasks = this.tasksByPrice;
-    switch (ev.detail.value) {
+    this.seg = ev.detail.value;
+    switch (this.seg) {
         case this.sorts[0].value:
             this.tasks = this.tasksByRecommend;
             break;
@@ -83,7 +101,7 @@ export class HallPage implements OnInit {
             break;
 
     }
-    console.log('Segment changed', ev.detail.value);
+    console.log('Segment changed', this.seg);
   }
 
   doRefresh(event) {
@@ -106,5 +124,30 @@ export class HallPage implements OnInit {
 
   isFuture(time: string){
     return new Date(time).getTime() > new Date().getTime();
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+      switch (this.seg) {
+          case 'all':
+              this.pageR += 1;
+              this.getTaskByRecomm();
+              break;
+          case 'date':
+              this.pageD += 1;
+              this.getTaskByDate();
+              break;
+          case 'price':
+              this.pageP += 1;
+              this.getTaskByPrice();
+              break;
+      }
+
+      if (this.tasks.length == 50) {
+          event.target.disabled = true;
+      }
+    }, 500);
   }
 }
