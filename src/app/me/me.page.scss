@@ -13,6 +13,7 @@ ion-content{
   }
   .about{
     --background: none;
+    font-size: 14px;
     background: linear-gradient(90deg, #0098FF 0%, #0072FF 50%);
     top: -45px;
     padding: 65px 0 45px;
@@ -23,7 +24,7 @@ ion-content{
     }
     .name{
       display: block;
-      font-size: 22px;
+      font-size: 18px;
     }
   }
   .offset{
@@ -38,6 +39,7 @@ ion-content{
       .total{
         --background: #474656;
         width: 100%;
+        font-size: 14px;
         ion-button{
           --background: #474656;
         }
@@ -47,6 +49,7 @@ ion-content{
         --padding-end: 0px;
         width: 100%;
         h3{
+          font-size: 14px;
           margin: 4px 0;
         }
         .label{
