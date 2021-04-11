@@ -82,14 +82,17 @@ export class HomePage implements OnInit {
               console.log(this.bids);
           });
       }
-      console.log(this.bondary);
-      this.httpService.get(`tasks?page=${this.page}&${this.taskQuery}`).subscribe((res) => {
-          this.tasks = res;
-          console.log(res);
-      });
       this.httpService.get(`nodes?${this.newsQuery}`).subscribe((res) => {
           this.news = res;
           // console.log(res);
+      });
+      this.getTasks();
+  }
+
+  getTasks(){
+      this.httpService.get(`tasks?page=${this.page}&${this.taskQuery}`).subscribe((res) => {
+          this.tasks = [...this.tasks, ...res];
+          console.log(res);
       });
   }
 
@@ -119,10 +122,7 @@ export class HomePage implements OnInit {
       console.log('Done');
       event.target.complete();
       this.page += 1;
-      this.httpService.get(`tasks?page=${this.page}&${this.taskQuery}`).subscribe((res) => {
-          this.tasks = [...this.tasks, ...res];
-          console.log(res);
-      });
+      this.getTasks();
 
       if (this.tasks.length == 50) {
         event.target.disabled = true;
