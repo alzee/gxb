@@ -79,7 +79,7 @@ export class TopupPage implements OnInit {
       const data = {
           uid: this.userData.id,
           amount: this.amount.value,
-          type: 1,
+          type: 0,
           note: '充值'
       };
       this.httpService.post('prepayid', data).subscribe((res) => {

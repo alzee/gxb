@@ -22,7 +22,7 @@ export class PromoPage implements OnInit {
   title: string;
   subscription: Subscription;
   message: Data;
-  orderType = 2;
+  orderType = 3;
   orderNote = '任务推荐';
 
   constructor(

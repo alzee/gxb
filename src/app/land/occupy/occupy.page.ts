@@ -33,7 +33,7 @@ export class OccupyPage implements OnInit {
   userData: Data;
   subscription: Subscription;
   message: Data;
-  orderType = 2;
+  orderType = 6;
   orderNote = '占领格子';
 
   constructor(

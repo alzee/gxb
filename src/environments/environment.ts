@@ -2,13 +2,6 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export enum FinanceType {
-    postTask = 0,
-    topup = 1,
-    otherpay = 2,
-    wxpay = 4
-}
-
 export enum GxbType {
     collect = 1,
 }

@@ -38,7 +38,7 @@ export class OfferPage implements OnInit {
   };
   subscription: Subscription;
   message: Data;
-  orderType = 2;
+  orderType = 4;
   orderNote = '任务竞价';
 
   constructor(
