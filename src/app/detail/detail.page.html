@@ -111,7 +111,7 @@
         <ng-container *ngIf="applied; else elseBlock4">
           <ion-img [src]="envs.url + i.img" class="w-50"></ion-img>
 
-          <ng-container *ngIf="status == 1; else elseBlock3">
+          <ng-container *ngIf="statusId == 1; else elseBlock3">
             <ng-container *ngIf="uploads[j]; else elseBlock5">
               <ion-img [src]="envs.url + uploads[j]" class="w-50"></ion-img>
             </ng-container>
@@ -140,7 +140,7 @@
   <ion-item>
     <ion-button class="contact" size="large" expand="full">联系商家</ion-button>
     <ng-container *ngIf="applied; else elseBlock1">
-      <ng-container *ngIf="status == 1; else elseBlock2">
+      <ng-container *ngIf="statusId == 1; else elseBlock2">
         <ion-button class="apply" size="large" expand="full" (click)="submit()">提交</ion-button>
       </ng-container>
     </ng-container>
