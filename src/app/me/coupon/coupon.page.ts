@@ -12,8 +12,9 @@ interface Data {
   styleUrls: ['./coupon.page.scss'],
 })
 export class CouponPage implements OnInit {
-  coupons: Array;
+  coupons: Array<Data>;
   message: Data;
+  user: Data;
   subscription: Subscription;
 
   constructor(

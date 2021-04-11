@@ -30,9 +30,18 @@ export class PublishPage implements OnInit {
   availableBalance: number;
   userData: Data;
   user: Data;
-  orderData = {};
+  orderData = {
+      amount: 0,
+      type: 1,
+      note: '任务发布',
+      user: '',
+      couponId: 0,
+      fee: 0
+
+  };
   orderType = 1;
   orderNote = '任务发布';
+  coupon: Data;
   hourOptions = [
       {
           time: 3,
