@@ -11,7 +11,7 @@ import { IonInfiniteScroll } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
   keyword: string;
-  bids = [];
+  bids = [] ;
   tasks = [];
   bondary: string;
   news = [];

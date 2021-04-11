@@ -21,8 +21,8 @@
   <ion-item class="bid">
     <ion-grid>
       <ion-row>
-        <ng-container *ngFor="let i of bids">
-        <ion-col [routerLink]="['/detail']" [queryParams]="{id: i.task.id}" class="item" size="6" *ngIf="i">
+        <ng-container *ngIf="bids.length > 0">
+        <ion-col *ngFor="let i of bids" [routerLink]="['/detail']" [queryParams]="{id: i.task.id}" class="item" size="6">
           <ion-row>
             <ion-col size="auto">
               <ion-avatar>
@@ -37,6 +37,24 @@
               <ion-text class="info">{{i.task.category.name}}</ion-text>
               <ion-text class="info">编号: {{i.task.id}}</ion-text>
               <ion-text class="price">{{i.task.price}}元</ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        </ng-container>
+
+        <ng-container *ngIf="bids.length == 0">
+        <ion-col *ngFor="let i of [].constructor(4)" class="item" size="6">
+          <ion-row>
+            <ion-col size="auto">
+              <ion-avatar>
+                <ion-skeleton-text animated></ion-skeleton-text>
+              </ion-avatar>
+            </ion-col>
+            <ion-col>
+                <ion-skeleton-text animated></ion-skeleton-text>
+                <ion-skeleton-text animated></ion-skeleton-text>
+                <ion-skeleton-text animated></ion-skeleton-text>
+                <ion-skeleton-text animated></ion-skeleton-text>
             </ion-col>
           </ion-row>
         </ion-col>
