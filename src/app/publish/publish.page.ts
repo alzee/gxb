@@ -245,6 +245,9 @@ export class PublishPage implements OnInit {
           case 2:
               msg = '账户中相应的可用余额将被冻结，任务结束后解冻剩余部分。';
               break;
+          case 3:
+              msg = '红包只能抵扣手续费。';
+              break;
       }
       const alert = await this.alertController.create({
           header: '提示',
@@ -275,6 +278,7 @@ export class PublishPage implements OnInit {
             this.orderData.note = this.orderNote;
             this.orderData.user = '/api/users/' + this.user.id;
             this.orderData.couponId = this.coupon.id;
+            this.orderData.fee = this.fee;
             this.httpService.post('finances', this.orderData).subscribe((res) => {
                 console.log(res);
                 this.publish();
@@ -328,12 +332,14 @@ export class PublishPage implements OnInit {
   }
 
   subtotal(){
-      this.sum = this.f.quantity.value * this.f.price.value;
+      this.sum = Math.round(this.f.quantity.value * this.f.price.value);
       this.fee = Math.round(this.sum * this.feeRate * 100) / 100;
-      this.total = this.sum + this.fee;
       if (this.coupon) {
-          this.total = this.total - this.coupon.value;
+          this.fee = Math.round(this.fee - this.coupon.value);
       }
-      console.log(this.sum, this.fee, this.total);
+      if (this.fee < 0) {
+          this.fee = 0;
+      }
+      this.total = this.sum + this.fee;
   }
 }
