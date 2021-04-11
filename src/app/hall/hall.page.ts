@@ -145,7 +145,7 @@ export class HallPage implements OnInit {
               break;
       }
 
-      if (this.tasks.length == 50) {
+      if (this.tasks.length === 50) {
           event.target.disabled = true;
       }
     }, 500);

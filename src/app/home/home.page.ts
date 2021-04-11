@@ -66,6 +66,7 @@ export class HomePage implements OnInit {
 
   constructor(
       private router: Router,
+      private infiniteScroll: IonInfiniteScroll,
       private httpService: HttpService
   ) {
       const date: Date = new Date();
@@ -124,7 +125,7 @@ export class HomePage implements OnInit {
       this.page += 1;
       this.getTasks();
 
-      if (this.tasks.length == 50) {
+      if (this.tasks.length === 50) {
         event.target.disabled = true;
       }
     }, 500);
