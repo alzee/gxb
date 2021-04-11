@@ -13,16 +13,15 @@
       <div class="card">
         <p>
         <span>￥</span>
-        <span class="amount">5</span>
+        <span class="amount">{{i.value}}</span>
         </p>
         <p>优惠券</p>
       </div>
       <div class="info">
-        <div class="name">5元优惠券</div>
-        <div class="more">￥5.00 x1</div>
-        <div class="more">有效期：2020-12-30</div>
+        <div class="name">{{i.value}}元优惠券</div>
+        <div class="more">可用范围：{{i.note}}</div>
       </div>
-      <ion-button shape="round" slot="end" color="danger" fill="outline"><span>立即使用</span></ion-button>
+      <ion-button shape="round" slot="end" color="danger" fill="outline" [routerLink]="getLink(i.type)"><span>立即使用</span></ion-button>
     </ion-item>
   </ion-list>
 </ion-content>

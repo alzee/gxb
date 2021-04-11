@@ -14,7 +14,7 @@ export class DataService {
     postData: {},
     url: '',
     httpMethod: '',
-    user: ''
+    user: {}
   });
   currentMessage = this.messageSource.asObservable();
 

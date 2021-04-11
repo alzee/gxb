@@ -5,6 +5,8 @@ import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { DataService } from '../services/data.service';
+import { Subscription } from 'rxjs';
 
 interface Data {
     [propName: string]: any;
@@ -17,8 +19,10 @@ interface Data {
 })
 export class MePage implements OnInit {
   url = environment.url;
+  subscription: Subscription;
   userData: Data;
   user: Data;
+  message: Data;
   public features = [
     {
       link: '/myposts',
@@ -102,12 +106,14 @@ export class MePage implements OnInit {
   constructor(
       public navCtrl: NavController,
       private router: Router,
+      private data: DataService,
       private httpService: HttpService,
       private storageService: StorageService
   ) {
   }
 
   ngOnInit() {
+      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
   }
 
   ionViewWillEnter(){
@@ -120,6 +126,8 @@ export class MePage implements OnInit {
                   this.user.total = this.user.earnings + this.user.topup + this.user.frozen;
                   this.user.availableBalance = this.user.earnings + this.user.topup;
                   console.log(this.user);
+                  this.message.user = this.user;
+                  this.data.changeMessage(this.message);
               });
           },
           (rej) => {
@@ -134,7 +142,6 @@ export class MePage implements OnInit {
   }
 
   ionViewWillLeave(){
-      console.log('ttt');
   }
 
   go(){
