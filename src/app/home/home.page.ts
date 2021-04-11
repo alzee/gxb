@@ -102,6 +102,7 @@ export class HomePage implements OnInit {
 
     setTimeout(() => {
       console.log('Async operation has ended');
+      this.tasks = [];
       this.getTasks();
       event.target.complete();
     }, 1000);

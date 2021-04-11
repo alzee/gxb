@@ -106,6 +106,9 @@ export class HallPage implements OnInit {
 
   doRefresh(event) {
     console.log('Begin async operation');
+    this.tasksByPrice = [];
+    this.tasksByDate = [];
+    this.tasksByRecommend = [];
     this.ngOnInit();
 
     setTimeout(() => {
