@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { ToastService } from '../services/toast.service';
 import { environment } from '../../environments/environment';
+import { NavController } from '@ionic/angular';
 
 interface Data {
     [propName: string]: any;
@@ -30,10 +30,10 @@ export class ApprovePage implements OnInit {
   apply: Data;
 
   constructor(
+      public navCtrl: NavController,
       private toastService: ToastService,
       private activeRoute: ActivatedRoute,
       private httpService: HttpService,
-      private location: Location,
       private router: Router
   ) {
       this.denyCode = 3;
@@ -77,7 +77,7 @@ export class ApprovePage implements OnInit {
       this.httpService.patch('applies/' + this.applyid, {status: '/api/statuses/' + code}).subscribe((res) => {
           console.log(res);
           this.toastService.presentToast(msg);
-          this.location.back();
+          this.navCtrl.back();
       });
       console.log(this.choice);
   }

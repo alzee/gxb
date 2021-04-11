@@ -3,7 +3,6 @@ import { environment } from '../../../environments/environment';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpService } from '../../services/http.service';
-import {Location} from '@angular/common';
 import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs';
 import { AuthConstants } from '../../config/auth-constants';
@@ -42,7 +41,6 @@ export class OccupyPage implements OnInit {
       private httpService: HttpService,
       private http: HttpClient,
       private router: Router,
-      private location: Location,
       private data: DataService
   ) {
       this.days = 10;
