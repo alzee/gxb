@@ -30,6 +30,9 @@ export class PublishPage implements OnInit {
   availableBalance: number;
   userData: Data;
   user: Data;
+  orderData = {};
+  orderType = 1;
+  orderNote = '任务发布';
   hourOptions = [
       {
           time: 3,
@@ -96,6 +99,15 @@ export class PublishPage implements OnInit {
       this.min = 1;
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
+          this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
+              console.log(res1);
+              this.user = res1;
+              for (const coupon of this.user.coupon) {
+                  if (coupon.type === this.orderType) {
+                      this.coupon = coupon;
+                  }
+              }
+          });
       });
 
       this.httpService.get('categories?itemsPerPage=50').subscribe((res) => {
@@ -234,12 +246,12 @@ export class PublishPage implements OnInit {
               msg = '账户中相应的可用余额将被冻结，任务结束后解冻剩余部分。';
               break;
       }
-    const alert = await this.alertController.create({
-      header: '提示',
-      message: msg
-    });
+      const alert = await this.alertController.create({
+          header: '提示',
+          message: msg
+      });
 
-    await alert.present();
+      await alert.present();
   }
 
   async confirmPublish() {
@@ -258,14 +270,14 @@ export class PublishPage implements OnInit {
           text: '确定',
           handler: () => {
             console.log('Confirm Okay');
-            this.publish();
-            const data = {
-                amount: this.total,
-                type: 0,
-                user: '/api/users/' + this.userData.id,
-            };
-            this.httpService.post('finances', data).subscribe((res) => {
+            this.orderData.amount = this.total;
+            this.orderData.type = this.orderType;
+            this.orderData.note = this.orderNote;
+            this.orderData.user = '/api/users/' + this.user.id;
+            this.orderData.couponId = this.coupon.id;
+            this.httpService.post('finances', this.orderData).subscribe((res) => {
                 console.log(res);
+                this.publish();
                 const params = res;
             });
           }
@@ -319,6 +331,9 @@ export class PublishPage implements OnInit {
       this.sum = this.f.quantity.value * this.f.price.value;
       this.fee = Math.round(this.sum * this.feeRate * 100) / 100;
       this.total = this.sum + this.fee;
+      if (this.coupon) {
+          this.total = this.total - this.coupon.value;
+      }
       console.log(this.sum, this.fee, this.total);
   }
 }

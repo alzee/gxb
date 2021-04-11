@@ -70,20 +70,27 @@
     </ion-input>
   </ion-item>
 
-  <ion-item class="sum" *ngIf="f.quantity.valid && f.price.valid">
+  <ng-container *ngIf="f.quantity.valid && f.price.valid">
+  <ion-item class="sum">
     <ion-text>任务金额</ion-text> 
     <ion-note slot="end" color="danger">{{sum}} 元</ion-note>
   </ion-item>
-  <ion-item class="fee" *ngIf="f.quantity.valid && f.price.valid">
+  <ion-item class="fee">
     <ion-text (click)="showTip(1)">手续费</ion-text> 
     <ion-icon (click)="showTip(1)" size="small" name="help-circle-outline"></ion-icon>
     <ion-note slot="end" color="danger">{{fee}} 元</ion-note>
   </ion-item>
-  <ion-item class="total" *ngIf="f.quantity.valid && f.price.valid">
+  <ion-item class="sum" *ngIf="coupon">
+    <ion-text>可用红包：</ion-text> 
+    <ion-text> {{coupon.note}} {{coupon.value}} 元</ion-text> 
+    <ion-note slot="end" color="danger">-{{coupon.value}} 元</ion-note>
+  </ion-item>
+  <ion-item class="total">
     <ion-text (click)="showTip(2)">合计金额</ion-text> 
     <ion-icon (click)="showTip(2)" size="small" name="help-circle-outline"></ion-icon>
     <ion-note slot="end" color="danger">{{total}} 元</ion-note>
   </ion-item>
+  </ng-container>
 
   <ion-label color="medium"></ion-label>
 
