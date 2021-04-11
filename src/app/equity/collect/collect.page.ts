@@ -56,7 +56,6 @@ export class CollectPage implements OnInit {
       this.httpService.get('gxbs?page=1&order%5Bdate%5D=desc&itemsPerPage=10&user.id=' + this.uid).subscribe((res2) => {
           this.hists = res2;
           console.log(res2);
-          console.log(typeof res2[0].type);
           console.log(this.type);
           if (this.hists[0]){
               if (new Date(this.hists[0].date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)
