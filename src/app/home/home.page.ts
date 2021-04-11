@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,10 @@ export class HomePage implements OnInit {
   bondary: string;
   news = [];
   envs = environment;
+  page = 1;
+  bidQuery = 'page=1&itemsPerPage=1&paused=false&stopped=false&order%5Bdate%5D=desc';
+  taskQuery = 'paused=false&stopped=false&order%5BstickyUntil%5D=desc';
+  newsQuery = 'page=1&itemsPerPage=3&type.id=3';
   slideOpts = {
       autoplay: {
           delay: 2000,
@@ -71,18 +76,18 @@ export class HomePage implements OnInit {
   ngOnInit() {
       for (let i = 0; i < 4; i++){
           this.httpService.get(
-              `bids?page=1&itemsPerPage=1&paused=false&stopped=false&position=${i + 1}&order%5Bdate%5D=desc&date%5Bbefore%5D=${this.bondary}`
+              `bids?position=${i + 1}&date%5Bbefore%5D=${this.bondary}&${this.bidQuery}`
           ).subscribe((res) => {
               this.bids[i] = res[0];
               console.log(this.bids);
           });
       }
       console.log(this.bondary);
-      this.httpService.get('tasks?page=1&paused=false&stopped=false&order%5BstickyUntil%5D=desc').subscribe((res) => {
+      this.httpService.get(`tasks?page=${this.page}&${this.taskQuery}`).subscribe((res) => {
           this.tasks = res;
           console.log(res);
       });
-      this.httpService.get('nodes?page=1&itemsPerPage=3&type.id=3').subscribe((res) => {
+      this.httpService.get(`nodes?${this.newsQuery}`).subscribe((res) => {
           this.news = res;
           // console.log(res);
       });
@@ -107,5 +112,25 @@ export class HomePage implements OnInit {
 
   isFuture(time: string){
     return new Date(time).getTime() > new Date().getTime();
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+      this.page += 1;
+      this.httpService.get(`tasks?page=${this.page}&${this.taskQuery}`).subscribe((res) => {
+          this.tasks = [...this.tasks, ...res];
+          console.log(res);
+      });
+
+      if (this.tasks.length == 50) {
+        event.target.disabled = true;
+      }
+    }, 500);
+  }
+
+  toggleInfiniteScroll() {
+    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
 }
