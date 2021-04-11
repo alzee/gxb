@@ -109,6 +109,9 @@ export class HallPage implements OnInit {
     this.tasksByPrice = [];
     this.tasksByDate = [];
     this.tasksByRecommend = [];
+    this.pageP = 1;
+    this.pageD = 1;
+    this.pageR = 1;
     this.ngOnInit();
 
     setTimeout(() => {

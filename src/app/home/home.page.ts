@@ -100,7 +100,7 @@ export class HomePage implements OnInit {
   doRefresh(event) {
     console.log('Begin async operation');
     this.tasks = [];
-
+    this.page = 1;
     setTimeout(() => {
       console.log('Async operation has ended');
       this.getTasks();
