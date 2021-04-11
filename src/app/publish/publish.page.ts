@@ -286,7 +286,9 @@ export class PublishPage implements OnInit {
             this.orderData.type = this.orderType;
             this.orderData.note = this.orderNote;
             this.orderData.user = '/api/users/' + this.user.id;
-            this.orderData.couponId = this.coupon.id;
+            if (this.coupon) {
+                this.orderData.couponId = this.coupon.id;
+            }
             this.orderData.fee = this.fee;
             this.httpService.post('finances', this.orderData).subscribe((res) => {
                 console.log(res);

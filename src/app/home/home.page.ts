@@ -102,7 +102,7 @@ export class HomePage implements OnInit {
 
     setTimeout(() => {
       console.log('Async operation has ended');
-      this.ngOnInit();
+      this.getTasks();
       event.target.complete();
     }, 1000);
   }
