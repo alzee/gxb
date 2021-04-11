@@ -22,8 +22,8 @@
     <ion-grid>
       <ion-row>
         <ng-container *ngIf="bids.length > 0">
-        <ion-col *ngFor="let i of bids" [routerLink]="['/detail']" [queryParams]="{id: i.task.id}" class="item" size="6">
-          <ion-row>
+        <ion-col *ngFor="let i of bids" class="item" size="6">
+          <ion-row [routerLink]="['/detail']" [queryParams]="{id: i.task.id}" *ngIf="i">
             <ion-col size="auto">
               <ion-avatar>
                 <img *ngIf="i.task.owner.avatar; else elseBlock" [src]="envs.url + i.task.owner.avatar">
