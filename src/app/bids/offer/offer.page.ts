@@ -27,7 +27,7 @@ export class OfferPage implements OnInit {
   post: number;
   min: number;
   step: number;
-  buyNowPrice: number = 99;
+  buyNowPrice = 99;
   buyOut = false;
   userData: Data;
   postData: Data = {
@@ -98,7 +98,7 @@ export class OfferPage implements OnInit {
     this.postData.task = '/api/tasks/' + this.post;
     this.postData.bid = this.myBid;
     this.postData.position = this.position;
-    this.postData.isBuyNow = isBuyNow
+    this.postData.isBuyNow = isBuyNow;
     console.log(this.myBid);
     console.log(this.post);
     console.log(this.position);

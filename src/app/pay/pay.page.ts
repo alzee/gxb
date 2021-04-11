@@ -64,7 +64,8 @@ export class PayPage implements OnInit {
               for (const coupon of this.user.coupon) {
                   if (coupon.type === this.orderData.type) {
                       this.coupon = coupon;
-                      this.orderData.amount = this.orderData.amount - this.coupon.value;
+                      this.orderData.amount = this.orderData.amount - coupon.value;
+                      this.orderData.couponId = coupon.id;
                   }
               }
               this.availableBalance = this.user.topup + this.user.earnings;
@@ -116,13 +117,8 @@ export class PayPage implements OnInit {
         });
     }
     else { // wechat
-        const data = {
-            uid: this.userData.id,
-            amount: this.orderData.amount,
-            type: this.orderData.type,
-            note: this.orderData.note
-        };
-        this.httpService.post('prepayid', data).subscribe((res) => {
+        this.orderData.uid = this.userData.id;
+        this.httpService.post('prepayid', this.orderData).subscribe((res) => {
             console.log(res);
             const params = res;
 
@@ -163,10 +159,11 @@ export class PayPage implements OnInit {
   checkCoupon(e) {
       if (e.detail.checked) {
          this.orderData.amount = this.orderData.amount - this.coupon.value;
-
+         this.orderData.couponId = this.coupon.id;
       }
       else {
          this.orderData.amount = this.orderData.amount + this.coupon.value;
+         this.orderData.couponId = 0;
       }
   }
 }
