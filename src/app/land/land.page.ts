@@ -20,7 +20,7 @@ export class LandPage implements OnInit {
       id: 1
   };
   url = environment.url;
-  posts = [];
+  posts: Data;
 
   multiColumnOptions = [
     [

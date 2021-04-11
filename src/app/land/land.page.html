@@ -13,7 +13,7 @@
   <ion-refresher-content refreshingText="下拉回到主城"></ion-refresher-content>
 </ion-refresher>
 
-  <ng-container *ngIf="land">
+  <ng-container *ngIf="posts">
   <ion-item class="cells">
     <ion-grid>
       <ion-row>
@@ -49,6 +49,18 @@
         {{land.price}}
       </ion-text>
     </div>
+  </ion-item>
+  </ng-container>
+
+  <ng-container *ngIf="!posts">
+  <ion-item class="cells">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let i of [].constructor(35)">
+          <ion-icon  size="large" color="medium" name="add-outline"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-item>
   </ng-container>
 
