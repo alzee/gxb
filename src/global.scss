@@ -31,6 +31,21 @@ ion-header{
         padding-right: 16px;
     }
 }
+ion-action-sheet{
+    .action-sheet-group{
+        button{
+            height: 40px !important;
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+            span{
+                font-size: 14px;
+            }
+        }
+    }
+}
+ion-select{
+    font-size: 14px;
+}
 ion-item{
   --border-style: none;
   --inner-padding-end: 0;
