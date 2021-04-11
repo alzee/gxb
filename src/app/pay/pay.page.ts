@@ -21,7 +21,6 @@ interface Data {
   styleUrls: ['./pay.page.scss'],
 })
 export class PayPage implements OnInit {
-  amount: number;
   prevUrl: string;
   subscription: Subscription;
   message: Data;
@@ -33,6 +32,7 @@ export class PayPage implements OnInit {
   user: Data;
   availableBalance: number;
   payMethod = 0;
+  coupon: Data;
 
   constructor(
       public navCtrl: NavController,
@@ -54,7 +54,6 @@ export class PayPage implements OnInit {
       this.httpMethod = this.message.httpMethod;
       this.postData = this.message.postData;
       this.orderData = this.message.orderData;
-      this.amount = this.orderData.amount;
       console.log(this.message);
 
       this.storageService.get(AuthConstants.AUTH).then((res) => {
@@ -62,8 +61,14 @@ export class PayPage implements OnInit {
           this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
               console.log(res1);
               this.user = res1;
+              for (const coupon of this.user.coupon) {
+                  if (coupon.type === this.orderData.type) {
+                      this.coupon = coupon;
+                      this.orderData.amount = this.orderData.amount - this.coupon.value;
+                  }
+              }
               this.availableBalance = this.user.topup + this.user.earnings;
-              if (this.availableBalance < this.amount) {
+              if (this.availableBalance < this.orderData.amount) {
                   this.payMethod = 1;
               }
           });
@@ -113,8 +118,8 @@ export class PayPage implements OnInit {
     else { // wechat
         const data = {
             uid: this.userData.id,
-            amount: this.amount,
-            type: 4,
+            amount: this.orderData.amount,
+            type: this.orderData.type,
             note: this.orderData.note
         };
         this.httpService.post('prepayid', data).subscribe((res) => {
@@ -153,5 +158,15 @@ export class PayPage implements OnInit {
 
     const { role, data } = await loading.onDidDismiss();
     console.log('Loading dismissed!');
+  }
+
+  checkCoupon(e) {
+      if (e.detail.checked) {
+         this.orderData.amount = this.orderData.amount - this.coupon.value;
+
+      }
+      else {
+         this.orderData.amount = this.orderData.amount + this.coupon.value;
+      }
   }
 }
