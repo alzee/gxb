@@ -29,12 +29,19 @@ ion-label{
 .data ion-label{
   font-size: 14px;
 }
-.pay{
+.total, .sum, .fee{
   --padding-start: 20px;
   --padding-end: 10px;
+}
+.sum, .fee{
+  ion-text, ion-note{
+    font-size: 12px;
+  }
+}
+.total{
   font-weight: 900;
   ion-note{
-    font-size: 24px;
+    font-size: 14px;
   }
 }
 .cate, .devices{

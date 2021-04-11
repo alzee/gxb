@@ -57,7 +57,7 @@
       <ion-text color="danger" *ngIf="f.quantity.invalid && f.quantity.errors.required">﹡</ion-text>
     </ion-note>
     <ion-label>发布数量</ion-label>
-    <ion-input clearInput required inputmode="numeric" name="quantity" formControlName="quantity" type="number" placeholder="请输入任务数量"> </ion-input>
+    <ion-input (ionChange)="subtotal()" clearInput required inputmode="numeric" name="quantity" formControlName="quantity" type="number" placeholder="请输入任务数量"> </ion-input>
   </ion-item>
 
   <ion-item class="data">
@@ -65,15 +65,24 @@
       <ion-text color="danger" *ngIf="f.price.invalid && f.price.errors.required">﹡</ion-text>
     </ion-note>
     <ion-label>悬赏单价</ion-label>
-    <ion-input [min]="min" name="price" formControlName="price" type="number" inputmode="numeric" placeholder="最低出价{{min}}元" required clearInput>
+    <ion-input (ionChange)="subtotal()" [min]="min" name="price" formControlName="price" type="number" inputmode="numeric" placeholder="最低出价{{min}}元" required clearInput>
   <ion-text class="hint" color="danger" *ngIf="f.price.invalid && f.price.errors.min"> 单价最低 {{min}} 元</ion-text>
     </ion-input>
   </ion-item>
 
-  <ion-item class="pay" *ngIf="f.quantity.valid && f.price.valid">
-    <ion-text (click)="showTip()">合计金额</ion-text> 
-    <ion-icon (click)="showTip()" size="small" name="help-circle-outline"></ion-icon>
-    <ion-note slot="end" color="danger">{{f.quantity.value * f.price.value}} 元</ion-note>
+  <ion-item class="sum" *ngIf="f.quantity.valid && f.price.valid">
+    <ion-text>任务金额</ion-text> 
+    <ion-note slot="end" color="danger">{{sum}} 元</ion-note>
+  </ion-item>
+  <ion-item class="fee" *ngIf="f.quantity.valid && f.price.valid">
+    <ion-text (click)="showTip(1)">手续费</ion-text> 
+    <ion-icon (click)="showTip(1)" size="small" name="help-circle-outline"></ion-icon>
+    <ion-note slot="end" color="danger">{{fee}} 元</ion-note>
+  </ion-item>
+  <ion-item class="total" *ngIf="f.quantity.valid && f.price.valid">
+    <ion-text (click)="showTip(2)">合计金额</ion-text> 
+    <ion-icon (click)="showTip(2)" size="small" name="help-circle-outline"></ion-icon>
+    <ion-note slot="end" color="danger">{{total}} 元</ion-note>
   </ion-item>
 
   <ion-label color="medium"></ion-label>

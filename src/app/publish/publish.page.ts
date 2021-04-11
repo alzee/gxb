@@ -23,6 +23,10 @@ export class PublishPage implements OnInit {
   arr2 = [1];
   url = environment.url;
   min: number;
+  feeRate = 0.15;
+  sum: number;
+  fee: number;
+  total: number;
   availableBalance: number;
   userData: Data;
   user: Data;
@@ -95,7 +99,6 @@ export class PublishPage implements OnInit {
       });
 
       this.httpService.get('categories?itemsPerPage=50').subscribe((res) => {
-          console.log(res);
           this.categories = res;
       });
       this.form = this.formBuilder.group({
@@ -221,10 +224,19 @@ export class PublishPage implements OnInit {
       }
   }
 
-  async showTip() {
+  async showTip(type: number) {
+      let msg;
+      switch (type) {
+          case 1:
+              msg = 'VIP 0 手续费 15%';
+              break;
+          case 2:
+              msg = '账户中相应的可用余额将被冻结，任务结束后解冻剩余部分。';
+              break;
+      }
     const alert = await this.alertController.create({
       header: '提示',
-      message: '账户中相应的可用余额将被冻结，任务结束后解冻剩余部分。',
+      message: msg
     });
 
     await alert.present();
@@ -233,7 +245,7 @@ export class PublishPage implements OnInit {
   async confirmPublish() {
     const alert = await this.alertController.create({
       header: '发布任务',
-      message: `您账户中相应金额(${this.f.quantity.value * this.f.price.value}元)将被冻结，任务结束后解冻剩余部分！`,
+      message: `您账户中相应金额(${this.total}元)将被冻结，任务结束后解冻剩余部分！`,
       buttons: [
         {
           text: '取消',
@@ -248,7 +260,7 @@ export class PublishPage implements OnInit {
             console.log('Confirm Okay');
             this.publish();
             const data = {
-                amount: this.f.quantity.value * this.f.price.value,
+                amount: this.total,
                 type: 0,
                 user: '/api/users/' + this.userData.id,
             };
@@ -267,7 +279,7 @@ export class PublishPage implements OnInit {
   async confirmTopup() {
     const alert = await this.alertController.create({
       header: `可用余额(${this.availableBalance}元)不足`,
-      subHeader: `需充值${this.f.quantity.value * this.f.price.value - this.availableBalance}元`,
+      subHeader: `需充值${Math.round((this.total - this.availableBalance) * 100) / 100}元`,
       message: '转入充值页面？',
       buttons: [
         {
@@ -281,7 +293,7 @@ export class PublishPage implements OnInit {
           text: '确定',
           handler: () => {
             console.log('Confirm Okay');
-            this.router.navigate(['/topup'], {queryParams: {amount: this.f.quantity.value * this.f.price.value - this.availableBalance}});
+            this.router.navigate(['/topup'], {queryParams: {amount: this.total - this.availableBalance}});
           }
         }
       ]
@@ -294,12 +306,19 @@ export class PublishPage implements OnInit {
       this.httpService.get('users/' + this.userData.id).subscribe((res) => {
           this.user = res;
           this.availableBalance = this.user.topup + this.user.earnings;
-          if (this.availableBalance < (this.f.quantity.value * this.f.price.value)){
+          if (this.availableBalance < this.total){
               this.confirmTopup();
           }
           else {
               this.confirmPublish();
           }
       });
+  }
+
+  subtotal(){
+      this.sum = this.f.quantity.value * this.f.price.value;
+      this.fee = Math.round(this.sum * this.feeRate * 100) / 100;
+      this.total = this.sum + this.fee;
+      console.log(this.sum, this.fee, this.total);
   }
 }
