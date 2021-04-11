@@ -26,8 +26,10 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 ion-header{
-    padding-left: 16px;
-    padding-right: 16px;
+    ion-toolbar{
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 }
 ion-item{
   --border-style: none;
