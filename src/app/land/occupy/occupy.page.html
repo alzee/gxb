@@ -16,7 +16,7 @@
       <img [src]="url + i">
     </ion-thumbnail>
     <input class="ion-hide" type="file" (change)="uploadPhoto($event, 'pic')" #fileUpload>
-    <ion-icon name="image-sharp" size="large" (click)="fileUpload.click()"></ion-icon>
+    <ion-icon *ngIf="pics.length < 9" name="image-sharp" size="large" (click)="fileUpload.click()"></ion-icon>
   </ion-item>
 
   <ion-label color="medium">在城市格子上展示的封面</ion-label>
