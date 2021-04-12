@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../services/http.service';
+import { DataService } from '../services/data.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthConstants } from '../config/auth-constants';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-vip',
@@ -6,43 +12,50 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vip.page.scss'],
 })
 export class VipPage implements OnInit {
-  vip = [
-    {
-      label: 'V1体验卡2天',
-      price: 10,
-    },
-    {
-      label: 'V2周卡7天',
-      price: 28,
-    },
-    {
-      label: 'V3月卡30天',
-      price: 68,
-    },
-    {
-      label: 'V4季卡90天',
-      price: 188,
-    },
-    {
-      label: 'V5年卡360天',
-      price: 688,
-    },
-    {
-      label: 'V6银卡720天',
-      price: 1288,
-    },
-    {
-      label: 'V7金卡1080天',
-      price: 1688,
-    },
-    {
-      label: 'V8钻卡1800天',
-      price: 2688,
-    },
-  ];
+  subscription: Subscription;
+  message: Data;
+  userData: Data;
+  levels = [];
+  orderType = 8;
+  orderNote = '购买会员';
 
-  constructor() { }
+  constructor(
+      private router: Router,
+      private httpService: HttpService,
+      private storageService: StorageService,
+      private data: DataService
+  ) { }
 
   ngOnInit() {
+      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
+
+      this.storageService.get(AuthConstants.AUTH).then((res) => {
+          this.userData = res;
+      });
+
+      this.httpService.get('levels?itemsPerPage=10&order%5Blevel%5D=asc').subscribe((res) => {
+          this.levels = res;
+          console.log(res);
+      });
+  }
+
+  buyVip(l: number){
+    console.log(this.levels[l]);
+    const postData = {
+        level: '/api/levels/' + this.levels[l].id
+    };
+    const orderData = {
+        type: this.orderType,
+        note: this.orderNote,
+        amount: this.levels[l].price
+    };
+    this.message = {
+        orderData,
+        postData,
+        url: 'users/' + this.userData.id,
+        httpMethod: 'patch'
+    };
+    this.data.changeMessage(this.message);
+    this.router.navigate(['/pay'], { replaceUrl: true });
   }
 }

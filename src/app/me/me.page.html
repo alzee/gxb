@@ -20,7 +20,7 @@
         {{ user.username }}
       </ion-text>
       <ion-text color="light">
-        会员ID: {{ user.id}}
+        会员等级: V{{user.level.level}} {{user.level.name}}
       </ion-text>
     </div>
     <div *ngIf="!userData">

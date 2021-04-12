@@ -12,10 +12,6 @@ interface Data {
     [propName: string]: any;
 }
 
-interface UserData {
-    [propName: string]: any;
-}
-
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.page.html',
@@ -23,7 +19,7 @@ interface UserData {
 })
 export class DetailPage implements OnInit {
   id: number;
-  userData: UserData;
+  userData: Data;
   task: Data;
   applied: boolean;
   myApply: Data;

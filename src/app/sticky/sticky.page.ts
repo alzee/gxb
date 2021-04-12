@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { ToastService } from '../services/toast.service';
 import { DataService } from '../services/data.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 
 interface Data {
     [propName: string]: any;
