@@ -5,6 +5,10 @@ import { Router } from '@angular/router';
 import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-vip',
   templateUrl: './vip.page.html',

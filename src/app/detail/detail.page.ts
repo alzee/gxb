@@ -65,8 +65,8 @@ export class DetailPage implements OnInit {
                   this.applyId = i.id;
                   this.pics = i.pic;
                   this.minutesPast = Math.round((new Date().getTime() - new Date(i.date).getTime()) / 1000 / 60);
-                  this.httpService.get('applies/' + i.id).subscribe((res) => {
-                      this.myApply = res;
+                  this.httpService.get('applies/' + i.id).subscribe((res1) => {
+                      this.myApply = res1;
                       console.log(this.myApply);
                   });
                   break;

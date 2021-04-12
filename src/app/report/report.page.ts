@@ -46,14 +46,13 @@ export class ReportPage implements OnInit {
       picsA: this.pics,
     };
     this.httpService.post('reports', postData).subscribe((res) => {
-      this.news = res;
       this.toastService.presentToast('辩诉已提交');
       this.navCtrl.back();
       // console.log(res);
     });
   }
 
-  uploadPhoto(fileChangeEvent, type) {
+  uploadPhoto(fileChangeEvent) {
     console.log(fileChangeEvent);
     // Get a reference to the file that has just been added to the input
     const photo = fileChangeEvent.target.files[0];
@@ -70,14 +69,8 @@ export class ReportPage implements OnInit {
     this.http.post(url + 'media_objects', formData).subscribe((res) => {
       console.log(res);
       o = res;
-      if (type === 'cover') {
-          this.cover = o.contentUrl;
-      }
-      if (type === 'pic') {
-          this.pics.push(o.contentUrl);
-      }
+      this.pics.push(o.contentUrl);
       console.log(this.pics);
-      console.log(this.cover);
     });
   }
 }

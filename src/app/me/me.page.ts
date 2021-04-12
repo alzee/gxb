@@ -58,7 +58,7 @@ export class MePage implements OnInit {
       name: '全民分红',
     },
     {
-      link: '/report',
+      link: '/report/my',
       img: '../assets/img/equity.png',
       name: '举报维权',
     },
@@ -125,7 +125,7 @@ export class MePage implements OnInit {
                   console.log(this.user);
                   this.message = { // for /me/coupon
                       user: this.user
-                  }
+                  };
                   this.data.changeMessage(this.message);
               });
           },
