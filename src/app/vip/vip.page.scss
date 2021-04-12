@@ -41,4 +41,17 @@ ion-content{
           }
       }
   }
+  ion-item-group{
+    ion-item{
+      --min-height: unset;
+      border-bottom: 1px solid #E5E5E5FF;
+      ion-label{
+        margin: 0;
+        padding: 10px 0;
+        border-right: 1px solid #E5E5E5FF;
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+  }
 }

@@ -34,6 +34,8 @@ minor:
   - gxb/equity/balance add/minus
   - php add text to pic
   - people bid at same time happens. Should check current min price every time bid()
+  - 下架后剩余金额解冻
+  - 会员到期
 
 question:
 
