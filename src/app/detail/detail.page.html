@@ -140,7 +140,7 @@
   <ion-item>
     <ng-container *ngIf="applied">
         <ion-button *ngIf="statusId != 3" class="contact" size="large" expand="full">联系商家</ion-button>
-        <ion-button *ngIf="statusId == 3" class="contact" size="large" expand="full">辩诉维权</ion-button>
+        <ion-button *ngIf="statusId == 3" class="contact" size="large" expand="full" (click)="report()">辩诉维权</ion-button>
         <ion-button *ngIf="statusId == 1" class="apply" size="large" expand="full" (click)="submit()">提交</ion-button>
         <ion-button *ngIf="statusId == 2" class="apply" size="large" expand="full" disabled>审核中</ion-button>
         <ion-button *ngIf="statusId == 3" class="apply" size="large" expand="full" disabled>审核拒绝</ion-button>

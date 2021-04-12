@@ -7,6 +7,7 @@ import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastService } from '../services/toast.service';
+import { DataService } from '../services/data.service';
 
 interface Data {
     [propName: string]: any;
@@ -18,6 +19,7 @@ interface Data {
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
+  message: Data;
   id: number;
   userData: Data;
   task: Data;
@@ -40,7 +42,8 @@ export class DetailPage implements OnInit {
       private http: HttpClient,
       private storageService: StorageService,
       private router: Router,
-      private toastService: ToastService
+      private toastService: ToastService,
+      private data: DataService
   ) {
       this.applied = false;
       this.storageService.get(AuthConstants.AUTH).then((res) => {
@@ -55,17 +58,17 @@ export class DetailPage implements OnInit {
 
       this.httpService.get('tasks/' + this.id).subscribe((res) => {
           this.task = res;
-          console.log(this.task);
-          console.log(this.task.applies);
           for (const i of this.task.applies){
               if (i.applicant.id === this.userData.id){
-                  this.myApply = i;
                   this.applied = true;
                   this.statusId = i.status.id;
                   this.applyId = i.id;
                   this.pics = i.pic;
-                  console.log(this.myApply.date);
-                  this.minutesPast = Math.round((new Date().getTime() - new Date(this.myApply.date).getTime()) / 1000 / 60);
+                  this.minutesPast = Math.round((new Date().getTime() - new Date(i.date).getTime()) / 1000 / 60);
+                  this.httpService.get('applies/' + i.id).subscribe((res) => {
+                      this.myApply = res;
+                      console.log(this.myApply);
+                  });
                   break;
               }
           }
@@ -157,6 +160,12 @@ export class DetailPage implements OnInit {
       console.log(this.uploads);
     });
   }
+
+  report(){
+      this.message = {
+          apply: this.myApply
+      };
+      this.data.changeMessage(this.message);
+      this.router.navigate(['/report'], { replaceUrl: true });
+  }
 }
-
-
