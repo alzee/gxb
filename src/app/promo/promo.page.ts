@@ -3,7 +3,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { ToastService } from '../services/toast.service';
 import { DataService } from '../services/data.service';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
 interface Data {
@@ -20,7 +19,6 @@ export class PromoPage implements OnInit {
   amount = 9;
   tid: number;
   title: string;
-  subscription: Subscription;
   message: Data;
   orderType = 3;
   orderNote = '任务推荐';
@@ -37,8 +35,6 @@ export class PromoPage implements OnInit {
   }
 
   ngOnInit() {
-      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
-
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.tid = params.tid;
           this.title = params.title;

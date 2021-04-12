@@ -3,7 +3,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpService } from '../services/http.service';
 import { ToastService } from '../services/toast.service';
 import { DataService } from '../services/data.service';
-import { Subscription } from 'rxjs';
 
 interface Data {
     [propName: string]: any;
@@ -19,7 +18,6 @@ export class StickyPage implements OnInit {
   amount = 9;
   tid: number;
   title: string;
-  subscription: Subscription;
   message: Data;
   orderType = 2;
   orderNote = '任务置顶';
@@ -34,8 +32,6 @@ export class StickyPage implements OnInit {
   }
 
   ngOnInit() {
-      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
-
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.tid = params.tid;
           this.title = params.title;

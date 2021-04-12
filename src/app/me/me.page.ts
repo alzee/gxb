@@ -6,7 +6,6 @@ import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { DataService } from '../services/data.service';
-import { Subscription } from 'rxjs';
 
 interface Data {
     [propName: string]: any;
@@ -19,7 +18,6 @@ interface Data {
 })
 export class MePage implements OnInit {
   url = environment.url;
-  subscription: Subscription;
   userData: Data;
   user: Data;
   message: Data;
@@ -113,7 +111,6 @@ export class MePage implements OnInit {
   }
 
   ngOnInit() {
-      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
   }
 
   ionViewWillEnter(){

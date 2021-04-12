@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { DataService } from '../services/data.service';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
@@ -12,7 +11,6 @@ import { StorageService } from '../services/storage.service';
   styleUrls: ['./vip.page.scss'],
 })
 export class VipPage implements OnInit {
-  subscription: Subscription;
   message: Data;
   userData: Data;
   levels = [];
@@ -27,8 +25,6 @@ export class VipPage implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
-
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
       });

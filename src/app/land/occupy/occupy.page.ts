@@ -4,7 +4,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpService } from '../../services/http.service';
 import { DataService } from '../../services/data.service';
-import { Subscription } from 'rxjs';
 import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
 
@@ -30,7 +29,6 @@ export class OccupyPage implements OnInit {
   url: string = environment.url;
   postData: Data = {};
   userData: Data;
-  subscription: Subscription;
   message: Data;
   orderType = 6;
   orderNote = '占领格子';
@@ -48,8 +46,6 @@ export class OccupyPage implements OnInit {
   }
 
   ngOnInit() {
-      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
-
       this.storageService.get(AuthConstants.AUTH).then(
         (res) => {
           this.userData = res;

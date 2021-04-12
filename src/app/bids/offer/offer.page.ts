@@ -6,7 +6,6 @@ import { ToastService } from '../../services/toast.service';
 import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
 import { DataService } from '../../services/data.service';
-import { Subscription } from 'rxjs';
 
 interface Data {
     [propName: string]: any;
@@ -36,7 +35,6 @@ export class OfferPage implements OnInit {
       position: 0,
       isBuyNow: false
   };
-  subscription: Subscription;
   message: Data;
   orderType = 4;
   orderNote = '任务竞价';
@@ -56,8 +54,6 @@ export class OfferPage implements OnInit {
   }
 
   ngOnInit() {
-      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
-
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
           this.httpService.get('tasks?paused=false&stopped=false&order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res1) => {
