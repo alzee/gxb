@@ -123,7 +123,9 @@ export class MePage implements OnInit {
                   this.user.total = this.user.earnings + this.user.topup + this.user.frozen;
                   this.user.availableBalance = this.user.earnings + this.user.topup;
                   console.log(this.user);
-                  this.message.user = this.user;
+                  this.message = { // for /me/coupon
+                      user: this.user
+                  }
                   this.data.changeMessage(this.message);
               });
           },

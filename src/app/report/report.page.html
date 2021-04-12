@@ -5,30 +5,27 @@
     </ion-buttons>
     <ion-title>举报维权</ion-title>
   </ion-toolbar>
-  <ion-toolbar>
-    <ion-segment value="1">
-      <ion-segment-button value="1" selected>
-        <ion-label>我被举报</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="2">
-        <ion-label>我的举报</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
 </ion-header>
 
 <ion-content color="light">
 
   <ion-item class="title">
     <ion-label>任务名称</ion-label>
-    <ion-text>分分钟钟搞定 秒审核</ion-text>
+    <ion-text *ngIf="apply">{{apply.task.title}}</ion-text>
   </ion-item>
 
   <ion-label>辩诉内容</ion-label>
   <ion-item>
-    <ion-textarea placeholder="你想辩诉的内容..." rows="7"></ion-textarea>
+    <ion-textarea [(ngModel)]="desc" placeholder="你想辩诉的内容..." rows="7"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-thumbnail *ngFor="let i of pics">
+      <img [src]="url + i">
+    </ion-thumbnail>
+    <input class="ion-hide" type="file" (change)="uploadPhoto($event, 'pic')" #fileUpload>
+    <ion-icon name="image-sharp" size="large" (click)="fileUpload.click()"></ion-icon>
   </ion-item>
 
-  <ion-button expand="block">提交辩诉</ion-button>
+  <ion-button [disabled]="!desc" expand="block" (click)="submit()">提交辩诉</ion-button>
 
 </ion-content>
