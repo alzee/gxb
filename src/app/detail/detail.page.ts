@@ -162,10 +162,18 @@ export class DetailPage implements OnInit {
   }
 
   report(){
-      this.message = {
-          apply: this.myApply
-      };
-      this.data.changeMessage(this.message);
-      this.router.navigate(['/report'], { replaceUrl: true });
+      // check if already reported
+      this.httpService.get('reports?apply.id=' + this.applyId).subscribe((res) => {
+          if (res.length > 0) {
+              this.router.navigate(['/report/my']);
+          }
+          else {
+              this.message = {
+                  apply: this.myApply
+              };
+              this.data.changeMessage(this.message);
+              this.router.navigate(['/report'], { replaceUrl: true });
+          }
+      });
   }
 }

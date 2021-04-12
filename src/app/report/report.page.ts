@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpService } from '../services/http.service';
 import { NavController } from '@ionic/angular';
+import { ToastService } from '../services/toast.service';
 
 interface Data {
     [propName: string]: any;
@@ -24,6 +25,7 @@ export class ReportPage implements OnInit {
   url: string = environment.url;
 
   constructor(
+      private toastService: ToastService,
       public navCtrl: NavController,
       private httpService: HttpService,
       private http: HttpClient,
@@ -45,6 +47,7 @@ export class ReportPage implements OnInit {
     };
     this.httpService.post('reports', postData).subscribe((res) => {
       this.news = res;
+      this.toastService.presentToast('辩诉已提交');
       this.navCtrl.back();
       // console.log(res);
     });
