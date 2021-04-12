@@ -111,6 +111,7 @@ export class PublishPage implements OnInit {
           this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
               console.log(res1);
               this.user = res1;
+              this.feeRate = this.user.level.postFee;
               for (const coupon of this.user.coupon) {
                   if (coupon.type === this.orderType) {
                       this.coupon = coupon;
@@ -249,7 +250,7 @@ export class PublishPage implements OnInit {
       let msg;
       switch (type) {
           case 1:
-              msg = 'VIP 0 手续费 15%';
+              msg = `${this.user.level.name} 手续费 ${this.feeRate * 100}%`;
               break;
           case 2:
               msg = '账户中相应的可用余额将被冻结，任务结束后解冻剩余部分。';
