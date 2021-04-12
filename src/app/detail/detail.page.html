@@ -138,17 +138,17 @@
 
 <ion-footer>
   <ion-item>
-    <ion-button class="contact" size="large" expand="full">联系商家</ion-button>
-    <ng-container *ngIf="applied; else elseBlock1">
-      <ng-container *ngIf="statusId == 1; else elseBlock2">
-        <ion-button class="apply" size="large" expand="full" (click)="submit()">提交</ion-button>
-      </ng-container>
+    <ng-container *ngIf="applied">
+        <ion-button *ngIf="statusId != 3" class="contact" size="large" expand="full">联系商家</ion-button>
+        <ion-button *ngIf="statusId == 3" class="contact" size="large" expand="full">辩诉维权</ion-button>
+        <ion-button *ngIf="statusId == 1" class="apply" size="large" expand="full" (click)="submit()">提交</ion-button>
+        <ion-button *ngIf="statusId == 2" class="apply" size="large" expand="full" disabled>审核中</ion-button>
+        <ion-button *ngIf="statusId == 3" class="apply" size="large" expand="full" disabled>审核拒绝</ion-button>
+        <ion-button *ngIf="statusId == 4" class="apply" size="large" expand="full" disabled>已完成</ion-button>
     </ng-container>
-    <ng-template #elseBlock2>
-      <ion-button class="apply" size="large" expand="full" disabled>已提交</ion-button>
-    </ng-template>
-    <ng-template #elseBlock1>
+    <ng-container *ngIf="!applied">
+      <ion-button class="contact" size="large" expand="full">联系商家</ion-button>
       <ion-button class="apply" size="large" expand="full" (click)="apply()">申请任务</ion-button>
-    </ng-template>
+    </ng-container>
   </ion-item>
 </ion-footer>

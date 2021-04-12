@@ -37,7 +37,7 @@ export class MytasksPage implements OnInit {
     },
     {
       value: '3',
-      label: '不合格',
+      label: '审核拒绝',
     },
     {
       value: '4',
