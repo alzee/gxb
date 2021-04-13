@@ -30,12 +30,15 @@
               <img *ngIf="i.apply.applicant.avatar" [src]="envs.url + i.apply.applicant.avatar">
               <img *ngIf="!i.apply.applicant.avatar" src="../assets/img/avatar.png">
             </ion-avatar>
-            <ion-label color="medium">{{i.apply.applicant.username}}</ion-label>
+            <ion-label *ngIf="seg == 1" color="medium">{{i.apply.task.owner.username}}</ion-label>
+            <ion-label *ngIf="seg == 2" color="medium">{{i.apply.applicant.username}}</ion-label>
           </ion-col>
           <ion-col class="info">
             <ion-item>
               <ion-text class="title" slot="start">{{i.apply.task.title}}</ion-text>
-              <ion-text class="status" color="medium" slot="end">评审中</ion-text>
+              <ion-text *ngIf="i.status == 0" class="status" color="medium" slot="end">评审中</ion-text>
+              <ion-text *ngIf="i.status == 1" class="status" color="medium" slot="end">维权无效</ion-text>
+              <ion-text *ngIf="i.status == 2" class="status" color="medium" slot="end">维权成功</ion-text>
             </ion-item>
             <ion-text class="date" color="medium">发起时间: {{i.date | date:'yyyy年M月d日'}}</ion-text>
             <ion-item class="pics">
@@ -47,10 +50,10 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-button fill="clear" color="dark" expand="full" routerLink="/report/show" [queryParams]="i.id">查看详情</ion-button>
+            <ion-button fill="clear" color="dark" expand="full" routerLink="/report/show" [queryParams]="{id: i.id}">查看详情</ion-button>
           </ion-col>
           <ion-col *ngIf="seg == 2">
-            <ion-button fill="clear" expand="full" routerLink="/report/show" [queryParams]="i.id">辩诉</ion-button>
+            <ion-button fill="clear" color="danger" expand="full" routerLink="/report/show" [queryParams]="{id: i.id}">辩诉</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

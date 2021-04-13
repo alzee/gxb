@@ -46,7 +46,7 @@ export class ReportPage implements OnInit {
       picsA: this.pics,
     };
     this.httpService.post('reports', postData).subscribe((res) => {
-      this.toastService.presentToast('辩诉已提交');
+      this.toastService.presentToast('维权已提交');
       this.navCtrl.back();
       // console.log(res);
     });

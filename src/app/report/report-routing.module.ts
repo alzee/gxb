@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'my',
     loadChildren: () => import('./my/my.module').then( m => m.MyPageModule)
+  },
+  {
+    path: 'show',
+    loadChildren: () => import('./show/show.module').then( m => m.ShowPageModule)
   }
 ];
 
