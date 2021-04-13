@@ -33,4 +33,7 @@ export class MyPage implements OnInit {
     });
   }
 
+  show(){
+      console.log('show ');
+  }
 }

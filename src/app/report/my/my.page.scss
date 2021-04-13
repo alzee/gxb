@@ -14,7 +14,6 @@ ion-content{
     margin: 16px;
   }
   .title{
-    margin-top: 10px;
   }
   ion-item{
     --padding-start: 16px;
@@ -24,21 +23,50 @@ ion-content{
     margin: 10px 16px;
     display: block;
   }
-  .text{
+  .pic{
+      ion-label{
+          font-size: 12px;
+          width: 48px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          text-align: center;
+      }
+  }
+  .info{
     overflow: hidden;
-    ion-text{
-      display: block;
-      margin-bottom: 3px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    ion-item{
+        --padding-start: 0;
+        --padding-end: 0;
+        --min-height: none;
+        align-items: flex-start;
+        ion-text{
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .status{
+            font-size: 12px;
+        }
     }
-    div{
-      margin-top: 8px;
-    }
-    .info{
-      color: #888888;
+    .date{
       font-size: 12px;
     }
+    .pics{
+        margin-top: 10px;
+        ion-img:first-child{
+            margin-right: 4px;
+        }
+        ion-img{
+            width: 50%;
+        }
+    }
+  }
+  .status{
+      text-align: right;
+      ion-text{
+          font-size: 14px;
+      }
   }
 }
