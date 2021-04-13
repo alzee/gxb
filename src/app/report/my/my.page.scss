@@ -15,9 +15,10 @@ ion-content{
   }
   .title{
   }
-  ion-item{
+  >ion-item{
     --padding-start: 16px;
     --padding-end: 16px;
+    margin-top: 10px;
   }
   >ion-label{
     margin: 10px 16px;
@@ -36,8 +37,6 @@ ion-content{
   .info{
     overflow: hidden;
     ion-item{
-        --padding-start: 0;
-        --padding-end: 0;
         --min-height: none;
         align-items: flex-start;
         ion-text{
