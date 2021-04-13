@@ -6,7 +6,7 @@
     <ion-title>举报维权</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-segment value="1">
+    <ion-segment value="1" (ionChange)="segmentChanged($event)" [(ngModel)]="seg">
       <ion-segment-button value="1" selected>
         <ion-label>我的举报</ion-label>
       </ion-segment-button>
@@ -18,15 +18,19 @@
 </ion-header>
 
 <ion-content color="light">
-    <ion-item *ngFor="let i of myReports">
+    <ion-item *ngFor="let i of reports">
       <ion-grid>
         <ion-row>
           <ion-col class="pic" size="auto">
-            <ion-avatar>
+            <ion-avatar *ngIf="seg == 1">
               <img *ngIf="i.apply.task.owner.avatar" [src]="envs.url + i.apply.task.owner.avatar">
               <img *ngIf="!i.apply.task.owner.avatar" src="../assets/img/avatar.png">
             </ion-avatar>
-            <ion-label color="medium">{{i.apply.task.owner.username}}</ion-label>
+            <ion-avatar *ngIf="seg == 2">
+              <img *ngIf="i.apply.applicant.avatar" [src]="envs.url + i.apply.applicant.avatar">
+              <img *ngIf="!i.apply.applicant.avatar" src="../assets/img/avatar.png">
+            </ion-avatar>
+            <ion-label color="medium">{{i.apply.applicant.username}}</ion-label>
           </ion-col>
           <ion-col class="info">
             <ion-item>
@@ -41,7 +45,14 @@
             </ion-item>
           </ion-col>
         </ion-row>
-          <ion-button color="light" expand="block" (click)="show()">查看详情</ion-button>
+        <ion-row>
+          <ion-col>
+            <ion-button fill="clear" color="dark" expand="full" routerLink="/report/show" [queryParams]="i.id">查看详情</ion-button>
+          </ion-col>
+          <ion-col *ngIf="seg == 2">
+            <ion-button fill="clear" expand="full" routerLink="/report/show" [queryParams]="i.id">辩诉</ion-button>
+          </ion-col>
+        </ion-row>
       </ion-grid>
     </ion-item>
 </ion-content>

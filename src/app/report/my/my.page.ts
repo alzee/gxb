@@ -16,7 +16,10 @@ interface Data {
 export class MyPage implements OnInit {
   envs = environment;
   myReports = [];
+  reportsAboutMe = [];
+  reports = [];
   userData: Data;
+  seg = 1;
 
   constructor(
     private storageService: StorageService,
@@ -29,11 +32,25 @@ export class MyPage implements OnInit {
       this.httpService.get('reports?apply.applicant=' + this.userData.id).subscribe((res1) => {
         console.log(res1);
         this.myReports = res1;
+        this.reports = this.myReports;
+      });
+      this.httpService.get('reports?apply.task.owner=' + this.userData.id).subscribe((res2) => {
+        console.log(res2);
+        this.reportsAboutMe = res2;
       });
     });
   }
 
-  show(){
-      console.log('show ');
+  segmentChanged(e){
+      this.seg = e.detail.value;
+      console.log(this.seg);
+      switch (this.seg) {
+          case 1:
+              this.reports = this.myReports;
+              break;
+          case 2:
+              this.reports = this.reportsAboutMe;
+              break;
+      }
   }
 }

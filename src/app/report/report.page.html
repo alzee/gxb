@@ -14,9 +14,9 @@
     <ion-text *ngIf="apply">{{apply.task.title}}</ion-text>
   </ion-item>
 
-  <ion-label>辩诉内容</ion-label>
+  <ion-label>维权内容</ion-label>
   <ion-item>
-    <ion-textarea [(ngModel)]="desc" placeholder="你想辩诉的内容..." rows="7"></ion-textarea>
+    <ion-textarea [(ngModel)]="desc" placeholder="你想维权的内容..." rows="7"></ion-textarea>
   </ion-item>
   <ion-item>
     <ion-thumbnail *ngFor="let i of pics">
@@ -26,6 +26,6 @@
     <ion-icon *ngIf="pics.length < 3" name="image-sharp" size="large" (click)="fileUpload.click()"></ion-icon>
   </ion-item>
 
-  <ion-button [disabled]="!desc" expand="block" (click)="submit()">提交辩诉</ion-button>
+  <ion-button [disabled]="!desc" expand="block" (click)="submit()">提交维权</ion-button>
 
 </ion-content>
