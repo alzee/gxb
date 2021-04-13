@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
+import { environment } from '../../../environments/environment';
 
 interface Data {
     [propName: string]: any;
@@ -13,6 +14,7 @@ interface Data {
   styleUrls: ['./my.page.scss'],
 })
 export class MyPage implements OnInit {
+  envs = environment;
   myReports = [];
   userData: Data;
 

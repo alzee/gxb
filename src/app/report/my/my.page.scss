@@ -24,4 +24,21 @@ ion-content{
     margin: 10px 16px;
     display: block;
   }
+  .text{
+    overflow: hidden;
+    ion-text{
+      display: block;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    div{
+      margin-top: 8px;
+    }
+    .info{
+      color: #888888;
+      font-size: 12px;
+    }
+  }
 }

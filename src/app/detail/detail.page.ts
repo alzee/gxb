@@ -63,6 +63,7 @@ export class DetailPage implements OnInit {
                   this.applied = true;
                   this.statusId = i.status.id;
                   this.applyId = i.id;
+                  console.log(this.applyId);
                   this.pics = i.pic;
                   this.minutesPast = Math.round((new Date().getTime() - new Date(i.date).getTime()) / 1000 / 60);
                   this.httpService.get('applies/' + i.id).subscribe((res1) => {
@@ -163,7 +164,7 @@ export class DetailPage implements OnInit {
 
   report(){
       // check if already reported
-      this.httpService.get('reports?apply.id=' + this.applyId).subscribe((res) => {
+      this.httpService.get('reports?apply=' + this.applyId).subscribe((res) => {
           if (res.length > 0) {
               this.router.navigate(['/report/my']);
           }
