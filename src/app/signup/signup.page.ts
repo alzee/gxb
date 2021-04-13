@@ -8,6 +8,10 @@ import { ToastService } from '../services/toast.service';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -24,13 +28,16 @@ export class SignupPage implements OnInit {
     smsType = 'register';
     smsPass: string;
     smsResp;
+    refcodeFound = true;
+    referrer: Data;
     term = {
         isChecked: true
     };
     postData = {
         username: '',
         password: '',
-        phone: ''
+        phone: '',
+        referrer: ''
     };
 
     constructor(
@@ -55,7 +62,8 @@ export class SignupPage implements OnInit {
             password: [''],
             // phone: ['', this.phoneDupValidator()],
             phone: [''],
-            vCode: ['']
+            vCode: [''],
+            refcode: ['']
         });
     }
 
@@ -87,6 +95,10 @@ export class SignupPage implements OnInit {
       return this.form.get('vCode');
     }
 
+    get refcode(){
+      return this.form.get('refcode');
+    }
+
     validateInputs() {
         if (!this.smsResp){
             return 1;
@@ -115,6 +127,9 @@ export class SignupPage implements OnInit {
                 this.postData.username = this.username.value;
                 this.postData.password = this.password.value;
                 this.postData.phone = this.phone.value;
+                if (this.referrer) {
+                    this.postData.referrer = '/api/users/' + this.referrer.id;
+                }
                 this.authService.signup(this.postData).subscribe(
                     (res: any) => {
                         console.log(res);
@@ -162,11 +177,29 @@ export class SignupPage implements OnInit {
         }
     }
 
+    checkRefcode(){
+        if (this.refcode.valid) {
+            if (this.refcode.value.length === 0) {
+                this.refcodeFound = true;
+            }
+            else{
+                this.httpService.get('users?refcode=' + this.refcode.value).subscribe((res) => {
+                    console.log(res);
+                    if (res.length > 0) {
+                        this.referrer = res[0];
+                        this.refcodeFound = true;
+                    }
+                    else {
+                        this.refcodeFound = false;
+                    }
+                });
+            }
+        }
+    }
 
     getSms(){
       console.log(this.smsType);
       console.log(this.smsPass);
-      console.log(this.form);
       this.httpService.get(`sms?phone=${this.phone.value}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
           this.toastService.presentToast('验证码已发送');
           this.getCodeBtnText = `重新发送(${this.remaining})`;

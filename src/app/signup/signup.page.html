@@ -19,7 +19,7 @@
   <ion-label color="danger" *ngIf="username.errors.pattern"> * 账号只能包含数字、字母和下划线 </ion-label>
 </ng-container>
   <ion-label color="danger" *ngIf="username.valid && usernameDup == 1"> * 该用户名已注册 </ion-label>
-  <ion-input (ionChange)="checkUsernameDup()" required minlength='6' maxlength="16" pattern="^[a-z0-9_-]+$" class="input ion-margin-bottom" name="username" formControlName="username" autofocus="true" clearInput="true" placeholder="请输入您的账号"> </ion-input>
+  <ion-input (ionChange)="checkUsernameDup()" required minlength='6' maxlength="16" pattern="^[a-z0-9_]+$" class="input ion-margin-bottom" name="username" formControlName="username" autofocus="true" clearInput="true" placeholder="请输入您的账号"> </ion-input>
 <ng-container *ngIf="password.invalid && (password.dirty || password.touched)">
   <ion-label color="danger" *ngIf="password.errors.required"> * 请设置密码 </ion-label>
   <ion-label color="danger" *ngIf="password.errors.minlength"> * 密码8至16位 </ion-label>
@@ -42,12 +42,13 @@
     </ion-input>
     <ion-button slot="end" [disabled]="phoneDup != 2 || codeSent" class="sms" type="button" size="" (click)="getSms()">{{getCodeBtnText}}</ion-button>
   </ion-item>
-  <ion-input class="input" clearInput="true" placeholder="请输入邀请码"> </ion-input>
+  <ion-label color="danger" *ngIf="refcode.invalid || !refcodeFound"> * 推荐码无效</ion-label>
+  <ion-input type="text" (ionChange)="checkRefcode()" minlength="8" maxlength="8" formControlName="refcode" class="input" clearInput="true" placeholder="请输入邀请码"> </ion-input>
 
   <ion-item class="small-links">
     <ion-checkbox required  formControlName="acceptTerms" color="primary"></ion-checkbox>
     <ion-label>注册代表同意<a routerLink="/terms">《用户协议》</a><a routerLink="/privacy">《隐私条款》</a></ion-label>
   </ion-item>
-  <ion-button [disabled]="form.invalid || usernameDup != 2 || phoneDup != 2" expand="block" type="submit" class="submit">确定</ion-button>
+  <ion-button [disabled]="form.invalid || usernameDup != 2 || phoneDup != 2 || !refcodeFound" expand="block" type="submit" class="submit">确定</ion-button>
   </form>
 </ion-content>
