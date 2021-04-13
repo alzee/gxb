@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../../services/http.service';
+import { AuthConstants } from '../../config/auth-constants';
+import { StorageService } from '../../services/storage.service';
+
+interface Data {
+    [propName: string]: any;
+}
 
 @Component({
   selector: 'app-qr',
@@ -6,14 +13,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./qr.page.scss'],
 })
 export class QrPage implements OnInit {
-  picUrl: string;
   code: string;
+  picUrl = '../../../assets/img/qr0.png';
+  userData: Data;
+  user: Data;
 
-  constructor() { }
+  constructor(
+      private storageService: StorageService,
+      private httpService: HttpService
+  ) { }
 
   ngOnInit() {
-    this.code = 'A888888';
-    this.picUrl = '../../../assets/img/qr0.png';
+    this.storageService.get(AuthConstants.AUTH).then((res) => {
+      this.userData = res;
+      this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
+        console.log(res1);
+        this.user = res1;
+        this.code = this.user.refcode;
+      });
+    });
   }
 
 }
