@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
+import { environment } from '../../../environments/environment';
 
 interface Data {
     [propName: string]: any;
@@ -13,10 +14,21 @@ interface Data {
   styleUrls: ['./qr.page.scss'],
 })
 export class QrPage implements OnInit {
+  env = environment;
   code: string;
-  picUrl = '../../../assets/img/qr0.png';
+  picUrl: string;
+  posters = [
+    'refer_poster0.jpg',
+    'refer_poster1.jpg',
+    'refer_poster2.jpg',
+  ];
   userData: Data;
   user: Data;
+  slideOpts = {
+      slidesPerView: 1,
+      // loop: true,
+      // height: 40
+  };
 
   constructor(
       private storageService: StorageService,
@@ -34,4 +46,7 @@ export class QrPage implements OnInit {
     });
   }
 
+  changeSlide(e){
+    console.log(e);
+  }
 }

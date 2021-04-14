@@ -3,6 +3,6 @@ export const environment = {
   production: true,
   smsPass: '111',
   apiUrl: url + '/api/',
-  imgUrl: url + '/uploads/files/img/',
+  imgUrl: url + '/img/',
   url
 };
