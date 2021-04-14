@@ -48,7 +48,7 @@ export class VipPage implements OnInit {
         type: this.orderType,
         note: this.orderNote,
         amount: this.levels[l].price,
-        more: '/api/levels/' + this.levels[l].id
+        level: '/api/levels/' + this.levels[l].id
     };
     this.message = {
         orderData,
