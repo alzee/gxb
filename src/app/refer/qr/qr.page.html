@@ -14,7 +14,7 @@
     <ion-text color="primary">{{code}}</ion-text>
   </div>
 
-    <ion-slides [options]="slideOpts" (ionSlideDidChange)="changeSlide($envent)">
+    <ion-slides [options]="slideOpts" (ionSlideDidChange)="changeSlide($event)">
       <ion-slide *ngFor="let i of posters">
         <ion-img [src]="env.imgUrl + i"></ion-img>
       </ion-slide>
