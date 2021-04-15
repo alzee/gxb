@@ -1,7 +1,5 @@
 major:
-  - topbar
   - back button
-  - skeleton-text
   - cities
   - 领地交易
   - 兑股权
@@ -13,16 +11,11 @@ major:
   - myposts segment auto update
   - api node up/down
   - page publish preview
-  - page home infinite-scroll
-  - page hall infinite-scroll
   - 举报维权
   - 暂无内容
   - 忘记密码
   - occupy validate
-  - withdraw validate
   - finance
-  - refer code
-  - coupon
   - ionic app update inside app
   - 分红金币
 minor:

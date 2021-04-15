@@ -3,6 +3,7 @@ import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { IonInfiniteScroll } from '@ionic/angular';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-home',
@@ -66,6 +67,7 @@ export class HomePage implements OnInit {
   ];
 
   constructor(
+      private statusBar: StatusBar,
       private router: Router,
       private httpService: HttpService
   ) {
@@ -134,5 +136,10 @@ export class HomePage implements OnInit {
 
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  }
+
+  setStatusBar(){
+      this.statusBar.overlaysWebView(true);
+      this.statusBar.backgroundColorByHexString("#FAB");
   }
 }
