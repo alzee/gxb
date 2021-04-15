@@ -15,7 +15,13 @@
 </ion-header>
 
 <ion-content color="light">
-  <ion-card *ngFor="let i of tasks; let j = index">
+  <ng-container *ngFor="let i of tasks; let j = index">
+  <ion-card *ngIf="seg == 'all'
+    || (!i.approved && seg == 'preApprove')
+    || (i.approved && seg == 'approved')
+    || (i.paused && seg == 'paused')
+    || (i.stopped && seg == 'stopped')
+    ">
     <ion-item class="info">
       <ion-thumbnail slot="start">
         <img *ngIf="i.owner.avatar; else elseBlock" [src]="envs.url + i.owner.avatar">
@@ -69,5 +75,6 @@
       <ion-label color="medium" *ngIf="i.stopped">已下架</ion-label>
     </ion-item>
   </ion-card>
+  </ng-container>
 
 </ion-content>

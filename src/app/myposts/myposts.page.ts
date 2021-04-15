@@ -16,11 +16,6 @@ export class MypostsPage implements OnInit {
       id: 0
   };
   tasks = [];
-  all = [];
-  preApprove = [];
-  approved = [];
-  paused = [];
-  stopped = [];
   envs = environment;
   seg = 'all';
 
@@ -30,11 +25,11 @@ export class MypostsPage implements OnInit {
       label: '全部',
     },
     {
-      value: 'done',
+      value: 'preApprove',
       label: '待审核',
     },
     {
-      value: 'published',
+      value: 'approved',
       label: '已审核',
     },
     {
@@ -42,7 +37,7 @@ export class MypostsPage implements OnInit {
       label: '已暂停',
     },
     {
-      value: 'prePub',
+      value: 'stopped',
       label: '已下架',
     },
   ];
@@ -59,49 +54,15 @@ export class MypostsPage implements OnInit {
           this.userData = res;
           this.httpService.get('tasks?order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res1) => {
               console.log(res1);
-              this.all = res1;
-              this.tasks = this.all;
-              for (const i of this.all) {
-                  console.log(i);
-                  if (i.approved){
-                      this.approved.push(i);
-                  }
-                  else {
-                      this.preApprove.push(i);
-                  }
-                  if (i.paused){
-                      this.paused.push(i);
-                  }
-                  if (i.stopped){
-                      this.stopped.push(i);
-                  }
-              }
+              this.tasks = res1;
           });
       }, (rej) => {
       });
   }
 
   segmentChanged(ev: any) {
-    this.tasks = this.all;
-    switch (ev.detail.value) {
-        case this.statuses[0].value:
-            this.tasks = this.all;
-            break;
-        case this.statuses[1].value:
-            this.tasks = this.preApprove;
-            break;
-        case this.statuses[2].value:
-            this.tasks = this.approved;
-            break;
-        case this.statuses[3].value:
-            this.tasks = this.paused;
-            break;
-        case this.statuses[4].value:
-            this.tasks = this.stopped;
-            break;
-
-    }
-    console.log('Segment changed', ev.detail.value);
+    this.seg = ev.detail.value;
+    // console.log(this.seg);
   }
 
   async pause(i) {
