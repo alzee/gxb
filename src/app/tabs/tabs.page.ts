@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonTabs } from '@ionic/angular';
+import { AppMinimize } from '@ionic-native/app-minimize/ngx';
+import { Platform } from '@ionic/angular';
+import { Plugins } from '@capacitor/core';
+const { App } = Plugins;
 
 @Component({
   selector: 'app-tabs',
@@ -7,9 +11,12 @@ import { IonTabs } from '@ionic/angular';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
+  backButtonSubscription;
   private activeTab?: HTMLElement;
 
   constructor(
+    private platform: Platform,
+    private appMinimize: AppMinimize,
   ) {
   }
 
@@ -23,10 +30,16 @@ export class TabsPage {
 
   ionViewDidLeave() {
     this.propagateToActiveTab('ionViewDidLeave');
+    console.log('leave tabs');
+    this.backButtonSubscription.unsubscribe();
   }
 
   ionViewWillEnter() {
     this.propagateToActiveTab('ionViewWillEnter');
+    console.log('enter tabs');
+    this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(-1, () => {
+        this.appMinimize.minimize();
+    });
   }
 
   ionViewDidEnter() {

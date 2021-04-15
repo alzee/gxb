@@ -4,9 +4,6 @@ import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { IonRouterOutlet, Platform } from '@ionic/angular';
-import { Plugins } from '@capacitor/core';
-const { App } = Plugins;
 
 @Component({
   selector: 'app-home',
@@ -70,8 +67,6 @@ export class HomePage implements OnInit {
   ];
 
   constructor(
-      private platform: Platform,
-      private routerOutlet: IonRouterOutlet,
       private statusBar: StatusBar,
       private router: Router,
       private httpService: HttpService
@@ -79,13 +74,6 @@ export class HomePage implements OnInit {
       const date: Date = new Date();
       // imply 00:00:00
       this.bondary = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-
-      this.platform.backButton.subscribeWithPriority(-1, () => {
-          if (!this.routerOutlet.canGoBack()) {
-              App.exitApp();
-              // navigator['app'].exitApp();
-          }
-      });
   }
 
   ngOnInit() {
@@ -151,7 +139,7 @@ export class HomePage implements OnInit {
   }
 
   setStatusBar(){
-      this.statusBar.overlaysWebView(true);
-      this.statusBar.backgroundColorByHexString("#FAB");
+      // this.statusBar.overlaysWebView(true);
+      // this.statusBar.backgroundColorByHexString("#FAB");
   }
 }

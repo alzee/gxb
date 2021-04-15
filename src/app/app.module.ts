@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AppMinimize } from '@ionic-native/app-minimize/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { Wechat } from '@ionic-native/wechat/ngx';
     Wechat,
     StatusBar,
     SplashScreen,
+    AppMinimize,
     HttpClientModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

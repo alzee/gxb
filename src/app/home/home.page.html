@@ -7,7 +7,7 @@
         </form>
       </ion-col>
       <ion-col class="support ion-align-items-center ion-no-padding" size="auto">
-        <ion-thumbnail>
+        <ion-thumbnail (click)="setStatusBar()">
           <img src="../assets/img/support.png">
         </ion-thumbnail>
       </ion-col>
@@ -32,7 +32,7 @@
                 </ng-template>
               </ion-avatar>
             </ion-col>
-            <ion-col>
+            <ion-col class="text">
               <ion-text class="title">{{i.task.title}}</ion-text>
               <ion-text class="info">{{i.task.category.name}}</ion-text>
               <ion-text class="info">编号: {{i.task.id}}</ion-text>
