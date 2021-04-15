@@ -81,7 +81,7 @@ export class SettingPage implements OnInit {
           cordova.plugins.apkupdater.check(this.updateUrl).then(
               (res) => {
                   console.log('check done:', res);
-                  this.toastService.presentToast('后台下载中...');
+                  this.toastService.presentToast('后台更新中...');
                   cordova.plugins.apkupdater.download().then(
                       (res1) => {
                           console.log('download done:', res1);
