@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { DataService } from '../services/data.service';
 
 interface Data {
     [propName: string]: any;
@@ -101,7 +102,8 @@ export class PublishPage implements OnInit {
       private httpService: HttpService,
       private http: HttpClient,
       private storageService: StorageService,
-      private router: Router
+      private router: Router,
+      private data: DataService
   ) {
   }
 
@@ -232,8 +234,11 @@ export class PublishPage implements OnInit {
 
   preview(){
       this.validateInputs();
-      // console.log(this.f);
-      this.checkBalance();
+      const msg = {
+          postData: this.postData
+      };
+      this.data.changeMessage(msg);
+      this.router.navigate(['/detail'], {queryPrams: {id: 0}});
   }
 
   getCateMin(){

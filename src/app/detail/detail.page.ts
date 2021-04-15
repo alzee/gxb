@@ -19,6 +19,7 @@ interface Data {
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
+  subscription: Subscription;
   message: Data;
   id: number;
   userData: Data;
@@ -52,8 +53,16 @@ export class DetailPage implements OnInit {
   }
 
   ngOnInit() {
+      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
+      console.log(this.message);
+
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.id = params.id;
+          if (this.id === 0) {
+              this.task = this.message.postData;
+              this.task.id = this.id;
+              return;
+          }
       });
 
       this.httpService.get('tasks/' + this.id).subscribe((res) => {
