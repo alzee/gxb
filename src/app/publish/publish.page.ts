@@ -22,8 +22,9 @@ export class PublishPage implements OnInit {
   arr1 = [1];
   arr2 = [1];
   url = environment.url;
-  min: number;
+  min = 1;
   feeRate = 0.15;
+  taskLeast: number;
   sum: number;
   fee: number;
   total: number;
@@ -105,13 +106,14 @@ export class PublishPage implements OnInit {
   }
 
   ngOnInit() {
-      this.min = 1;
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
           this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
               console.log(res1);
               this.user = res1;
               this.feeRate = this.user.level.postFee;
+              this.taskLeast = this.user.level.taskLeast;
+              this.f.quantity.setValidators([Validators.min(this.taskLeast)]);
               for (const coupon of this.user.coupon) {
                   if (coupon.type === this.orderType) {
                       this.coupon = coupon;
@@ -130,8 +132,7 @@ export class PublishPage implements OnInit {
           quantity: [''],
           workHours: [''],
           reviewHours: [''],
-          // showdays: [''],
-          price: ['', Validators.min(this.min)],
+          price: [''],
           description: [''],
           link: [''],
           note: [''],

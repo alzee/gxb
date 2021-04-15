@@ -57,7 +57,9 @@
       <ion-text color="danger" *ngIf="f.quantity.invalid && f.quantity.errors.required">﹡</ion-text>
     </ion-note>
     <ion-label>发布数量</ion-label>
-    <ion-input (ionChange)="subtotal()" clearInput required inputmode="numeric" name="quantity" formControlName="quantity" type="number" placeholder="请输入任务数量"> </ion-input>
+    <ion-input (ionChange)="subtotal()" [min]="taskLeast" clearInput required inputmode="numeric" name="quantity" formControlName="quantity" type="number" placeholder="最低数量 {{taskLeast}}">
+      <ion-text class="hint" color="danger" *ngIf="f.quantity.invalid && f.quantity.errors.min"> 最低数量 {{taskLeast}}</ion-text>
+    </ion-input>
   </ion-item>
 
   <ion-item class="data">
