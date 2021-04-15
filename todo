@@ -7,16 +7,14 @@ major:
   - setting password
   - setting phone
   - setting pay pass
-  - myposts segment auto update
   - api node up/down
   - page publish preview
-  - 举报维权
   - 暂无内容
   - 忘记密码
   - occupy validate
   - finance
-  - ionic app update inside app
   - 分红金币
+  - upload only image
 minor:
   - should can not input negitive
   - rmb unit

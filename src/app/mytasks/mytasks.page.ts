@@ -54,8 +54,6 @@ export class MytasksPage implements OnInit {
           this.httpService.get('applies?page=1&itemsPerPage=30&order%5Bdate%5D=desc&applicant.id=' + this.userData.id).subscribe((res1) => {
               console.log(res1);
               this.applies = res1;
-              this.applies0 = res1;
-              this.applies = this.applies0;
           });
       }, (rej) => {
       });
