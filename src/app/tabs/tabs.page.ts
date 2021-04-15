@@ -9,7 +9,10 @@ import { IonTabs } from '@ionic/angular';
 export class TabsPage {
   private activeTab?: HTMLElement;
 
-  constructor() {}
+  constructor(
+  ) {
+  }
+
   tabChange(tabsRef: IonTabs) {
     this.activeTab = tabsRef.outlet.activatedView.element;
   }
