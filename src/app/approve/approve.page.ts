@@ -19,8 +19,8 @@ export class ApprovePage implements OnInit {
   applyid: string;
   approved: boolean;
   denied: boolean;
-  approveCode: number;
-  denyCode: number;
+  denyCode = 13;
+  approveCode = 14 ;
   code: number;
   choice = -1;
   msg: string;
@@ -36,8 +36,6 @@ export class ApprovePage implements OnInit {
       private httpService: HttpService,
       private router: Router
   ) {
-      this.denyCode = 3;
-      this.approveCode = 4;
   }
 
   ngOnInit() {

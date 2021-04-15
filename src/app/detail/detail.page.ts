@@ -117,7 +117,7 @@ export class DetailPage implements OnInit {
       const postData = {
           task: '/api/tasks/' + this.id,
           applicant: '/api/users/' + this.userData.id,
-          status: '/api/statuses/1'
+          status: '/api/statuses/11'
       };
       this.httpService.post('applies', postData).subscribe((res) => {
           console.log(res);
@@ -128,7 +128,7 @@ export class DetailPage implements OnInit {
 
   submit() {
       const postData = {
-          status: '/api/statuses/2',
+          status: '/api/statuses/12',
           pic: this.uploads
       };
       this.httpService.patch('applies/' + this.applyId, postData).subscribe((res) => {

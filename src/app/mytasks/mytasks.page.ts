@@ -24,19 +24,19 @@ export class MytasksPage implements OnInit {
       label: '全部',
     },
     {
-      value: '1',
+      value: '11',
       label: '待提交',
     },
     {
-      value: '2',
+      value: '12',
       label: '审核中',
     },
     {
-      value: '3',
+      value: '13',
       label: '审核拒绝',
     },
     {
-      value: '4',
+      value: '14',
       label: '已完成',
     },
   ];
