@@ -12,6 +12,8 @@ export const environment = {
   smsPass: 'test',
   apiUrl: url + '/api/',
   imgUrl: url + '/img/',
+  updateUrl: url + '/update/manifest.json',
+  // updateUrl: url + '/update.xml',
   url,
 };
 

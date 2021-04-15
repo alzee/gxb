@@ -4,5 +4,7 @@ export const environment = {
   smsPass: '111',
   apiUrl: url + '/api/',
   imgUrl: url + '/img/',
+  updateUrl: url + '/update/manifest.json',
+  // updateUrl: url + '/update.xml',
   url
 };
