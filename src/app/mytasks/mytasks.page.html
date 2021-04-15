@@ -18,7 +18,8 @@
   </ion-toolbar>
   <ion-item class="task">
     <ion-list>
-      <ion-item [routerLink]="['/detail']" [queryParams]="{id:i.task.id}" *ngFor="let i of applies">
+      <ng-container *ngFor="let i of applies">
+      <ion-item [routerLink]="['/detail']" [queryParams]="{id:i.task.id}" *ngIf="seg == 0 || seg == i.status.id">
         <ion-grid>
           <ion-row>
             <ion-col class="pic" size="auto">
@@ -46,6 +47,7 @@
           </ion-row>
         </ion-grid>
       </ion-item>
+      </ng-container>
 
     </ion-list>
   </ion-item>

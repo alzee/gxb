@@ -12,11 +12,7 @@ import { Router } from '@angular/router';
 })
 export class MytasksPage implements OnInit {
   applies = [];
-  applies0 = [];
-  applies1 = [];
-  applies2 = [];
-  applies3 = [];
-  applies4 = [];
+  seg = 0;
   userData = {
       id: 0
   };
@@ -57,48 +53,16 @@ export class MytasksPage implements OnInit {
           this.userData = res;
           this.httpService.get('applies?page=1&itemsPerPage=30&order%5Bdate%5D=desc&applicant.id=' + this.userData.id).subscribe((res1) => {
               console.log(res1);
+              this.applies = res1;
               this.applies0 = res1;
               this.applies = this.applies0;
-          });
-          this.httpService.get('applies?status.id=1&applicant.id=' + this.userData.id).subscribe((res1) => {
-              console.log(res1);
-              this.applies1 = res1;
-          });
-          this.httpService.get('applies?status.id=2&applicant.id=' + this.userData.id).subscribe((res1) => {
-              console.log(res1);
-              this.applies2 = res1;
-          });
-          this.httpService.get('applies?status.id=3&applicant.id=' + this.userData.id).subscribe((res1) => {
-              console.log(res1);
-              this.applies3 = res1;
-          });
-          this.httpService.get('applies?status.id=4&applicant.id=' + this.userData.id).subscribe((res1) => {
-              console.log(res1);
-              this.applies4 = res1;
           });
       }, (rej) => {
       });
   }
 
   segmentChanged(ev: any) {
-    this.applies = this.applies0;
-    switch (ev.detail.value){
-        case this.statuses[0].value:
-            this.applies = this.applies0;
-            break;
-        case this.statuses[1].value:
-            this.applies = this.applies1;
-            break;
-        case this.statuses[2].value:
-            this.applies = this.applies2;
-            break;
-        case this.statuses[3].value:
-            this.applies = this.applies3;
-            break;
-        case this.statuses[4].value:
-            this.applies = this.applies4;
-            break;
-    }
-    console.log('Segment changed', ev.detail.value);
+    this.seg = ev.detail.value;
+    console.log(this.seg);
   }
 }
