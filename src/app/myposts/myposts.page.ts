@@ -17,27 +17,27 @@ export class MypostsPage implements OnInit {
   };
   tasks = [];
   envs = environment;
-  seg = 'all';
+  seg = 0;
 
   public statuses = [
     {
-      value: 'all',
+      id: 0,
       label: '全部',
     },
     {
-      value: 'preApprove',
+      id: 1,
       label: '待审核',
     },
     {
-      value: 'approved',
+      id: 2,
       label: '已审核',
     },
     {
-      value: 'paused',
+      id: 3,
       label: '已暂停',
     },
     {
-      value: 'stopped',
+      id: 4,
       label: '已下架',
     },
   ];
@@ -84,7 +84,7 @@ export class MypostsPage implements OnInit {
             console.log('Confirm Okay');
             console.log('pause');
             const data = {
-                paused: true
+                status: '/api/statuses/3'
             };
             this.httpService.patch('tasks/' + this.tasks[i].id, data).subscribe((res) => {
                 this.tasks[i] = res;
@@ -115,7 +115,7 @@ export class MypostsPage implements OnInit {
             console.log('Confirm Okay');
             console.log('pause');
             const data = {
-                paused: false
+                status: '/api/statuses/2'
             };
             this.httpService.patch('tasks/' + this.tasks[i].id, data).subscribe((res) => {
                 this.tasks[i] = res;
@@ -147,7 +147,7 @@ export class MypostsPage implements OnInit {
             console.log('Confirm Okay');
             console.log('pause');
             const data = {
-                stopped: true
+                status: '/api/statuses/4'
             };
             this.httpService.patch('tasks/' + this.tasks[i].id, data).subscribe((res) => {
                 this.tasks[i] = res;

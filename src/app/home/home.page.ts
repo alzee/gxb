@@ -18,8 +18,8 @@ export class HomePage implements OnInit {
   news = [];
   envs = environment;
   page = 1;
-  bidQuery = 'page=1&itemsPerPage=1&paused=false&stopped=false&order%5Bdate%5D=desc';
-  taskQuery = 'paused=false&stopped=false&order%5BstickyUntil%5D=desc';
+  bidQuery = 'page=1&itemsPerPage=1&status=2&order%5Bdate%5D=desc';
+  taskQuery = 'status=2&order%5BstickyUntil%5D=desc';
   newsQuery = 'page=1&itemsPerPage=3&type.id=3';
   infiniteScroll: IonInfiniteScroll;
   slideOpts = {

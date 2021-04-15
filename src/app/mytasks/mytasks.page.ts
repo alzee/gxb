@@ -20,23 +20,23 @@ export class MytasksPage implements OnInit {
 
   public statuses = [
     {
-      value: '0',
+      id: 0,
       label: '全部',
     },
     {
-      value: '11',
+      id: 11,
       label: '待提交',
     },
     {
-      value: '12',
+      id: 12,
       label: '审核中',
     },
     {
-      value: '13',
+      id: 13,
       label: '审核拒绝',
     },
     {
-      value: '14',
+      id: 14,
       label: '已完成',
     },
   ];

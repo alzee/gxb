@@ -16,7 +16,7 @@ export class HallPage implements OnInit {
   tasksByPrice = [];
   envs = environment;
   seg = 'all';
-  query = 'paused=false&stopped=false';
+  query = 'status=2';
   pageR = 1;
   pageD = 1;
   pageP = 1;
