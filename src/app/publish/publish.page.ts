@@ -313,8 +313,8 @@ export class PublishPage implements OnInit {
 
   async confirmTopup() {
     const alert = await this.alertController.create({
-      header: `可用余额(${this.availableBalance}元)不足`,
-      subHeader: `需充值${Math.round((this.total - this.availableBalance) * 100) / 100}元`,
+      header: `可用余额(${this.availableBalance / 100}元)不足`,
+      subHeader: `需充值${(Math.round(this.total * 100) - this.availableBalance) / 100}元`,
       message: '转入充值页面？',
       buttons: [
         {
@@ -328,7 +328,7 @@ export class PublishPage implements OnInit {
           text: '确定',
           handler: () => {
             console.log('Confirm Okay');
-            this.router.navigate(['/topup'], {queryParams: {amount: this.total - this.availableBalance}});
+            this.router.navigate(['/topup'], {queryParams: {amount: Math.round(this.total * 100 - this.availableBalance)}});
           }
         }
       ]
@@ -341,7 +341,7 @@ export class PublishPage implements OnInit {
       this.httpService.get('users/' + this.userData.id).subscribe((res) => {
           this.user = res;
           this.availableBalance = this.user.topup + this.user.earnings;
-          if (this.availableBalance < this.total){
+          if (this.availableBalance < Math.round(this.total * 100)){
               this.confirmTopup();
           }
           else {
