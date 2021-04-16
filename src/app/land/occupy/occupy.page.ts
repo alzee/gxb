@@ -21,6 +21,7 @@ export class OccupyPage implements OnInit {
   form: FormGroup;
   daysMin = 10;
   priceMin = 1;
+  price = 0;
   amount: number;
   landId: number;
   cover: string;
@@ -71,7 +72,7 @@ export class OccupyPage implements OnInit {
   validateInputs() {
       this.postData.body = this.f.body.value;
       this.postData.days = this.f.days.value;
-      this.postData.price = this.f.price.value * 100;
+      this.postData.price = this.price;
       this.postData.cover = this.cover;
       this.postData.pics = this.pics;
       this.postData.owner = '/api/users/' + this.userData.id;
@@ -126,7 +127,10 @@ export class OccupyPage implements OnInit {
   }
 
   total(){
-      this.f.price.value = parseInt(this.f.price.value * 100, 10) / 100;    // only 2 digits after decimal
-      this.amount = this.f.days.value * parseInt(this.f.price.value* 100, 10) / 100;
+      // Number() or +, that is a question
+      if (this.f.price.value) {
+          this.price = Number(this.f.price.value.toFixed(2));    // only 2 digits after decimal
+      }
+      this.amount = +(this.f.days.value * this.price).toFixed(2);
   }
 }

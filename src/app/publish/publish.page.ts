@@ -238,7 +238,7 @@ export class PublishPage implements OnInit {
           postData: this.postData
       };
       this.data.changeMessage(msg);
-      this.router.navigate(['/detail'], {queryPrams: {id: 0}});
+      this.router.navigate(['/detail'], {queryParams: {id: 0}});
   }
 
   getCateMin(){
