@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { ToastService } from '../../services/toast.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-changeprice',
@@ -9,12 +10,14 @@ import { ToastService } from '../../services/toast.service';
   styleUrls: ['./changeprice.page.scss'],
 })
 export class ChangepricePage implements OnInit {
+  prePrice: number;
   price: number;
   id: number;
   name: string;
   newPrice: number;
 
   constructor(
+      public navCtrl: NavController,
       private httpService: HttpService,
       private activeRoute: ActivatedRoute,
       private toastService: ToastService
@@ -23,7 +26,7 @@ export class ChangepricePage implements OnInit {
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.id = params.id;
-          this.price = parseInt(params.price, 10);
+          this.prePrice = parseInt(params.prePrice, 10);
           this.name = params.name;
           console.log(this.id);
       });
@@ -32,13 +35,12 @@ export class ChangepricePage implements OnInit {
   changePrice(){
     console.log(this.newPrice);
     const data = {
-      price: this.newPrice,
-      prePrice: this.price
+      price: this.newPrice * 100,
+      forSale: true
     };
     this.httpService.patch('lands/' + this.id, data).subscribe((res) => {
       console.log(res);
-      // this.toastService.presentToast('价格调整');
-      this.ngOnInit();
+      this.navCtrl.back();
     });
   }
 }

@@ -27,6 +27,7 @@
   </div>
 
   <div class="hist">
+    <ng-template>
     <ion-segment value="my" [(ngModel)]="seg" (ionChange)="segChanged($event)">
       <ion-segment-button value="my">
         <ion-label>拥有的领地</ion-label>
@@ -35,6 +36,7 @@
         <ion-label>卖出的领地</ion-label>
       </ion-segment-button>
     </ion-segment>
+    </ng-template>
 
     <ng-container *ngIf="!showSold">
     <ion-item class="list" *ngFor="let i of myLands">
@@ -44,8 +46,9 @@
       <ion-text>{{i.name}}</ion-text>
       <div slot="end">
         <ion-text class="price">{{i.price / 100}}</ion-text>
-        <ion-item routerLink="/land/changeprice" [queryParams]="{id: i.id, name: i.name, price: i.price}">
-          <ion-text color="danger" class="label">出售</ion-text>
+        <ion-item routerLink="/land/changeprice" [queryParams]="{id: i.id, name: i.name, prePrice: i.prePrice}">
+          <ion-text *ngIf="i.forSale" color="success" class="label">出售中</ion-text>
+          <ion-text *ngIf="!i.forSale" color="danger" class="label">出售</ion-text>
         </ion-item>
       </div>
     </ion-item>

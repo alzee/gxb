@@ -5,6 +5,7 @@ import { DataService } from '../../services/data.service';
 import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../../services/toast.service';
 
 interface Data {
     [propName: string]: any;
@@ -24,6 +25,7 @@ export class HallPage implements OnInit {
   orderNote = '领地交易';
 
   constructor(
+      private toastService: ToastService,
       private storageService: StorageService,
       private router: Router,
       private httpService: HttpService,
@@ -42,7 +44,10 @@ export class HallPage implements OnInit {
   }
 
   buy(i){
-      console.log(i);
+      if (i.owner.id === this.userData.id) {
+          this.toastService.presentToast('您拥有领地 - ' + i.name);
+          return;
+      }
       const postData = {
           prePrice: i.price,
           owner: '/api/users/' + this.userData.id,
