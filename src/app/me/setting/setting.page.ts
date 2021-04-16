@@ -21,6 +21,7 @@ declare var cordova;
 })
 export class SettingPage implements OnInit {
   env = environment;
+  version: string;
   url = environment.url;
   user: Data;
   id: number;
@@ -81,8 +82,15 @@ export class SettingPage implements OnInit {
           cordova.plugins.apkupdater.check(this.updateUrl).then(
               (res) => {
                   console.log('check done:', res);
-                  // this.toastService.presentToast('后台更新中...');
-                  this.toastService.presentToast(`${res.version} ${res.ready} ${res.size} ${res.chunks}`);
+                  // this.toastService.presentToast(`${res.version} ${res.ready} ${res.size} ${res.chunks}`);
+                  // if (res.version === this.version) {
+                  if (res.ready) {
+                      this.toastService.presentToast('已经是最新哦！');
+                      return;
+                  }
+                  else {
+                      this.toastService.presentToast('后台更新中...');
+                  }
                   cordova.plugins.apkupdater.download().then(
                       (res1) => {
                           console.log('download done:', res1);
