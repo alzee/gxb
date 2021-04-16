@@ -10,7 +10,7 @@
 <ion-content color="light">
   <ion-label color="medium">支付金额</ion-label>
   <ion-item class="input">
-    <ion-text color="danger" class="price"> ¥ {{orderData.amount}} </ion-text>
+    <ion-text color="danger" class="price"> ¥ {{orderData.amount / 100}} </ion-text>
   </ion-item>
   <ng-container *ngIf="coupon">
   <ion-label color="medium">可用红包</ion-label>
@@ -26,8 +26,8 @@
       <ion-icon name="wallet" color="warning"></ion-icon>
       <ion-label>
         余额支付
-        <ion-text *ngIf="availableBalance >= orderData.amount" color="success">{{availableBalance}}元</ion-text>
-        <ion-text *ngIf="availableBalance < orderData.amount" color="danger">{{availableBalance}}元 可用余额不足</ion-text>
+        <ion-text *ngIf="availableBalance >= orderData.amount" color="success">{{availableBalance / 100}}元</ion-text>
+        <ion-text *ngIf="availableBalance < orderData.amount" color="danger">{{availableBalance / 100}}元 可用余额不足</ion-text>
       </ion-label>
       <ion-radio [disabled]="insufficient" slot="end" value="0"></ion-radio>
     </ion-item>

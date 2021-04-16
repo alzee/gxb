@@ -33,7 +33,7 @@
   <div class="offset ion-padding-horizontal">
     <div class="balance">
       <ion-item class="total">
-        <ion-text slot="start" color="light">账户总额 {{user.total}}</ion-text>
+        <ion-text slot="start" color="light">账户总额 {{user.total / 100}}</ion-text>
         <ion-button slot="end" fill="outline" color="light" routerLink="/me/withdraw">
           立即提现
           <ion-icon name="chevron-forward-outline"></ion-icon>
