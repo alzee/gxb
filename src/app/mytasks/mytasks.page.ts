@@ -29,11 +29,11 @@ export class MytasksPage implements OnInit {
     },
     {
       id: 12,
-      label: '审核中',
+      label: '验收中',
     },
     {
       id: 13,
-      label: '审核拒绝',
+      label: '不合格',
     },
     {
       id: 14,
