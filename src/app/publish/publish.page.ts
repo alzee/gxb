@@ -28,6 +28,7 @@ export class PublishPage implements OnInit {
   taskLeast: number;
   sum: number;
   fee: number;
+  price: number;
   total: number;
   availableBalance: number;
   userData: Data;
@@ -171,7 +172,7 @@ export class PublishPage implements OnInit {
       this.postData.quantity = this.f.quantity.value;
       this.postData.workHours = this.f.workHours.value;
       this.postData.reviewHours = this.f.reviewHours.value;
-      this.postData.price = this.f.price.value;
+      this.postData.price = Math.round(this.price * 100);
       this.postData.description = this.f.description.value;
       this.postData.link = this.f.link.value;
       this.postData.note = this.f.note.value;
@@ -276,7 +277,7 @@ export class PublishPage implements OnInit {
   async confirmPublish() {
     const alert = await this.alertController.create({
       header: '发布任务',
-      message: `您账户中相应金额(${this.total}元)将被冻结，任务结束后解冻剩余部分！`,
+      message: `您账户中相应金额(${this.sum}元)将被冻结，任务结束后解冻剩余部分！`,
       buttons: [
         {
           text: '取消',
@@ -289,14 +290,14 @@ export class PublishPage implements OnInit {
           text: '确定',
           handler: () => {
             console.log('Confirm Okay');
-            this.orderData.amount = this.total;
+            this.orderData.amount = Math.round(this.total * 100);
+            this.orderData.fee = Math.round(this.fee * 100);
             this.orderData.type = this.orderType;
             this.orderData.note = this.orderNote;
             this.orderData.user = '/api/users/' + this.user.id;
             if (this.coupon) {
                 this.orderData.couponId = this.coupon.id;
             }
-            this.orderData.fee = this.fee;
             this.httpService.post('finances', this.orderData).subscribe((res) => {
                 console.log(res);
                 this.publish();
@@ -350,14 +351,17 @@ export class PublishPage implements OnInit {
   }
 
   subtotal(){
-      this.sum = Math.round(this.f.quantity.value * this.f.price.value);
-      this.fee = Math.round(this.sum * this.feeRate * 100) / 100;
+      if (this.f.price.value) {
+          this.price = +this.f.price.value.toFixed(2);
+      }
+      this.sum = +(this.f.quantity.value * this.price).toFixed(2);
+      this.fee = +(this.sum * this.feeRate).toFixed(2);
       if (this.coupon) {
-          this.fee = Math.round(this.fee - this.coupon.value);
+          this.fee = +(this.fee - this.coupon.value).toFixed(2);
       }
       if (this.fee < 0) {
           this.fee = 0;
       }
-      this.total = this.sum + this.fee;
+      this.total = +(this.sum + this.fee).toFixed(2);
   }
 }
