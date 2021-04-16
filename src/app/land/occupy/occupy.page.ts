@@ -6,6 +6,7 @@ import { HttpService } from '../../services/http.service';
 import { DataService } from '../../services/data.service';
 import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 interface Data {
     [propName: string]: any;
@@ -17,15 +18,13 @@ interface Data {
   styleUrls: ['./occupy.page.scss'],
 })
 export class OccupyPage implements OnInit {
-  days: number;
-  price: number;
-  land: string;
+  form: FormGroup;
+  daysMin = 10;
+  priceMin = 1;
+  amount: number;
   landId: number;
   cover: string;
   pics = [];
-  title: string;
-  body: string;
-  paid: string;
   url: string = environment.url;
   postData: Data = {};
   userData: Data;
@@ -34,6 +33,7 @@ export class OccupyPage implements OnInit {
   orderNote = '占领格子';
 
   constructor(
+      private formBuilder: FormBuilder,
       private storageService: StorageService,
       private activeRoute: ActivatedRoute,
       private httpService: HttpService,
@@ -41,8 +41,6 @@ export class OccupyPage implements OnInit {
       private router: Router,
       private data: DataService
   ) {
-      this.days = 10;
-      this.price = 1;
   }
 
   ngOnInit() {
@@ -52,35 +50,32 @@ export class OccupyPage implements OnInit {
         });
 
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.landId = params.id;
-          this.land = '/api/lands/' + this.landId;
+          this.landId = parseInt(params.id, 10);
           if (this.landId !== 1) {
-            this.days = 20;
-            this.price = 0.05;
+            this.daysMin = 20;
+            this.priceMin = 0.5;
           }
+      });
+
+      this.form = this.formBuilder.group({
+          body: [],
+          days: ['', Validators.min(this.daysMin)],
+          price: ['', Validators.min(this.priceMin)],
       });
   }
 
-  // ionViewWillEnter(){
-  ionViewDidEnter(){
-      this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.paid = params.paid;
-          if (this.paid === 'y'){
-              console.log(typeof this.paid);
-              // this.publish();
-          }
-      });
+  get f(){
+      return this.form.controls;
   }
 
   validateInputs() {
-      this.postData.days = this.days;
-      this.postData.price = this.price * 100;
+      this.postData.body = this.f.body.value;
+      this.postData.days = this.f.days.value;
+      this.postData.price = this.f.price.value * 100;
       this.postData.cover = this.cover;
       this.postData.pics = this.pics;
-      this.postData.title = this.title;
-      this.postData.body = this.body;
       this.postData.owner = '/api/users/' + this.userData.id;
-      this.postData.land = this.land;
+      this.postData.land = '/api/lands/' + this.landId;
   }
 
   publish() {
@@ -90,7 +85,7 @@ export class OccupyPage implements OnInit {
       const orderData = {
         type: this.orderType,
         note: this.orderNote,
-        amount: this.price * this.days,
+        amount: this.amount
       };
       this.message = {
           orderData,
@@ -128,5 +123,10 @@ export class OccupyPage implements OnInit {
       console.log(this.pics);
       console.log(this.cover);
     });
+  }
+
+  total(){
+      this.f.price.value = parseInt(this.f.price.value * 100, 10) / 100;    // only 2 digits after decimal
+      this.amount = this.f.days.value * parseInt(this.f.price.value* 100, 10) / 100;
   }
 }

@@ -8,9 +8,11 @@
 </ion-header>
 
 <ion-content color="light">
+  <form (ngSubmit)="publish()" [formGroup]="form">
   <ion-item>
-    <ion-textarea rows="7" placeholder="你想对大家说..." [(ngModel)]="body"></ion-textarea>
+    <ion-textarea required rows="7" placeholder="﹡ 你想对大家说..." formControlName="body"></ion-textarea>
   </ion-item>
+
   <ion-item>
     <ion-thumbnail *ngFor="let i of pics">
       <img [src]="url + i">
@@ -21,6 +23,9 @@
 
   <ion-label color="medium">在城市格子上展示的封面</ion-label>
   <ion-item>
+    <div class="asteroid">
+      <ion-text color="danger" *ngIf="!cover">﹡</ion-text>
+    </div>
     <ion-label>上传封面</ion-label>
     <ion-icon *ngIf="!cover" name="image-sharp" (click)="fileUpload0.click()"></ion-icon>
     <ion-thumbnail *ngIf="cover" (click)="fileUpload0.click()">
@@ -31,20 +36,31 @@
 
   <ion-label color="medium">在城市格子上展示的天数</ion-label>
   <ion-item>
+    <div class="asteroid">
+      <ion-text color="danger" *ngIf="f.days.invalid">﹡</ion-text>
+    </div>
     <ion-label>展示天数</ion-label>
-    <ion-input type="number" placeholder="最低10天起步" [(ngModel)]="days"></ion-input>
+    <ion-input (ionChange)="total()" type="number" required placeholder="最少{{daysMin}}天" formControlName="days">
+      <ion-text class="hint" color="danger" *ngIf="f.days.invalid && f.days.errors.min"> 最少 {{daysMin}} 天</ion-text>
+    </ion-input>
   </ion-item>
 
   <ion-label></ion-label>
   <ion-item>
+    <div class="asteroid">
+      <ion-text color="danger" *ngIf="f.price.invalid">﹡</ion-text>
+    </div>
     <ion-label>竞价购买</ion-label>
-    <ion-input placeholder="最低1.0元/天起步" [(ngModel)]="price"></ion-input>
+    <ion-input (ionChange)="total()" type="number" required placeholder="最低{{priceMin}}元/天" formControlName="price">
+      <ion-text class="hint" color="danger" *ngIf="f.price.invalid && f.price.errors.min"> 最低 {{priceMin}} 元/天</ion-text>
+    </ion-input>
   </ion-item>
 
   <ion-label color="medium">支付金额</ion-label>
   <ion-item>
-    <ion-text color="danger">¥ {{days * price}}</ion-text>
+    <ion-text color="danger">¥ {{amount}}</ion-text>
   </ion-item>
 
-  <ion-button expand="block" (click)="publish()">发布</ion-button>
+  <ion-button [disabled]="form.invalid || !cover" type="submit" expand="block">发布</ion-button>
+  </form>
 </ion-content>

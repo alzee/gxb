@@ -11,10 +11,11 @@ major:
   - page publish preview
   - 暂无内容
   - 忘记密码
-  - occupy validate
   - finance
   - 分红金币
   - upload only image
+  - cell read 5 sec
+  - 微信头像昵称
 minor:
   - should can not input negitive
   - rmb unit
@@ -31,12 +32,5 @@ minor:
 question:
 
 feedback:
-  - 全民分红没做
-  - 城市格子我发布的还是展示admin账号，下面看广告的人的数据没做
-  - 领地主城的广告出价与别的城市的是不同，这个你又忘记修改了
-  -
-  - 股权兑换和交易部分没做吧
-  - 任务审核拒绝后，找不到在重新做这个任务的提交地方了，任务审核拒绝后的维权没做
-  - 注册后需要微信授权头像昵称
 
 # vim:ft=yaml
