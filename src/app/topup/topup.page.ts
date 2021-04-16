@@ -49,7 +49,7 @@ export class TopupPage implements OnInit {
 
       this.activeRoute.queryParams.subscribe((params: Params) => {
           if (params.amount){
-              this.min = params.amount;
+              this.min = params.amount / 100;
               this.amount.setValue(this.min);
               this.amount.setValidators(Validators.min(this.min));
           }
