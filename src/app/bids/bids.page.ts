@@ -12,6 +12,7 @@ export class BidsPage implements OnInit {
   buyItNow: number;
   today: string;
   min: number;
+  query = 'page=1&itemsPerPage=1&order%5Bdate%5D=desc';
 
   constructor(
       private httpService: HttpService
@@ -28,7 +29,7 @@ export class BidsPage implements OnInit {
   ionViewWillEnter(){
       for (let i = 0; i < 4; i++){
           this.httpService.get(
-              `bids?page=1&itemsPerPage=1&position=${i + 1}&order%5Bdate%5D=desc&date%5Bafter%5D=${this.today}`
+              `bids?${this.query}&position=${i + 1}&date%5Bafter%5D=${this.today}`
           ).subscribe((res) => {
               this.bids[i] = res[0];
               console.log(this.bids);

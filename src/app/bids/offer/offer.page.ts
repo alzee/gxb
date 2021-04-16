@@ -31,13 +31,15 @@ export class OfferPage implements OnInit {
   userData: Data;
   postData: Data = {
       task: 0,
-      bid: 0,
+      price: 0,
       position: 0,
       isBuyNow: false
   };
   message: Data;
   orderType = 4;
   orderNote = '任务竞价';
+  taskQuery = 'status=2&order%5Bdate%5D=desc';
+  bidQuery = 'page=1&order%5Bdate%5D=desc&itemsPerPage=10';
 
   constructor(
       private storageService: StorageService,
@@ -56,7 +58,7 @@ export class OfferPage implements OnInit {
   ngOnInit() {
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
-          this.httpService.get('tasks?paused=false&stopped=false&order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res1) => {
+          this.httpService.get(`tasks?${this.taskQuery}&owner.id=${this.userData.id}`).subscribe((res1) => {
               console.log(res1);
               this.myposts = res1;
           });
@@ -65,12 +67,12 @@ export class OfferPage implements OnInit {
           this.position = parseInt(params.id, 10);
       });
       this.httpService.get(
-          `bids?page=1&order%5Bdate%5D=desc&itemsPerPage=10&position=${this.position}&date%5Bafter%5D=${this.today}`
+          `bids?${this.bidQuery}&position=${this.position}&date%5Bafter%5D=${this.today}`
       ).subscribe((res) => {
         console.log(res);
         this.bids = res;
         if (this.bids.length > 0) {
-            this.min = this.bids[0].bid + this.step;
+            this.min = this.bids[0].price / 100 + this.step;
             if (this.bids[0].isBuyNow) {
                 this.buyOut = true;
             }
@@ -92,7 +94,7 @@ export class OfferPage implements OnInit {
         this.myBid = this.buyNowPrice;
     }
     this.postData.task = '/api/tasks/' + this.post;
-    this.postData.bid = this.myBid;
+    this.postData.price = this.myBid;
     this.postData.position = this.position;
     this.postData.isBuyNow = isBuyNow;
     console.log(this.myBid);
@@ -116,7 +118,7 @@ export class OfferPage implements OnInit {
             const orderData = {
                 type: this.orderType,
                 note: this.orderNote,
-                amount: this.postData.bid,
+                amount: this.postData.price,
             };
             this.message = {
                 orderData,
