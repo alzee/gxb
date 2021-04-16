@@ -31,6 +31,7 @@ export class PayPage implements OnInit {
   userData: Data;
   user: Data;
   availableBalance: number;
+  insufficient: boolean;
   payMethod = 0;
   coupon: Data;
 
@@ -71,6 +72,7 @@ export class PayPage implements OnInit {
               this.availableBalance = this.user.topup + this.user.earnings;
               if (this.availableBalance < this.orderData.amount) {
                   this.payMethod = 1;
+                  this.insufficient = true;
               }
           });
       });

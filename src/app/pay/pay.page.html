@@ -29,7 +29,7 @@
         <ion-text *ngIf="availableBalance >= orderData.amount" color="success">{{availableBalance}}元</ion-text>
         <ion-text *ngIf="availableBalance < orderData.amount" color="danger">{{availableBalance}}元 可用余额不足</ion-text>
       </ion-label>
-      <ion-radio slot="end" value="0"></ion-radio>
+      <ion-radio [disabled]="insufficient" slot="end" value="0"></ion-radio>
     </ion-item>
     <ion-item class="input">
       <ion-icon name="logo-wechat" color="success"></ion-icon>
