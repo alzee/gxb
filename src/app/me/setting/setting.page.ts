@@ -82,7 +82,7 @@ export class SettingPage implements OnInit {
               (res) => {
                   console.log('check done:', res);
                   // this.toastService.presentToast('后台更新中...');
-                  this.toastService.presentToast(res.version, res.ready, res.size, res.chunks);
+                  this.toastService.presentToast(`${res.version} ${res.ready} ${res.size} ${res.chunks}`);
                   cordova.plugins.apkupdater.download().then(
                       (res1) => {
                           console.log('download done:', res1);
