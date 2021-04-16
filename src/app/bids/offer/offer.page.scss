@@ -24,6 +24,12 @@ ion-content{
   .list-item{
     padding: 10px 0;
     background: #ffffff;
+    ion-text{
+        font-size: 12px;
+    }
+    .price{
+        font-size: 14px;
+    }
   }
 }
 ion-footer{
