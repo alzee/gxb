@@ -71,11 +71,14 @@ ion-content{
         height: 20px;
         margin-right:10px;
       }
-      .price{
-        font-size: 20px;
-      }
-      .label{
-        font-size: 14px;
+      div{
+          text-align: right;
+          .price{
+              font-size: 20px;
+          }
+          .label{
+              font-size: 14px;
+          }
       }
     }
 
