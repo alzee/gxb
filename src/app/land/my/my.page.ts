@@ -35,10 +35,13 @@ export class MyPage implements OnInit {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
       this.uid = res.id;
       console.log(this.uid);
-      this.httpService.get('lands?page=1&itemsPerPage=30&owner.id=' + this.uid).subscribe((res1) => {
-          this.myLands = res1;
-          console.log(res1);
-      });
+    });
+  }
+
+  ionViewWillEnter(){
+    this.httpService.get('lands?page=1&itemsPerPage=30&owner.id=' + this.uid).subscribe((res1) => {
+      this.myLands = res1;
+      console.log(res1);
     });
   }
 

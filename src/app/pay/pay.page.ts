@@ -54,7 +54,7 @@ export class PayPage implements OnInit {
       this.url = this.message.url;
       this.httpMethod = this.message.httpMethod;
       this.postData = this.message.postData;
-      if (this.postData.price) {
+      if (this.postData && this.postData.price) {
         this.postData.price = Math.round(this.postData.price * 100);
       }
       this.orderData = this.message.orderData;

@@ -16,14 +16,14 @@
       <ion-label>{{i.name}}</ion-label>
       <ion-text slot="end" color="medium">36分钟前</ion-text>
     </ion-item>
-    <div class="pk" routerLink="/pay" [queryParams]="{total: i.price}">
+    <div class="pk" (click)="buy(i)">
       <div class="peer" *ngIf="i.owner">
         <ion-avatar slot="start">
           <img [src]="url + i.owner.avatar">
         </ion-avatar>
         <ion-text class="name">{{i.owner.username}}</ion-text>
         <ion-text color="medium">原购买价格</ion-text>
-        <ion-text class="price">{{i.prePrice}}</ion-text>
+        <ion-text class="price">{{i.prePrice / 100}}</ion-text>
       </div>
       <div class="vs">
         <ion-button fill="outline" disabled="true" color="danger" size="small">调整价格</ion-button>
@@ -35,7 +35,7 @@
         </ion-avatar>
         <ion-text class="name">{{i.owner.username}}</ion-text>
         <ion-text color="medium">现出售价格</ion-text>
-        <ion-text class="price">{{i.price}}</ion-text>
+        <ion-text class="price">{{i.price / 100}}</ion-text>
       </div>
     </div>
   </div>
