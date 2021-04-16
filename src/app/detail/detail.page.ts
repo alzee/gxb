@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastService } from '../services/toast.service';
 import { DataService } from '../services/data.service';
+import { Subscription } from 'rxjs';
 
 interface Data {
     [propName: string]: any;
@@ -57,13 +58,16 @@ export class DetailPage implements OnInit {
       console.log(this.message);
 
       this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.id = params.id;
-          if (this.id === 0) {
+          this.id = parseInt(params.id, 10);
+          if (this.id === 0) {  // 0 means it's a preview
               this.task = this.message.postData;
               this.task.id = this.id;
-              return;
           }
       });
+
+      if (this.id === 0) {
+          return;
+      }
 
       this.httpService.get('tasks/' + this.id).subscribe((res) => {
           this.task = res;

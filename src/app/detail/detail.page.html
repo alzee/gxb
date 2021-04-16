@@ -138,6 +138,7 @@
 
 <ion-footer>
   <ion-item>
+    <ng-container *ngIf="id != 0">
     <ng-container *ngIf="applied">
         <ion-button *ngIf="statusId != 3" class="contact" size="large" expand="full">联系商家</ion-button>
         <ion-button *ngIf="statusId == 3" class="contact" size="large" expand="full" (click)="report()">辩诉维权</ion-button>
@@ -149,6 +150,7 @@
     <ng-container *ngIf="!applied">
       <ion-button class="contact" size="large" expand="full">联系商家</ion-button>
       <ion-button class="apply" size="large" expand="full" (click)="apply()">申请任务</ion-button>
+    </ng-container>
     </ng-container>
   </ion-item>
 </ion-footer>
