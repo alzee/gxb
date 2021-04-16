@@ -36,7 +36,7 @@
               <ion-text class="title">{{i.task.title}}</ion-text>
               <ion-text class="info">{{i.task.category.name}}</ion-text>
               <ion-text class="info">编号: {{i.task.id}}</ion-text>
-              <ion-text class="price">{{i.task.price}}元</ion-text>
+              <ion-text class="price">{{i.task.price / 100}}元</ion-text>
             </ion-col>
           </ion-row>
         </ion-col>
@@ -129,7 +129,7 @@
               <div *ngIf="isFuture(i.stickyUntil)">
                 <ion-text class="sticky"><span>置顶</span></ion-text>
               </div>
-              <ion-text class="num"><span>{{i.price}}元</span></ion-text>
+              <ion-text class="num"><span>{{i.price / 100}}元</span></ion-text>
             </ion-col>
           </ion-row>
         </ion-grid>

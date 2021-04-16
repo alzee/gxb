@@ -61,7 +61,7 @@
               <div *ngIf="isFuture(i.recommendUntil)">
                 <ion-text class="recommended"><span>推荐</span></ion-text>
               </div>
-              <ion-text class="num"><span>{{i.price}}元</span></ion-text>
+              <ion-text class="num"><span>{{i.price / 100}}元</span></ion-text>
             </ion-col>
           </ion-row>
         </ion-grid>
