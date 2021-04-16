@@ -16,6 +16,7 @@ interface Data {
 })
 export class LandPage implements OnInit {
   city: string;
+  query = 'land_posts?itemsPerPage=35&order%5Bprice%5D=desc';
   land: Data = {
       id: 1
   };
@@ -49,7 +50,7 @@ export class LandPage implements OnInit {
   }
 
   ionViewWillEnter(){
-      this.httpService.get('land_posts?itemsPerPage=35&land=1').subscribe((res) => {
+      this.httpService.get(`${this.query}&land=1`).subscribe((res) => {
           this.posts = res;
           this.land.id = 1;
           this.posts.length = 35;
@@ -77,7 +78,7 @@ export class LandPage implements OnInit {
                     const data = {name: this.city};
                     this.httpService.post('lands?', data).subscribe((res1) => {
                         this.land = res1;
-                        this.httpService.get('land_posts?itemsPerPage=35&land=' + this.land.id).subscribe((res2) => {
+                        this.httpService.get(`${this.query}&land=${this.land.id}`).subscribe((res2) => {
                             this.posts = res2;
                             this.posts.length = 35;
                             console.log(this.posts);
@@ -86,7 +87,7 @@ export class LandPage implements OnInit {
                 }
                 else{
                     console.log(this.land);
-                    this.httpService.get('land_posts?itemsPerPage=35&land=' + this.land.id).subscribe((res1) => {
+                    this.httpService.get(`${this.query}&land=${this.land.id}`).subscribe((res1) => {
                         this.posts = res1;
                         this.posts.length = 35;
                         console.log(this.posts);
