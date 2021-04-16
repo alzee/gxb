@@ -8,7 +8,6 @@ major:
   - setting phone
   - setting pay pass
   - api node up/down
-  - page publish preview
   - 暂无内容
   - 忘记密码
   - finance
@@ -17,6 +16,7 @@ major:
   - cell read 5 sec
   - 微信头像昵称
 minor:
+  - 任务发布数量/占领格子天数
   - should can not input negitive
   - rmb unit
   - public pay should like others
