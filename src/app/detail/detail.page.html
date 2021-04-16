@@ -111,7 +111,7 @@
         <ng-container *ngIf="applied; else elseBlock4">
           <ion-img [src]="envs.url + i.img" class="w-50"></ion-img>
 
-          <ng-container *ngIf="statusId == 1; else elseBlock3">
+          <ng-container *ngIf="statusId == 11; else elseBlock3">
             <ng-container *ngIf="uploads[j]; else elseBlock5">
               <ion-img [src]="envs.url + uploads[j]" class="w-50"></ion-img>
             </ng-container>
@@ -140,12 +140,12 @@
   <ion-item>
     <ng-container *ngIf="id != 0">
     <ng-container *ngIf="applied">
-        <ion-button *ngIf="statusId != 3" class="contact" size="large" expand="full">联系商家</ion-button>
-        <ion-button *ngIf="statusId == 3" class="contact" size="large" expand="full" (click)="report()">辩诉维权</ion-button>
-        <ion-button *ngIf="statusId == 1" class="apply" size="large" expand="full" (click)="submit()">提交</ion-button>
-        <ion-button *ngIf="statusId == 2" class="apply" size="large" expand="full" disabled>审核中</ion-button>
-        <ion-button *ngIf="statusId == 3" class="apply" size="large" expand="full" disabled>审核拒绝</ion-button>
-        <ion-button *ngIf="statusId == 4" class="apply" size="large" expand="full" disabled>已完成</ion-button>
+        <ion-button *ngIf="statusId != 13" class="contact" size="large" expand="full">联系商家</ion-button>
+        <ion-button *ngIf="statusId == 13" class="contact" size="large" expand="full" (click)="report()">辩诉维权</ion-button>
+        <ion-button *ngIf="statusId == 11" class="apply" size="large" expand="full" (click)="submit()">提交</ion-button>
+        <ion-button *ngIf="statusId == 12" class="apply" size="large" expand="full" disabled>审核中</ion-button>
+        <ion-button *ngIf="statusId == 13" class="apply" size="large" expand="full" disabled>审核拒绝</ion-button>
+        <ion-button *ngIf="statusId == 14" class="apply" size="large" expand="full" disabled>已完成</ion-button>
     </ng-container>
     <ng-container *ngIf="!applied">
       <ion-button class="contact" size="large" expand="full">联系商家</ion-button>
