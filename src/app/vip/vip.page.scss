@@ -42,6 +42,12 @@ ion-content{
       }
   }
   ion-item-group{
+    .header{
+      ion-label{
+        font-size: 10px;
+        white-space: normal;
+      }
+    }
     ion-item{
       --min-height: unset;
       border-bottom: 1px solid #E5E5E5FF;
