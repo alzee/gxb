@@ -76,7 +76,7 @@ export class TopupPage implements OnInit {
   topup(){
       const data = {
           uid: this.userData.id,
-          amount: this.amount.value,
+          amount: Math.round(this.amount.value * 100),
           type: 0,
           note: '充值'
       };
