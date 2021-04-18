@@ -120,8 +120,11 @@ export class MePage implements OnInit {
               console.log(this.userData);
               this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
                   this.user = res1;
-                  this.user.total = this.user.earnings + this.user.topup + this.user.frozen;
-                  this.user.availableBalance = this.user.earnings + this.user.topup;
+                  this.user.total = (this.user.earnings + this.user.topup + this.user.frozen) / 100;
+                  this.user.availableBalance = (this.user.earnings + this.user.topup) / 100;
+                  this.user.topup = this.user.topup / 100;
+                  this.user.earnings = this.user.earnings / 100;
+                  this.user.frozen = this.user.frozen / 100;
                   console.log(this.user);
                   this.message = { // for /me/coupon
                       user: this.user

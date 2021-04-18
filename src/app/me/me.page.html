@@ -33,7 +33,7 @@
   <div class="offset ion-padding-horizontal">
     <div class="balance">
       <ion-item class="total">
-        <ion-text slot="start" color="light">账户总额 {{user.total / 100}}</ion-text>
+        <ion-text slot="start" color="light">账户总额 {{user.total}}</ion-text>
         <ion-button slot="end" fill="outline" color="light" routerLink="/me/withdraw">
           立即提现
           <ion-icon name="chevron-forward-outline"></ion-icon>
@@ -43,19 +43,19 @@
       <ion-grid>
         <ion-row>
           <ion-col class="ion-text-center" size="3">
-            <ion-text color="danger"><h3>{{user.topup / 100}}</h3></ion-text>
+            <ion-text color="danger"><h3>{{user.topup}}</h3></ion-text>
             <ion-text color="medium" class="label">充值余额</ion-text>
           </ion-col>
           <ion-col class="ion-text-center" size="3">
-            <ion-text color="danger"><h3>{{user.earnings / 100}}</h3></ion-text>
+            <ion-text color="danger"><h3>{{user.earnings}}</h3></ion-text>
             <ion-text color="medium" class="label">任务奖励</ion-text>
           </ion-col>
           <ion-col class="ion-text-center" size="3">
-            <ion-text color="danger"><h3>{{user.frozen / 100}}</h3></ion-text>
+            <ion-text color="danger"><h3>{{user.frozen}}</h3></ion-text>
             <ion-text color="medium" class="label">冻结中</ion-text>
           </ion-col>
           <ion-col class="ion-text-center" size="3">
-            <ion-text color="danger"><h3>{{user.availableBalance / 100}}</h3></ion-text>
+            <ion-text color="danger"><h3>{{user.availableBalance}}</h3></ion-text>
             <ion-text color="medium" class="label">可提现</ion-text>
           </ion-col>
           <ng-template>
