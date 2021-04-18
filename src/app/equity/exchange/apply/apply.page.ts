@@ -59,6 +59,9 @@ export class ApplyPage implements OnInit {
   }
 
   validate(){
+    if (this.equity < 0) {
+      return 1;
+    }
     if (this.equity === 0) {
       return 1;
     }

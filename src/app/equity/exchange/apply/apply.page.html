@@ -23,12 +23,12 @@
     <ion-item>
       <ion-text color="medium" slot="start">合计：</ion-text>
       <ion-text color="danger" slot="start"> {{equity * rate}}GXB</ion-text>
-      <ion-text color="primary" slot="end" (click)="buyMax()">全部投入</ion-text>
+      <ion-text color="primary" slot="end" (click)="buyMax()">全部兑换</ion-text>
     </ion-item>
     <div class="hint">
       <ion-text color="medium">
         <p>温馨提示：</p>
-        兑换过程中按获得金股数扣除相应的GXB</ion-text>
+        兑换过程中按获得股权数扣除相应的GXB</ion-text>
     </div>
     <ion-button expand="block" (click)="apply()">兑换</ion-button>
   </div>
