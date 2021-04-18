@@ -1,6 +1,5 @@
 major:
   - cities
-  - 领地交易
   - 兑股权
   - 交换市场
   - setting nick
@@ -8,7 +7,6 @@ major:
   - setting phone
   - setting pay pass
   - api node up/down
-  - 暂无内容
   - 忘记密码
   - finance
   - 分红金币

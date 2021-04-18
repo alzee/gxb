@@ -116,7 +116,7 @@ export class PublishPage implements OnInit {
               this.user = res1;
               this.feeRate = this.user.level.postFee;
               this.taskLeast = this.user.level.taskLeast;
-              this.f.quantity.setValidators([Validators.min(this.taskLeast)]);
+              this.f.quantity.setValidators([Validators.min(this.taskLeast), Validators.required, Validators.pattern('^[0-9]*$')]);
               for (const coupon of this.user.coupon) {
                   if (coupon.type === this.orderType) {
                       this.coupon = coupon;
