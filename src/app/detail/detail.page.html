@@ -15,7 +15,7 @@
       </ion-thumbnail>
       <ion-text color="medium">编号: {{task.id}}</ion-text>
       <ion-item slot="end" class="speed">
-        <ion-text color="medium">店铺审核速度</ion-text>
+        <ion-text color="medium">店铺验收速度</ion-text>
         <ion-thumbnail>
           <img src="../assets/img/flash.png">
         </ion-thumbnail>
@@ -32,7 +32,7 @@
         <h4>
           {{task.title}}
         </h4>
-        <ion-text color="medium">简单关注 | 急速审核</ion-text>
+        <ion-text color="medium">简单关注 | 急速验收</ion-text>
       </div>
       <ion-text class="price" slot="end" color="danger">{{task.price / 100}}元</ion-text>
     </ion-item>
@@ -48,7 +48,7 @@
         </ion-col>
         <ion-col>
           <h4>{{reviewMinutesRemainString}}</h4>
-          <ion-text color="medium">审核时间</ion-text>
+          <ion-text color="medium">验收时间</ion-text>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -143,8 +143,8 @@
         <ion-button *ngIf="statusId != 13" class="contact" size="large" expand="full">联系商家</ion-button>
         <ion-button *ngIf="statusId == 13" class="contact" size="large" expand="full" (click)="report()">辩诉维权</ion-button>
         <ion-button *ngIf="statusId == 11" class="apply" size="large" expand="full" (click)="submit()">提交</ion-button>
-        <ion-button *ngIf="statusId == 12" class="apply" size="large" expand="full" disabled>审核中</ion-button>
-        <ion-button *ngIf="statusId == 13" class="apply" size="large" expand="full" disabled>审核拒绝</ion-button>
+        <ion-button *ngIf="statusId == 12" class="apply" size="large" expand="full" disabled>验收中</ion-button>
+        <ion-button *ngIf="statusId == 13" class="apply" size="large" expand="full" disabled>不合格</ion-button>
         <ion-button *ngIf="statusId == 14" class="apply" size="large" expand="full" disabled>已完成</ion-button>
     </ng-container>
     <ng-container *ngIf="!applied">

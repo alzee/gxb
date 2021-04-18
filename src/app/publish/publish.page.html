@@ -46,7 +46,7 @@
     <ion-note>
       <ion-text color="danger"*ngIf="f.reviewHours.invalid && f.reviewHours.errors.required">﹡</ion-text>
     </ion-note>
-    <ion-label>审核时间</ion-label>
+    <ion-label>验收时间</ion-label>
     <ion-select required value="1" name="reviewHours" formControlName="reviewHours" interface="action-sheet" cancelText="取消">
       <ion-select-option *ngFor="let i of hourOptions" [value]="i.time">{{i.label}}</ion-select-option>
     </ion-select>
