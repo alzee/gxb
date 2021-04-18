@@ -19,7 +19,6 @@ minor:
     - 会员到期
     - 格子到期
     - 验收到期
-  - 任务发布数量/占领格子天数 不能有小数
   - should can not input negitive
   - rmb unit
   - public pay should like others

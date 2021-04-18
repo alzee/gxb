@@ -40,8 +40,9 @@
       <ion-text color="danger" *ngIf="f.days.invalid">﹡</ion-text>
     </div>
     <ion-label>展示天数</ion-label>
-    <ion-input (ionChange)="total()" type="number" required placeholder="最少{{daysMin}}天" formControlName="days">
+    <ion-input (ionChange)="total()" type="number" required pattern="^[0-9]*$" placeholder="最少{{daysMin}}天" formControlName="days">
       <ion-text class="hint" color="danger" *ngIf="f.days.invalid && f.days.errors.min"> 最少 {{daysMin}} 天</ion-text>
+      <ion-text class="hint" color="danger" *ngIf="f.days.invalid && f.days.errors.pattern && !f.days.errors.min">请输入整数</ion-text>
     </ion-input>
   </ion-item>
 
