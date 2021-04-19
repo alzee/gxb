@@ -46,8 +46,8 @@ export class ApplyPage implements OnInit {
           this.gxb = this.userData.gxb;
           this.equityBefore = this.userData.equity;
           console.log(this.gxb);
-          this.httpService.get('configs?page=1&label=exchangePirce').subscribe((res) => {
-              this.rate = 1 / res[0].value;
+          this.httpService.get('configs?page=1&label=exchangePirce').subscribe((res2) => {
+              this.rate = 1 / res2[0].value;
               this.max = this.gxb / this.rate;
               this.equity.setValidators([Validators.min(1), Validators.max(this.max), Validators.pattern('^[0-9]*$')]);
               console.log(this.rate);
@@ -67,18 +67,6 @@ export class ApplyPage implements OnInit {
 
   buyMax(){
       this.equity.setValue(Math.trunc(this.max));
-  }
-
-  validate(){
-    if (this.equity < 0) {
-      return 1;
-    }
-    if (this.equity === 0) {
-      return 1;
-    }
-    if (this.equity * this.rate > this.gxb) {
-      return 2;
-    }
   }
 
   check(){
@@ -107,23 +95,16 @@ export class ApplyPage implements OnInit {
             // add equity
             const equityAfter = this.equityBefore + this.equity.value;
             // subtract platform equity
-            console.log(gxbAfter, equityAfter);
-            if (this.validate() === 1) {
-              this.toastService.presentToast('请输入购买的股权数量');
-            }else if (this.validate() === 2) {
-              this.toastService.presentToast('GXB 不够');
-            }
-            else{
-              const data = {
+            
+            const data = {
                 gxb: gxbAfter,
                 equity: equityAfter
-              };
-              this.httpService.patch('users/' + this.uid, data).subscribe((res) => {
+            };
+            this.httpService.patch('users/' + this.uid, data).subscribe((res) => {
                 console.log(res);
                 this.toastService.presentToast('兑换成功！');
                 this.router.navigate(['/equity/exchange']);
-              });
-            }
+            });
           }
         }
       ]

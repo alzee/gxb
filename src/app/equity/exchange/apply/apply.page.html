@@ -28,7 +28,7 @@
       <ion-text color="danger" slot="end" class="ion-text-center">GXB</ion-text>
       </ng-container>
       <ion-text *ngIf="equity.invalid && equity.errors.max" color="danger" class="ion-text-center">GXB 不够</ion-text>
-      <ion-text *ngIf="equity.invalid && equity.errors.pattern && !equity.errors.min" color="danger" class="ion-text-center">只能兑换整数</ion-text>
+      <ion-text *ngIf="equity.invalid && equity.errors.pattern && !equity.errors.min && !equity.errors.max" color="danger" class="ion-text-center">只能兑换整数</ion-text>
       <ion-text *ngIf="equity.invalid && equity.errors.min" color="danger" class="ion-text-center">请输入大于0的整数</ion-text>
     </ion-item>
     <div class="hint">
