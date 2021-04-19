@@ -40,21 +40,19 @@ export class VipPage implements OnInit {
   }
 
   buyVip(l: number){
-    console.log(this.levels[l]);
     const postData = {
-        level: '/api/levels/' + this.levels[l].id
+        levelId: this.levels[l].id
     };
     const orderData = {
         type: this.orderType,
         note: this.orderNote,
         amount: this.levels[l].price,
-        level: '/api/levels/' + this.levels[l].id
+        data: {
+            postData
+        }
     };
     this.message = {
-        orderData,
-        postData,
-        url: 'users/' + this.userData.id,
-        httpMethod: 'patch'
+        orderData
     };
     this.data.changeMessage(this.message);
     this.router.navigate(['/pay'], { replaceUrl: true });
