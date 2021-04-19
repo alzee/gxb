@@ -78,9 +78,10 @@ export class TopupPage implements OnInit {
           uid: this.userData.id,
           amount: Math.round(this.amount.value * 100),
           type: 0,
+          method: 1,
           note: '充值'
       };
-      this.httpService.post('prepayid', data).subscribe((res) => {
+      this.httpService.post('order', data).subscribe((res) => {
           console.log(res);
           const params = res;
           // this.router.navigate(['/tabs/me'], {replaceUrl: true});
@@ -99,16 +100,6 @@ export class TopupPage implements OnInit {
 
               this.wechat.sendPaymentRequest(params).then((res1) => {
                   console.log(params);
-
-                  // verify order
-
-                  // add balance shold put in /api/paid, right?
-                  // const data = {
-                  // };
-                  // this.httpService.path('users/' + this.userData.id, data).subscribe((res) => {
-                  //     console.log(res);
-                  //     // this.toastService.presentToast('充值成功！');
-                  // });
 
                   this.presentLoading().then(
                       (res2) => {
