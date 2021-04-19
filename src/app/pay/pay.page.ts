@@ -71,7 +71,11 @@ export class PayPage implements OnInit {
                       this.coupon = coupon;
                       this.orderData.amount = this.orderData.amount - coupon.value;
                       this.orderData.couponId = coupon.id;
+                      break;
                   }
+              }
+              if (!this.orderData.couponId) {
+                  this.orderData.couponId = 0;
               }
               this.availableBalance = this.user.topup + this.user.earnings;
               if (this.availableBalance < this.orderData.amount) {
@@ -80,60 +84,26 @@ export class PayPage implements OnInit {
               }
           });
       });
-
-      // use service instead of query params
-      // this.activeRoute.queryParams.subscribe((params: Params) => {
-      //     this.amount = params.amount;
-      // });
-
-      // this.router.events.pipe(filter((e: any) => e instanceof RoutesRecognized),
-      //                         pairwise()
-      //                        ).subscribe((e: any) => {
-      //                          this.prevUrl = e[0].urlAfterRedirects; // previous url
-      //                          console.log(this.prevUrl);
-      //                        });
-  }
-
-  updateInfo(){
-      if (this.httpMethod === 'patch') {
-          this.httpService.patch(this.url, this.postData).subscribe((res1) => {
-              console.log(res1);
-              this.toastService.presentToast(this.orderData.note + ' 支付完成');
-              // this.location.back();
-              this.navCtrl.back();
-          });
-      }
-      else if (this.httpMethod === 'post') {
-          this.httpService.post(this.url, this.postData).subscribe((res1) => {
-              console.log(res1);
-              this.toastService.presentToast(this.orderData.note + ' 支付完成');
-              // this.location.back();
-              this.navCtrl.back();
-          });
-      }
   }
 
   pay() {
-    if (this.payMethod === 0) { // balance
-        this.orderData.user = '/api/users/' + this.userData.id;
-
-        this.httpService.post('finances', this.orderData).subscribe((res) => {
-            console.log(res);
-            this.updateInfo();
-        });
-    }
-    else { // wechat
-        this.orderData.uid = this.userData.id;
-        this.httpService.post('prepayid', this.orderData).subscribe((res) => {
-            console.log(res);
+    this.orderData.uid = this.userData.id;
+    this.orderData.method = this.payMethod;
+    this.httpService.post('order', this.orderData).subscribe((res) => {
+        console.log(res);
+        if (this.payMethod === 0) { // balance
+            this.toastService.presentToast(this.orderData.note + ' 支付完成');
+            this.navCtrl.back();
+        }
+        else if (this.payMethod === 1) { // wechat
             const params = res;
-
             this.platform.ready().then(() => {
                 this.wechat.sendPaymentRequest(params).then((res1) => {
                     console.log(params);
                     this.presentLoading().then(
                         (res2) => {
-                            this.updateInfo();
+                            this.toastService.presentToast(this.orderData.note + ' 支付完成');
+                            this.navCtrl.back();
                         }, reason => {
                         }
                     );
@@ -141,8 +111,8 @@ export class PayPage implements OnInit {
                     console.log('failed : ', reason);
                 });
             });
-        });
-    }
+        }
+    });
   }
 
   changePayMethod(e){
