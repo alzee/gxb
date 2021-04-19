@@ -15,23 +15,29 @@
     <ion-text class="amount" color="light">{{gxb}}</ion-text>
   </div>
 
-  <div class="ex">
+  <form class="ex" (ngSubmit)="apply()" [formGroup]="form">
     <ion-item>
       <ion-label slot="start">股权: </ion-label>
-      <ion-input slot="end" type="number" [(ngModel)]="equity"> </ion-input>
+      <ion-input required class="ion-text-center" type="number" (ionChange)="check()" formControlName="equity"> </ion-input>
+      <ion-text color="primary" slot="end" (click)="buyMax()">全部兑换</ion-text>
     </ion-item>
     <ion-item>
       <ion-text color="medium" slot="start">合计：</ion-text>
-      <ion-text color="danger" slot="start"> {{equity * rate}}GXB</ion-text>
-      <ion-text color="primary" slot="end" (click)="buyMax()">全部兑换</ion-text>
+      <ng-container *ngIf="form.valid">
+      <ion-text color="danger" class="ion-text-center">{{total}}</ion-text>
+      <ion-text color="danger" slot="end" class="ion-text-center">GXB</ion-text>
+      </ng-container>
+      <ion-text *ngIf="equity.invalid && equity.errors.max" color="danger" class="ion-text-center">GXB 不够</ion-text>
+      <ion-text *ngIf="equity.invalid && equity.errors.pattern && !equity.errors.min" color="danger" class="ion-text-center">只能兑换整数</ion-text>
+      <ion-text *ngIf="equity.invalid && equity.errors.min" color="danger" class="ion-text-center">请输入大于0的整数</ion-text>
     </ion-item>
     <div class="hint">
       <ion-text color="medium">
         <p>温馨提示：</p>
         兑换过程中按获得股权数扣除相应的GXB</ion-text>
     </div>
-    <ion-button expand="block" (click)="apply()">兑换</ion-button>
-  </div>
+    <ion-button [disabled]="form.invalid" type="submit" expand="block">兑换</ion-button>
+  </form>
 
   <div class="desc item-container">
     <ion-item class="item-header">

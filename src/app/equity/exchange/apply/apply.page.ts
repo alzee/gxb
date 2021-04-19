@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment';
 import { ToastService } from '../../../services/toast.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 interface Data {
     [propName: string]: any;
@@ -17,22 +18,23 @@ interface Data {
   styleUrls: ['./apply.page.scss'],
 })
 export class ApplyPage implements OnInit {
+  form: FormGroup;
   uid: number;
   gxb: number;
   rate: number;
-  equity: number;
   equityBefore: number;
   max: number;
+  total: number;
   userData: Data;
 
   constructor(
+      private formBuilder: FormBuilder,
       private httpService: HttpService,
       private storageService: StorageService,
       private toastService: ToastService,
       public alertController: AlertController,
       private router: Router,
   ) {
-      this.equity = 0;
   }
 
   ngOnInit() {
@@ -44,18 +46,27 @@ export class ApplyPage implements OnInit {
           this.gxb = this.userData.gxb;
           this.equityBefore = this.userData.equity;
           console.log(this.gxb);
+          this.httpService.get('configs?page=1&label=exchangePirce').subscribe((res) => {
+              this.rate = 1 / res[0].value;
+              this.max = this.gxb / this.rate;
+              this.equity.setValidators([Validators.min(1), Validators.max(this.max), Validators.pattern('^[0-9]*$')]);
+              console.log(this.rate);
+          });
       });
     });
 
-    this.httpService.get('configs?page=1&label=exchangePirce').subscribe((res) => {
-        this.rate = 1 / res[0].value;
-        console.log(this.rate);
+
+    this.form = this.formBuilder.group({
+        equity: []
     });
   }
 
+  get equity(){
+      return this.form.controls.equity;
+  }
+
   buyMax(){
-      this.max = this.gxb / this.rate;
-      this.equity = Math.trunc(this.max);
+      this.equity.setValue(Math.trunc(this.max));
   }
 
   validate(){
@@ -70,25 +81,8 @@ export class ApplyPage implements OnInit {
     }
   }
 
-  apply0(){
-    // subtract gxb
-    const gxbAfter = this.gxb - this.equity * this.rate;
-    // add equity
-    const equityAfter = this.equityBefore + this.equity;
-    // subtract platform equity
-    console.log(gxbAfter, equityAfter);
-    if (this.validate() === 1) {
-      this.toastService.presentToast('请输入购买的股权数量');
-    }
-    else{
-      const data = {
-        gxb: gxbAfter,
-        equity: equityAfter
-      };
-      this.httpService.patch('users/' + this.uid, data).subscribe((res) => {
-        console.log(res);
-      });
-    }
+  check(){
+      this.total = this.equity.value * this.rate;
   }
 
   async apply() {
@@ -109,9 +103,9 @@ export class ApplyPage implements OnInit {
           cssClass: 'danger',
           handler: () => {
             // subtract gxb
-            const gxbAfter = this.gxb - this.equity * this.rate;
+            const gxbAfter = this.gxb - this.equity.value * this.rate;
             // add equity
-            const equityAfter = this.equityBefore + this.equity;
+            const equityAfter = this.equityBefore + this.equity.value;
             // subtract platform equity
             console.log(gxbAfter, equityAfter);
             if (this.validate() === 1) {
