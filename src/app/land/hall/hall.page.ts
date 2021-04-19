@@ -50,19 +50,20 @@ export class HallPage implements OnInit {
       }
       const postData = {
           prePrice: i.price,
-          owner: '/api/users/' + this.userData.id,
+          ownerId: this.userData.id,
           forSale: false
       };
       const orderData = {
           type: this.orderType,
           note: this.orderNote,
-          amount: i.price / 100
+          amount: i.price / 100,
+          data: {
+              entityId: i.id,
+              postData
+          }
       };
       this.message = {
-          orderData,
-          postData,
-          url: 'lands/' + i.id,
-          httpMethod: 'patch'
+          orderData
       };
       this.data.changeMessage(this.message);
       this.router.navigate(['/pay'], { replaceUrl: true });
