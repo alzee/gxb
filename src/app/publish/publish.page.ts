@@ -33,15 +33,6 @@ export class PublishPage implements OnInit {
   availableBalance: number;
   userData: Data;
   user: Data;
-  orderData = {
-      amount: 0,
-      type: 1,
-      note: '任务发布',
-      user: '',
-      couponId: 0,
-      fee: 0
-
-  };
   orderType = 1;
   orderNote = '任务发布';
   coupon: Data;
@@ -165,8 +156,8 @@ export class PublishPage implements OnInit {
       // this.postData.applyUntil = applyUntil;
       // this.postData.approveUntil = approveUntil;
       // this.postData.showUntil = showUntil;
-      this.postData.owner = 'api/users/' + this.userData.id;
-      this.postData.category = '/api/categories/' + this.f.category.value;
+      this.postData.ownerId = this.userData.id;
+      this.postData.cateId = this.f.category.value;
       this.postData.title = this.f.title.value;
       this.postData.name = this.f.name.value;
       this.postData.quantity = this.f.quantity.value;
@@ -178,7 +169,7 @@ export class PublishPage implements OnInit {
       this.postData.note = this.f.note.value;
       this.postData.guides.push(this.guides);
       this.postData.reviews.push(this.reviews);
-      console.log(this.postData);
+      // console.log(this.postData);
       // return (
       //     this.postData.username &&
       //         this.postData.password &&
@@ -290,18 +281,26 @@ export class PublishPage implements OnInit {
           text: '确定',
           handler: () => {
             console.log('Confirm Okay');
-            this.orderData.amount = Math.round(this.total * 100);
-            this.orderData.fee = Math.round(this.fee * 100);
-            this.orderData.type = this.orderType;
-            this.orderData.note = this.orderNote;
-            this.orderData.user = '/api/users/' + this.user.id;
-            if (this.coupon) {
-                this.orderData.couponId = this.coupon.id;
+            this.validateInputs();
+            const orderData = {
+                amount: Math.round(this.total * 100),
+                fee: Math.round(this.fee * 100),
+                type: this.orderType,
+                note: this.orderNote,
+                uid: this.user.id,
+                method: 0,
+                data: {
+                    postData: this.postData
+                }
             }
-            this.httpService.post('finances', this.orderData).subscribe((res) => {
+            if (this.coupon) {
+                orderData.couponId = this.coupon.id;
+            }
+            console.log(orderData);
+
+            this.httpService.post('order', orderData).subscribe((res) => {
                 console.log(res);
-                this.publish();
-                const params = res;
+                this.router.navigate(['/myposts'], {replaceUrl: true});
             });
           }
         }
