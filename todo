@@ -11,24 +11,20 @@ major:
   - finance
   - 分红金币
   - upload only image
+  - image watermark
   - cell read 5 sec
   - 微信头像昵称
+  - 下架后(status 4)剩余金额解冻
 minor:
   - cron:
     - 分红
     - 会员到期
     - 格子到期
     - 验收到期
-  - should can not input negitive
-  - rmb unit
-  - public pay should like others
   - task cate cascade:remove
   - admin entity
-  - gxb/equity/balance add/minus
   - php add text to pic
   - people bid at same time happens. Should check current min price every time bid()
-  - 下架后剩余金额解冻
-  - 会员到期
   - 维权结果
 
 question:
