@@ -75,8 +75,8 @@ export class OccupyPage implements OnInit {
       this.postData.price = this.price;
       this.postData.cover = this.cover;
       this.postData.pics = this.pics;
-      this.postData.owner = '/api/users/' + this.userData.id;
-      this.postData.land = '/api/lands/' + this.landId;
+      this.postData.ownerId = this.userData.id;
+      this.postData.landId =  this.landId;
   }
 
   publish() {
@@ -86,13 +86,13 @@ export class OccupyPage implements OnInit {
       const orderData = {
         type: this.orderType,
         note: this.orderNote,
-        amount: this.amount
+        amount: this.amount,
+        data: {
+            postData
+        }
       };
       this.message = {
-          orderData,
-          postData,
-          url: 'land_posts',
-          httpMethod: 'post'
+          orderData
       };
       this.data.changeMessage(this.message);
       this.router.navigate(['/pay'], { replaceUrl: true });
