@@ -91,7 +91,7 @@ export class OfferPage implements OnInit {
         taskId: this.post,
         price: Math.round(this.myBid * 100),
         position: this.position,
-        isBuyNow: isBuyNow
+        isBuyNow
     };
     switch (this.validate()) {
         case 1:

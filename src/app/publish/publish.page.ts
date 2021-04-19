@@ -289,10 +289,11 @@ export class PublishPage implements OnInit {
                 note: this.orderNote,
                 uid: this.user.id,
                 method: 0,
+                couponId: 0,
                 data: {
                     postData: this.postData
                 }
-            }
+            };
             if (this.coupon) {
                 orderData.couponId = this.coupon.id;
             }
