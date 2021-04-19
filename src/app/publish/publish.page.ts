@@ -357,7 +357,7 @@ export class PublishPage implements OnInit {
       this.sum = +(this.f.quantity.value * this.price).toFixed(2);
       this.fee = +(this.sum * this.feeRate).toFixed(2);
       if (this.coupon) {
-          this.fee = +(this.fee - this.coupon.value).toFixed(2);
+          this.fee = +(this.fee - this.coupon.value / 100).toFixed(2);
       }
       if (this.fee < 0) {
           this.fee = 0;

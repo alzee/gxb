@@ -16,7 +16,7 @@
   <ion-label color="medium">可用红包</ion-label>
   <ion-item class="coupon">
     <ion-icon name="ticket" color="danger"></ion-icon>
-    <ion-label>{{coupon.value}} 元 - {{coupon.note}}</ion-label>
+    <ion-label>{{coupon.value / 100}} 元 - {{coupon.note}}</ion-label>
   <ion-checkbox color="danger" checked="true" (ionChange)="checkCoupon($event)"></ion-checkbox>
   </ion-item>
   </ng-container>
