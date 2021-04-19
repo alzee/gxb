@@ -55,13 +55,14 @@ export class PromoPage implements OnInit {
       const orderData = {
         type: this.orderType,
         note: this.orderNote,
-        amount: this.amount
+        amount: this.amount,
+        data: {
+            entityId: this.tid,
+            postData
+        }
       };
       this.message = {
-          orderData,
-          postData,
-          url: 'tasks/' + this.tid,
-          httpMethod: 'patch'
+          orderData
       };
       this.data.changeMessage(this.message);
       this.router.navigate(['/pay'], { replaceUrl: true });

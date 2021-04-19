@@ -56,7 +56,6 @@ export class StickyPage implements OnInit {
         note: this.orderNote,
         amount: this.amount,
         data: {
-            entity: 'Task',
             entityId: this.tid,
             postData
         }
