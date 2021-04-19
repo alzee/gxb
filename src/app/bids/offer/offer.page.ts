@@ -29,12 +29,6 @@ export class OfferPage implements OnInit {
   buyNowPrice = 99;
   buyOut = false;
   userData: Data;
-  postData: Data = {
-      task: 0,
-      price: 0,
-      position: 0,
-      isBuyNow: false
-  };
   message: Data;
   orderType = 4;
   orderNote = '任务竞价';
@@ -93,13 +87,12 @@ export class OfferPage implements OnInit {
     if (isBuyNow) {
         this.myBid = this.buyNowPrice;
     }
-    this.postData.task = '/api/tasks/' + this.post;
-    this.postData.price = this.myBid;
-    this.postData.position = this.position;
-    this.postData.isBuyNow = isBuyNow;
-    console.log(this.myBid);
-    console.log(this.post);
-    console.log(this.position);
+    const postData = {
+        taskId: this.post,
+        price: Math.round(this.myBid * 100),
+        position: this.position,
+        isBuyNow: isBuyNow
+    };
     switch (this.validate()) {
         case 1:
             console.log('choose post');
@@ -110,21 +103,16 @@ export class OfferPage implements OnInit {
             this.toastService.presentToast('最低出价' + this.min + '元');
             break;
         default:
-            // this.httpService.post('bids', this.postData).subscribe((res) => {
-            // console.log(res);
-            // this.ngOnInit();
-
-            const postData = this.postData;
             const orderData = {
                 type: this.orderType,
                 note: this.orderNote,
-                amount: this.postData.price,
+                amount: postData.price / 100,
+                data: {
+                    postData
+                }
             };
             this.message = {
-                orderData,
-                postData,
-                url: 'bids',
-                httpMethod: 'post'
+                orderData
             };
             this.data.changeMessage(this.message);
             this.router.navigate(['/pay'], { replaceUrl: true });
