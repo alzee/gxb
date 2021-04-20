@@ -130,6 +130,9 @@ export class SignupPage implements OnInit {
                 if (this.referrer) {
                     this.postData.referrer = '/api/users/' + this.referrer.id;
                 }
+                else {
+                    delete this.postData.referrer;
+                }
                 this.authService.signup(this.postData).subscribe(
                     (res: any) => {
                         console.log(res);
