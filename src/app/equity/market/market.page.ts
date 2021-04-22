@@ -3,6 +3,8 @@ import { HttpService } from '../../services/http.service';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
+import { AuthConstants } from '../../config/auth-constants';
+import { StorageService } from '../../services/storage.service';
 
 interface Data {
     [propName: string]: any;
@@ -17,15 +19,23 @@ export class MarketPage implements OnInit {
   message: Data;
   orderType = 5;
   orderNote = '购买股权';
+  query = 'page=1&itemsPerPage=30&order%5Bdate%5D=desc';
+  uid: number;
 
   constructor(
       private httpService: HttpService,
       private router: Router,
+      private storageService: StorageService,
       private data: DataService
   ) { }
 
   ngOnInit() {
-      this.httpService.get('equity_trades?page=1&itemsPerPage=30').subscribe((res) => {
+      this.storageService.get(AuthConstants.AUTH).then(
+          (res) => {
+              this.userData = res;
+              this.uid = this.userData.id;
+          });
+      this.httpService.get(`equity_trades?${this.query}`).subscribe((res) => {
           this.shops = res;
           console.log(res);
       });
