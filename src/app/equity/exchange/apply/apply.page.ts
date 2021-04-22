@@ -95,7 +95,6 @@ export class ApplyPage implements OnInit {
             // add equity
             const equityAfter = this.equityBefore + this.equity.value;
             // subtract platform equity
-            
             const data = {
                 gxb: gxbAfter,
                 equity: equityAfter
