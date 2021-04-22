@@ -4,6 +4,7 @@ import { PickerOptions } from '@ionic/core';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 import cities from './pca.json';
+import { DataService } from '../services/data.service';
 
 interface Data {
     [propName: string]: any;
@@ -43,10 +44,14 @@ export class LandPage implements OnInit {
 
   constructor(
       private pickerController: PickerController,
-      private httpService: HttpService
+      private httpService: HttpService,
+      private data: DataService
              ) {}
 
   ngOnInit() {
+      this.httpService.get('configs?itemsPerPage=30').subscribe((res) => {
+          this.data.changeMessage({configs: res});
+      });
   }
 
   ionViewWillEnter(){

@@ -32,6 +32,7 @@ export class OccupyPage implements OnInit {
   message: Data;
   orderType = 6;
   orderNote = '占领格子';
+  configs: Array<Data>;
 
   constructor(
       private formBuilder: FormBuilder,
@@ -45,6 +46,9 @@ export class OccupyPage implements OnInit {
   }
 
   ngOnInit() {
+      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
+      this.configs = this.message.configs;
+
       this.storageService.get(AuthConstants.AUTH).then(
         (res) => {
           this.userData = res;
@@ -52,9 +56,27 @@ export class OccupyPage implements OnInit {
 
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.landId = parseInt(params.id, 10);
-          if (this.landId !== 1) {
+          if (this.landId === 1) {
             this.daysMin = 20;
             this.priceMin = 0.5;
+            for (const i of this.configs) {
+                if (i.label === 'mainCellPrice') {
+                    this.priceMin = i.value;
+                }
+                if (i.label === 'mainCellDays') {
+                    this.daysMin = i.value;
+                }
+            }
+          }
+          else {
+            for (const i of this.configs) {
+                if (i.label === 'cellPrice') {
+                    this.priceMin = i.value;
+                }
+                if (i.label === 'cellDays') {
+                    this.daysMin = i.value;
+                }
+            }
           }
       });
 
