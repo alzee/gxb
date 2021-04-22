@@ -35,11 +35,15 @@ export class ExchangePage implements OnInit {
       this.storageService.get(AuthConstants.AUTH).then(
           (res) => {
               this.userData = res;
-              this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
-                  this.user = res1;
-                  this.equity = this.user.equity;
-              });
           });
+  }
+
+  ionViewWillEnter(){
+      this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
+          this.user = res1;
+          this.equity = this.user.equity;
+      });
+
       this.httpService.get('configs?itemsPerPage=30').subscribe((res) => {
           this.configs = res;
           // this.total = this.configs.quantityGXB.value;
