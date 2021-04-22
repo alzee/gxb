@@ -42,8 +42,7 @@
       </ion-row>
       <ion-row class="list-item" *ngFor="let i of hists">
         <ion-col>
-          <h3>{{i.date}}</h3>
-          <ion-text color="medium">{{i.date}}</ion-text>
+          <h3>{{i.date}}</h3> <ion-text color="medium">{{i.date}}</ion-text>
         </ion-col>
         <ion-col>
           <h4>{{i.equity}}</h4>
@@ -58,7 +57,7 @@
 
 <ion-footer>
   <ion-item>
-    <ion-button class="sell" size="large" expand="full" routerLink="/equity/market/sell">卖出</ion-button>
-    <ion-button class="buy" size="large" expand="full" routerLink="/equity/market">买入</ion-button>
+    <ion-button class="sell" size="large" expand="full" (click)="sell()">卖出</ion-button>
+    <ion-button class="buy" size="large" expand="full" (click)="buy()">买入</ion-button>
   </ion-item>
 </ion-footer>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../services/http.service';
 import { environment } from '../../../../environments/environment';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthConstants } from '../../../config/auth-constants';
 import { StorageService } from '../../../services/storage.service';
+import { DataService } from '../../../services/data.service';
 
 interface Data {
     [propName: string]: any;
@@ -26,9 +27,10 @@ export class MyPage implements OnInit {
   myEquity: number;
 
   constructor(
+      private router: Router,
       private storageService: StorageService,
-      private activeRoute: ActivatedRoute,
-      private httpService: HttpService
+      private httpService: HttpService,
+      private data: DataService
   ) {
       this.max = 0;
       this.min = 0;
@@ -53,10 +55,21 @@ export class MyPage implements OnInit {
           }
           console.log(res);
       });
+  }
 
+  ionViewWillEnter(){
       this.httpService.get('equity_trades?page=1&itemsPerPage=10').subscribe((res) => {
           this.hists = res;
           console.log(res);
       });
+  }
+
+  sell(){
+      this.data.changeMessage({equity: this.myEquity, price: this.price, user: '/api/users/' + this.userData.id});
+      this.router.navigate(['/equity/market/sell']);
+  }
+
+  buy(){
+      this.router.navigate(['/equity/market']);
   }
 }
