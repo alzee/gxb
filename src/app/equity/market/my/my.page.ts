@@ -25,6 +25,7 @@ export class MyPage implements OnInit {
   userData: Data;
   user: Data;
   myEquity: number;
+  query = 'page=1&itemsPerPage=10&order%5Bdate%5D=desc';
 
   constructor(
       private router: Router,
@@ -41,11 +42,14 @@ export class MyPage implements OnInit {
       this.storageService.get(AuthConstants.AUTH).then(
           (res) => {
               this.userData = res;
-              this.httpService.get('users/' + this.userData.id).subscribe((res) => {
-                  this.user = res;
-                  this.myEquity = this.user.equity;
-              });
           });
+  }
+
+  ionViewWillEnter(){
+      this.httpService.get('users/' + this.userData.id).subscribe((res) => {
+          this.user = res;
+          this.myEquity = this.user.equity;
+      });
       this.httpService.get('configs?itemsPerPage=30').subscribe((res) => {
           this.configs = res;
           for (const i of this.configs) {
@@ -55,10 +59,7 @@ export class MyPage implements OnInit {
           }
           console.log(res);
       });
-  }
-
-  ionViewWillEnter(){
-      this.httpService.get('equity_trades?page=1&itemsPerPage=10').subscribe((res) => {
+      this.httpService.get(`equity_trades?${this.query}&seller=${this.userData.id}`).subscribe((res) => {
           this.hists = res;
           console.log(res);
       });
