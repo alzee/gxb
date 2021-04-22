@@ -12,25 +12,29 @@
   <ion-grid>
     <ion-row class="header">
       <ion-col>
+        <ion-text>卖家</ion-text>
+      </ion-col>
+      <ion-col>
         <ion-text>数量</ion-text>
       </ion-col>
       <ion-col>
-        <ion-text>单价(GXB)</ion-text>
+        <ion-text>金额</ion-text>
       </ion-col>
       <ion-col>
-        <ion-text>操作</ion-text>
       </ion-col>
     </ion-row>
     <ion-row class="list-item" *ngFor="let i of shops">
       <ion-col>
-        <h3>{{i.quantity}}GS</h3>
-        <ion-text color="medium">用户指数{{i.score}}</ion-text>
+        <h4>{{i.seller.username}}</h4>
       </ion-col>
       <ion-col>
-        <h4>¥{{i.price}}</h4>
+        <h4>{{i.equity}}</h4>
       </ion-col>
       <ion-col>
-        <ion-button shape="round" size="small" routerLink="/equity/market/buy" [queryParams]="{id: i.id}">买入</ion-button>
+        <h4>¥{{i.rmb}}</h4>
+      </ion-col>
+      <ion-col>
+        <ion-button shape="round" size="small" (click)="buy(i)">买入</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
