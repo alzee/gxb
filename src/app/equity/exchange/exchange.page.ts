@@ -45,15 +45,13 @@ export class ExchangePage implements OnInit {
           // this.total = this.configs.quantityGXB.value;
           // this.rate = this.configs.exchangePirce.value;
           for (const i of this.configs) {
-              if (i.label === 'quantityGXB') {
+              if (i.label === 'equity') {
                   this.total = i.value;
               }
-              if (i.label === 'exchangePirce') {
+              if (i.label === 'EquityGXBRate') {
                   this.rate = 1 / i.value;
               }
           }
-
-          console.log(res);
       });
   }
 
