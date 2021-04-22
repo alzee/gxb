@@ -14,7 +14,7 @@
     <ion-item *ngIf="i.level != 0">
       <ion-label slot="start">V{{i.level}}{{i.name}}{{i.days}}天</ion-label>
       <ion-text slot="start" color="danger">{{i.price}}元</ion-text>
-      <ion-button size="large" slot="end" shape="round" (click)="buyVip(i.id)">立即开通</ion-button>
+      <ion-button size="large" slot="end" shape="round" (click)="buyVip(i)">立即开通</ion-button>
     </ion-item>
   </ng-container>
   </ion-list>
