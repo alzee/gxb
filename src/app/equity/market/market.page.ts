@@ -19,7 +19,7 @@ export class MarketPage implements OnInit {
   message: Data;
   orderType = 5;
   orderNote = '购买股权';
-  query = 'page=1&itemsPerPage=30&order%5Bdate%5D=desc';
+  query = 'page=1&itemsPerPage=30&order%5Bdate%5D=desc&status=0';
   uid: number;
 
   constructor(
