@@ -58,12 +58,16 @@ export class HallPage implements OnInit {
   }
 
   ngOnInit() {
-      this.getTaskByPrice();
-      this.getTaskByDate();
+      this.httpService.get(`tasks?page=${this.pageD}&${this.query}&order%5Bdate%5D=desc`).subscribe((res) => {
+          this.tasksByDate = [...this.tasksByDate, ...res];
+      });
+      this.httpService.get(`tasks?page=${this.pageP}&${this.query}&order%5Bprice%5D=desc`).subscribe((res) => {
+          this.tasksByPrice = [...this.tasksByPrice, ...res];
+      });
+      this.getTaskByRecomm();
   }
 
   ionViewWillEnter(){
-      this.getTaskByRecomm();
   }
 
   getTaskByRecomm(){
