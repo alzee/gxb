@@ -164,10 +164,10 @@
   <ion-item class="policy" color="undefined">
     <ion-checkbox size="small" color="primary" class="ion-no-margin" formControlName="acceptTerms"></ion-checkbox>
     <ion-label color="medium" *ngIf="f.acceptTerms.valid">
-      我已阅读并同意遵守《发布规则》的全部内容
+      我已阅读并同意遵守<a routerLink="/terms" [queryParams]="{id: 6}">《发布规则》</a>的全部内容
     </ion-label>
     <ion-label color="danger" *ngIf="f.acceptTerms.invalid && f.acceptTerms.errors.required">
-      我已阅读并同意遵守《发布规则》的全部内容
+      我已阅读并同意遵守<a routerLink="/terms" [queryParams]="{id: 6}">《发布规则》</a>的全部内容
     </ion-label>
   </ion-item>
 
