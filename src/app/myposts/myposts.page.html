@@ -29,7 +29,7 @@
         <ion-grid>
           <ion-row>
             <ion-col size=3>
-              <ion-text color="medium">单价:{{i.price}}</ion-text>
+              <ion-text color="medium">单价:{{i.price / 100}}</ion-text>
             </ion-col>
             <ion-col size=3>
               <ion-text color="medium">总数:{{i.quantity}}</ion-text>
@@ -44,7 +44,7 @@
               <ion-text color="medium">进行中:{{i.countApplies}}</ion-text>
             </ion-col>
             <ion-col size=3>
-              <ion-text color="medium">待审核:{{i.preReview}}</ion-text>
+              <ion-text color="medium">待验收:{{i.preReview}}</ion-text>
             </ion-col>
             <ion-col size=3>
               <ion-text color="medium">已完成:{{i.done}}</ion-text>

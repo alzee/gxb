@@ -55,6 +55,22 @@ export class MypostsPage implements OnInit {
           this.httpService.get('tasks?order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res1) => {
               console.log(res1);
               this.tasks = res1;
+              for (const i of this.tasks) {
+                  i.preReview = 0;
+                  i.done = 0;
+                  i.failed = 0;
+                  for (const j of i.applies) {
+                      if (j.status.id === 12) {
+                          i.preReview += 1;
+                      }
+                      if (j.status.id === 13) {
+                          i.failed += 1;
+                      }
+                      if (j.status.id === 14) {
+                          i.done += 1;
+                      }
+                  }
+              }
           });
       }, (rej) => {
       });
