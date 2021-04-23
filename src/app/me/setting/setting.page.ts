@@ -107,6 +107,7 @@ export class SettingPage implements OnInit {
                   );
               }, (reason) => {
                   console.log('check failed:', reason);
+                  this.toastService.presentToast('更新失败');
               }
           );
       });
