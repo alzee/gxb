@@ -76,26 +76,31 @@ export class MePage implements OnInit {
   public system = [
     {
       link: '/support',
+      node: 3,
       img: '../assets/img/hotline.png',
       name: '联系客服',
     },
     {
       link: '/terms',
+      node: 1,
       img: '../assets/img/flag.png',
       name: '服务协议',
     },
     {
       link: '/privacy',
+      node: 2,
       img: '../assets/img/note.png',
       name: '隐私条款',
     },
     {
       link: '/faq',
+      node: 4,
       img: '../assets/img/bookmark1.png',
       name: '常见问题',
     },
     {
       link: '/about',
+      node: 5,
       img: '../assets/img/record.png',
       name: '关于我们',
     },

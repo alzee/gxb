@@ -90,7 +90,7 @@
     <ion-item class="other">
       <ion-grid>
         <ion-row>
-          <ion-col size="3" [routerLink]="i.link" *ngFor="let i of system">
+          <ion-col size="3" routerLink="/terms" [queryParams]="{id: i.node}" *ngFor="let i of system">
             <ion-thumbnail>
               <img [src]="i.img">
             </ion-thumbnail>
