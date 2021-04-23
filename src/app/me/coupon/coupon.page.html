@@ -13,12 +13,12 @@
       <div class="card">
         <p>
         <span>￥</span>
-        <span class="amount">{{i.value}}</span>
+        <span class="amount">{{i.value / 100}}</span>
         </p>
         <p>优惠券</p>
       </div>
       <div class="info">
-        <div class="name">{{i.value}}元优惠券</div>
+        <div class="name">{{i.value / 100}}元优惠券</div>
         <div class="more">可用范围：{{i.note}}</div>
       </div>
       <ion-button shape="round" slot="end" color="danger" fill="outline" [routerLink]="getLink(i.type)"><span>立即使用</span></ion-button>
