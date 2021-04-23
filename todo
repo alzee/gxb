@@ -6,14 +6,13 @@ major:
   - setting pay pass
   - api node up/down
   - 忘记密码
-  - finance
   - 分红金币
   - upload only image
   - image watermark
   - cell read 5 sec
   - 微信头像昵称
   - 下架后(status 4)剩余金额解冻
-  - 8% 2%
+  - search
 minor:
   - cron:
     - 分红
