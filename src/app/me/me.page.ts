@@ -34,12 +34,12 @@ export class MePage implements OnInit {
     },
     {
       link: '/me/finance',
-      img: '../assets/img/note.png',
+      img: '../assets/img/rmb0.png',
       name: '财务管理',
     },
     {
       link: '/bids',
-      img: '../assets/img/wallet.png',
+      img: '../assets/img/reg.png',
       name: '首页竞价',
     },
     {
@@ -49,22 +49,22 @@ export class MePage implements OnInit {
     },
     {
       link: '/vip',
-      img: '../assets/img/equity.png',
+      img: '../assets/img/search_people.png',
       name: '开通会员',
     },
     {
       link: '/bonus',
-      img: '../assets/img/equity.png',
+      img: '../assets/img/wallet.png',
       name: '全民分红',
     },
     {
       link: '/report/my',
-      img: '../assets/img/equity.png',
+      img: '../assets/img/speaker.png',
       name: '举报维权',
     },
     {
       link: '/me/coupon',
-      img: '../assets/img/equity.png',
+      img: '../assets/img/coupon.png',
       name: '我的红包',
     },
     {
@@ -76,7 +76,7 @@ export class MePage implements OnInit {
   public system = [
     {
       link: '/support',
-      img: '../assets/img/bag.png',
+      img: '../assets/img/hotline.png',
       name: '联系客服',
     },
     {
@@ -91,12 +91,12 @@ export class MePage implements OnInit {
     },
     {
       link: '/faq',
-      img: '../assets/img/wallet.png',
+      img: '../assets/img/bookmark.png',
       name: '常见问题',
     },
     {
       link: '/about',
-      img: '../assets/img/wallet.png',
+      img: '../assets/img/record.png',
       name: '关于我们',
     },
   ];
