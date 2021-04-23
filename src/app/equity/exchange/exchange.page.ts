@@ -21,6 +21,7 @@ export class ExchangePage implements OnInit {
   equity: number;
   userData: Data;
   user: Data;
+  node: Data;
   configs: Array<Data>;
 
   constructor(
@@ -36,6 +37,9 @@ export class ExchangePage implements OnInit {
           (res) => {
               this.userData = res;
           });
+      this.httpService.get('nodes/9').subscribe((res) => {
+          this.node = res;
+      });
   }
 
   ionViewWillEnter(){
