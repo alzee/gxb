@@ -47,7 +47,7 @@
 
   <ion-item class="small-links">
     <ion-checkbox required  formControlName="acceptTerms" color="primary"></ion-checkbox>
-    <ion-label>注册代表同意<a routerLink="/terms">《用户协议》</a><a routerLink="/privacy">《隐私条款》</a></ion-label>
+    <ion-label>注册代表同意<a routerLink="/terms" [queryParams]="{id: 1}">《用户协议》</a><a routerLink="/terms" [queryParams]="{id: 2}">《隐私条款》</a></ion-label>
   </ion-item>
   <ion-button [disabled]="form.invalid || usernameDup != 2 || phoneDup != 2 || !refcodeFound" expand="block" type="submit" class="submit">确定</ion-button>
   </form>
