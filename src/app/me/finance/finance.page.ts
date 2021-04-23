@@ -30,9 +30,8 @@ export class FinancePage implements OnInit {
     this.storageService.get(AuthConstants.AUTH).then(
       (res) => {
         this.userData = res;
-        this.httpService.get('finances?page=1&itemsPerPage=30&order%5Bdate%5D=desc&user=' + this.userData.id).subscribe((res) => {
-          this.hists = res;
-          console.log(res);
+        this.httpService.get('finances?page=1&itemsPerPage=30&order%5Bdate%5D=desc&user=' + this.userData.id).subscribe((res1) => {
+          this.hists = res1;
         });
       });
   }

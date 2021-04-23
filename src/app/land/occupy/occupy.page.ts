@@ -46,7 +46,7 @@ export class OccupyPage implements OnInit {
   }
 
   ngOnInit() {
-      this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
+      this.data.currentMessage.subscribe(message => this.message = message);
       this.configs = this.message.configs;
 
       this.storageService.get(AuthConstants.AUTH).then(

@@ -91,7 +91,7 @@ export class MePage implements OnInit {
     },
     {
       link: '/faq',
-      img: '../assets/img/bookmark.png',
+      img: '../assets/img/bookmark1.png',
       name: '常见问题',
     },
     {
