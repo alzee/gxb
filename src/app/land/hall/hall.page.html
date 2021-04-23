@@ -18,6 +18,9 @@
     </ion-item>
     <div class="pk" (click)="buy(i)">
       <div class="peer" *ngIf="i.owner">
+        <ion-thumbnail class="crown" slot="start">
+          <img src="../assets/img/crown_gold.png">
+        </ion-thumbnail>
         <ion-avatar slot="start">
           <img [src]="url + i.owner.avatar">
         </ion-avatar>
@@ -30,6 +33,9 @@
         <ion-icon name="navigate" color="danger"></ion-icon>
       </div>
       <div class="peer" *ngIf="i.owner">
+        <ion-thumbnail class="crown" slot="start">
+          <img src="../assets/img/crown_gold.png">
+        </ion-thumbnail>
         <ion-avatar slot="start">
           <img [src]="url + i.owner.avatar">
         </ion-avatar>
