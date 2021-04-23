@@ -9,14 +9,14 @@
 
 <ion-content color="light">
   <ion-toolbar>
-    <ion-segment value="1">
-      <ion-segment-button value="1" selected>
-        <ion-label>余额明细</ion-label>
+    <ion-segment (ionChange)="segmentChanged($event)" value="0" [(ngModel)]="seg">
+      <ion-segment-button value="0" selected>
+        <ion-label>资金明细</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="2">
+      <ion-segment-button value="1">
         <ion-label>提现明细</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="3">
+      <ion-segment-button value="2">
         <ion-label>充值记录</ion-label>
       </ion-segment-button>
     </ion-segment>
@@ -30,19 +30,20 @@
             <ion-datetime displayFormat="YYYY-MM" value="{{month}}" doneText="确定" cancelText="取消" [(ngModel)]="month" (ionChange)="showMonth()"></ion-datetime>
             <ion-icon name="chevron-down-outline"></ion-icon>
           </ion-item>
-          <ion-text color="medium" slot="end">共{{subtotal}}元</ion-text>
         </ion-item>
       </ion-list-header>
-      <ion-item class="list-item" *ngFor="let i of hists">
+      <ng-container *ngFor="let i of hists">
+      <ion-item class="list-item" *ngIf="seg == 0 || (seg == 1 && i.type == 19) || (seg == 2 && i.type == 0)">
         <ion-thumbnail slot="start">
           <img src="../assets/img/rmb_blue.png">
         </ion-thumbnail>
         <div>
-          <ion-text>充值</ion-text>
-          <ion-text color="medium" class="date">{{i.date}}</ion-text>
+          <ion-text>{{i.note}}</ion-text>
+          <ion-text color="medium" class="date">{{i.date | date:'yyyy-MM-dd HH:mm'}}</ion-text>
         </div>
-        <ion-text color="danger" slot="end">+{{i.amount}}</ion-text>
+        <ion-text slot="end">{{i.amount / 100}}</ion-text>
       </ion-item>
+      </ng-container>
     </ion-list>
   </ion-item>
 
