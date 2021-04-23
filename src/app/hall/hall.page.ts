@@ -58,13 +58,9 @@ export class HallPage implements OnInit {
   }
 
   ngOnInit() {
-      this.httpService.get(`tasks?page=${this.pageD}&${this.query}&order%5Bdate%5D=desc`).subscribe((res) => {
-          this.tasksByDate = [...this.tasksByDate, ...res];
-      });
-      this.httpService.get(`tasks?page=${this.pageP}&${this.query}&order%5Bprice%5D=desc`).subscribe((res) => {
-          this.tasksByPrice = [...this.tasksByPrice, ...res];
-      });
       this.getTaskByRecomm();
+      this.getTaskByDate(false);
+      this.getTaskByPrice(false);
   }
 
   ionViewWillEnter(){
@@ -77,17 +73,21 @@ export class HallPage implements OnInit {
       });
   }
 
-  getTaskByDate(){
+  getTaskByDate(override = true){
       this.httpService.get(`tasks?page=${this.pageD}&${this.query}&order%5Bdate%5D=desc`).subscribe((res) => {
           this.tasksByDate = [...this.tasksByDate, ...res];
-          this.tasks = this.tasksByDate;
+          if (override) {
+              this.tasks = this.tasksByDate;
+          }
       });
   }
 
-  getTaskByPrice(){
+  getTaskByPrice(override = true){
       this.httpService.get(`tasks?page=${this.pageP}&${this.query}&order%5Bprice%5D=desc`).subscribe((res) => {
           this.tasksByPrice = [...this.tasksByPrice, ...res];
-          this.tasks = this.tasksByPrice;
+          if (override) {
+              this.tasks = this.tasksByPrice;
+          }
       });
   }
 
