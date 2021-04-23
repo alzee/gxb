@@ -71,6 +71,7 @@ export class DetailPage implements OnInit {
 
       this.httpService.get('tasks/' + this.id).subscribe((res) => {
           this.task = res;
+          console.log(res);
           for (const i of this.task.applies){
               if (i.applicant.id === this.userData.id){
                   this.applied = true;
@@ -91,11 +92,11 @@ export class DetailPage implements OnInit {
                   this.workMinutesRemain = this.task.workHours * 60;
                   this.reviewMinutesRemain = this.task.reviewHours * 60;
                   break;
-              case 1:
+              case 11:
                   this.workMinutesRemain = this.task.workHours * 60 - this.minutesPast;
                   this.reviewMinutesRemain = this.task.reviewHours * 60;
                   break;
-              case 2:
+              case 12:
                   this.workMinutesRemain = 0;
                   this.reviewMinutesRemain = this.task.reviewHours * 60 - this.minutesPast;
                   break;
