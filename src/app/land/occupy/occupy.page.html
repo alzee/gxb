@@ -17,7 +17,7 @@
     <ion-thumbnail *ngFor="let i of pics">
       <img [src]="url + i">
     </ion-thumbnail>
-    <input class="ion-hide" type="file" (change)="uploadPhoto($event, 'pic')" #fileUpload>
+    <input class="ion-hide" type="file" accept="image/*" (change)="uploadPhoto($event, 'pic')" #fileUpload>
     <ion-icon *ngIf="pics.length < 9" name="image-sharp" size="large" (click)="fileUpload.click()"></ion-icon>
   </ion-item>
 
@@ -31,7 +31,7 @@
     <ion-thumbnail *ngIf="cover" (click)="fileUpload0.click()">
       <img [src]="url + cover">
     </ion-thumbnail>
-    <input class="ion-hide" type="file" (change)="uploadPhoto($event, 'cover')" #fileUpload0>
+    <input class="ion-hide" type="file" accept="image/*" (change)="uploadPhoto($event, 'cover')" #fileUpload0>
   </ion-item>
 
   <ion-label color="medium">在城市格子上展示的天数</ion-label>

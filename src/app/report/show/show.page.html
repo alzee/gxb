@@ -63,7 +63,7 @@
         <ion-thumbnail *ngFor="let i of pics">
           <img [src]="env.url + i">
         </ion-thumbnail>
-        <input class="ion-hide" type="file" (change)="uploadPhoto($event)" #fileUpload>
+        <input class="ion-hide" type="file" accept="image/*" (change)="uploadPhoto($event)" #fileUpload>
         <ion-icon *ngIf="pics.length < 3" name="image-sharp" size="large" (click)="fileUpload.click()"></ion-icon>
       </ion-item>
       <ion-button [disabled]="!desc" expand="block" (click)="submit()">提交辩诉</ion-button>

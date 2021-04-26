@@ -109,7 +109,7 @@
     <ion-thumbnail *ngIf="guides[j].img" slot="end" (click)="fileUpload.click()">
       <img [src]="url + guides[j].img">
     </ion-thumbnail>
-    <input class="ion-hide" type="file" (change)="uploadPhoto($event, 'guide', j)" #fileUpload>
+    <input class="ion-hide" type="file" accept="image/*" (change)="uploadPhoto($event, 'guide', j)" #fileUpload>
   </ion-item>
 
   <ion-item class="data review" *ngFor="let i of arr2; let j = index">
@@ -123,7 +123,7 @@
     <ion-thumbnail *ngIf="reviews[j].img" slot="end" (click)="fileUpload.click()">
       <img [src]="url + reviews[j].img">
     </ion-thumbnail>
-    <input class="ion-hide" type="file" (change)="uploadPhoto($event, 'review', j)" #fileUpload>
+    <input class="ion-hide" type="file" accept="image/*" (change)="uploadPhoto($event, 'review', j)" #fileUpload>
   </ion-item>
 
   <ion-grid>
