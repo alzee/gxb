@@ -12,6 +12,7 @@ export class SearchPage implements OnInit {
   keyword: string;
   tasks = [];
   envs = environment;
+  query = 'status=2&itemsPerPage=20';
 
   constructor(
       private activeRoute: ActivatedRoute,
@@ -24,8 +25,20 @@ export class SearchPage implements OnInit {
           console.log(this.keyword);
       });
 
-      this.httpService.get('tasks?page=1').subscribe((res) => {
-          this.tasks = res;
+      this.httpService.get(`tasks?${this.query}&title=${this.keyword}`).subscribe((res) => {
+          this.tasks = [...this.tasks, ...res];
+          console.log(res);
+      });
+
+      if (Number.isInteger(this.keyword)) {
+        this.httpService.get(`tasks?${this.query}&id=${this.keyword}`).subscribe((res) => {
+          this.tasks = [...this.tasks, ...res];
+          console.log(res);
+        });
+      }
+
+      this.httpService.get(`tasks?${this.query}&owner.username=${this.keyword}`).subscribe((res) => {
+          this.tasks = [...this.tasks, ...res];
           console.log(res);
       });
   }
