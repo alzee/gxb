@@ -12,6 +12,7 @@ major:
   - cell read 5 sec
   - 微信头像昵称
   - 下架后(status 4)剩余金额解冻
+  - editor
   - search
 minor:
   - cron:

@@ -140,6 +140,10 @@ const routes: Routes = [
   {
     path: 'about',
     loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
+  },
+  {
+    path: 'chpasswd',
+    loadChildren: () => import('./chpasswd/chpasswd.module').then( m => m.ChpasswdPageModule)
   }
 ];
 @NgModule({

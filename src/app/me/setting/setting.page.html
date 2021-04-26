@@ -17,25 +17,17 @@
       </ion-avatar>
     </ion-item>
   </ion-item>
-  <ion-item>
+  <ion-item button routerLink="/chpasswd">
     <ion-text slot="start">修改密码</ion-text>
-    <ion-item slot="end" routerLink="/signin">
-      <ion-text color="medium"></ion-text>
-    </ion-item>
   </ion-item>
-  <ion-item>
+  <ion-item routerLink="/chphone">
     <ion-text slot="start">修改手机号</ion-text>
-    <ion-item slot="end" routerLink="/signin">
-      <ion-text color="medium">{{user.phone}}</ion-text>
-    </ion-item>
+    <ion-text slot="end" color="medium">{{user.phone}}</ion-text>
   </ion-item>
-  <ion-item>
+  <ion-item routerLink="/chpaypasswd">
     <ion-text slot="start">修改支付密码</ion-text>
-    <ion-item slot="end" routerLink="/signin">
-      <ion-text color="medium"></ion-text>
-    </ion-item>
   </ion-item>
-  <ion-item detail="true" routerLink="/about">
+  <ion-item detail="true" routerLink="/terms" [queryParams]="{id: 5}">
     <ion-text slot="start">关于</ion-text>
   </ion-item>
   <ion-item detail="true" (click)="checkUpdate()">
