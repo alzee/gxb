@@ -58,7 +58,7 @@ export class OccupyPage implements OnInit {
           this.landId = parseInt(params.id, 10);
           if (this.landId === 1) {
             for (const i of this.configs) {
-                if (i.label === 'mainlandMinPrice ') {
+                if (i.label === 'mainlandMinPrice') {
                     this.priceMin = i.value;
                 }
                 if (i.label === 'mainlandMinDays') {
