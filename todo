@@ -18,9 +18,7 @@ minor:
     - 格子到期
     - 验收到期
   - task cate cascade:remove
-  - image watermark
   - admin entity
-  - php add text to pic
   - people bid at same time happens. Should check current min price every time bid()
   - 维权结果
   - 微信头像昵称
