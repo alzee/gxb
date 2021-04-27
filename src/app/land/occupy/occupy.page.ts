@@ -19,8 +19,8 @@ interface Data {
 })
 export class OccupyPage implements OnInit {
   form: FormGroup;
-  daysMin = 10;
-  priceMin = 1;
+  daysMin: number;
+  priceMin: number;
   price = 0;
   amount: number;
   landId: number;
@@ -57,26 +57,26 @@ export class OccupyPage implements OnInit {
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.landId = parseInt(params.id, 10);
           if (this.landId === 1) {
-            this.daysMin = 20;
-            this.priceMin = 0.5;
             for (const i of this.configs) {
-                if (i.label === 'mainCellPrice') {
+                if (i.label === 'mainlandMinPrice ') {
                     this.priceMin = i.value;
                 }
-                if (i.label === 'mainCellDays') {
+                if (i.label === 'mainlandMinDays') {
                     this.daysMin = i.value;
                 }
             }
+            console.log(this.priceMin, this.daysMin);
           }
           else {
             for (const i of this.configs) {
-                if (i.label === 'cellPrice') {
+                if (i.label === 'landMinPrice') {
                     this.priceMin = i.value;
                 }
-                if (i.label === 'cellDays') {
+                if (i.label === 'landMinDays') {
                     this.daysMin = i.value;
                 }
             }
+            console.log(this.priceMin, this.daysMin);
           }
       });
 
