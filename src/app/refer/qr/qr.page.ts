@@ -38,6 +38,7 @@ export class QrPage implements OnInit {
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
       this.userData = res;
+      console.log(res);
       this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
         console.log(res1);
         this.user = res1;

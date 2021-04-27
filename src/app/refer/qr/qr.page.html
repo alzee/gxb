@@ -14,9 +14,9 @@
     <ion-text color="primary">{{code}}</ion-text>
   </div>
 
-    <ion-slides [options]="slideOpts" (ionSlideDidChange)="changeSlide($event)">
+    <ion-slides [options]="slideOpts" (ionSlideDidChange)="changeSlide($event)" *ngIf="userData">
       <ion-slide *ngFor="let i of posters">
-        <ion-img [src]="env.imgUrl + i"></ion-img>
+        <ion-img [src]="env.imgUrl + '/poster/' + userData.username + '_' + i"></ion-img>
       </ion-slide>
     </ion-slides>
   <ion-button expand="block" download [href]="picUrl">保存图片</ion-button>
