@@ -72,3 +72,8 @@ ion-list{
         }
     }
 }
+ion-modal{
+  --max-height: 200px !important;
+  --max-width: 90% !important;
+  --border-radius: .5em !important;
+}

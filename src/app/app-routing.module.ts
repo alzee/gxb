@@ -144,6 +144,10 @@ const routes: Routes = [
   {
     path: 'chpasswd',
     loadChildren: () => import('./chpasswd/chpasswd.module').then( m => m.ChpasswdPageModule)
+  },
+  {
+    path: 'modal',
+    loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
   }
 ];
 @NgModule({
