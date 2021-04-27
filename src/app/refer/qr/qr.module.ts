@@ -8,12 +8,19 @@ import { QrPageRoutingModule } from './qr-routing.module';
 
 import { QrPage } from './qr.page';
 
+import { File } from '@ionic-native/file/ngx';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     QrPageRoutingModule
+  ],
+  providers: [
+    FileTransfer,
+    File
   ],
   declarations: [QrPage]
 })
