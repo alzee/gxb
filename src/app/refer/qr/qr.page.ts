@@ -4,8 +4,8 @@ import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
 import { environment } from '../../../environments/environment';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { File } from '@ionic-native/file';
-import { ToastService } from '../services/toast.service';
+import { File } from '@ionic-native/file/ngx';
+import { ToastService } from '../../services/toast.service';
 
 interface Data {
     [propName: string]: any;
@@ -32,7 +32,7 @@ export class QrPage implements OnInit {
       // loop: true,
       // height: 40
   };
-  fileTransfer: FileTransferObject = this.transfer.create();
+  fileTransfer: FileTransferObject;
 
   constructor(
       private toastService: ToastService,
@@ -43,6 +43,7 @@ export class QrPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.fileTransfer = this.transfer.create();
     this.storageService.get(AuthConstants.AUTH).then((res) => {
       this.userData = res;
       console.log(res);
@@ -60,7 +61,7 @@ export class QrPage implements OnInit {
 
   download(i){
       const url = this.env.imgUrl + '/poster/' + this.userData.username + '_' + i;
-      this.fileTransfer.download(url, this.file.dataDirectory + i).then((entry) => {
+      this.fileTransfer.download(url, this.file.externalRootDirectory + '/Download/'+ i).then((entry) => {
           console.log('download complete: ' + entry.toURL());
           this.toastService.presentToast('下载完成');
       }, (error) => {
