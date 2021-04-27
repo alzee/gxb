@@ -13,6 +13,7 @@ major:
   - editor
 minor:
   - cron:
+    - 领主格子收益
     - 分红
     - 会员到期
     - 格子到期
