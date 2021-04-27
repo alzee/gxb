@@ -1,0 +1,25 @@
+ion-item{
+  text-align: center !important;
+}
+ion-input{
+  border: 1px solid red;
+  border-radius: .25em;
+  margin: 0 4px;
+  text-align: center;
+  --padding-start: 10px !important;
+  --padding-end: 10px;
+  input{
+    padding: 0 !important;
+  }
+}
+input{
+  width: 40px;
+  height: 40px;
+  border: 1px solid red;
+  border-radius: .25em;
+  margin: 0 4px;
+  text-align: center;
+  input{
+    padding: 0 10 !important;
+  }
+}

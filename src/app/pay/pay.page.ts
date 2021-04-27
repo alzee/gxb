@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router, Params, RoutesRecognized } from '@angular/router';
 import {Location} from '@angular/common';
 import { filter, pairwise } from 'rxjs/operators';
@@ -90,7 +90,7 @@ export class PayPage implements OnInit {
   }
 
   pay() {
-    this.presentModal();
+    // this.presentModal();
     this.orderData.uid = this.userData.id;
     this.orderData.method = this.payMethod;
     this.httpService.post('order', this.orderData).subscribe((res) => {

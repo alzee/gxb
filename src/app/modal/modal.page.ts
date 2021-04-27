@@ -30,4 +30,18 @@ export class ModalPage implements OnInit {
   ngOnInit() {
   }
 
+onDigitInput(event){
+   let element;
+   if (event.code !== 'Backspace')
+        element = event.srcElement.nextElementSibling;
+
+    if (event.code === 'Backspace')
+        element = event.srcElement.previousElementSibling;
+
+    if(element == null)
+        return;
+    else
+        element.focus();
+}
+
 }
