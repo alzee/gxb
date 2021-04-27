@@ -11,7 +11,9 @@ import { StorageService } from '../services/storage.service';
 export class ReferPage implements OnInit {
   friends = [];
   count: number;
-  userData: {};
+  userData = {
+      id: 0
+  };
 
   constructor(
       private httpService: HttpService,
