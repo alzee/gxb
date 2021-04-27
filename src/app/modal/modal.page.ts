@@ -16,13 +16,13 @@ export class ModalPage implements OnInit {
     disableAutoFocus: false,
     placeholder: '',
     inputStyles: {
-      'width': '50px',
-      'height': '50px'
+        width: '50px',
+        height: '50px'
     }
   };
   onOtpChange(otp) {
-    this.otp = otp;
-    console.log(this.otp);
+      this.otp = otp;
+      console.log(this.otp);
   }
 
   constructor() { }
@@ -30,18 +30,22 @@ export class ModalPage implements OnInit {
   ngOnInit() {
   }
 
-onDigitInput(event){
-   let element;
-   if (event.code !== 'Backspace')
-        element = event.srcElement.nextElementSibling;
+  onDigitInput(event){
+      let element;
+      if (event.code !== 'Backspace') {
+          element = event.srcElement.nextElementSibling;
+      }
 
-    if (event.code === 'Backspace')
-        element = event.srcElement.previousElementSibling;
+      if (event.code === 'Backspace') {
+          element = event.srcElement.previousElementSibling;
+      }
 
-    if(element == null)
-        return;
-    else
-        element.focus();
-}
+      if (element == null) {
+          return;
+      }
+      else {
+          element.focus();
+      }
+  }
 
 }

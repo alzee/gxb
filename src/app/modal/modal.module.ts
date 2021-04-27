@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ModalPageRoutingModule } from './modal-routing.module';
 
 import { ModalPage } from './modal.page';
-import { NgOtpInputModule } from  'ng-otp-input';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 @NgModule({
   imports: [

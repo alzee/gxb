@@ -3,6 +3,9 @@ import { HttpService } from '../../services/http.service';
 import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
 import { environment } from '../../../environments/environment';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { File } from '@ionic-native/file';
+import { ToastService } from '../services/toast.service';
 
 interface Data {
     [propName: string]: any;
@@ -29,8 +32,12 @@ export class QrPage implements OnInit {
       // loop: true,
       // height: 40
   };
+  fileTransfer: FileTransferObject = this.transfer.create();
 
   constructor(
+      private toastService: ToastService,
+      private transfer: FileTransfer,
+      private file: File,
       private storageService: StorageService,
       private httpService: HttpService
   ) { }
@@ -49,5 +56,16 @@ export class QrPage implements OnInit {
 
   changeSlide(e){
     console.log(e);
+  }
+
+  download(i){
+      const url = this.env.imgUrl + '/poster/' + this.userData.username + '_' + i;
+      this.fileTransfer.download(url, this.file.dataDirectory + i).then((entry) => {
+          console.log('download complete: ' + entry.toURL());
+          this.toastService.presentToast('下载完成');
+      }, (error) => {
+          this.toastService.presentToast('下载失败');
+          // handle error
+      });
   }
 }
