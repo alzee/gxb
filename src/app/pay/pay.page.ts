@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router, Params, RoutesRecognized } from '@angular/router';
 import {Location} from '@angular/common';
 import { filter, pairwise } from 'rxjs/operators';
@@ -10,6 +10,8 @@ import { StorageService } from '../services/storage.service';
 import { Platform, LoadingController, NavController } from '@ionic/angular';
 import { Wechat } from '@ionic-native/wechat/ngx';
 import { ToastService } from '../services/toast.service';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
 
 interface Data {
     [propName: string]: any;
@@ -36,6 +38,7 @@ export class PayPage implements OnInit {
   coupon: Data;
 
   constructor(
+      public modalController: ModalController,
       public navCtrl: NavController,
       public loadingController: LoadingController,
       private wechat: Wechat,
@@ -87,6 +90,7 @@ export class PayPage implements OnInit {
   }
 
   pay() {
+    this.presentModal();
     this.orderData.uid = this.userData.id;
     this.orderData.method = this.payMethod;
     this.httpService.post('order', this.orderData).subscribe((res) => {
@@ -141,5 +145,13 @@ export class PayPage implements OnInit {
          this.orderData.amount = this.orderData.amount + this.coupon.value;
          this.orderData.couponId = 0;
       }
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      cssClass: 'my-custom-class'
+    });
+    return await modal.present();
   }
 }
