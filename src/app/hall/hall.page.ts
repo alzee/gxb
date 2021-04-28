@@ -121,6 +121,7 @@ export class HallPage implements OnInit {
     setTimeout(() => {
       console.log('Async operation has ended');
       this.seg = 'all';
+      this.tasksByRecommend = [];
       this.getTaskByRecomm();
       event.target.complete();
     }, 1000);
