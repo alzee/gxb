@@ -9,8 +9,8 @@ import { StorageService } from '../services/storage.service';
   styleUrls: ['./refer.page.scss'],
 })
 export class ReferPage implements OnInit {
-  friends = [];
-  count: number;
+  count1: number;
+  count2: number;
   userData = {
       id: 0
   };
@@ -24,8 +24,10 @@ export class ReferPage implements OnInit {
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
           this.httpService.get('users?page=1&itemsPerPage=1000&referrer=' + this.userData.id).subscribe((res1) => {
-              this.friends = res1;
-              this.count = this.friends.length;
+              this.count1 = res1.length;
+          });
+          this.httpService.get('users?page=1&itemsPerPage=1000&ror=' + this.userData.id).subscribe((res2) => {
+              this.count2 = res2.length;
           });
       });
   }
