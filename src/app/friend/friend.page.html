@@ -1,0 +1,39 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>我的好友</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-toolbar>
+    <ion-segment *ngIf="friends1 && friends2" (ionChange)="segmentChanged($event)" value="0" [(ngModel)]="seg">
+      <ion-segment-button value="1">
+        <ion-label>一级好友({{friends1.length}})</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="2">
+        <ion-label>二级好友({{friends2.length}})</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ion-item class="hist">
+    <ion-list>
+      <ng-container *ngFor="let i of friends">
+      <ion-item class="list-item">
+        <ion-avatar slot="start">
+          <img [src]="envs.url + i.avatar">
+        </ion-avatar>
+        <div>
+          <ion-text>{{i.username}}</ion-text>
+          <ion-text color="medium" class="date">注册时间:{{i.date | date:'yyyy-MM-dd'}}</ion-text>
+        </div>
+        <ion-text slot="end"></ion-text>
+      </ion-item>
+      </ng-container>
+    </ion-list>
+  </ion-item>
+
+</ion-content>

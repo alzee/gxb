@@ -1,0 +1,51 @@
+ion-segment{
+  --background: unset;
+  border-radius: 0;
+}
+ion-segment-button{
+  --color-checked: #0072FF;
+  --border-style: none;
+  --indicator-box-shadow: 0 4px #0072FF;
+  --border-radius: unset;
+}
+.hist{
+  --background: none;
+  ion-list{
+    background: none;
+    width: 100%;
+    ion-list-header{
+      padding: 0 16px;
+      font-weight: normal;
+      ion-item{
+        --background: none;
+        width: 100%;
+        ion-text{
+          margin: 0;
+        }
+      }
+    }
+    .list-item{
+      --padding-start: 16px;
+      --padding-end: 16px;
+      --padding-top: 10px;
+      --padding-bottom: 10px;
+      border-bottom: 1px solid #E5E5E5FF;
+      align-items: flex-start;
+      ion-avatar{
+        margin-right: 10px;
+      }
+      ion-text{
+        margin: 0;
+        font-size: 14px;
+      }
+      div{
+        ion-text{
+          display: block;
+        }
+        .date{
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

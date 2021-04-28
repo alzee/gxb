@@ -148,6 +148,10 @@ const routes: Routes = [
   {
     path: 'modal',
     loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
+  },
+  {
+    path: 'friend',
+    loadChildren: () => import('./friend/friend.module').then( m => m.FriendPageModule)
   }
 ];
 @NgModule({
