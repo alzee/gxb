@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { AuthConstants } from '../config/auth-constants';
+import { StorageService } from '../services/storage.service';
+import { HttpService } from '../services/http.service';
+
+interface Data {
+    [propName: string]: any;
+}
 
 @Component({
   selector: 'app-bonus',
@@ -7,48 +14,35 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./bonus.page.scss'],
 })
 export class BonusPage implements OnInit {
+  userData: Data;
   fund: number;
-  gold: number;
-  subtotal: number;
+  coin: number;
   month: string;
   hists = [];
 
   constructor(
+    private httpService: HttpService,
+    private storageService: StorageService,
     public toastController: ToastController
   ) {
-    this.fund = 0;
-    this.gold = 0;
-    this.subtotal = 0;
     const d = new Date();
     this.month = d.getFullYear() + '-' + (d.getMonth() + 1);
   }
 
   ngOnInit() {
+    this.storageService.get(AuthConstants.AUTH).then((res) => {
+        this.userData = res;
+    });
   }
 
-  async showDesc() {
-    const toast = await this.toastController.create({
-      header: '分红说明',
-      message: `
-      1、每7天分红一次，分红标准是平台的收入（会员充值和发布任务的手续费）的50%参与分红，除以当期有多少个共享宝=每个共享宝的分红基数x个人的共享宝个数=当期分红金额。
-      2、参与分红的条件是达到10个共享宝的人参与分红。
-      3、任务大厅发布任务，任务可以选择推荐、置顶、暂停，取消四种状态。推荐、置顶需要购买，时效是24小时，过期了再买。`,
-      color: '#fff',
-      position: 'middle',
-      buttons: [
-        {
-          text: '确定',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
+  ionViewWillEnter(){
+    this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
+      this.user = res1;
+      this.coin = this.user.coin;
     });
-    toast.present();
   }
 
   showMonth() {
-    console.log(this.month);
+      console.log(this.month);
   }
 }
