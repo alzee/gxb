@@ -49,12 +49,13 @@ export class LandPage implements OnInit {
              ) {}
 
   ngOnInit() {
-      this.httpService.get('configs?itemsPerPage=30').subscribe((res) => {
-          this.data.changeMessage({configs: res});
-      });
   }
 
   ionViewWillEnter(){
+      this.httpService.get('configs?itemsPerPage=30').subscribe((res) => {
+          this.data.changeMessage({configs: res});
+      });
+
       this.httpService.get(`${this.query}&land=1`).subscribe((res) => {
           this.posts = res;
           this.land.id = 1;
