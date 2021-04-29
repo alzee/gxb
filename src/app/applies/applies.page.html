@@ -20,7 +20,7 @@
           <ion-row>
             <ion-col class="pic" size="auto">
               <ion-avatar>
-                <img *ngIf="i.applicant.avatar; else elseBlock" [src]="envs.imgUrl + i.applicant.avatar">
+                <img *ngIf="i.applicant.avatar; else elseBlock" [src]="envs.url + i.applicant.avatar">
                 <ng-template #elseBlock>
                   <img src="../assets/img/she.png">
                 </ng-template>

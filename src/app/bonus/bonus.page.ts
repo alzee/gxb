@@ -18,6 +18,7 @@ export class BonusPage implements OnInit {
   fund: number;
   coin: number;
   month: string;
+  user: Data;
   hists = [];
 
   constructor(
