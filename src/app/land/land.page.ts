@@ -105,6 +105,10 @@ export class LandPage implements OnInit {
       ]
     });
 
+    picker.addEventListener("ionPickerColChange", async (event: any) => {
+        console.log(event);
+    });
+
     await picker.present();
   }
 
