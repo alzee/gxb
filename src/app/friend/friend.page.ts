@@ -53,7 +53,6 @@ export class FriendPage implements OnInit {
         break;
       case 2:
         this.friends = this.friends2;
-      console.log(this.friends);
         break;
     }
     console.log('Segment changed', this.seg);
