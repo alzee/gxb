@@ -3,8 +3,8 @@ import { PickerController } from '@ionic/angular';
 import { PickerOptions } from '@ionic/core';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
-// import cities from './pca-code.json';
-import cities from './pca.json';
+// import pca from './pca-code.json';
+import pca from './pca.json';
 import { DataService } from '../services/data.service';
 
 interface Data {
@@ -17,10 +17,12 @@ interface Data {
   styleUrls: ['./land.page.scss'],
 })
 export class LandPage implements OnInit {
+  provIndex = 16;
+  cityIndex = 2;
+  areaIndex = 1;
   provs = [];
   cities = [];
   areas = [];
-  city: string;
   // columns: Array<Data>;
   columns = [];
   query = 'land_posts?itemsPerPage=35&order%5Bprice%5D=desc';
@@ -39,10 +41,6 @@ export class LandPage implements OnInit {
   ngOnInit() {
   }
 
-  getCities(provCode: number){
-      provCode = 42;
-  }
-
   ionViewWillEnter(){
       this.httpService.get('configs?itemsPerPage=30').subscribe((res) => {
           this.data.changeMessage({configs: res});
@@ -56,29 +54,40 @@ export class LandPage implements OnInit {
       });
   }
 
+  getCities(prov){
+    let this.cities = [];
+    for (const i of Object.keys(pca[prov])) {
+        this.cities.push({text: i});
+    }
+    return cities;
+  }
+
+  getAreas(prov, city){
+    let areas = [];
+    for (const i of pca[prov][city]) {
+        areas.push({text: i});
+    }
+    return areas;
+  }
+
   async openPicker(){
-    console.log(cities);
-    console.log(Object.keys(cities));
+    console.log(pca);
+    console.log(Object.keys(pca));
     this.columns[0] = {};
     this.columns[0].options = [];
     this.columns[0].name = 'prov';
-    for (const i of Object.keys(cities)) {
+    this.columns[0].selectedIndex = this.provIndex;
+    for (const i of Object.keys(pca)) {
         this.columns[0].options.push({text: i});
     }
 
     this.columns[1] = {};
     this.columns[1].name = 'city';
-    this.columns[1].options = [];
-    for (const i of Object.keys(cities.湖北省)) {
-        this.columns[1].options.push({text: i});
-    }
+    this.columns[1].options = this.getCities('湖北省');
 
     this.columns[2] = {};
     this.columns[2].name = 'area';
-    this.columns[2].options = [];
-    for (const i of cities.湖北省.十堰市) {
-        this.columns[2].options.push({text: i});
-    }
+    this.columns[2].options = this.getAreas('湖北省', '武汉市');;
     console.log(this.columns);
 
     const picker = await this.pickerController.create({
@@ -93,11 +102,11 @@ export class LandPage implements OnInit {
           handler: (value) => {
             console.log(`Got Value ${value}`);
             console.log(value);
-            this.city = value['col-2'].text;
-            this.httpService.get('lands?name=' + this.city).subscribe((res) => {
+            this.area = value['area'].text;
+            this.httpService.get('lands?name=' + this.area ).subscribe((res) => {
                 this.land = res[0];
                 if (!this.land){
-                    const data = {name: this.city};
+                    const data = {name: this.area};
                     this.httpService.post('lands?', data).subscribe((res1) => {
                         this.land = res1;
                         this.httpService.get(`${this.query}&land=${this.land.id}`).subscribe((res2) => {
@@ -125,6 +134,7 @@ export class LandPage implements OnInit {
         console.log(event);
     });
 
+    console.log(picker.columns);
     await picker.present();
   }
 
