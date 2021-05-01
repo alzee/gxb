@@ -141,9 +141,12 @@ export class LandPage implements OnInit {
                     const data = {name: this.area};
                     this.httpService.post('lands?', data).subscribe((res1) => {
                         this.land = res1;
+                        this.getPosts();
                     });
                 }
-                this.getPosts();
+                else {
+                  this.getPosts();
+                }
             });
           }
         }

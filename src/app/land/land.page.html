@@ -13,7 +13,7 @@
   <ion-refresher-content refreshingText="下拉回到主城"></ion-refresher-content>
 </ion-refresher>
 
-  <ng-container *ngIf="posts">
+  <ng-container *ngIf="land && posts">
   <ion-item class="cells">
     <ion-grid>
       <ion-row>
@@ -29,7 +29,7 @@
     </ion-grid>
   </ion-item>
 
-  <ion-item class="info" *ngIf="land.id !== 1">
+  <ion-item class="info" *ngIf="land && land.id !== 1">
     <ion-avatar *ngIf="land.owner">
       <img [src]="url + land.owner.avatar">
     </ion-avatar>
@@ -46,7 +46,7 @@
         领地价格
       </ion-text>
       <ion-text color="danger">
-        {{land.price}}
+        {{land.price / 100}}
       </ion-text>
     </div>
   </ion-item>
@@ -68,7 +68,7 @@
     <ion-button expand="full" size="large" class="other" (click)="openPicker()">
       其它领地
     </ion-button>
-    <ng-container >
+    <ng-container *ngIf="land">
     <ion-button *ngIf="land.id == 1 || (land.owner && land.owner.id == userData.id)" expand="full" size="large" class="buy" routerLink="/land/my">
       我的领地
     </ion-button>

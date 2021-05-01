@@ -18,7 +18,10 @@
   </ion-item>
   <ion-item class="data">
     <ion-label>出售价格</ion-label>
-    <ion-input type="number" [(ngModel)]="newPrice" placeholder="请输入要出售的价格" required clearInput></ion-input>
+
+    <ion-select required [(ngModel)]="newPrice" interface="action-sheet" cancelText="取消">
+      <ion-select-option *ngFor="let i of plist" value="{{i}}">{{i/100}}</ion-select-option>
+    </ion-select>
   </ion-item>
     <ion-button [disabled]="!newPrice" expand="block" size="large" type="submit" (click)="changePrice()">
       提交

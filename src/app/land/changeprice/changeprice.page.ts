@@ -12,6 +12,7 @@ import { NavController } from '@ionic/angular';
 export class ChangepricePage implements OnInit {
   prePrice: number;
   price: number;
+  plist = []; 
   id: number;
   name: string;
   newPrice: number;
@@ -27,15 +28,24 @@ export class ChangepricePage implements OnInit {
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.id = params.id;
           this.prePrice = parseInt(params.prePrice, 10);
+          this.plist = [
+              this.prePrice * 0.7,
+              this.prePrice * 0.8,
+              this.prePrice * 0.9,
+              this.prePrice,
+              this.prePrice * 1.1,
+              this.prePrice * 1.2,
+              this.prePrice * 1.3,
+          ];
+          console.log(this.plist);
           this.name = params.name;
-          console.log(this.id);
       });
   }
 
   changePrice(){
     console.log(this.newPrice);
     const data = {
-      price: this.newPrice * 100,
+      price: +this.newPrice,
       forSale: true
     };
     this.httpService.patch('lands/' + this.id, data).subscribe((res) => {
