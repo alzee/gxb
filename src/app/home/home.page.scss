@@ -62,6 +62,11 @@ ion-content{
           font-size: 12px;
           color: #707070;
         }
+        .cata{
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
         .price{
           color: #FF3B2F;
           font-size: 14px;
