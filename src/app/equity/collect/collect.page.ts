@@ -24,13 +24,9 @@ export class CollectPage implements OnInit {
   userData: Data;
   user: Data;
   collected = false;
+  clicked = false;
   type = 1;
-  amount = 1;
-  postData = {
-      amount: this.amount,
-      user: '',
-      type: this.type
-  } ;
+  amount: number;
   animation: Animation;
 
   constructor(
@@ -50,7 +46,9 @@ export class CollectPage implements OnInit {
 
       this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
           this.user = res1;
+          console.log(res1);
           this.myGxb = this.user.gxb;
+          this.amount = this.user.equity;
       });
 
       this.httpService.get('gxbs?page=1&order%5Bdate%5D=desc&itemsPerPage=10&user.id=' + this.uid).subscribe((res2) => {
@@ -91,16 +89,22 @@ export class CollectPage implements OnInit {
   }
 
   collectGxb() {
-      // this.postData.amount = this.amount;
-      this.postData.user = '/api/users/' + this.uid;
-      this.httpService.post('gxbs', this.postData).subscribe((res) => {
-          console.log(res);
-          this.hists.unshift(res);
-          this.toastService.presentToast('GXB +1 <p>每天1次机会，记得明天再来哦</p>');
-          this.dismiss();
-          this.myGxb = this.myGxb + this.amount;
-      });
-      console.log('collected');
+      const postData = {
+          amount: this.amount,
+          user: '/api/users/' + this.uid,
+          type: this.type
+      } ;
+      if (!this.clicked) {
+          this.httpService.post('gxbs', postData).subscribe((res) => {
+              console.log(res);
+              this.hists.unshift(res);
+              this.toastService.presentToast('GXB +1 <p>每天1次机会，记得明天再来哦</p>');
+              this.dismiss();
+              this.myGxb = this.myGxb + this.amount;
+              this.collected = true;
+          });
+      }
+      this.clicked = true;
   }
 
 }
