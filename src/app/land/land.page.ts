@@ -9,6 +9,7 @@ import { DataService } from '../services/data.service';
 import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../services/toast.service';
 
 interface Data {
     [propName: string]: any;
@@ -40,6 +41,7 @@ export class LandPage implements OnInit {
       private pickerController: PickerController,
       private httpService: HttpService,
       private storageService: StorageService,
+      private toastService: ToastService,
       private router: Router,
       private data: DataService
              ) {}
@@ -238,6 +240,11 @@ export class LandPage implements OnInit {
   }
 
   buyIt(){
-      this.router.navigate(['/land/hall'], {queryParams: {id: this.land.id}});
+      if (this.land.owner && this.land.owner.id !== this.userData.id) {
+          this.toastService.presentToast('该领地暂未出售');
+      }
+      else {
+          this.router.navigate(['/land/hall'], {queryParams: {id: this.land.id}});
+      }
   }
 }
