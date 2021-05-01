@@ -29,7 +29,7 @@ export class LandPage implements OnInit {
   areas = [];
   area: string;
   // columns: Array<Data>;
-  query = 'land_posts?itemsPerPage=35&order%5Bprice%5D=desc';
+  query = 'itemsPerPage=35&order%5Bprice%5D=desc';
   land = {
       id: 1
   };
@@ -64,16 +64,19 @@ export class LandPage implements OnInit {
     );
   }
 
+  getPosts(){
+      this.httpService.get(`land_posts?${this.query}&land=${this.land.id}`).subscribe((res) => {
+          this.posts = res;
+          this.posts.length = 35;
+      });
+  }
+
   ionViewWillEnter(){
       this.httpService.get('configs?itemsPerPage=30').subscribe((res) => {
           this.data.changeMessage({configs: res});
       });
 
-      this.httpService.get(`${this.query}&land=1`).subscribe((res) => {
-          this.posts = res;
-          this.land.id = 1;
-          this.posts.length = 35;
-      });
+      this.getPosts();
   }
 
   getCities(prov){
@@ -142,20 +145,9 @@ export class LandPage implements OnInit {
                     const data = {name: this.area};
                     this.httpService.post('lands?', data).subscribe((res1) => {
                         this.land = res1;
-                        this.httpService.get(`${this.query}&land=${this.land.id}`).subscribe((res2) => {
-                            this.posts = res2;
-                            this.posts.length = 35;
-                            console.log(this.posts);
-                        });
                     });
                 }
-                else{
-                    this.httpService.get(`${this.query}&land=${this.land.id}`).subscribe((res1) => {
-                        this.posts = res1;
-                        this.posts.length = 35;
-                        console.log(this.posts);
-                    });
-                }
+                this.getPosts();
             });
           }
         }
@@ -244,7 +236,8 @@ export class LandPage implements OnInit {
     console.log('Begin async operation');
 
     setTimeout(() => {
-      this.ngOnInit();
+      this.land.id = 1;
+      this.getPosts();
       console.log('Async operation has ended');
       event.target.complete();
     }, 500);
