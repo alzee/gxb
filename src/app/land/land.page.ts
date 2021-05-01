@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 // import pca from './pca-code.json';
 import pca from './pca.json';
 import { DataService } from '../services/data.service';
+import { StorageService } from '../services/storage.service';
 
 interface Data {
     [propName: string]: any;
@@ -36,6 +37,7 @@ export class LandPage implements OnInit {
   constructor(
       private pickerController: PickerController,
       private httpService: HttpService,
+      private storageService: StorageService,
       private data: DataService
              ) {}
 
@@ -74,6 +76,14 @@ export class LandPage implements OnInit {
   }
 
   async openPicker(){
+    this.storageService.get('pca').then(
+        (res) => {
+            this.provIndex = res[0];
+            this.cityIndex = res[1];
+            this.areaIndex = res[2];
+        }
+    );
+    console.log(this.provIndex, this.cityIndex, this.areaIndex);
     console.log(pca);
     console.log(Object.keys(pca));
     this.columns[0] = {};
@@ -135,8 +145,48 @@ export class LandPage implements OnInit {
       ]
     });
 
+    console.log(this.pickerController);
+
     picker.addEventListener('ionPickerColChange', async (event: any) => {
         console.log(event);
+        let n = event.srcElement.nextElementSibling;
+        let o = n.firstChild;
+        let options = [
+            {text: 'a', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+            {text: 'b', duration: 100},
+        ];
+        console.log(n.nodeName);
+        if (n.nodeName === 'ION-PICKER-COLUMN') {
+            let j = 0;
+            for (let i of o.children) {
+                i.innerText = options[j].text;
+                j += 1;
+            }
+        }
+        picker.columns[2].options = options;
+        console.log(picker.columns);
+
+        this.storageService.store('pca', [8, 0, 1]);
     });
 
     console.log(picker.columns);
