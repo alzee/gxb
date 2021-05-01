@@ -69,6 +69,8 @@ export class LandPage implements OnInit {
 
   getAreas(prov, city){
     let areas = [];
+    console.log(prov, city);
+    console.log(pca[prov][city]);
     for (const i of pca[prov][city]) {
         areas.push({text: i});
     }
@@ -148,10 +150,12 @@ export class LandPage implements OnInit {
     console.log(this.pickerController);
 
     picker.addEventListener('ionPickerColChange', async (event: any) => {
+        console.log(event);
         let n = event.srcElement.nextElementSibling;
         let o = n.firstChild;
         let cities = [];
         let areas = [];
+        let prov;
         let j = 0;
         let x = 0;
         let btn;
@@ -167,6 +171,8 @@ export class LandPage implements OnInit {
                     {text: '城市3', duration: 100},
                     {text: '城市4', duration: 100},
                 ];
+                prov = await picker.getColumn('prov');
+                cities = this.getCities(prov.options[prov.selectedIndex].text);
                 picker.columns[1].options = cities;
                 picker.columns[1].selectedIndex = 0;
 
@@ -180,7 +186,12 @@ export class LandPage implements OnInit {
                 for (let i of cities) {
                     let btn1 = btn.cloneNode(true);
                     btn1.setAttribute('opt-index', j);
-                    btn1.style.transform = `rotateX(${x}deg) translate3d(0px, 0px, 90px)`;
+                    if (j < 4) {
+                        btn1.style.transform = `rotateX(${x}deg) translate3d(0px, 0px, 90px)`;
+                    }
+                    else {
+                        btn1.style.transform = `translate3d(0px, -9999px, 90px)`;
+                    }
                     btn1.innerText = cities[j].text;
                     o.appendChild(btn1);
                     j += 1;
@@ -204,6 +215,9 @@ export class LandPage implements OnInit {
                     {text: '地区6', duration: 100},
                     {text: '地区7', duration: 100},
                 ];
+                prov = await picker.getColumn('prov');
+                let city = await picker.getColumn('city');
+                areas = this.getAreas(prov.options[prov.selectedIndex].text, city.options[city.selectedIndex].text);
                 picker.columns[2].options = areas;
                 picker.columns[2].selectedIndex = 0;
 
@@ -216,7 +230,12 @@ export class LandPage implements OnInit {
                 for (let i of areas) {
                     let btn1 = btn.cloneNode(true);
                     btn1.setAttribute('opt-index', j);
-                    btn1.style.transform = `rotateX(${x}deg) translate3d(0px, 0px, 90px)`;
+                    if (j < 4) {
+                        btn1.style.transform = `rotateX(${x}deg) translate3d(0px, 0px, 90px)`;
+                    }
+                    else {
+                        btn1.style.transform = `translate3d(0px, -9999px, 90px)`;
+                    }
                     btn1.innerText = areas[j].text;
                     o.appendChild(btn1);
                     j += 1;
