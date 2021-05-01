@@ -58,7 +58,7 @@ export class HallPage implements OnInit {
   }
 
   buy(i){
-      if (i.owner.id === this.userData.id) {
+      if (i.owner && i.owner.id === this.userData.id) {
           this.toastService.presentToast('您拥有领地 - ' + i.name);
           return;
       }
