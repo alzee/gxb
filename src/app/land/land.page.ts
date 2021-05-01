@@ -6,7 +6,9 @@ import { environment } from '../../environments/environment';
 // import pca from './pca-code.json';
 import pca from './pca.json';
 import { DataService } from '../services/data.service';
+import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
+import { Router } from '@angular/router';
 
 interface Data {
     [propName: string]: any;
@@ -18,6 +20,7 @@ interface Data {
   styleUrls: ['./land.page.scss'],
 })
 export class LandPage implements OnInit {
+  userData: Data;
   provIndex = 8;
   cityIndex = 0;
   areaIndex = 1;
@@ -27,7 +30,7 @@ export class LandPage implements OnInit {
   area: string;
   // columns: Array<Data>;
   query = 'land_posts?itemsPerPage=35&order%5Bprice%5D=desc';
-  land: Data = {
+  land = {
       id: 1
   };
   url = environment.url;
@@ -37,10 +40,21 @@ export class LandPage implements OnInit {
       private pickerController: PickerController,
       private httpService: HttpService,
       private storageService: StorageService,
+      private router: Router,
       private data: DataService
              ) {}
 
   ngOnInit() {
+      this.storageService.get(AuthConstants.AUTH).then(
+          (res) => {
+              this.userData = res;
+          },
+          (rej) => {
+              this.user = {};
+              delete this.userData;
+              // delete this.user;
+          }
+      );
     this.storageService.get('pca').then(
         (res) => {
             this.provIndex = res[0];
@@ -59,7 +73,6 @@ export class LandPage implements OnInit {
           this.posts = res;
           this.land.id = 1;
           this.posts.length = 35;
-          console.log(this.posts);
       });
   }
 
@@ -73,8 +86,6 @@ export class LandPage implements OnInit {
 
   getAreas(prov, city){
     const areas = [];
-    console.log(prov, city);
-    console.log(pca[prov][city]);
     for (const i of pca[prov][city]) {
         areas.push({text: i});
     }
@@ -126,6 +137,7 @@ export class LandPage implements OnInit {
 
             this.httpService.get('lands?name=' + this.area ).subscribe((res) => {
                 this.land = res[0];
+                console.log(this.land);
                 if (!this.land){
                     const data = {name: this.area};
                     this.httpService.post('lands?', data).subscribe((res1) => {
@@ -138,7 +150,6 @@ export class LandPage implements OnInit {
                     });
                 }
                 else{
-                    console.log(this.land);
                     this.httpService.get(`${this.query}&land=${this.land.id}`).subscribe((res1) => {
                         this.posts = res1;
                         this.posts.length = 35;
@@ -226,8 +237,6 @@ export class LandPage implements OnInit {
                 break;
         }
     });
-
-    console.log(picker.columns);
     await picker.present();
   }
 
@@ -239,5 +248,9 @@ export class LandPage implements OnInit {
       console.log('Async operation has ended');
       event.target.complete();
     }, 500);
+  }
+
+  buyIt(){
+      this.router.navigate(['/land/hall'], {queryParams: {id: this.land.id}});
   }
 }

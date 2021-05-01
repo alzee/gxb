@@ -68,8 +68,13 @@
     <ion-button expand="full" size="large" class="other" (click)="openPicker()">
       其它领地
     </ion-button>
-    <ion-button expand="full" size="large" class="buy" routerLink="/land/my">
+    <ng-container >
+    <ion-button *ngIf="land.id == 1 || (land.owner && land.owner.id == userData.id)" expand="full" size="large" class="buy" routerLink="/land/my">
       我的领地
     </ion-button>
+    <ion-button *ngIf="land.id !=1 && (!land.owner || (land.owner && land.owner.id != userData.id))" expand="full" size="large" class="buy" (click)="buyIt()">
+      我要成为领主
+    </ion-button>
+    </ng-container>
   </ion-item>
 </ion-content>
