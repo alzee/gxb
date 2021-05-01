@@ -26,7 +26,6 @@ export class LandPage implements OnInit {
   areas = [];
   area: string;
   // columns: Array<Data>;
-  columns = [];
   query = 'land_posts?itemsPerPage=35&order%5Bprice%5D=desc';
   land: Data = {
       id: 1
@@ -42,6 +41,13 @@ export class LandPage implements OnInit {
              ) {}
 
   ngOnInit() {
+    this.storageService.get('pca').then(
+        (res) => {
+            this.provIndex = res[0];
+            this.cityIndex = res[1];
+            this.areaIndex = res[2];
+        }
+    );
   }
 
   ionViewWillEnter(){
@@ -78,37 +84,27 @@ export class LandPage implements OnInit {
   }
 
   async openPicker(){
-    this.storageService.get('pca').then(
-        (res) => {
-            this.provIndex = res[0];
-            this.cityIndex = res[1];
-            this.areaIndex = res[2];
-        }
-    );
-    console.log(this.provIndex, this.cityIndex, this.areaIndex);
-    console.log(pca);
-    console.log(Object.keys(pca));
-    this.columns[0] = {};
-    this.columns[0].options = [];
-    this.columns[0].name = 'prov';
-    this.columns[0].selectedIndex = this.provIndex;
+    let columns = [];
+    columns[0] = {};
+    columns[0].options = [];
+    columns[0].name = 'prov';
+    columns[0].selectedIndex = this.provIndex;
     for (const i of Object.keys(pca)) {
-        this.columns[0].options.push({text: i});
+        columns[0].options.push({text: i});
     }
 
-    this.columns[1] = {};
-    this.columns[1].name = 'city';
-    this.columns[1].options = this.getCities('上海市');
-    this.columns[1].selectedIndex = this.cityIndex;
+    columns[1] = {};
+    columns[1].name = 'city';
+    columns[1].options = this.getCities(columns[0].options[this.provIndex].text);
+    columns[1].selectedIndex = this.cityIndex;
 
-    this.columns[2] = {};
-    this.columns[2].name = 'area';
-    this.columns[2].options = this.getAreas('上海市', '市辖区');;
-    this.columns[2].selectedIndex = this.areaIndex;
-    console.log(this.columns);
+    columns[2] = {};
+    columns[2].name = 'area';
+    columns[2].options = this.getAreas(columns[0].options[this.provIndex].text, columns[1].options[this.cityIndex].text);;
+    columns[2].selectedIndex = this.areaIndex;
 
     const picker = await this.pickerController.create({
-      columns: this.columns,
+      columns: columns,
       buttons: [
         {
           text: '取消',
@@ -117,9 +113,19 @@ export class LandPage implements OnInit {
         {
           text: '确定',
           handler: (value) => {
-            console.log(`Got Value ${value}`);
-            console.log(value);
             this.area = value['area'].text;
+
+            this.provIndex = columns[0].selectedIndex;
+            this.cityIndex = columns[1].selectedIndex;
+            this.areaIndex = columns[2].selectedIndex;
+
+            this.storageService.store('pca', [
+                columns[0].selectedIndex,
+                columns[1].selectedIndex,
+                columns[2].selectedIndex,
+            ]);
+
+
             this.httpService.get('lands?name=' + this.area ).subscribe((res) => {
                 this.land = res[0];
                 if (!this.land){
@@ -147,15 +153,13 @@ export class LandPage implements OnInit {
       ]
     });
 
-    console.log(this.pickerController);
-
     picker.addEventListener('ionPickerColChange', async (event: any) => {
-        console.log(event);
         let n = event.srcElement.nextElementSibling;
         let o = n.firstChild;
         let cities = [];
         let areas = [];
         let prov;
+        let city;
         let j = 0;
         let x = 0;
         let btn;
@@ -165,12 +169,6 @@ export class LandPage implements OnInit {
 
         switch (event.detail.name) {
             case 'prov':
-                cities = [
-                    {text: '城市1', duration: 100},
-                    {text: '城市2', duration: 100},
-                    {text: '城市3', duration: 100},
-                    {text: '城市4', duration: 100},
-                ];
                 prov = await picker.getColumn('prov');
                 cities = this.getCities(prov.options[prov.selectedIndex].text);
                 picker.columns[1].options = cities;
@@ -197,26 +195,12 @@ export class LandPage implements OnInit {
                     j += 1;
                     x -= 21.16;
                 }
-
-                //for (let i of o.children) {
-                //    i.innerText = cities[j].text;
-                //    j += 1;
-                //}
                 n = event.srcElement.nextElementSibling.nextElementSibling;
                 o = n.firstChild;
                 // break;
             case 'city':
-                areas = [
-                    {text: '地区1', duration: 100},
-                    {text: '地区2', duration: 100},
-                    {text: '地区3', duration: 100},
-                    {text: '地区4', duration: 100},
-                    {text: '地区5', duration: 100},
-                    {text: '地区6', duration: 100},
-                    {text: '地区7', duration: 100},
-                ];
                 prov = await picker.getColumn('prov');
-                let city = await picker.getColumn('city');
+                city = await picker.getColumn('city');
                 areas = this.getAreas(prov.options[prov.selectedIndex].text, city.options[city.selectedIndex].text);
                 picker.columns[2].options = areas;
                 picker.columns[2].selectedIndex = 0;
@@ -241,21 +225,8 @@ export class LandPage implements OnInit {
                     j += 1;
                     x -= 21.16;
                 }
-
-
                 break;
         }
-        //if (n.nodeName === 'ION-PICKER-COLUMN') {
-        //    let j = 0;
-        //    for (let i of o.children) {
-        //        i.innerText = options[j].text;
-        //        j += 1;
-        //    }
-        //}
-        console.log(picker.columns);
-        picker.present();
-
-        this.storageService.store('pca', [8, 0, 1]);
     });
 
     console.log(picker.columns);
