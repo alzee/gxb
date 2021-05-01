@@ -17,12 +17,13 @@ interface Data {
   styleUrls: ['./land.page.scss'],
 })
 export class LandPage implements OnInit {
-  provIndex = 16;
-  cityIndex = 2;
+  provIndex = 8;
+  cityIndex = 0;
   areaIndex = 1;
   provs = [];
   cities = [];
   areas = [];
+  area: string;
   // columns: Array<Data>;
   columns = [];
   query = 'land_posts?itemsPerPage=35&order%5Bprice%5D=desc';
@@ -55,10 +56,12 @@ export class LandPage implements OnInit {
   }
 
   getCities(prov){
-    let this.cities = [];
+    let cities = [];
     for (const i of Object.keys(pca[prov])) {
-        this.cities.push({text: i});
+        cities.push({text: i});
     }
+    console.log(Object.keys(pca[prov]));
+    console.log(cities)
     return cities;
   }
 
@@ -83,11 +86,13 @@ export class LandPage implements OnInit {
 
     this.columns[1] = {};
     this.columns[1].name = 'city';
-    this.columns[1].options = this.getCities('湖北省');
+    this.columns[1].options = this.getCities('上海市');
+    this.columns[1].selectedIndex = this.cityIndex;
 
     this.columns[2] = {};
     this.columns[2].name = 'area';
-    this.columns[2].options = this.getAreas('湖北省', '武汉市');;
+    this.columns[2].options = this.getAreas('上海市', '市辖区');;
+    this.columns[2].selectedIndex = this.areaIndex;
     console.log(this.columns);
 
     const picker = await this.pickerController.create({
