@@ -42,9 +42,7 @@
           <ion-text color="medium" class="date">{{i.date | date:'yyyy-MM-dd HH:mm'}}</ion-text>
         </div>
         <ion-text slot="end">
-          <ion-text *ngIf="i.type < 50">-</ion-text>
-          <ion-text *ngIf="i.type >= 50">+</ion-text>
-          {{i.amount / 100}}
+          <ion-text *ngIf="i.type < 50">-</ion-text><ion-text *ngIf="i.type >= 50">+</ion-text>{{i.amount / 100}}
         </ion-text>
       </ion-item>
       </ng-container>
