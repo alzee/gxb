@@ -128,16 +128,26 @@ export class DetailPage implements OnInit {
   }
 
   apply() {
-      const postData = {
-          task: '/api/tasks/' + this.id,
-          applicant: '/api/users/' + this.userData.id,
-          status: '/api/statuses/11'
-      };
-      this.httpService.post('applies', postData).subscribe((res) => {
+      this.httpService.get('tasks/' + this.id).subscribe((res) => {
           console.log(res);
-          this.toastService.presentToast('申请成功');
-          this.router.navigate(['/mytasks'], {replaceUrl: true});
+          this.task = res;
+          if (this.task.remain <= 0) {
+              this.toastService.presentToast('任务已经抢完啦！');
+          }
+          else {
+              const postData = {
+                  task: '/api/tasks/' + this.id,
+                  applicant: '/api/users/' + this.userData.id,
+                  status: '/api/statuses/11'
+              };
+              this.httpService.post('applies', postData).subscribe((res) => {
+                  console.log(res);
+                  this.toastService.presentToast('申请成功');
+                  this.router.navigate(['/mytasks'], {replaceUrl: true});
+              });
+          }
       });
+
   }
 
   submit() {
