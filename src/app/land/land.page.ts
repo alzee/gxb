@@ -30,7 +30,7 @@ export class LandPage implements OnInit {
   area: string;
   // columns: Array<Data>;
   query = 'itemsPerPage=35&order%5Bprice%5D=desc';
-  land = {
+  land: Data = {
       id: 1
   };
   url = environment.url;
@@ -45,16 +45,11 @@ export class LandPage implements OnInit {
              ) {}
 
   ngOnInit() {
-      this.storageService.get(AuthConstants.AUTH).then(
-          (res) => {
-              this.userData = res;
-          },
-          (rej) => {
-              this.user = {};
-              delete this.userData;
-              // delete this.user;
-          }
-      );
+    this.storageService.get(AuthConstants.AUTH).then(
+        (res) => {
+            this.userData = res;
+        }
+    );
     this.storageService.get('pca').then(
         (res) => {
             this.provIndex = res[0];
@@ -62,6 +57,7 @@ export class LandPage implements OnInit {
             this.areaIndex = res[2];
         }
     );
+    this.getPosts();
   }
 
   getPosts(){
@@ -75,8 +71,6 @@ export class LandPage implements OnInit {
       this.httpService.get('configs?itemsPerPage=30').subscribe((res) => {
           this.data.changeMessage({configs: res});
       });
-
-      this.getPosts();
   }
 
   getCities(prov){
