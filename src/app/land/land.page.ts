@@ -148,43 +148,93 @@ export class LandPage implements OnInit {
     console.log(this.pickerController);
 
     picker.addEventListener('ionPickerColChange', async (event: any) => {
-        console.log(event);
         let n = event.srcElement.nextElementSibling;
         let o = n.firstChild;
-        let options = [
-            {text: 'a', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-            {text: 'b', duration: 100},
-        ];
-        console.log(n.nodeName);
-        if (n.nodeName === 'ION-PICKER-COLUMN') {
-            let j = 0;
-            for (let i of o.children) {
-                i.innerText = options[j].text;
-                j += 1;
-            }
+        let cities = [];
+        let areas = [];
+        let j = 0;
+        let x = 0;
+        let btn;
+        if (event.detail.name !== 'area') {
+            btn = o.firstChild.cloneNode(true);
         }
-        picker.columns[2].options = options;
+
+        switch (event.detail.name) {
+            case 'prov':
+                cities = [
+                    {text: '城市1', duration: 100},
+                    {text: '城市2', duration: 100},
+                    {text: '城市3', duration: 100},
+                    {text: '城市4', duration: 100},
+                ];
+                picker.columns[1].options = cities;
+                picker.columns[1].selectedIndex = 0;
+
+                // o.innerHtml = '';
+                while (o.firstChild) {
+                    o.removeChild(o.firstChild);
+                }
+
+                j = 0;
+                x = 0;
+                for (let i of cities) {
+                    let btn1 = btn.cloneNode(true);
+                    btn1.setAttribute('opt-index', j);
+                    btn1.style.transform = `rotateX(${x}deg) translate3d(0px, 0px, 90px)`;
+                    btn1.innerText = cities[j].text;
+                    o.appendChild(btn1);
+                    j += 1;
+                    x -= 21.16;
+                }
+
+                //for (let i of o.children) {
+                //    i.innerText = cities[j].text;
+                //    j += 1;
+                //}
+                n = event.srcElement.nextElementSibling.nextElementSibling;
+                o = n.firstChild;
+                // break;
+            case 'city':
+                areas = [
+                    {text: '地区1', duration: 100},
+                    {text: '地区2', duration: 100},
+                    {text: '地区3', duration: 100},
+                    {text: '地区4', duration: 100},
+                    {text: '地区5', duration: 100},
+                    {text: '地区6', duration: 100},
+                    {text: '地区7', duration: 100},
+                ];
+                picker.columns[2].options = areas;
+                picker.columns[2].selectedIndex = 0;
+
+                while (o.firstChild) {
+                    o.removeChild(o.firstChild);
+                }
+
+                j = 0;
+                x = 0;
+                for (let i of areas) {
+                    let btn1 = btn.cloneNode(true);
+                    btn1.setAttribute('opt-index', j);
+                    btn1.style.transform = `rotateX(${x}deg) translate3d(0px, 0px, 90px)`;
+                    btn1.innerText = areas[j].text;
+                    o.appendChild(btn1);
+                    j += 1;
+                    x -= 21.16;
+                }
+
+
+                break;
+        }
+        //if (n.nodeName === 'ION-PICKER-COLUMN') {
+        //    let j = 0;
+        //    for (let i of o.children) {
+        //        i.innerText = options[j].text;
+        //        j += 1;
+        //    }
+        //}
         console.log(picker.columns);
+        picker.present();
 
         this.storageService.store('pca', [8, 0, 1]);
     });
