@@ -64,17 +64,15 @@ export class LandPage implements OnInit {
   }
 
   getCities(prov){
-    let cities = [];
+    const cities = [];
     for (const i of Object.keys(pca[prov])) {
         cities.push({text: i});
     }
-    console.log(Object.keys(pca[prov]));
-    console.log(cities)
     return cities;
   }
 
   getAreas(prov, city){
-    let areas = [];
+    const areas = [];
     console.log(prov, city);
     console.log(pca[prov][city]);
     for (const i of pca[prov][city]) {
@@ -84,7 +82,7 @@ export class LandPage implements OnInit {
   }
 
   async openPicker(){
-    let columns = [];
+    const columns = [];
     columns[0] = {};
     columns[0].options = [];
     columns[0].name = 'prov';
@@ -100,11 +98,11 @@ export class LandPage implements OnInit {
 
     columns[2] = {};
     columns[2].name = 'area';
-    columns[2].options = this.getAreas(columns[0].options[this.provIndex].text, columns[1].options[this.cityIndex].text);;
+    columns[2].options = this.getAreas(columns[0].options[this.provIndex].text, columns[1].options[this.cityIndex].text);
     columns[2].selectedIndex = this.areaIndex;
 
     const picker = await this.pickerController.create({
-      columns: columns,
+      columns,
       buttons: [
         {
           text: '取消',
@@ -113,7 +111,7 @@ export class LandPage implements OnInit {
         {
           text: '确定',
           handler: (value) => {
-            this.area = value['area'].text;
+            this.area = value.area.text;
 
             this.provIndex = columns[0].selectedIndex;
             this.cityIndex = columns[1].selectedIndex;
@@ -181,8 +179,8 @@ export class LandPage implements OnInit {
 
                 j = 0;
                 x = 0;
-                for (let i of cities) {
-                    let btn1 = btn.cloneNode(true);
+                for (const i of cities) {
+                    const btn1 = btn.cloneNode(true);
                     btn1.setAttribute('opt-index', j);
                     if (j < 4) {
                         btn1.style.transform = `rotateX(${x}deg) translate3d(0px, 0px, 90px)`;
@@ -211,8 +209,8 @@ export class LandPage implements OnInit {
 
                 j = 0;
                 x = 0;
-                for (let i of areas) {
-                    let btn1 = btn.cloneNode(true);
+                for (const i of areas) {
+                    const btn1 = btn.cloneNode(true);
                     btn1.setAttribute('opt-index', j);
                     if (j < 4) {
                         btn1.style.transform = `rotateX(${x}deg) translate3d(0px, 0px, 90px)`;
