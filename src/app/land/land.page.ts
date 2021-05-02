@@ -265,10 +265,10 @@ export class LandPage implements OnInit {
                   postData
               }
           };
-          this.message = {
+          const message = {
               orderData
           };
-          this.data.changeMessage(this.message);
+          this.data.changeMessage(message);
           // this.router.navigate(['/land/my', '/pay']);
           this.router.navigate(['/pay']);
       }
