@@ -73,6 +73,9 @@ export class LandPage implements OnInit {
       this.httpService.get('configs?itemsPerPage=30').subscribe((res) => {
           this.data.changeMessage({configs: res});
       });
+      this.httpService.get('lands/' + this.land.id).subscribe((res) => {
+          this.land = res;
+      });
   }
 
   getCities(prov){
@@ -134,7 +137,7 @@ export class LandPage implements OnInit {
             ]);
 
 
-            this.httpService.get('lands?name=' + this.area ).subscribe((res) => {
+            this.httpService.get('lands?name=' + this.area).subscribe((res) => {
                 this.land = res[0];
                 console.log(this.land);
                 if (!this.land){
@@ -247,7 +250,27 @@ export class LandPage implements OnInit {
           this.toastService.presentToast('该领地暂未出售');
       }
       else {
-          this.router.navigate(['/land/hall'], {queryParams: {id: this.land.id}});
+          // this.router.navigate(['/land/hall'], {queryParams: {id: this.land.id}});
+          const postData = {
+              prePrice: this.land.price,
+              ownerId: this.userData.id,
+              forSale: false
+          };
+          const orderData = {
+              type: 7,
+              note: '领地交易',
+              amount: this.land.price / 100,
+              data: {
+                  entityId: this.land.id,
+                  postData
+              }
+          };
+          this.message = {
+              orderData
+          };
+          this.data.changeMessage(this.message);
+          // this.router.navigate(['/land/my', '/pay']);
+          this.router.navigate(['/pay']);
       }
   }
 }
