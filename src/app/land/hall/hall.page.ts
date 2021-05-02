@@ -4,7 +4,8 @@ import { environment } from '../../../environments/environment';
 import { DataService } from '../../services/data.service';
 import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+// import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastService } from '../../services/toast.service';
 
 interface Data {
@@ -18,7 +19,7 @@ interface Data {
 })
 export class HallPage implements OnInit {
   url = environment.url;
-  landId: number;
+  // landId: number;
   sales = [];
   message: Data;
   userData: Data;
@@ -26,7 +27,7 @@ export class HallPage implements OnInit {
   orderNote = '领地交易';
 
   constructor(
-      private activeRoute: ActivatedRoute,
+      // private activeRoute: ActivatedRoute,
       private toastService: ToastService,
       private storageService: StorageService,
       private router: Router,
@@ -35,12 +36,9 @@ export class HallPage implements OnInit {
   ) { }
 
   ngOnInit() {
+      /*
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.landId = parseInt(params.id, 10);
-      });
-
-      this.storageService.get(AuthConstants.AUTH).then((res) => {
-          this.userData = res;
       });
 
       if (this.landId) {
@@ -55,6 +53,16 @@ export class HallPage implements OnInit {
           console.log(res);
         });
       }
+     */
+
+      this.httpService.get('lands?page=1&itemsPerPage=10&forSale=true').subscribe((res) => {
+          this.sales = res;
+          console.log(res);
+      });
+
+      this.storageService.get(AuthConstants.AUTH).then((res) => {
+          this.userData = res;
+      });
   }
 
   buy(i){
