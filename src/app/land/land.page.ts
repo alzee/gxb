@@ -258,7 +258,7 @@ export class LandPage implements OnInit {
           };
           const orderData = {
               type: 7,
-              note: '领地交易',
+              note: '购买领地',
               amount: this.land.price / 100,
               data: {
                   entityId: this.land.id,

@@ -24,7 +24,7 @@ export class HallPage implements OnInit {
   message: Data;
   userData: Data;
   orderType = 7;
-  orderNote = '领地交易';
+  orderNote = '购买领地';
 
   constructor(
       // private activeRoute: ActivatedRoute,
