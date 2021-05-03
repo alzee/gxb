@@ -246,7 +246,7 @@ export class LandPage implements OnInit {
   }
 
   buyIt(){
-      if (this.land.owner && this.land.owner.id !== this.userData.id) {
+      if (this.land.owner && !this.land.forSale) {
           this.toastService.presentToast('该领地暂未出售');
       }
       else {
