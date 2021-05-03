@@ -29,13 +29,13 @@ export class ChangepricePage implements OnInit {
           this.id = params.id;
           this.prePrice = parseInt(params.prePrice, 10);
           this.plist = [
-              this.prePrice * 0.7,
-              this.prePrice * 0.8,
-              this.prePrice * 0.9,
+              Math.round(this.prePrice * 0.7),
+              Math.round(this.prePrice * 0.8),
+              Math.round(this.prePrice * 0.9),
               this.prePrice,
-              this.prePrice * 1.1,
-              this.prePrice * 1.2,
-              this.prePrice * 1.3,
+              Math.round(this.prePrice * 1.1),
+              Math.round(this.prePrice * 1.2),
+              Math.round(this.prePrice * 1.3),
           ];
           console.log(this.plist);
           this.name = params.name;
