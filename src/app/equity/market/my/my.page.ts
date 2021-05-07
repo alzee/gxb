@@ -17,7 +17,7 @@ interface Data {
 })
 export class MyPage implements OnInit {
   hists = [];
-  count = 0;
+  count: number;
   price: number;
   priceMax: number;
   priceMin: number;
@@ -65,6 +65,10 @@ export class MyPage implements OnInit {
       this.httpService.get(`equity_trades?${this.query}&seller=${this.userData.id}`).subscribe((res) => {
           this.hists = res;
           console.log(res);
+      });
+      this.httpService.get('equity_trades/count').subscribe((res) => {
+          console.log(res);
+          this.count = res;
       });
   }
 
