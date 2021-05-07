@@ -18,6 +18,7 @@ minor:
     - 会员到期
     - 格子到期
     - 验收到期
+    - 删除提交超时
   - task cate cascade:remove
   - admin entity
   - people bid at same time happens. Should check current min price every time bid()
@@ -44,8 +45,5 @@ feedback:
   - 排行榜，股东大会点赞反对没做，股东话题留言/点赞反对没做
   -  
   - 二维码下载失败
-  - 短信时间设置30分钟有效
-  -  
-  - 后台规则编辑器
 
 # vim:ft=yaml
