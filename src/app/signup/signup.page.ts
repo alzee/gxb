@@ -24,7 +24,8 @@ export class SignupPage implements OnInit {
     codeSent: boolean;
     phoneDup = 0;
     usernameDup = 0;
-    remaining: number;
+    resendTime = 59;
+    codeTimeout = 1800;
     smsType = 'register';
     smsPass: string;
     smsResp;
@@ -51,7 +52,6 @@ export class SignupPage implements OnInit {
         this.smsPass = environment.smsPass;
         this.getCodeBtnText = '获取验证码';
         this.codeSent = false;
-        this.remaining = 59;
         this.passType = 'password';
     }
 
@@ -205,16 +205,23 @@ export class SignupPage implements OnInit {
       console.log(this.smsPass);
       this.httpService.get(`sms?phone=${this.phone.value}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
           this.toastService.presentToast('验证码已发送');
-          this.getCodeBtnText = `重新发送(${this.remaining})`;
+          this.getCodeBtnText = `重新发送(${this.resendTime})`;
           const that = this;
           const interval = setInterval(() => {
-              that.remaining -= 1;
-              that.getCodeBtnText = `重新发送(${that.remaining})`;
-              if (that.remaining === 0){
+              that.resendTime -= 1;
+              that.getCodeBtnText = `重新发送(${that.resendTime})`;
+              if (that.resendTime === 0){
                   clearInterval(interval);
                   that.getCodeBtnText = '获取验证码';
                   that.codeSent = false;
-                  that.remaining = 59;
+                  that.resendTime = 59;
+              }
+          }, 1000);
+          const interval2 = setInterval(() => {
+              that.codeTimeout -= 1;
+              if (that.codeTimeout === 0){
+                  clearInterval(interval2);
+                  that.codeTimeout = 1800;
                   that.smsResp.code = 'timeout';
               }
           }, 1000);
