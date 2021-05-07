@@ -4,6 +4,8 @@ import { HttpService } from '../services/http.service';
 import { ToastService } from '../services/toast.service';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
+import { AuthConstants } from '../config/auth-constants';
+import { StorageService } from '../services/storage.service';
 
 interface Data {
     [propName: string]: any;
@@ -16,10 +18,12 @@ interface Data {
 })
 export class PromoPage implements OnInit {
   recommendUntil: Date;
-  amount = 9;
+  amount: number;
   tid: number;
   title: string;
   message: Data;
+  userData: Data;
+  user: Data;
   orderType = 3;
   orderNote = '任务推荐';
 
@@ -28,6 +32,7 @@ export class PromoPage implements OnInit {
       private activeRoute: ActivatedRoute,
       private router: Router,
       private toastService: ToastService,
+      private storageService: StorageService,
       private data: DataService
   ) {
       this.recommendUntil = new Date();
@@ -38,6 +43,15 @@ export class PromoPage implements OnInit {
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.tid = params.tid;
           this.title = params.title;
+      });
+
+      this.storageService.get(AuthConstants.AUTH).then((res) => {
+          this.userData = res;
+          this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
+              console.log(res1);
+              this.user = res1;
+              this.amount = this.user.level.recommendPrice;
+          });
       });
   }
 
