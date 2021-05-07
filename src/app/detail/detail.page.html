@@ -138,19 +138,24 @@
 
 <ion-footer>
   <ion-item>
-    <ng-container *ngIf="id != 0">
-    <ng-container *ngIf="applied">
-        <ion-button *ngIf="statusId != 13" class="contact" size="large" expand="full">联系商家</ion-button>
-        <ion-button *ngIf="statusId == 13" class="contact" size="large" expand="full" (click)="report()">辩诉维权</ion-button>
-        <ion-button *ngIf="statusId == 11" class="apply" size="large" expand="full" (click)="submit()">提交</ion-button>
-        <ion-button *ngIf="statusId == 12" class="apply" size="large" expand="full" disabled>验收中</ion-button>
-        <ion-button *ngIf="statusId == 13" class="apply" size="large" expand="full" disabled>不合格</ion-button>
-        <ion-button *ngIf="statusId == 14" class="apply" size="large" expand="full" disabled>已完成</ion-button>
-    </ng-container>
-    <ng-container *ngIf="!applied">
-      <ion-button class="contact" size="large" expand="full">联系商家</ion-button>
-      <ion-button class="apply" size="large" expand="full" (click)="apply()">申请任务</ion-button>
-    </ng-container>
+    <ng-container *ngIf="id != 0 && task">
+      <ng-container *ngIf="task.owner.id == userData.id">
+        <ion-button class="checkApply" size="large" expand="full" routerLink="/myposts">查看申请</ion-button>
+      </ng-container>
+      <ng-container *ngIf="task.owner.id != userData.id">
+        <ng-container *ngIf="applied">
+          <ion-button *ngIf="statusId != 13" class="contact" size="large" expand="full">联系商家</ion-button>
+          <ion-button *ngIf="statusId == 13" class="contact" size="large" expand="full" (click)="report()">辩诉维权</ion-button>
+          <ion-button *ngIf="statusId == 11" class="apply" size="large" expand="full" (click)="submit()">提交</ion-button>
+          <ion-button *ngIf="statusId == 12" class="apply" size="large" expand="full" disabled>验收中</ion-button>
+          <ion-button *ngIf="statusId == 13" class="apply" size="large" expand="full" disabled>不合格</ion-button>
+          <ion-button *ngIf="statusId == 14" class="apply" size="large" expand="full" disabled>已完成</ion-button>
+        </ng-container>
+        <ng-container *ngIf="!applied">
+          <ion-button class="contact" size="large" expand="full">联系商家</ion-button>
+          <ion-button class="apply" size="large" expand="full" (click)="apply()">申请任务</ion-button>
+        </ng-container>
+      </ng-container>
     </ng-container>
   </ion-item>
 </ion-footer>
