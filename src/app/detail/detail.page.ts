@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastService } from '../services/toast.service';
 import { DataService } from '../services/data.service';
+import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 
 interface Data {
@@ -39,6 +40,7 @@ export class DetailPage implements OnInit {
   uploads = [];
 
   constructor(
+      public alertController: AlertController,
       private activeRoute: ActivatedRoute,
       private httpService: HttpService,
       private http: HttpClient,
@@ -150,16 +152,37 @@ export class DetailPage implements OnInit {
 
   }
 
-  submit() {
-      const postData = {
-          status: '/api/statuses/12',
-          pic: this.uploads
-      };
-      this.httpService.patch('applies/' + this.applyId, postData).subscribe((res) => {
-          console.log(res);
-          this.toastService.presentToast('已提交');
-          this.ngOnInit();
-      });
+  async submit() {
+    const alert = await this.alertController.create({
+      header: '提交后无法修改',
+      message: '确认提交么？',
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: '确定',
+          handler: () => {
+            console.log('Confirm Okay');
+            const postData = {
+              status: '/api/statuses/12',
+              pic: this.uploads
+            };
+            this.httpService.patch('applies/' + this.applyId, postData).subscribe((res) => {
+              console.log(res);
+              this.toastService.presentToast('已提交');
+              this.ngOnInit();
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   uploadPhoto(fileChangeEvent, i) {

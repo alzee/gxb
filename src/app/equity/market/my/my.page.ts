@@ -17,7 +17,7 @@ interface Data {
 })
 export class MyPage implements OnInit {
   hists = [];
-  count: number;
+  count: any[];
   price: number;
   priceMax: number;
   priceMin: number;
