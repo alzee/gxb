@@ -15,7 +15,7 @@
 
   <ion-item class="task" *ngIf="applies">
     <ion-list>
-      <ion-item [routerLink]="['/approve']" [queryParams]="{applyid:i.id}" *ngFor="let i of applies">
+      <ion-item (click)="check(i)" *ngFor="let i of applies">
         <ion-grid>
           <ion-row>
             <ion-col class="pic" size="auto">

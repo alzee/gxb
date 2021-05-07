@@ -55,4 +55,10 @@ export class AppliesPage implements OnInit {
           });
       });
   }
+
+  check(i) {
+      if (i.status.id >= 12) {
+          this.router.navigate(['/approve'], {queryParams: {applyid: i.id}});
+      }
+  }
 }
