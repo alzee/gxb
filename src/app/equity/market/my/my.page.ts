@@ -17,10 +17,10 @@ interface Data {
 })
 export class MyPage implements OnInit {
   hists = [];
-  max: number;
-  min: number;
-  count: number;
+  count = 0;
   price: number;
+  priceMax: number;
+  priceMin: number;
   configs: Array<Data>;
   userData: Data;
   user: Data;
@@ -33,9 +33,6 @@ export class MyPage implements OnInit {
       private httpService: HttpService,
       private data: DataService
   ) {
-      this.max = 0;
-      this.min = 0;
-      this.count = 0;
   }
 
   ngOnInit() {
@@ -55,6 +52,12 @@ export class MyPage implements OnInit {
           for (const i of this.configs) {
               if (i.label === 'equityPrice') {
                   this.price = i.value;
+              }
+              if (i.label === 'equityPriceMax') {
+                  this.priceMax = i.value;
+              }
+              if (i.label === 'equityPriceMin') {
+                  this.priceMin = i.value;
               }
           }
           console.log(res);
