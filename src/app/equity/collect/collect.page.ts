@@ -23,11 +23,12 @@ export class CollectPage implements OnInit {
   uid: number;
   userData: Data;
   user: Data;
-  collected = false;
+  collected = true;
   clicked = false;
   type = 1;
   amount: number;
   animation: Animation;
+  query = 'page=1&order%5Bdate%5D=desc&itemsPerPage=10&type=1';
 
   constructor(
       private storageService: StorageService,
@@ -51,14 +52,15 @@ export class CollectPage implements OnInit {
           this.amount = this.user.equity;
       });
 
-      this.httpService.get('gxbs?page=1&order%5Bdate%5D=desc&itemsPerPage=10&user.id=' + this.uid).subscribe((res2) => {
+      this.httpService.get(`gxbs?${this.query}&user.id=${this.uid}`).subscribe((res2) => {
           this.hists = res2;
           console.log(res2);
           console.log(this.type);
           if (this.hists[0]){
-              if (new Date(this.hists[0].date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)
-                 && this.hists[0].type === this.type){
-                  this.collected = true;
+              if (new Date(this.hists[0].date).setHours(0, 0, 0, 0) !== new Date().setHours(0, 0, 0, 0)
+                 // && this.hists[0].type === this.type
+                 ){
+                  this.collected = false;
               }
           }
       });
