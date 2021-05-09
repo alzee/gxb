@@ -10,6 +10,7 @@ major:
 minor:
   - cron:
     - 分红
+  - 36min
   - task cate cascade:remove
   - admin entity
   - people bid at same time happens. Should check current min price every time bid()
