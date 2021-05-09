@@ -12,15 +12,15 @@
   <div class="income">
     <div>
       <ion-text color="medium" class="label">领地总收入</ion-text>
-      <ion-text class="total">{{income}}</ion-text>
+      <ion-text class="total">{{total / 100}}</ion-text>
     </div>
     <div class="secondary">
       <div>
-        <ion-text>{{profit}}</ion-text>
+        <ion-text>{{cellProfit / 100}}</ion-text>
         <ion-text color="medium" class="label">领地收益</ion-text>
       </div>
       <div>
-        <ion-text>{{transProfit}}</ion-text>
+        <ion-text>{{landProfit / 100}}</ion-text>
         <ion-text color="medium" class="label">转让收益</ion-text>
       </div>
     </div>

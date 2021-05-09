@@ -4,6 +4,10 @@ import { StorageService } from '../../services/storage.service';
 import { HttpService } from '../../services/http.service';
 import { environment } from '../../../environments/environment';
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-my',
   templateUrl: './my.page.html',
@@ -11,30 +15,32 @@ import { environment } from '../../../environments/environment';
 })
 export class MyPage implements OnInit {
   envs = environment;
-  income: number;
-  profit: number;
-  transProfit: number;
+  total: number;
+  cellProfit: number;
+  landProfit: number;
   myLands = [];
   sold = [];
   uid: number;
-  seg: string;
-  showSold: boolean;
+  user: Data;
+  seg = 'my';
+  showSold = false;
 
   constructor(
       private storageService: StorageService,
       private httpService: HttpService
   ) {
-      this.income = 0;
-      this.profit = 0;
-      this.transProfit = 0;
-      this.seg = 'my';
-      this.showSold = false;
   }
 
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
       this.uid = res.id;
       console.log(this.uid);
+      this.httpService.get('users/' + this.uid).subscribe((res1) => {
+          this.user = res1;
+          this.cellProfit = this.user.cellProfit;
+          this.landProfit = this.user.landProfit;
+          this.total = this.cellProfit + this.landProfit;
+      });
     });
   }
 

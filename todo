@@ -1,5 +1,4 @@
 major:
-  - setting nick
   - setting password
   - setting phone
   - setting pay pass
@@ -9,7 +8,6 @@ major:
   - cell read 5 sec
 minor:
   - cron:
-    - 领主格子收益
     - 分红
   - task cate cascade:remove
   - admin entity
@@ -22,7 +20,7 @@ question:
 feedback:
   - 任务关注
   -  
-  - 领地收入，领地收益，转让收益，看广告人数统计
+  - 看广告人数统计
   - 交易大厅交易时间显示错误
   -  
   - 举报维权
