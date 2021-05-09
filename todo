@@ -11,9 +11,6 @@ minor:
   - cron:
     - 领主格子收益
     - 分红
-    - 验收到期
-    #- 会员到期
-    #- 删除提交超时
   - task cate cascade:remove
   - admin entity
   - people bid at same time happens. Should check current min price every time bid()
