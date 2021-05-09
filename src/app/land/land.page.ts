@@ -30,7 +30,8 @@ export class LandPage implements OnInit {
   areas = [];
   area: string;
   // columns: Array<Data>;
-  query = 'itemsPerPage=35&order%5Bprice%5D=desc';
+  date = new Date().toISOString();
+  query = `itemsPerPage=35&order%5Bprice%5D=desc&showUntil%5Bafter%5D=${this.date}`;
   land: Data = {
       id: 1
   };
