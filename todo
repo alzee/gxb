@@ -1,5 +1,4 @@
 major:
-  - cities
   - setting nick
   - setting password
   - setting phone
@@ -7,10 +6,8 @@ major:
   - pay pass
   - api node up/down
   - 忘记密码
-  - 分红金币
   - cell read 5 sec
   - 下架后(status 4)剩余金额解冻
-  - editor
 minor:
   - cron:
     - 领主格子收益
@@ -22,7 +19,6 @@ minor:
   - task cate cascade:remove
   - admin entity
   - people bid at same time happens. Should check current min price every time bid()
-  - 维权结果
   - 微信头像昵称
 
 
