@@ -6,7 +6,7 @@ import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { DataService } from '../services/data.service';
 
 interface Data {
@@ -89,6 +89,7 @@ export class PublishPage implements OnInit {
   };
 
   constructor(
+      public navCtrl: NavController,
       public alertController: AlertController,
       private formBuilder: FormBuilder,
       private httpService: HttpService,
@@ -113,6 +114,16 @@ export class PublishPage implements OnInit {
                       this.coupon = coupon;
                   }
               }
+
+              // if have taskLimit and limit reached
+              if (this.user.level.taskLimit !== 0) {
+                  this.httpService.get('tasks?order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res2) => {
+                      if (res2.length >= this.user.level.taskLimit) {
+                          this.limited();
+                      }
+                  });
+              }
+
           });
       });
 
@@ -132,6 +143,7 @@ export class PublishPage implements OnInit {
           note: [''],
           acceptTerms: [false, Validators.requiredTrue],
       });
+
   }
 
   get f(){
@@ -330,6 +342,32 @@ export class PublishPage implements OnInit {
           handler: () => {
             console.log('Confirm Okay');
             this.router.navigate(['/topup'], {queryParams: {amount: Math.round(this.total * 100 - this.availableBalance)}});
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async limited() {
+    const alert = await this.alertController.create({
+      header: '发布任务数量上限',
+      message: '您可发布任务数量已达到上限，购买VIP立即解除限制',
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+            this.navCtrl.back();
+          }
+        }, {
+          text: '确定',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.router.navigate(['/vip'], {replaceUrl: true});
           }
         }
       ]
