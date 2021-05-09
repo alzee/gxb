@@ -11,10 +11,8 @@
   <h2>{{node.title}}</h2>
   <ion-text color="medium" class="first">提案人：{{node.author.username}} </ion-text>
   <ion-text color="medium"> 时间：{{node.date}}</ion-text>
-  <p>
-  </p>
-
-  {{node.body}}
+  <p></p>
+  <ion-text [innerHTML]="node.body"></ion-text>
 </ion-content>
 
 <ion-footer>

@@ -25,8 +25,7 @@
         <ion-text color="medium">{{i.author.username}}</ion-text>
       </div>
     </ion-item>
-    <ion-item class="summary">
-      <ion-text>{{i.body}}</ion-text>
+    <ion-item class="summary" [innerHTML]="i.body">
     </ion-item>
     <ion-item>
       <ion-text slot="end" color="medium">
