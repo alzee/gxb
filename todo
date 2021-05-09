@@ -7,7 +7,6 @@ major:
   - api node up/down
   - 忘记密码
   - cell read 5 sec
-  - 下架后(status 4)剩余金额解冻
 minor:
   - cron:
     - 领主格子收益
