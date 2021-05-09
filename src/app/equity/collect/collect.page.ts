@@ -100,7 +100,7 @@ export class CollectPage implements OnInit {
           this.httpService.post('gxbs', postData).subscribe((res) => {
               console.log(res);
               this.hists.unshift(res);
-              this.toastService.presentToast('GXB +1 <p>每天1次机会，记得明天再来哦</p>');
+              this.toastService.presentToast(`GXB +${this.amount} <p>每天1次机会，记得明天再来哦</p>`);
               this.dismiss();
               this.myGxb = this.myGxb + this.amount;
               this.collected = true;
