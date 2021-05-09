@@ -99,6 +99,10 @@ export class OccupyPage implements OnInit {
       this.postData.pics = this.pics;
       this.postData.ownerId = this.userData.id;
       this.postData.landId =  this.landId;
+
+      const showUntil = new Date();
+      showUntil.setHours(showUntil.getHours() + this.f.days.value * 24);
+      this.postData.showUntil =  showUntil;
   }
 
   publish() {
