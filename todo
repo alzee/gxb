@@ -13,7 +13,6 @@ minor:
     - 领主格子收益
     - 分红
     - 会员到期
-    - 格子到期
     - 验收到期
     - 删除提交超时
   - task cate cascade:remove
