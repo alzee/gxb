@@ -88,6 +88,30 @@
     </ion-item>
   </div>
 
+  <div class="item-container" *ngIf="task.link">
+    <ion-item class="item-header">
+      <div class="bar"></div>
+      <h4>任务链接</h4>
+    </ion-item>
+    <ion-item>
+      <ion-text>
+        {{task.link}}
+      </ion-text>
+    </ion-item>
+  </div>
+
+  <div class="item-container" *ngIf="task.note">
+    <ion-item class="item-header">
+      <div class="bar"></div>
+      <h4>文字验收</h4>
+    </ion-item>
+    <ion-item>
+      <ion-text>
+        {{task.note}}
+      </ion-text>
+    </ion-item>
+  </div>
+
   <div class="item-container">
     <ion-item class="item-header">
       <div class="bar"></div>
