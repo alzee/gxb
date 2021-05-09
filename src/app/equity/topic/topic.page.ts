@@ -20,7 +20,10 @@ export class TopicPage implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.httpService.get('nodes?type.id=2').subscribe((res) => {
+  }
+
+  ionViewWillEnter(){
+      this.httpService.get('nodes?order%5Bid%5D=desc&type.id=2').subscribe((res) => {
           this.posts = res;
           console.log(this.posts);
       });

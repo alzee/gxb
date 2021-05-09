@@ -1,9 +1,25 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>post</ion-title>
+    <ion-buttons slot="start"> <ion-back-button color="dark" text=""></ion-back-button> </ion-buttons> <ion-title>发布话题</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form (ngSubmit)="post()" [formGroup]="form">
+
+  <ion-item>
+    <ion-input name="title" formControlName="title" placeholder="请输入标题" required clearInput></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea rows="5" required name="body" formControlName="body" placeholder="请输入介绍" autoGrow clearOnEdit>
+    </ion-textarea>
+  </ion-item>
+
+    <ion-button [disabled]="form.invalid" expand="full" size="large" type="submit">
+      发布
+    </ion-button>
+
+  </form>
 
 </ion-content>
