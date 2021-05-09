@@ -10,7 +10,7 @@
 <ion-content>
   <ion-img src="../assets/img/bg_ranking.png"></ion-img>
   <ion-list>
-    <ion-item *ngFor="let i of users; let j = index">
+    <ion-item *ngFor="let r of ranking; let j = index">
       <ion-thumbnail *ngIf="j == 0">
         <img src="../assets/img/crown_gold.png">
       </ion-thumbnail>
@@ -22,11 +22,12 @@
       </ion-thumbnail>
       <ion-text *ngIf="j > 2">{{j + 1}}</ion-text>
       <ion-avatar>
-        <img src="../assets/img/avatar.png">
+        <img *ngIf="r.user.avatar" [src]="envs.url + r.user.avatar">
+        <img *ngIf="!r.user.avatar" src="../assets/img/avatar.png">
       </ion-avatar>
       <div>
-        <p>姓名</p>
-        <ion-text color="medium">推广：5000人 | 赚取：20000元</ion-text>
+        <p>{{r.user.username}}</p>
+        <ion-text color="medium">推广：{{r.count}}人 | 赚取：{{r.count * 100}}GXB</ion-text>
       </div>
     </ion-item>
   </ion-list>
