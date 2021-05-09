@@ -6,6 +6,7 @@ major:
   - api node up/down
   - 忘记密码
   - cell read 5 sec
+  - copy text
 minor:
   - cron:
     - 分红
