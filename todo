@@ -3,7 +3,6 @@ major:
   - setting phone
   - setting pay pass
   - pay pass
-  - api node up/down
   - 忘记密码
   - cell read 5 sec
   - copy text
@@ -28,8 +27,6 @@ feedback:
   - 举报维权
   - 最新的显示在上面
   - 辩诉提交入口没有
-  -  
-  - 股东大会点赞反对没做，股东话题点赞反对没做
   -  
   - 二维码下载失败
 
