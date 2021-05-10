@@ -20,6 +20,7 @@ export class CellPage implements OnInit {
   pid: number;
   post: Data;
   userData: Data;
+  timeout: number;
 
   constructor(
       private toastService: ToastService,
@@ -48,11 +49,15 @@ export class CellPage implements OnInit {
       this.httpService.get(`reads?user=${this.userData.id}&post=${this.pid}`).subscribe((res) => {
           if (res.length === 0) {
               // count 5 sec
-              const timeout = setTimeout(() => {
+              this.timeout = setTimeout(() => {
                   this.getCoin();
               }, 5000);
           }
       });
+  }
+
+  ionViewWillLeave() {
+      clearTimeout(this.timeout);
   }
 
   getCoin() {
