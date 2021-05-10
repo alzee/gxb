@@ -12,7 +12,7 @@ import { NavController } from '@ionic/angular';
 export class ChangepricePage implements OnInit {
   prePrice: number;
   price: number;
-  plist = []; 
+  plist = [];
   id: number;
   name: string;
   newPrice: number;

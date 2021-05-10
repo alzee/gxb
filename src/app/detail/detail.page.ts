@@ -142,8 +142,8 @@ export class DetailPage implements OnInit {
                   applicant: '/api/users/' + this.userData.id,
                   status: '/api/statuses/11'
               };
-              this.httpService.post('applies', postData).subscribe((res) => {
-                  console.log(res);
+              this.httpService.post('applies', postData).subscribe((res1) => {
+                  console.log(res1);
                   this.toastService.presentToast('申请成功');
                   this.router.navigate(['/mytasks'], {replaceUrl: true});
               });

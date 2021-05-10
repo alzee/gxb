@@ -48,7 +48,7 @@ export class CellPage implements OnInit {
       this.httpService.get(`reads?user=${this.userData.id}&post=${this.pid}`).subscribe((res) => {
           if (res.length === 0) {
               // count 5 sec
-              let timeout = setTimeout(() => {
+              const timeout = setTimeout(() => {
                   this.getCoin();
               }, 5000);
           }
@@ -56,21 +56,12 @@ export class CellPage implements OnInit {
   }
 
   getCoin() {
-      let postData = {
+      const postData = {
           user: '/api/users/' + this.userData.id,
           post: '/api/land_posts/' + this.pid
       };
 
       this.httpService.post('reads', postData).subscribe((res) => {
-      });
-
-      postData = {
-          amount: 1,
-          user: '/api/users/' + this.userData.id,
-          type: 1
-      };
-
-      this.httpService.post('coins', postData).subscribe((res) => {
           this.toastService.presentToast('阅读5秒金币+1');
       });
   }
