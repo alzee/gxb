@@ -15,19 +15,10 @@
     <p>{{post.owner.username}}</p>
     <p class="desc">{{post.title}}</p>
     <div class="avatars">
-      <ion-avatar class="a">
-        <img src="../../../assets/img/she.png">
+      <ion-avatar class="avatar-{{j}}" *ngFor="let i of post.someReads; let j = index">
+        <img [src]="url + i.user.avatar">
       </ion-avatar>
-      <ion-avatar class="b">
-        <img src="../../../assets/img/she.png">
-      </ion-avatar>
-      <ion-avatar class="c">
-        <img src="../../../assets/img/she.png">
-      </ion-avatar>
-      <ion-avatar class="d">
-        <img src="../../../assets/img/she.png">
-      </ion-avatar>
-      <span>508</span><ion-text color="medium">人领取</ion-text>
+      <span>{{post.countReads}}</span><ion-text color="medium">人领取</ion-text>
     </div>
   </div>
   <ion-item color="light" class="row"></ion-item>

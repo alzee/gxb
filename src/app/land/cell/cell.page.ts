@@ -39,6 +39,7 @@ export class CellPage implements OnInit {
       });
 
       this.httpService.get('land_posts/' + this.pid).subscribe((res) => {
+          console.log(res);
           this.post = res;
       });
   }
