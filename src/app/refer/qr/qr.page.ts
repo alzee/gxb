@@ -61,9 +61,9 @@ export class QrPage implements OnInit {
 
   download(i){
       const url = this.env.imgUrl + 'poster/' + this.userData.username + '_' + i;
-      this.fileTransfer.download(url, this.file.externalRootDirectory + '/Download/' + i).then((entry) => {
+      this.fileTransfer.download(url, this.file.externalDataDirectory + 'Download/' + i).then((entry) => {
           console.log('download complete: ' + entry.toURL());
-          this.toastService.presentToast('已保存至<p>/storage/emulated/0/Download/</p>');
+          this.toastService.presentToast('已保存至<p>Android/data/com.drgxb.app/files/Download/</p>');
       }, (error) => {
           this.toastService.presentToast('下载失败');
           // handle error
