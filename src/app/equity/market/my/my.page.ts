@@ -17,7 +17,7 @@ interface Data {
 })
 export class MyPage implements OnInit {
   hists = [];
-  total: any[];
+  total: number;
   price: number;
   priceMax: number;
   priceMin: number;
@@ -68,7 +68,7 @@ export class MyPage implements OnInit {
       });
       this.httpService.get('equity_trades/total').subscribe((res) => {
           console.log(res);
-          this.total = res;
+          this.total = +res;
       });
   }
 
