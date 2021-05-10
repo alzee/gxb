@@ -14,6 +14,9 @@ minor:
   - admin entity
   - people bid at same time happens. Should check current min price every time bid()
   - 微信头像昵称
+  - 任务详情页 做单时间 验收时间
+  - 交易大厅交易时间显示错误
+  - 股权交易手续费
 
 
 question:
@@ -22,7 +25,6 @@ feedback:
   - 任务关注
   -  
   - 看广告人数统计
-  - 交易大厅交易时间显示错误
   -  
   - 举报维权
   - 最新的显示在上面
