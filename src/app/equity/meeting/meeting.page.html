@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content color="light">
-  <div *ngFor="let i of posts" routerLink="/equity/meeting/node" [queryParams]="{id: i.id}">
+  <div *ngFor="let i of posts" routerLink="/equity/node" [queryParams]="{id: i.id}">
     <h2>{{i.title}}</h2>
     <p>
     <ion-text color="medium">提案人：{{i.author.username}}</ion-text>
