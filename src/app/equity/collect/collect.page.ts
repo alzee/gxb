@@ -95,7 +95,7 @@ export class CollectPage implements OnInit {
           amount: this.amount,
           user: '/api/users/' + this.uid,
           type: this.type
-      } ;
+      };
       if (!this.clicked) {
           this.httpService.post('gxbs', postData).subscribe((res) => {
               console.log(res);

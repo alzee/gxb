@@ -7,13 +7,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="data">
+<ion-content *ngIf="post">
   <div class="info">
     <ion-thumbnail>
-      <img [src]="url + data.owner.avatar">
+      <img [src]="url + post.owner.avatar">
     </ion-thumbnail>
-    <p>{{data.owner.username}}</p>
-    <p class="desc">{{data.title}}</p>
+    <p>{{post.owner.username}}</p>
+    <p class="desc">{{post.title}}</p>
     <div class="avatars">
       <ion-avatar class="a">
         <img src="../../../assets/img/she.png">
@@ -40,11 +40,11 @@
     <ion-item>
       <ion-text>
         <p>
-        {{data.body}}
+        {{post.body}}
         </p>
       </ion-text>
     </ion-item>
-      <ion-item *ngFor="let i of pics" class="pic">
+      <ion-item *ngFor="let i of post.pics" class="pic">
           <ion-img [src]="url + i"></ion-img>
       </ion-item>
   </div>
