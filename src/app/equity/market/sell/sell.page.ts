@@ -47,7 +47,7 @@ export class SellPage implements OnInit {
       const postData = {
           seller: this.message.user,
           equity: this.equity.value,
-          rmb: this.message.price * this.equity.value
+          rmb: this.message.price * this.equity.value * 100
       };
       this.httpService.post('equity_trades', postData).subscribe((res) => {
           console.log(res);

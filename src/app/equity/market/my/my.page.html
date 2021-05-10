@@ -16,7 +16,7 @@
     <div slot="end" class="">
       <p><span>最高价</span>{{priceMax}}</p>
       <p><span>最低价</span>{{priceMin}}</p>
-      <p><span>成交量</span>{{total}}</p>
+      <p><span>成交量</span>{{total / 100}}</p>
     </div>
   </ion-item>
 
@@ -48,7 +48,7 @@
           <h4>{{i.equity}}</h4>
         </ion-col>
         <ion-col>
-          <h4>{{i.rmb}}</h4>
+          <h4>{{i.rmb / 100}}</h4>
         </ion-col>
         <ion-col>
           <h4 *ngIf="i.status == 0">在售</h4>

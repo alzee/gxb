@@ -47,7 +47,7 @@ export class MarketPage implements OnInit {
     const orderData = {
       type: this.orderType,
       note: this.orderNote,
-      amount: i.rmb,
+      amount: i.rmb / 100,
       data: {
         entityId: i.id,
         // postData
