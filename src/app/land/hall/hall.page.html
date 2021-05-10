@@ -14,7 +14,7 @@
         <img src="../assets/img/locate.png">
       </ion-thumbnail>
       <ion-label>{{i.name}}</ion-label>
-      <ion-text slot="end" color="medium">36分钟前</ion-text>
+      <ion-text slot="end" color="medium">{{i.updateAt | dateAgo}}</ion-text>
     </ion-item>
     <div class="pk" (click)="buy(i)">
       <div class="peer" *ngIf="i.owner">

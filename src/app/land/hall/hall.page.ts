@@ -7,6 +7,7 @@ import { StorageService } from '../../services/storage.service';
 // import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { ToastService } from '../../services/toast.service';
+import { DateAgoPipe } from '../../date-ago.pipe';
 
 interface Data {
     [propName: string]: any;

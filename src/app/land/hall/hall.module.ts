@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HallPageRoutingModule } from './hall-routing.module';
 
 import { HallPage } from './hall.page';
+import { DateAgoPipe } from '../../date-ago.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { HallPage } from './hall.page';
     IonicModule,
     HallPageRoutingModule
   ],
-  declarations: [HallPage]
+  declarations: [HallPage, DateAgoPipe]
 })
 export class HallPageModule {}
