@@ -11,10 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Wechat } from '@ionic-native/wechat/ngx';
-import { DateAgoPipe } from './date-ago.pipe';
 
 @NgModule({
-  declarations: [AppComponent, DateAgoPipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
