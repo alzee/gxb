@@ -15,7 +15,7 @@
     <div class="bar"></div>
     <h4>推荐话题</h4>
   </ion-item>
-  <div class="list-item" *ngFor="let i of posts" routerLink="/equity/topic/node" [queryParams]="{id: i.id}">
+  <div class="list-item" *ngFor="let i of posts" routerLink="/equity/node" [queryParams]="{id: i.id}">
     <ion-item>
       <ion-avatar>
         <img [src]="url + i.author.avatar">
