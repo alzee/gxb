@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: MeetingPage
-  },
-  {
-    path: 'node',
-    loadChildren: () => import('./node/node.module').then( m => m.NodePageModule)
   }
 ];
 
