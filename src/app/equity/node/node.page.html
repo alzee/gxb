@@ -21,7 +21,7 @@
     <ion-button [disabled]="voted" class="sell" size="large" fill="outline" shape="round" color="primary" (click)="vote(true)">
       <ion-icon name="thumbs-up-sharp"></ion-icon>
       赞同</ion-button>
-    <ion-button [disabled]="voted" class="buy" size="large" fill="outline" shape="round" color="danger" (click)="vote(false)">
+    <ion-button *ngIf="node && node.type.id != 2" [disabled]="voted" class="buy" size="large" fill="outline" shape="round" color="danger" (click)="vote(false)">
       <ion-icon name="thumbs-down-sharp"></ion-icon>
       反对</ion-button>
 </ion-footer>
