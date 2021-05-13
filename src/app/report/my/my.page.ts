@@ -29,12 +29,12 @@ export class MyPage implements OnInit {
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
       this.userData = res;
-      this.httpService.get('reports?apply.applicant=' + this.userData.id).subscribe((res1) => {
+      this.httpService.get('reports?order%5Bid%5D=desc&apply.applicant=' + this.userData.id).subscribe((res1) => {
         console.log(res1);
         this.myReports = res1;
         this.reports = this.myReports;
       });
-      this.httpService.get('reports?apply.task.owner=' + this.userData.id).subscribe((res2) => {
+      this.httpService.get('reports?order%5Bid%5D=desc&apply.task.owner=' + this.userData.id).subscribe((res2) => {
         console.log(res2);
         this.reportsAboutMe = res2;
       });
