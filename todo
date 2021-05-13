@@ -2,19 +2,18 @@ major:
   - setting password
   - setting phone
   - setting pay pass
-  - pay pass
   - 忘记密码
-  - cell read 5 sec
 minor:
-  - cron:
-    - 分红
   - task cate cascade:remove
   - admin entity
   - people bid at same time happens. Should check current min price every time bid()
   - 微信头像昵称
+  -
   - 任务详情页 做单时间 验收时间
   - 股权交易手续费
   - 文字验收
+  - 分红
+  - pay pass
 
 question:
 
