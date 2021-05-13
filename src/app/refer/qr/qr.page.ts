@@ -7,6 +7,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { File } from '@ionic-native/file/ngx';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { ToastService } from '../../services/toast.service';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 interface Data {
     [propName: string]: any;
@@ -36,6 +37,7 @@ export class QrPage implements OnInit {
   fileTransfer: FileTransferObject;
 
   constructor(
+      private androidPermissions: AndroidPermissions,
       private clipboard: Clipboard,
       private toastService: ToastService,
       private transfer: FileTransfer,
@@ -62,13 +64,19 @@ export class QrPage implements OnInit {
   }
 
   download(i){
-      const url = this.env.imgUrl + 'poster/' + this.userData.username + '_' + i;
-      this.fileTransfer.download(url, this.file.externalRootDirectory + 'DCIM/Camera/' + i).then((entry) => {
-          console.log('download complete: ' + entry.toURL());
-          this.toastService.presentToast('已保存至<p>Android/data/com.drgxb.app/files/Download/</p>');
-      }, (error) => {
-          this.toastService.presentToast('下载失败');
-          // handle error
+      this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE)
+      .then((data:any) => {
+          if(data.hasPermission) {
+              console.log("have permission");
+              const url = this.env.imgUrl + 'poster/' + this.userData.username + '_' + i;
+              this.fileTransfer.download(url, this.file.externalRootDirectory + 'Download/' + i).then((entry) => {
+                  console.log('download complete: ' + entry.toURL());
+                  this.toastService.presentToast('已保存至下载文件夹');
+              }, (error) => {
+                  this.toastService.presentToast('下载失败');
+                  // handle error
+              });
+          }
       });
   }
 

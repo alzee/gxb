@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Wechat } from '@ionic-native/wechat/ngx';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { Clipboard } from '@ionic-native/clipboard/ngx';
     AppMinimize,
     HttpClientModule,
     Clipboard,
+    AndroidPermissions,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
