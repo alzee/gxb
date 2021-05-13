@@ -253,9 +253,8 @@ export class LandPage implements OnInit {
       else {
           // this.router.navigate(['/land/hall'], {queryParams: {id: this.land.id}});
           const postData = {
-              prePrice: this.land.price,
-              ownerId: this.userData.id,
-              forSale: false
+              price: this.land.price,
+              buyer: this.userData.id
           };
           const orderData = {
               type: 7,
