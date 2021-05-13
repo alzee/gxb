@@ -51,7 +51,7 @@ export class HallPage implements OnInit {
           return;
       }
       const postData = {
-          prePrice: i.price,
+          price: i.price,
           ownerId: this.userData.id
       };
       const orderData = {
