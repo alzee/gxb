@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-refer',
@@ -11,11 +13,14 @@ import { StorageService } from '../services/storage.service';
 export class ReferPage implements OnInit {
   count1: number;
   count2: number;
+  url = 'https://www.drgxb.com';
   userData = {
       id: 0
   };
 
   constructor(
+      private clipboard: Clipboard,
+      private toastService: ToastService,
       private httpService: HttpService,
       private storageService: StorageService
   ) { }
@@ -32,4 +37,8 @@ export class ReferPage implements OnInit {
       });
   }
 
+  copy(){
+      this.clipboard.copy(this.url);
+      this.toastService.presentToast('链接已复制');
+  }
 }
