@@ -19,6 +19,7 @@ interface Data {
   styleUrls: ['./hall.page.scss'],
 })
 export class HallPage implements OnInit {
+  page = 1;
   url = environment.url;
   // landId: number;
   sales = [];
@@ -37,29 +38,7 @@ export class HallPage implements OnInit {
   ) { }
 
   ngOnInit() {
-      /*
-      this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.landId = parseInt(params.id, 10);
-      });
-
-      if (this.landId) {
-        this.httpService.get('lands/' + this.landId).subscribe((res) => {
-          this.sales[0] = res;
-          console.log(res);
-        });
-      }
-      else {
-        this.httpService.get('lands?page=1&itemsPerPage=10&forSale=true').subscribe((res) => {
-          this.sales = res;
-          console.log(res);
-        });
-      }
-     */
-
-      this.httpService.get('lands?page=1&itemsPerPage=10&forSale=true').subscribe((res) => {
-          this.sales = res;
-          console.log(res);
-      });
+      this.getSales();
 
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
@@ -89,5 +68,21 @@ export class HallPage implements OnInit {
       };
       this.data.changeMessage(this.message);
       this.router.navigate(['/pay'], { replaceUrl: true });
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+      this.page += 1;
+      this.getSales();
+    }, 500);
+  }
+
+  getSales(){
+      this.httpService.get(`lands?page=${this.page}&itemsPerPage=10&forSale=true`).subscribe((res) => {
+          this.sales = [...this.sales, ...res];
+          console.log(res);
+      });
   }
 }
