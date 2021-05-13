@@ -10,7 +10,7 @@
 <ion-content color="light">
   <form (ngSubmit)="publish()" [formGroup]="form">
   <ion-item>
-    <ion-textarea required rows="7" placeholder="﹡ 你想对大家说..." formControlName="body"></ion-textarea>
+    <ion-textarea required rows="7" maxlength="150" placeholder="﹡ 你想对大家说..." formControlName="body"></ion-textarea>
   </ion-item>
 
   <ion-item>
