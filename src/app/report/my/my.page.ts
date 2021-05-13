@@ -42,7 +42,7 @@ export class MyPage implements OnInit {
   }
 
   segmentChanged(e){
-      this.seg = e.detail.value;
+      this.seg = +e.detail.value;
       console.log(this.seg);
       switch (this.seg) {
           case 1:
