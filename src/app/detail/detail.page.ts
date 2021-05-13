@@ -10,6 +10,7 @@ import { ToastService } from '../services/toast.service';
 import { DataService } from '../services/data.service';
 import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 
 interface Data {
     [propName: string]: any;
@@ -40,6 +41,7 @@ export class DetailPage implements OnInit {
   uploads = [];
 
   constructor(
+      private clipboard: Clipboard,
       public alertController: AlertController,
       private activeRoute: ActivatedRoute,
       private httpService: HttpService,
@@ -223,5 +225,10 @@ export class DetailPage implements OnInit {
               this.router.navigate(['/report'], { replaceUrl: true });
           }
       });
+  }
+
+  copy(){
+      this.clipboard.copy(this.task.link);
+      this.toastService.presentToast('链接已复制');
   }
 }
