@@ -32,7 +32,7 @@
         <h4>
           {{task.title}}
         </h4>
-        <ion-text color="medium">简单关注 | 急速验收</ion-text>
+        <ion-text color="medium">{{task.category.name}} | {{task.name}}</ion-text>
       </div>
       <ion-text class="price" slot="end" color="danger">{{task.price / 100}}元</ion-text>
     </ion-item>
