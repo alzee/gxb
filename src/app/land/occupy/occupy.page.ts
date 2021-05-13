@@ -94,7 +94,7 @@ export class OccupyPage implements OnInit {
   validateInputs() {
       this.postData.body = this.f.body.value;
       this.postData.days = this.f.days.value;
-      this.postData.price = this.price;
+      this.postData.price = this.price * 100;
       this.postData.cover = this.cover;
       this.postData.pics = this.pics;
       this.postData.ownerId = this.userData.id;
