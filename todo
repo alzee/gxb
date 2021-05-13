@@ -5,7 +5,6 @@ major:
   - pay pass
   - 忘记密码
   - cell read 5 sec
-  - copy text
 minor:
   - cron:
     - 分红
@@ -15,7 +14,6 @@ minor:
   - 微信头像昵称
   - 任务详情页 做单时间 验收时间
   - 股权交易手续费
-  - clipboard
   - 文字验收
 
 question:
