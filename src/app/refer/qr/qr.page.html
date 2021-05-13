@@ -10,8 +10,9 @@
 <ion-content class="ion-padding-horizontal">
 
   <div class="banner">
-    <p>我的邀请码<p>
-    <ion-text color="primary">{{code}}</ion-text>
+    <p>我的邀请码</p>
+    <ion-text color="primary">{{code}} </ion-text>
+    <ion-icon (click)="copy()" size="small" name="copy-outline"></ion-icon>
   </div>
 
     <ion-slides [options]="slideOpts" (ionSlideDidChange)="changeSlide($event)" *ngIf="userData">

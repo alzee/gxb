@@ -5,6 +5,7 @@ import { StorageService } from '../../services/storage.service';
 import { environment } from '../../../environments/environment';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { ToastService } from '../../services/toast.service';
 
 interface Data {
@@ -35,6 +36,7 @@ export class QrPage implements OnInit {
   fileTransfer: FileTransferObject;
 
   constructor(
+      private clipboard: Clipboard,
       private toastService: ToastService,
       private transfer: FileTransfer,
       private file: File,
@@ -68,5 +70,10 @@ export class QrPage implements OnInit {
           this.toastService.presentToast('下载失败');
           // handle error
       });
+  }
+
+  copy(){
+      this.clipboard.copy(this.code);
+      this.toastService.presentToast('邀请码已复制');
   }
 }
