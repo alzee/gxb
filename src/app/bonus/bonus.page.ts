@@ -15,7 +15,6 @@ interface Data {
 })
 export class BonusPage implements OnInit {
   userData: Data;
-  fund: number;
   coin: number;
   month: string;
   conf: Data;
