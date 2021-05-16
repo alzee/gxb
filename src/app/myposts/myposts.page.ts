@@ -54,10 +54,14 @@ export class MypostsPage implements OnInit {
       this.httpService.get(`tasks?order%5Bdate%5D=desc&itemsPerPage=5&page=${this.page}&owner.id=${this.userData.id}`).subscribe((res) => {
           this.tasks = [...this.tasks, ...res];
           for (const i of this.tasks) {
+              i.wip = 0;
               i.preReview = 0;
               i.done = 0;
               i.failed = 0;
               for (const j of i.applies) {
+                  if (j.status.id === 11) {
+                      i.wip += 1;
+                  }
                   if (j.status.id === 12) {
                       i.preReview += 1;
                   }
