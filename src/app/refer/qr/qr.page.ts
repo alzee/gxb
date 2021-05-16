@@ -65,9 +65,9 @@ export class QrPage implements OnInit {
 
   download(i){
       this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE)
-      .then((data:any) => {
-          if(data.hasPermission) {
-              console.log("have permission");
+      .then((data: any) => {
+          if (data.hasPermission) {
+              console.log('have permission');
               const url = this.env.imgUrl + 'poster/' + this.userData.username + '_' + i;
               this.fileTransfer.download(url, this.file.externalRootDirectory + 'Download/' + i).then((entry) => {
                   console.log('download complete: ' + entry.toURL());
