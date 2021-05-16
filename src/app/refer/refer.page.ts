@@ -28,11 +28,9 @@ export class ReferPage implements OnInit {
   ngOnInit() {
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
-          this.httpService.get('users?page=1&itemsPerPage=1000&referrer=' + this.userData.id).subscribe((res1) => {
-              this.count1 = res1.length;
-          });
-          this.httpService.get('users?page=1&itemsPerPage=1000&ror=' + this.userData.id).subscribe((res2) => {
-              this.count2 = res2.length;
+          this.httpService.get('refcount/' + this.userData.id).subscribe((res1) => {
+              this.count1 = res1[0];
+              this.count2 = res1[1];
           });
       });
   }
