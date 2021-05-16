@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Platform, AlertController } from '@ionic/angular';
 import { ToastService } from '../../services/toast.service';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 
 interface Data {
     [propName: string]: any;
@@ -26,8 +27,10 @@ export class SettingPage implements OnInit {
   user: Data;
   id: number;
   updateUrl = this.env.updateUrl;
+  ver: string;
 
   constructor(
+        private appVersion: AppVersion,
         public alertController: AlertController,
         private platform: Platform,
         private authService: AuthService,
@@ -35,7 +38,7 @@ export class SettingPage implements OnInit {
         private http: HttpClient,
         private toastService: ToastService,
         private activeRoute: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
@@ -47,6 +50,12 @@ export class SettingPage implements OnInit {
           this.user.total = this.user.balanceTask + this.user.balanceTopup;
           console.log(this.user);
       });
+
+      this.appVersion.getVersionNumber().then(
+        (res) => {
+          this.ver = res;
+        }
+      );
   }
 
   logout() {
@@ -97,9 +106,9 @@ export class SettingPage implements OnInit {
                           cordova.plugins.apkupdater.install().then(
                               (res2) => {
                                   console.log('install done:', res2);
+                                  cordova.plugins.apkupdater.reset();
                               }, (reason2) => {
                                   console.log('install failed:', reason2);
-                                  cordova.plugins.apkupdater.reset();
                               }
                           );
                       }, (reason1) => {
