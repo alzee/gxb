@@ -37,6 +37,7 @@ export class DetailPage implements OnInit {
   approveDeadline: number;
   workTime: string;
   reviewTime: string;
+  note = '' ;
   pics = [];
   uploads = [];
 
@@ -66,7 +67,6 @@ export class DetailPage implements OnInit {
           if (this.id === 0) {  // 0 means it's a preview
               this.task = this.message.postData;
               this.task.id = this.id;
-
           }
       });
 
@@ -153,13 +153,15 @@ export class DetailPage implements OnInit {
             console.log('Confirm Okay');
             const postData = {
               status: '/api/statuses/12',
+              note: this.note,
               pic: this.uploads
             };
-            this.httpService.patch('applies/' + this.applyId, postData).subscribe((res) => {
-              console.log(res);
-              this.toastService.presentToast('已提交');
-              this.ngOnInit();
-            });
+            console.log(this.note);
+            // this.httpService.patch('applies/' + this.applyId, postData).subscribe((res) => {
+            //   console.log(res);
+            //   this.toastService.presentToast('已提交');
+            //   this.ngOnInit();
+            // });
           }
         }
       ]

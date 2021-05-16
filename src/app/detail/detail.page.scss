@@ -62,7 +62,7 @@ ion-item{
       .time-left{
         font-size: 15px;
         font-weight: 900;
-        color: #eb445a;
+        color: var(--ion-color-danger);
       }
       ion-text{
         font-size: 12px;
@@ -96,6 +96,11 @@ ion-item{
   .follow{
     --padding-start: 12px;
     --padding-end: 12px;
+  }
+}
+#myNote{
+  ion-input{
+    --placeholder-color: var(--ion-color-danger);
   }
 }
 ion-button{
