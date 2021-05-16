@@ -28,6 +28,7 @@ export class ApprovePage implements OnInit {
   reviews = [];
   workPics = [];
   apply: Data;
+  task: Data;
 
   constructor(
       public navCtrl: NavController,
@@ -43,6 +44,7 @@ export class ApprovePage implements OnInit {
           this.applyid = params.applyid;
           this.httpService.get('applies/' + this.applyid).subscribe((res) => {
               this.apply = res;
+              this.task = this.apply.task;
               if (this.apply.status.id === this.approveCode) {
                   this.approved = true;
                   this.choice = 1;
@@ -53,9 +55,6 @@ export class ApprovePage implements OnInit {
               }
               this.reviews = this.apply.task.reviews;
               this.workPics = this.apply.pic;
-              console.log(this.apply);
-              console.log(this.reviews);
-              console.log(this.workPics);
           });
       });
       console.log(this.choice);

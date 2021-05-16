@@ -157,11 +157,11 @@ export class DetailPage implements OnInit {
               pic: this.uploads
             };
             console.log(this.note);
-            // this.httpService.patch('applies/' + this.applyId, postData).subscribe((res) => {
-            //   console.log(res);
-            //   this.toastService.presentToast('已提交');
-            //   this.ngOnInit();
-            // });
+            this.httpService.patch('applies/' + this.applyId, postData).subscribe((res) => {
+              console.log(res);
+              this.toastService.presentToast('已提交');
+              this.ngOnInit();
+            });
           }
         }
       ]

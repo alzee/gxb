@@ -24,6 +24,16 @@
     </div>
   </div>
 
+  <ion-label color="medium">文字验收</ion-label>
+  <div>
+  <ion-item *ngIf="task && task.note">
+    <ion-text>{{task.note}}</ion-text>
+  </ion-item>
+  <ion-item *ngIf="apply && apply.note">
+    <ion-text>{{apply.note}}</ion-text>
+  </ion-item>
+  </div>
+
   <ion-label color="medium">审核</ion-label>
   <ion-radio-group (ionChange)="check($event)" value="{{choice}}">
     <ion-item>
