@@ -77,6 +77,7 @@ export class AppComponent {
                   handler: (blah) => {
                       console.log('Confirm Cancel: blah');
                       this.appMinimize.minimize();
+                      navigator['app'].exitApp();
                   }
               }, {
                   text: '确定',

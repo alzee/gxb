@@ -90,10 +90,6 @@ export class HomePage implements OnInit {
       this.getTasks();
   }
 
-  ionViewWillEnter(){
-      this.alert();
-  }
-
   getTasks(){
       this.httpService.get(`tasks?page=${this.page}&${this.taskQuery}`).subscribe((res) => {
           this.tasks = [...this.tasks, ...res];
