@@ -92,34 +92,40 @@ export class SettingPage implements OnInit {
               (res) => {
                   console.log('check done:', res);
                   // this.toastService.presentToast(`${res.version} ${res.ready} ${res.size} ${res.chunks}`);
-                  // if (res.version === this.version) {
-                  if (res.ready) {
+                  if (res.version === this.ver) {
                       this.toastService.presentToast('已经是最新哦！');
-                      return;
                   }
                   else {
-                      this.toastService.presentToast('后台更新中...');
-                  }
-                  cordova.plugins.apkupdater.download().then(
-                      (res1) => {
-                          console.log('download done:', res1);
-                          cordova.plugins.apkupdater.install().then(
-                              (res2) => {
-                                  console.log('install done:', res2);
-                                  cordova.plugins.apkupdater.reset();
-                              }, (reason2) => {
-                                  console.log('install failed:', reason2);
+                      if (res.ready) {
+                          this.installUpdate();
+                      }
+                      else {
+                          this.toastService.presentToast('后台更新中...');
+                          cordova.plugins.apkupdater.download().then(
+                              (res1) => {
+                                  console.log('download done:', res1);
+                                  this.installUpdate();
+                              }, (reason1) => {
+                                  console.log('download failed:', reason1);
                               }
                           );
-                      }, (reason1) => {
-                          console.log('download failed:', reason1);
                       }
-                  );
+                  }
               }, (reason) => {
                   console.log('check failed:', reason);
                   this.toastService.presentToast('更新失败');
               }
           );
       });
+  }
+
+  installUpdate() {
+      cordova.plugins.apkupdater.install().then(
+          (res2) => {
+              console.log('install done:', res2);
+          }, (reason2) => {
+              console.log('install failed:', reason2);
+          }
+      );
   }
 }
