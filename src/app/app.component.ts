@@ -4,9 +4,9 @@ import { AlertController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { HttpService } from './services/http.service';
-import { AppMinimize } from '@ionic-native/app-minimize/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { environment } from '../environments/environment';
+import { ToastService } from './services/toast.service';
 
 interface Data {
     [propName: string]: any;
@@ -31,7 +31,7 @@ export class AppComponent {
     public alertController: AlertController,
     private splashScreen: SplashScreen,
     private httpService: HttpService,
-    private appMinimize: AppMinimize,
+    private toastService: ToastService,
     private statusBar: StatusBar
   ) {
     this.initializeApp();
@@ -105,6 +105,7 @@ export class AppComponent {
               }
               else {
                   // show process
+                  this.toastService.presentToast('后台更新中...');
                   cordova.plugins.apkupdater.download().then(
                       (res1) => {
                           console.log('download done:', res1);
