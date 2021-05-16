@@ -42,7 +42,6 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.httpService.get('confs/1').subscribe((res) => {
-          console.log(res);
           this.conf = res;
           if (this.conf.forceUpdate) {
               this.appVersion.getVersionNumber().then(

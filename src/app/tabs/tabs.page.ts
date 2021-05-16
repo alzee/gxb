@@ -36,7 +36,6 @@ export class TabsPage {
 
   ionViewWillEnter() {
     this.propagateToActiveTab('ionViewWillEnter');
-    console.log('enter tabs');
     this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(-1, () => {
         this.appMinimize.minimize();
     });

@@ -80,7 +80,6 @@ export class HomePage implements OnInit {
               `bids?position=${i + 1}&date%5Bbefore%5D=${this.bondary}&${this.bidQuery}`
           ).subscribe((res) => {
               this.bids[i] = res[0];
-              console.log(this.bids);
           });
       }
       this.httpService.get(`nodes?${this.newsQuery}`).subscribe((res) => {
@@ -93,7 +92,6 @@ export class HomePage implements OnInit {
   getTasks(){
       this.httpService.get(`tasks?page=${this.page}&${this.taskQuery}`).subscribe((res) => {
           this.tasks = [...this.tasks, ...res];
-          console.log(res);
       });
   }
 
