@@ -76,7 +76,6 @@ export class AppComponent {
                   cssClass: 'secondary',
                   handler: (blah) => {
                       console.log('Confirm Cancel: blah');
-                      this.appMinimize.minimize();
                       navigator['app'].exitApp();
                   }
               }, {
