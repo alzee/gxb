@@ -33,8 +33,8 @@ export class DetailPage implements OnInit {
   envs = environment;
   statusId = 0;
   applyId: number;
-  workDeadline: date;
-  approveDeadline: date;
+  workDeadline: number;
+  approveDeadline: number;
   workTime: string;
   reviewTime: string;
   pics = [];
@@ -94,7 +94,6 @@ export class DetailPage implements OnInit {
                   this.statusId = i.status.id;
                   this.applyId = i.id;
                   this.pics = i.pic;
-                  this.minutesPast = Math.round((new Date().getTime() - new Date(i.date).getTime()) / 1000 / 60);
                   this.myApply = i;
                   break;
               }
@@ -109,6 +108,7 @@ export class DetailPage implements OnInit {
               case 12:
                   const submitAt = new Date(this.myApply.submitAt);
                   this.approveDeadline = submitAt.setHours(submitAt.getHours() + this.task.reviewHours);
+                  console.log(typeof this.approveDeadline, this.approveDeadline);
                   break;
           }
       });
