@@ -18,6 +18,7 @@ export class MypostsPage implements OnInit {
   tasks = [];
   envs = environment;
   seg = 0;
+  page = 1;
 
   public statuses = [
     {
@@ -49,29 +50,32 @@ export class MypostsPage implements OnInit {
       public alertController: AlertController
   ) { }
 
+  getMyPosts() {
+      this.httpService.get(`tasks?order%5Bdate%5D=desc&itemsPerPage=5&page=${this.page}&owner.id=${this.userData.id}`).subscribe((res) => {
+          this.tasks = [...this.tasks, ...res];
+          for (const i of this.tasks) {
+              i.preReview = 0;
+              i.done = 0;
+              i.failed = 0;
+              for (const j of i.applies) {
+                  if (j.status.id === 12) {
+                      i.preReview += 1;
+                  }
+                  if (j.status.id === 13) {
+                      i.failed += 1;
+                  }
+                  if (j.status.id === 14) {
+                      i.done += 1;
+                  }
+              }
+          }
+      });
+  }
+
   ngOnInit() {
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
-          this.httpService.get('tasks?order%5Bdate%5D=desc&owner.id=' + this.userData.id).subscribe((res1) => {
-              console.log(res1);
-              this.tasks = res1;
-              for (const i of this.tasks) {
-                  i.preReview = 0;
-                  i.done = 0;
-                  i.failed = 0;
-                  for (const j of i.applies) {
-                      if (j.status.id === 12) {
-                          i.preReview += 1;
-                      }
-                      if (j.status.id === 13) {
-                          i.failed += 1;
-                      }
-                      if (j.status.id === 14) {
-                          i.done += 1;
-                      }
-                  }
-              }
-          });
+          this.getMyPosts();
       }, (rej) => {
       });
   }
@@ -174,4 +178,14 @@ export class MypostsPage implements OnInit {
     });
     await alert.present();
   }
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+      this.page += 1;
+      this.getMyPosts();
+    }, 500);
+  }
+
 }
