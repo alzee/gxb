@@ -87,11 +87,7 @@ export class DetailPage implements OnInit {
                   console.log(this.applyId);
                   this.pics = i.pic;
                   this.minutesPast = Math.round((new Date().getTime() - new Date(i.date).getTime()) / 1000 / 60);
-                  console.log(i);
                   this.myApply = i;
-
-                  const applyDate = new Date(i.date);
-                  this.workDeadline = applyDate.setHours(applyDate.getHours() + this.task.workHours);
                   break;
               }
           }
@@ -103,10 +99,16 @@ export class DetailPage implements OnInit {
               case 11:
                   this.workMinutesRemain = this.task.workHours * 60 - this.minutesPast;
                   this.reviewMinutesRemain = this.task.reviewHours * 60;
+
+                  const applyDate = new Date(this.myApply.date);
+                  this.workDeadline = applyDate.setHours(applyDate.getHours() + this.task.workHours);
                   break;
               case 12:
                   this.workMinutesRemain = 0;
                   this.reviewMinutesRemain = this.task.reviewHours * 60 - this.minutesPast;
+
+                  const submitAt = new Date(this.myApply.submitAt);
+                  this.workDeadline = submitAt.setHours(submitAt.getHours() + this.task.reviewHours);
                   break;
               default:
                   this.workMinutesRemain = 0;

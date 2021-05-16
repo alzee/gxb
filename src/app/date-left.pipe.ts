@@ -27,7 +27,7 @@ export class DateLeftPipe implements PipeTransform {
                 if (intervals.hasOwnProperty(i)) {
                     counter = Math.floor(seconds / intervals[i]);
                     if (counter > 0) {
-                        return '剩' + counter + ' ' + i; // singular (1 day ago)
+                        return '剩 ' + counter + ' ' + i; // singular (1 day ago)
                     }
                 }
             }
