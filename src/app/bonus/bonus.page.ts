@@ -18,9 +18,12 @@ export class BonusPage implements OnInit {
   fund: number;
   coin: number;
   month: string;
+  conf: Data;
+  fund: number;
   subtotal: number;
   user: Data;
-  hists = [];
+  page = 1;
+  hists: Array<Data>;
 
   constructor(
     private httpService: HttpService,
@@ -34,14 +37,23 @@ export class BonusPage implements OnInit {
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
         this.userData = res;
+        this.httpService.get(`finances?page=${this.page}&itemsPerPage=10&user=${this.userData.id}&type=59`).subscribe((res) => {
+            this.hists = res;
+        });
     });
+
+    this.httpService.get('confs/1').subscribe((res) => {
+        this.conf = res;
+        this.fund = this.conf.dividendFund;
+    });
+
   }
 
   ionViewWillEnter(){
-    this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
-      this.user = res1;
-      this.coin = this.user.coin;
-    });
+      this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
+          this.user = res1;
+          this.coin = this.user.coin;
+      });
   }
 
   showMonth() {

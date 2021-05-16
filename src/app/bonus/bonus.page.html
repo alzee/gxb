@@ -11,7 +11,7 @@
   <ion-item class="info">
     <div slot="start">
       <ion-text color="light" class="label">
-        分红金额
+        分红基金
       </ion-text>
       <ion-text color="light" class="amount">
         {{ fund }}
@@ -22,12 +22,12 @@
         分红说明
       </ion-text>
       <ion-text color="light" class="coin">
-        金币:{{coin}}个
+        金币: {{coin}}个
       </ion-text>
     </div>
   </ion-item>
 
-  <ion-item class="hist">
+  <ion-item class="hist" *ngIf="hists">
     <ion-list>
       <ion-list-header>
         <ion-item>
@@ -35,7 +35,7 @@
             <ion-datetime displayFormat="YYYY-MM" value="{{month}}" doneText="确定" cancelText="取消" [(ngModel)]="month" (ionChange)="showMonth()"></ion-datetime>
             <ion-icon name="chevron-down-outline"></ion-icon>
           </ion-item>
-          <ion-text color="medium" slot="end">共{{subtotal}}元</ion-text>
+          <ion-text color="medium" slot="end"></ion-text>
         </ion-item>
       </ion-list-header>
       <ion-item class="list-item" *ngFor="let i of hists">
@@ -44,7 +44,7 @@
         </ion-thumbnail>
         <div>
           <ion-text>分红</ion-text>
-          <ion-text color="medium" class="date">{{i.date}}</ion-text>
+          <ion-text color="medium" class="date">{{i.date|date:'yyyy年M月d日 HH:mm:ss'}}</ion-text>
         </div>
         <ion-text color="warning" slot="end">+{{i.amount}}</ion-text>
       </ion-item>
