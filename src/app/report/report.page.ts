@@ -20,6 +20,7 @@ export class ReportPage implements OnInit {
   subscription: Subscription;
   message: Data;
   apply: Data;
+  task: Data;
   desc: string;
   pics = [];
   url: string = environment.url;
@@ -35,7 +36,7 @@ export class ReportPage implements OnInit {
   ngOnInit() {
       this.subscription = this.data.currentMessage.subscribe(message => this.message = message);
       this.apply = this.message.apply;
-      console.log(this.apply);
+      this.task = this.message.task;
   }
 
   submit(){

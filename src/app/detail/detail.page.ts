@@ -33,6 +33,8 @@ export class DetailPage implements OnInit {
   envs = environment;
   statusId = 0;
   applyId: number;
+  workDeadline;
+  approveDeadline;
   workMinutesRemain: number;
   workMinutesRemainString: string;
   reviewMinutesRemain: number;
@@ -85,10 +87,11 @@ export class DetailPage implements OnInit {
                   console.log(this.applyId);
                   this.pics = i.pic;
                   this.minutesPast = Math.round((new Date().getTime() - new Date(i.date).getTime()) / 1000 / 60);
-                  this.httpService.get('applies/' + i.id).subscribe((res1) => {
-                      this.myApply = res1;
-                      console.log(this.myApply);
-                  });
+                  console.log(i);
+                  this.myApply = i;
+
+                  const applyDate = new Date(i.date);
+                  this.workDeadline = applyDate.setHours(applyDate.getHours() + this.task.workHours);
                   break;
               }
           }
@@ -220,7 +223,8 @@ export class DetailPage implements OnInit {
           }
           else {
               this.message = {
-                  apply: this.myApply
+                  apply: this.myApply,
+                  task: this.task
               };
               this.data.changeMessage(this.message);
               this.router.navigate(['/report'], { replaceUrl: true });
