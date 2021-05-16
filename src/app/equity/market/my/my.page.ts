@@ -21,7 +21,7 @@ export class MyPage implements OnInit {
   price: number;
   priceMax: number;
   priceMin: number;
-  configs: Array<Data>;
+  conf: Data;
   userData: Data;
   user: Data;
   myEquity: number;
@@ -47,19 +47,11 @@ export class MyPage implements OnInit {
           this.user = res;
           this.myEquity = this.user.equity;
       });
-      this.httpService.get('configs?itemsPerPage=30').subscribe((res) => {
-          this.configs = res;
-          for (const i of this.configs) {
-              if (i.label === 'equityPrice') {
-                  this.price = i.value;
-              }
-              if (i.label === 'equityPriceMax') {
-                  this.priceMax = i.value;
-              }
-              if (i.label === 'equityPriceMin') {
-                  this.priceMin = i.value;
-              }
-          }
+      this.httpService.get('confs/1').subscribe((res) => {
+          this.conf = res;
+          this.price = this.conf.equityPrice;
+          this.priceMax = this.conf.equityPriceMax;
+          this.priceMin = this.conf.equityPriceMin;
           console.log(res);
       });
       this.httpService.get(`equity_trades?${this.query}&seller=${this.userData.id}`).subscribe((res) => {

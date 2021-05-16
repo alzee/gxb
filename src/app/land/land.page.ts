@@ -71,8 +71,8 @@ export class LandPage implements OnInit {
   }
 
   ionViewWillEnter(){
-      this.httpService.get('configs?itemsPerPage=30').subscribe((res) => {
-          this.data.changeMessage({configs: res});
+      this.httpService.get('confs/1').subscribe((res) => {
+          this.data.changeMessage({conf: res});
       });
       this.httpService.get('lands/' + this.land.id).subscribe((res) => {
           this.land = res;
