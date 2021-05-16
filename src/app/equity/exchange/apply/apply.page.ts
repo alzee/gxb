@@ -25,6 +25,7 @@ export class ApplyPage implements OnInit {
   equityBefore: number;
   max: number;
   total: number;
+  conf: Data;
   userData: Data;
 
   constructor(
@@ -47,7 +48,8 @@ export class ApplyPage implements OnInit {
           this.equityBefore = this.userData.equity;
           console.log(this.gxb);
           this.httpService.get('confs/1').subscribe((res2) => {
-              this.rate = res2.equityGXBRate;
+              this.conf = res2;
+              this.rate = this.conf.equityGXBRate;
               this.max = this.gxb / this.rate;
               this.equity.setValidators([Validators.min(1), Validators.max(this.max), Validators.pattern('^[0-9]*$')]);
               console.log(this.rate);
