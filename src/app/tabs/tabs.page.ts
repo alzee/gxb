@@ -30,7 +30,6 @@ export class TabsPage {
 
   ionViewDidLeave() {
     this.propagateToActiveTab('ionViewDidLeave');
-    console.log('leave tabs');
     this.backButtonSubscription.unsubscribe();
   }
 

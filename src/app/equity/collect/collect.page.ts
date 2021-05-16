@@ -40,22 +40,18 @@ export class CollectPage implements OnInit {
 
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
-      console.log(res);
       this.userData = res;
       this.uid = this.userData.id;
       this.avatarUrl = this.userData.avatar;
 
       this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
           this.user = res1;
-          console.log(res1);
           this.myGxb = this.user.gxb;
           this.amount = this.user.equity;
       });
 
       this.httpService.get(`gxbs?${this.query}&user.id=${this.uid}`).subscribe((res2) => {
           this.hists = res2;
-          console.log(res2);
-          console.log(this.type);
           if (this.hists[0]){
               if (new Date(this.hists[0].date).setHours(0, 0, 0, 0) !== new Date().setHours(0, 0, 0, 0)
                  // && this.hists[0].type === this.type
