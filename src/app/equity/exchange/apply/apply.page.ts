@@ -46,8 +46,8 @@ export class ApplyPage implements OnInit {
           this.gxb = this.userData.gxb;
           this.equityBefore = this.userData.equity;
           console.log(this.gxb);
-          this.httpService.get('configs?page=1&label=EquityGXBRate').subscribe((res2) => {
-              this.rate = 1 / res2[0].value;
+          this.httpService.get('confs/1').subscribe((res2) => {
+              this.rate = res2.equityGXBRate;
               this.max = this.gxb / this.rate;
               this.equity.setValidators([Validators.min(1), Validators.max(this.max), Validators.pattern('^[0-9]*$')]);
               console.log(this.rate);

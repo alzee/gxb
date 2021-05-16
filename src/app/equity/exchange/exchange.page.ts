@@ -22,7 +22,7 @@ export class ExchangePage implements OnInit {
   userData: Data;
   user: Data;
   node: Data;
-  configs: Array<Data>;
+  conf: Data;
 
   constructor(
       private storageService: StorageService,
@@ -48,18 +48,11 @@ export class ExchangePage implements OnInit {
           this.equity = this.user.equity;
       });
 
-      this.httpService.get('configs?itemsPerPage=30').subscribe((res) => {
-          this.configs = res;
-          // this.total = this.configs.quantityGXB.value;
-          // this.rate = this.configs.exchangePirce.value;
-          for (const i of this.configs) {
-              if (i.label === 'equity') {
-                  this.total = i.value;
-              }
-              if (i.label === 'EquityGXBRate') {
-                  this.rate = 1 / i.value;
-              }
-          }
+      this.httpService.get('confs/1').subscribe((res) => {
+          console.log(res);
+          this.conf = res;
+          this.total = this.conf.equity;
+          this.rate = this.conf.equityGXBRate;
       });
   }
 
