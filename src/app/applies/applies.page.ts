@@ -49,7 +49,7 @@ export class AppliesPage implements OnInit {
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.taskId = params.task;
-          this.httpService.get('applies?task.id=' + this.taskId).subscribe((res) => {
+          this.httpService.get('applies?order%5Bid%5D=desc&task.id=' + this.taskId).subscribe((res) => {
               console.log(res);
               this.applies = res;
           });
