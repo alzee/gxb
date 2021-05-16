@@ -33,13 +33,10 @@ export class DetailPage implements OnInit {
   envs = environment;
   statusId = 0;
   applyId: number;
-  workDeadline;
-  approveDeadline;
-  workMinutesRemain: number;
-  workMinutesRemainString: string;
-  reviewMinutesRemain: number;
-  reviewMinutesRemainString: string;
-  minutesPast = 0;
+  workDeadline: date;
+  approveDeadline: date;
+  workTime: string;
+  reviewTime: string;
   pics = [];
   uploads = [];
 
@@ -69,6 +66,7 @@ export class DetailPage implements OnInit {
           if (this.id === 0) {  // 0 means it's a preview
               this.task = this.message.postData;
               this.task.id = this.id;
+
           }
       });
 
@@ -78,13 +76,23 @@ export class DetailPage implements OnInit {
 
       this.httpService.get('tasks/' + this.id).subscribe((res) => {
           this.task = res;
-          console.log(res);
+          if (this.task.workHours > 24) {
+              this.workTime = this.task.workHours / 24 + ' 天';
+          }
+          else {
+              this.workTime = this.task.workHours + ' 小时';
+          }
+          if (this.task.reviewHours > 24) {
+              this.reviewTime = this.task.reviewHours / 24 + ' 天';
+          }
+          else {
+              this.reviewTime = this.task.reviewHours + ' 小时';
+          }
           for (const i of this.task.applies){
               if (i.applicant.id === this.userData.id){
                   this.applied = true;
                   this.statusId = i.status.id;
                   this.applyId = i.id;
-                  console.log(this.applyId);
                   this.pics = i.pic;
                   this.minutesPast = Math.round((new Date().getTime() - new Date(i.date).getTime()) / 1000 / 60);
                   this.myApply = i;
@@ -93,53 +101,21 @@ export class DetailPage implements OnInit {
           }
           switch (this.statusId) {
               case 0:
-                  this.workMinutesRemain = this.task.workHours * 60;
-                  this.reviewMinutesRemain = this.task.reviewHours * 60;
                   break;
               case 11:
-                  this.workMinutesRemain = this.task.workHours * 60 - this.minutesPast;
-                  this.reviewMinutesRemain = this.task.reviewHours * 60;
-
                   const applyDate = new Date(this.myApply.date);
                   this.workDeadline = applyDate.setHours(applyDate.getHours() + this.task.workHours);
                   break;
               case 12:
-                  this.workMinutesRemain = 0;
-                  this.reviewMinutesRemain = this.task.reviewHours * 60 - this.minutesPast;
-
                   const submitAt = new Date(this.myApply.submitAt);
-                  this.workDeadline = submitAt.setHours(submitAt.getHours() + this.task.reviewHours);
+                  this.approveDeadline = submitAt.setHours(submitAt.getHours() + this.task.reviewHours);
                   break;
-              default:
-                  this.workMinutesRemain = 0;
-                  this.reviewMinutesRemain = 0;
-          }
-
-          if (this.workMinutesRemain < 60) {
-              this.workMinutesRemainString = this.workMinutesRemain + 'm';
-          }
-          else if (this.workMinutesRemain < 1440) {
-              this.workMinutesRemainString = Math.trunc(this.workMinutesRemain / 60) + 'h';
-          }
-          else {
-              this.workMinutesRemainString = Math.trunc(this.workMinutesRemain / 1440) + 'd';
-          }
-
-          if (this.reviewMinutesRemain < 60) {
-              this.reviewMinutesRemainString = this.reviewMinutesRemain + 'm';
-          }
-          else if (this.reviewMinutesRemain < 1440) {
-              this.reviewMinutesRemainString = Math.trunc(this.reviewMinutesRemain / 60) + 'h';
-          }
-          else {
-              this.reviewMinutesRemainString = Math.trunc(this.reviewMinutesRemain / 1440) + 'd';
           }
       });
   }
 
   apply() {
       this.httpService.get('tasks/' + this.id).subscribe((res) => {
-          console.log(res);
           this.task = res;
           if (this.task.remain <= 0) {
               this.toastService.presentToast('任务已经抢完啦！');
@@ -151,7 +127,6 @@ export class DetailPage implements OnInit {
                   status: '/api/statuses/11'
               };
               this.httpService.post('applies', postData).subscribe((res1) => {
-                  console.log(res1);
                   this.toastService.presentToast('申请成功');
                   this.router.navigate(['/mytasks'], {replaceUrl: true});
               });
