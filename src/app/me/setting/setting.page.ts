@@ -99,7 +99,7 @@ export class SettingPage implements OnInit {
                                   console.log('install done:', res2);
                               }, (reason2) => {
                                   console.log('install failed:', reason2);
-                                  cordova.plugins.apkupdater.reset(success, failure);
+                                  cordova.plugins.apkupdater.reset();
                               }
                           );
                       }, (reason1) => {
