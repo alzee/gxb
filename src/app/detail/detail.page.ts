@@ -11,6 +11,7 @@ import { DataService } from '../services/data.service';
 import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { DateLeftPipe } from '../date-left.pipe';
 
 interface Data {
     [propName: string]: any;

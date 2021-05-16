@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DetailPageRoutingModule } from './detail-routing.module';
 
 import { DetailPage } from './detail.page';
+import { DateLeftPipe } from '../date-left.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { DetailPage } from './detail.page';
     IonicModule,
     DetailPageRoutingModule
   ],
-  declarations: [DetailPage]
+  declarations: [DetailPage, DateLeftPipe]
 })
 export class DetailPageModule {}
