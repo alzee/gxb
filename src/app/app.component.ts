@@ -45,15 +45,15 @@ export class AppComponent {
           this.conf = res;
           if (this.conf.forceUpdate) {
               this.appVersion.getVersionNumber().then(
-                  (res) => {
-                      this.ver = res;
+                  (res1) => {
+                      this.ver = res1;
                   }
               );
 
               cordova.plugins.apkupdater.check(this.updateUrl).then(
-                  (res) => {
-                      this.check = res;
-                      if (res.version !== this.ver) {
+                  (res2) => {
+                      this.check = res2;
+                      if (res2.version !== this.ver) {
                           this.alert();
                       }
                   }

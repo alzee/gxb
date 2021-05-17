@@ -4,13 +4,12 @@ major:
   - setting pay pass
   - 忘记密码
 minor:
-  - 微信头像昵称
-  - 文字验收
   - pay pass
 
 question:
 
 feedback:
+  - 微信头像昵称
   - 任务关注
 
 # vim:ft=yaml
