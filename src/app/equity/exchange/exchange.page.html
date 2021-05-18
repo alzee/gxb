@@ -38,9 +38,6 @@
       <div class="bar"></div>
       <h4>兑换说明</h4>
     </ion-item>
-    <ion-text color="medium" *ngIf="node">
-      {{node.body}}
-    </ion-text>
+    <ion-text color="medium" *ngIf="node" [innerHTML]="node.body"></ion-text>
   </div>
-
 </ion-content>
