@@ -5,6 +5,10 @@ import { StorageService } from '../services/storage.service';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { ToastService } from '../services/toast.service';
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-refer',
   templateUrl: './refer.page.html',
@@ -13,6 +17,7 @@ import { ToastService } from '../services/toast.service';
 export class ReferPage implements OnInit {
   count1: number;
   count2: number;
+  node: Data;
   url = 'https://www.drgxb.com';
   userData = {
       id: 0
@@ -32,6 +37,10 @@ export class ReferPage implements OnInit {
               this.count1 = res1[0];
               this.count2 = res1[1];
           });
+      });
+
+      this.httpService.get('nodes/11').subscribe((res) => {
+        this.node = res;
       });
   }
 

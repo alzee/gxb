@@ -72,17 +72,6 @@
 
   <div>
     <ion-button disabled class="offset">推广说明</ion-button>
-    <div class="row">
-      <div>
-        <ion-text>
-          <p>
-1、每7天分红一次，分红标准是平台的收入（会员充值和发布任务的手续费）的50%参与分红，除以当期有多少个共享宝=每个共享宝的分红基数x个人的共享宝个数=当期分红金额。
-          </p>
-          <p>
-2、参与分红的条件是达到10个共享宝的人参与分红。
-          </p>
-        </ion-text>
-      </div>
-    </div>
+        <ion-text *ngIf="node" [innerHTML]="node.body"></ion-text>
   </div>
 </ion-content>
