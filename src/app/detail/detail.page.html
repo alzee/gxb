@@ -155,7 +155,7 @@
           <ion-img [src]="envs.url + i.img"></ion-img>
         </ng-template>
         <ng-template #elseBlock5>
-          <input class="ion-hide" type="file" (change)="uploadPhoto($event, j)" #fileUpload>
+          <input class="ion-hide" type="file" accept="image/*" (change)="uploadPhoto($event, j)" #fileUpload>
           <ion-thumbnail (click)="fileUpload.click()" class="w-50 v-center">
             <ion-icon size="large" name="image-outline"></ion-icon>
           </ion-thumbnail>
