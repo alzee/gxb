@@ -51,7 +51,7 @@ export class MytasksPage implements OnInit {
   ngOnInit() {
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
-          this.httpService.get('applies?page=1&itemsPerPage=30&order%5Bdate%5D=desc&applicant.id=' + this.userData.id).subscribe((res1) => {
+          this.httpService.get('applies?page=1&itemsPerPage=30&order%5Bid%5D=desc&applicant.id=' + this.userData.id).subscribe((res1) => {
               console.log(res1);
               this.applies = res1;
           });

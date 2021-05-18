@@ -12,4 +12,7 @@ feedback:
   - 微信头像昵称
   - 任务关注
 
+  - cell 35
+  - land hall
+
 # vim:ft=yaml
