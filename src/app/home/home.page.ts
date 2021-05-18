@@ -13,7 +13,6 @@ export class HomePage implements OnInit {
   keyword: string;
   bids = [] ;
   tasks = [];
-  bondary: string;
   news = [];
   envs = environment;
   page = 1;
@@ -68,20 +67,12 @@ export class HomePage implements OnInit {
   constructor(
       private router: Router,
       private httpService: HttpService
-  ) {
-      const date: Date = new Date();
-      // imply 00:00:00
-      this.bondary = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-  }
+  ) {}
 
   ngOnInit() {
-      for (let i = 0; i < 4; i++){
-          this.httpService.get(
-              `bids?position=${i + 1}&date%5Bbefore%5D=${this.bondary}&${this.bidQuery}`
-          ).subscribe((res) => {
-              this.bids[i] = res[0];
-          });
-      }
+      this.httpService.get('getbids').subscribe((res) => {
+          this.bids = res;
+      });
       this.httpService.get(`nodes?${this.newsQuery}`).subscribe((res) => {
           this.news = res;
           // console.log(res);
