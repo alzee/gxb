@@ -6,5 +6,5 @@
 # To enable this hook, rename this file to "post-update".
 
 
-cd ..
-npm run build
+pushd ..
+npm run build --prod
