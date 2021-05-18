@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class MytasksPage implements OnInit {
   applies = [];
   seg = 0;
+  page = 1;
   userData = {
       id: 0
   };
@@ -51,10 +52,7 @@ export class MytasksPage implements OnInit {
   ngOnInit() {
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
-          this.httpService.get('applies?page=1&itemsPerPage=30&order%5Bid%5D=desc&applicant.id=' + this.userData.id).subscribe((res1) => {
-              console.log(res1);
-              this.applies = res1;
-          });
+          this.getMyTasks();
       }, (rej) => {
       });
   }
@@ -62,5 +60,20 @@ export class MytasksPage implements OnInit {
   segmentChanged(ev: any) {
     this.seg = ev.detail.value;
     console.log(this.seg);
+  }
+
+  getMyTasks() {
+      this.httpService.get(`applies?page=${this.page}&itemsPerPage=5&order%5Bid%5D=desc&applicant.id=${this.userData.id}`).subscribe((res) => {
+          this.applies = [...this.applies, ...res];
+      });
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+      this.page += 1;
+      this.getMyTasks();
+    }, 500);
   }
 }

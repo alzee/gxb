@@ -191,5 +191,4 @@ export class MypostsPage implements OnInit {
       this.getMyPosts();
     }, 500);
   }
-
 }
