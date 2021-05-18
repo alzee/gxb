@@ -36,7 +36,7 @@ export class BonusPage implements OnInit {
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
         this.userData = res;
-        this.httpService.get(`finances?page=${this.page}&itemsPerPage=10&user=${this.userData.id}&type=59`).subscribe((res1) => {
+        this.httpService.get(`finances?page=${this.page}&itemsPerPage=10&user=${this.userData.id}&type=59&order%5Bdate%5D=desc`).subscribe((res1) => {
             this.hists = res1;
         });
     });
