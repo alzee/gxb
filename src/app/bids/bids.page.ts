@@ -37,7 +37,7 @@ export class BidsPage implements OnInit {
   ionViewWillEnter(){
       for (let i = 0; i < 4; i++){
           this.httpService.get(
-              `bids?${this.query}&position=${i + 1}&date%5Bafter%5D=${this.today}`
+              `bids?${this.query}&position=${i}&date%5Bafter%5D=${this.today}`
           ).subscribe((res) => {
               this.bids[i] = res[0];
               console.log(this.bids);
