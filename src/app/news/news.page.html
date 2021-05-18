@@ -20,8 +20,5 @@
 <ion-content class="ion-padding-horizontal" *ngIf="node">
   <h2>{{node.title}}</h2>
   <ion-text color="medium">{{node.date | date: 'yyyy年M月d日'}}</ion-text>
-  <p>
-  </p>
-
-  {{node.body}}
+  <ion-text innerHTML="{{node.body}}"></ion-text>
 </ion-content>
