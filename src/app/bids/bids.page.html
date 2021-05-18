@@ -53,9 +53,7 @@
       <h4>竞价规则</h4>
     </ion-item>
     <ion-item>
-      <ion-text *ngIf="node">
-        {{node.body}}
-      </ion-text>
+      <ion-text *ngIf="node" [innerHTML]="node.body"></ion-text>
     </ion-item>
   </div>
 </ion-content>
