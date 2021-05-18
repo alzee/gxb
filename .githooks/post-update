@@ -6,5 +6,6 @@
 # To enable this hook, rename this file to "post-update".
 
 #
+echo buiding...
 pushd ..
 npm run build --prod
