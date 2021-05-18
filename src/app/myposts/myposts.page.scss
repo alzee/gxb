@@ -41,6 +41,21 @@ ion-card{
       font-size: 14px;
       text-align: center;
       margin: 0;
+      position: relative;
+      overflow: visible;
+      div{
+        color: #fff;
+        background-color: var(--ion-color-danger);
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        font-size: 10px;
+        width: 16px;
+        height: 16px;
+        line-height: 18px;
+        top: -3px;
+        right: 6px;
+      }
     }
   }
 }
