@@ -31,7 +31,7 @@ export class LandPage implements OnInit {
   area: string;
   // columns: Array<Data>;
   date = new Date().toISOString();
-  query = `itemsPerPage=35&order%5Bprice%5D=desc&showUntil%5Bafter%5D=${this.date}`;
+  query = `itemsPerPage=100&order%5Bprice%5D=desc&showUntil%5Bafter%5D=${this.date}`;
   land: Data = {
       id: 1
   };
@@ -60,17 +60,24 @@ export class LandPage implements OnInit {
             this.areaIndex = res[2];
         }
     );
-    this.getPosts();
   }
 
   getPosts(){
       this.httpService.get(`land_posts?${this.query}&land=${this.land.id}`).subscribe((res) => {
           this.posts = res;
-          this.posts.length = 35;
+          console.log(res);
+          if (this.posts.length >= 30) {
+              this.posts.length += (5 - this.posts.length % 5);
+          }
+          else {
+              this.posts.length = 30;
+          }
       });
   }
 
   ionViewWillEnter(){
+      this.getPosts();
+
       this.httpService.get('confs/1').subscribe((res) => {
           this.data.changeMessage({conf: res});
       });
