@@ -6,6 +6,8 @@ major:
 minor:
   - pay pass
   - del report timeout
+  - event for reportUpdate
+  - apply archive
 
 question:
 
