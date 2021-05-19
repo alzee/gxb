@@ -5,6 +5,7 @@ import { StorageService } from '../services/storage.service';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-myposts',
@@ -44,6 +45,7 @@ export class MypostsPage implements OnInit {
   ];
 
   constructor(
+      private toastService: ToastService,
       private storageService: StorageService,
       private httpService: HttpService,
       private router: Router,
@@ -152,6 +154,19 @@ export class MypostsPage implements OnInit {
   }
 
   async stop(i) {
+      const t = this.tasks[i];
+      if (t.wip > 0) {
+          this.toastService.presentToast('有进行中的申请，不能下架');
+          return;
+      }
+      if (t.preReview > 0) {
+          this.toastService.presentToast('有验收中的申请，不能下架');
+          return;
+      }
+      if (t.failed > 0) {
+          this.toastService.presentToast('有维权中的申请，不能下架');
+          return;
+      }
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: '下架任务！',
@@ -173,7 +188,7 @@ export class MypostsPage implements OnInit {
             const data = {
                 status: '/api/statuses/4'
             };
-            this.httpService.patch('tasks/' + this.tasks[i].id, data).subscribe((res) => {
+            this.httpService.patch('tasks/' + t.id, data).subscribe((res) => {
                 this.tasks[i] = res;
             });
           }
