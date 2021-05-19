@@ -5,6 +5,7 @@ major:
   - 忘记密码
 minor:
   - pay pass
+  - del report timeout
 
 question:
 
