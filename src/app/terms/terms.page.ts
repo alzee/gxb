@@ -24,7 +24,6 @@ export class TermsPage implements OnInit {
     this.activeRoute.queryParams.subscribe((params: Params) => {
       this.id = parseInt(params.id, 10);
       this.httpService.get('nodes/' + this.id).subscribe((res) => {
-        console.log(res);
         this.node = res;
       });
     });
