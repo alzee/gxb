@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
   page = 1;
   bidQuery = 'page=1&itemsPerPage=1&order%5Bdate%5D=desc';
   taskQuery = 'status=2&order%5BstickyUntil%5D=desc';
-  newsQuery = 'page=1&itemsPerPage=3&type.id=3';
+  newsQuery = 'page=1&itemsPerPage=3&type=3&order%5Bid%5D=desc';
   infiniteScroll: IonInfiniteScroll;
   slideOpts = {
       autoplay: {
@@ -75,7 +75,6 @@ export class HomePage implements OnInit {
       });
       this.httpService.get(`nodes?${this.newsQuery}`).subscribe((res) => {
           this.news = res;
-          // console.log(res);
       });
       this.getTasks();
   }
