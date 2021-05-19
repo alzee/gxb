@@ -18,7 +18,7 @@ export class ReferPage implements OnInit {
   count1: number;
   count2: number;
   node: Data;
-  url = 'https://www.drgxb.com';
+  url = 'https://app.drgxb.com';
   userData = {
       id: 0
   };
