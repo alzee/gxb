@@ -23,7 +23,7 @@ export class TopicPage implements OnInit {
   }
 
   ionViewWillEnter(){
-      this.httpService.get('nodes?order%5Bid%5D=desc&type.id=2&approved=true').subscribe((res) => {
+      this.httpService.get('nodes?order%5Bid%5D=desc&type=2&approved=true').subscribe((res) => {
           this.posts = res;
           console.log(this.posts);
       });

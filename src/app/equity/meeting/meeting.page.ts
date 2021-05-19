@@ -18,7 +18,7 @@ export class MeetingPage implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.httpService.get('nodes?type.id=1').subscribe((res) => {
+      this.httpService.get('nodes?type=1').subscribe((res) => {
           this.posts = res;
           console.log(this.posts);
       });
