@@ -268,7 +268,7 @@ export class LandPage implements OnInit {
               note: '购买领地',
               amount: this.land.price / 100,
               data: {
-                  entityId: this.land.id,
+                  landId: this.land.id,
                   postData
               }
           };

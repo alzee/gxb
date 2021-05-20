@@ -13,36 +13,55 @@
       <ion-thumbnail slot="start">
         <img src="../assets/img/locate.png">
       </ion-thumbnail>
-      <ion-label>{{i.name}}</ion-label>
-      <ion-text slot="end" color="medium">{{i.updateAt | dateAgo}}</ion-text>
+      <ion-label>{{i.land.name}}</ion-label>
+      <ion-text slot="end" color="medium">{{i.date | dateAgo}}</ion-text>
     </ion-item>
     <div class="pk" (click)="buy(i)">
-      <div class="peer" *ngIf="i.owner">
+      <div class="peer" *ngIf="i.seller">
         <ion-thumbnail class="crown" slot="start">
           <img src="../assets/img/crown_gold.png">
         </ion-thumbnail>
         <ion-avatar slot="start">
-          <img [src]="url + i.owner.avatar">
+          <img [src]="url + i.seller.avatar">
         </ion-avatar>
-        <ion-text class="name">{{i.owner.username}}</ion-text>
+        <ion-text class="name">{{i.seller.username}}</ion-text>
         <ion-text color="medium">原购买价格</ion-text>
         <ion-text class="price">{{i.prePrice / 100}}</ion-text>
       </div>
+      <ng-container *ngIf="i.buyer">
       <div class="vs">
-        <ion-button fill="outline" disabled="true" color="danger" size="small">调整价格</ion-button>
+        <ion-button fill="outline" disabled="true" color="danger" size="small">出售</ion-button>
         <ion-icon name="navigate" color="danger"></ion-icon>
       </div>
-      <div class="peer" *ngIf="i.owner">
+      <div class="peer">
         <ion-thumbnail class="crown" slot="start">
           <img src="../assets/img/crown_gold.png">
         </ion-thumbnail>
         <ion-avatar slot="start">
-          <img [src]="url + i.owner.avatar">
+          <img [src]="url + i.buyer.avatar">
         </ion-avatar>
-        <ion-text class="name">{{i.owner.username}}</ion-text>
+        <ion-text class="name">{{i.buyer.username}}</ion-text>
         <ion-text color="medium">现出售价格</ion-text>
         <ion-text class="price">{{i.price / 100}}</ion-text>
       </div>
+      </ng-container>
+      <ng-container *ngIf="!i.buyer">
+      <div class="vs">
+        <ion-button fill="outline" disabled="true" color="success" size="small">调整价格</ion-button>
+        <ion-icon name="navigate" color="danger"></ion-icon>
+      </div>
+      <div class="peer">
+        <ion-thumbnail class="crown" slot="start">
+          <img src="../assets/img/crown_gold.png">
+        </ion-thumbnail>
+        <ion-avatar slot="start">
+          <img [src]="url + i.seller.avatar">
+        </ion-avatar>
+        <ion-text class="name">{{i.seller.username}}</ion-text>
+        <ion-text color="medium">现出售价格</ion-text>
+        <ion-text class="price">{{i.price / 100}}</ion-text>
+      </div>
+      </ng-container>
     </div>
   </div>
 

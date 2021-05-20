@@ -59,7 +59,7 @@ export class HallPage implements OnInit {
           note: this.orderNote,
           amount: i.price / 100,
           data: {
-              entityId: i.id,
+              id: i.id,
               postData
           }
       };
@@ -80,9 +80,8 @@ export class HallPage implements OnInit {
   }
 
   getSales(){
-      this.httpService.get(`lands?page=${this.page}&itemsPerPage=10&forSale=true`).subscribe((res) => {
+      this.httpService.get(`land_trades?page=${this.page}&itemsPerPage=10&order%5Bdate%5D=desc&order%5Bid%5D=desc`).subscribe((res) => {
           this.sales = [...this.sales, ...res];
-          console.log(res);
       });
   }
 }

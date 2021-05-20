@@ -8,6 +8,7 @@ minor:
   - del report timeout
   - event for reportUpdate
   - apply archive
+  - bid refund
 
 question:
 
