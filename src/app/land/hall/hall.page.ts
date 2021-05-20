@@ -46,8 +46,8 @@ export class HallPage implements OnInit {
   }
 
   buy(i){
-      if (i.owner && i.owner.id === this.userData.id) {
-          this.toastService.presentToast('您拥有领地 - ' + i.name);
+      if (i.land.owner && i.land.owner.id === this.userData.id) {
+          this.toastService.presentToast('您拥有领地 - ' + i.land.name);
           return;
       }
       const postData = {
@@ -82,6 +82,7 @@ export class HallPage implements OnInit {
   getSales(){
       this.httpService.get(`land_trades?page=${this.page}&itemsPerPage=10&order%5Bdate%5D=desc&order%5Bid%5D=desc`).subscribe((res) => {
           this.sales = [...this.sales, ...res];
+          console.log(res);
       });
   }
 }
