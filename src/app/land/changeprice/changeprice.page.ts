@@ -45,9 +45,7 @@ export class ChangepricePage implements OnInit {
   changePrice(){
     console.log(this.newPrice);
     const data = {
-      price: +this.newPrice,
-      forSale: true,
-      updateAt: new Date()
+      price: +this.newPrice
     };
     this.httpService.patch('lands/' + this.id, data).subscribe((res) => {
       console.log(res);
