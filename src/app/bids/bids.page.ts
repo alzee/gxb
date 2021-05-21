@@ -13,25 +13,30 @@ interface Data {
 export class BidsPage implements OnInit {
   bids = [];
   date: Date;
-  buyItNow: number;
+  buyNow: number;
   today: string;
   min: number;
+  conf: Data;
   query = 'page=1&itemsPerPage=1&order%5Bdate%5D=desc';
   node: Data;
 
   constructor(
       private httpService: HttpService
   ) {
-      this.buyItNow = 99;
       this.date = new Date();
       this.today = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
-      this.min = 19;
   }
 
   ngOnInit() {
-          this.httpService.get('nodes/10').subscribe((res) => {
-              this.node = res;
-          });
+      this.httpService.get('nodes/10').subscribe((res) => {
+          this.node = res;
+      });
+      this.httpService.get('confs/1').subscribe((res) => {
+          this.conf = res;
+          this.min = this.conf.bidStart / 100;
+          this.buyNow = this.conf.buyNow / 100;
+
+      });
   }
 
   ionViewWillEnter(){

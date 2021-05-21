@@ -25,8 +25,9 @@ export class OfferPage implements OnInit {
   myBid: number;
   post: number;
   min: number;
-  step: number;
-  buyNowPrice = 99;
+  increment: number;
+  buyNow: number;
+  conf: Data;
   buyOut = false;
   userData: Data;
   message: Data;
@@ -45,20 +46,24 @@ export class OfferPage implements OnInit {
   ) {
       this.date = new Date();
       this.today = this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate();
-      this.min = 19;
-      this.step = 5;
   }
 
   ngOnInit() {
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
           this.httpService.get(`tasks?${this.taskQuery}&owner.id=${this.userData.id}`).subscribe((res1) => {
-              console.log(res1);
               this.myposts = res1;
           });
       });
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.position = parseInt(params.id, 10);
+      });
+      this.httpService.get('confs/1').subscribe((res) => {
+          this.conf = res;
+          this.min = this.conf.bidStart / 100;
+          this.increment = this.conf.bidIncrement / 100;
+          this.buyNow = this.conf.buyNow / 100;
+
       });
       this.httpService.get(
           `bids?${this.bidQuery}&position=${this.position}&date%5Bafter%5D=${this.today}`
@@ -66,7 +71,7 @@ export class OfferPage implements OnInit {
         console.log(res);
         this.bids = res;
         if (this.bids.length > 0) {
-            this.min = this.bids[0].price / 100 + this.step;
+            this.min = this.bids[0].price / 100 + this.increment;
             if (this.bids[0].isBuyNow) {
                 this.buyOut = true;
             }
@@ -85,7 +90,7 @@ export class OfferPage implements OnInit {
 
   bid(isBuyNow: boolean){
     if (isBuyNow) {
-        this.myBid = this.buyNowPrice;
+        this.myBid = this.buyNow;
     }
     const postData = {
         taskId: this.post,
