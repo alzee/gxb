@@ -51,6 +51,7 @@ export class CollectPage implements OnInit {
       });
 
       this.httpService.get(`gxbs?${this.query}&user.id=${this.uid}`).subscribe((res2) => {
+          console.log(res2);
           this.hists = res2;
           if (this.hists[0]){
               if (new Date(this.hists[0].date).setHours(0, 0, 0, 0) !== new Date().setHours(0, 0, 0, 0)
@@ -58,6 +59,9 @@ export class CollectPage implements OnInit {
                  ){
                   this.collected = false;
               }
+          }
+          else {
+              this.collected = false;
           }
       });
     });
