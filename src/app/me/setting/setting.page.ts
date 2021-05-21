@@ -8,6 +8,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Platform, AlertController } from '@ionic/angular';
 import { ToastService } from '../../services/toast.service';
 import { AppVersion } from '@ionic-native/app-version/ngx';
+import { Wechat } from '@ionic-native/wechat/ngx';
 
 interface Data {
     [propName: string]: any;
@@ -31,6 +32,7 @@ export class SettingPage implements OnInit {
 
   constructor(
         private appVersion: AppVersion,
+        private wechat: Wechat,
         public alertController: AlertController,
         private platform: Platform,
         private authService: AuthService,
@@ -127,5 +129,49 @@ export class SettingPage implements OnInit {
               console.log('install failed:', reason2);
           }
       );
+  }
+
+  auth() {
+      /*
+      const r = {
+          code: '0012XfGa19hM3B0L5kHa1WAm8A22XfGk',
+          uid: this.userData.id
+      };
+      this.httpService.post('wxauth', r).subscribe((res1) => {
+          console.log(res1);
+          this.wxuserinfo = res1;
+          this.user.avatar = '/media/avatar/' + this.userData.id + '.jpg'
+      });
+      */
+
+      const scope = "snsapi_userinfo";
+      const state = "_" + (+new Date());
+      this.wechat.auth(scope, state).then((res) => {
+          this.authCode = res;
+          console.log('========Begin===========');
+          console.log('code is:', this.authCode.code);
+          console.log('errCode is:', this.authCode.ErrCode);
+          console.log('state is:', this.authCode.state);
+          console.log('lang is:', this.authCode.lang);
+          console.log('conntry is:', this.authCode.country);
+          console.log('========End===========');
+          const postData = {
+              code: this.authCode.code,
+              uid: this.userData.id
+          };
+          this.httpService.post('wxauth', postData).subscribe((res1) => {
+              console.log('wxuserinfo: ', res1);
+              this.wxuserinfo = res1;
+              console.log('========Begin===========');
+              console.log('img is:', this.wxuserinfo.headimgurl);
+              console.log('nick is:', this.wxuserinfo.nickname);
+              console.log('openid is:', this.wxuserinfo.openid);
+              console.log('unionid is:', this.wxuserinfo.unionid);
+              console.log('========End===========');
+              this.user.avatar = '/media/avatar/' + this.userData.id + '.jpg'
+          });
+      }, reason => {
+          console.log('failed: ', reason);
+      });
   }
 }

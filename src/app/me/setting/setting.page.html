@@ -8,10 +8,21 @@
 </ion-header>
 
 <ion-content color="light" *ngIf="user">
+  <ng-template>
   <input class="ion-hide" accept="image/*" type="file" (change)="uploadPhoto($event)" #fileUpload>
   <ion-item class="avatar">
     <ion-text slot="start">头像</ion-text>
     <ion-item slot="end" (click)="fileUpload.click()">
+      <ion-avatar>
+        <img [src]="url + user.avatar">
+      </ion-avatar>
+    </ion-item>
+  </ion-item>
+  </ng-template>
+
+  <ion-item class="avatar" button="true" (click)="auth()">
+    <ion-text slot="start">头像</ion-text>
+    <ion-item slot="end">
       <ion-avatar>
         <img [src]="url + user.avatar">
       </ion-avatar>

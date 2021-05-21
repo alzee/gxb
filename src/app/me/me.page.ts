@@ -6,7 +6,6 @@ import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { DataService } from '../services/data.service';
-import { Wechat } from '@ionic-native/wechat/ngx';
 
 interface Data {
     [propName: string]: any;
@@ -110,7 +109,6 @@ export class MePage implements OnInit {
   ];
 
   constructor(
-      private wechat: Wechat,
       public navCtrl: NavController,
       private router: Router,
       private data: DataService,
@@ -127,6 +125,7 @@ export class MePage implements OnInit {
           (res) => {
               this.userData = res;
               this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
+                  console.log(res1);
                   this.user = res1;
                   this.user.total = (this.user.earnings + this.user.topup + this.user.frozen) / 100;
                   this.user.availableBalance = (this.user.earnings + this.user.topup) / 100;
@@ -156,43 +155,5 @@ export class MePage implements OnInit {
   go(){
       this.navCtrl.navigateForward('/topup');
       // this.navCtrl.navigateRoot('/topup');
-  }
-
-  auth() {
-      /*
-      const r = {
-          code: '001TmIGa1Uth3B0CiVGa1D7UEs3TmIGB',
-          uid: this.userData.id
-      };
-          this.httpService.post('wxauth', r).subscribe((res1) => {
-              console.log(res1);
-              this.wxuserinfo = res1;
-              this.user.avatar = this.wxuserinfo.headimgurl;
-          });
-         */
-
-      const scope = "snsapi_userinfo";
-      const state = "_" + (+new Date());
-      this.wechat.auth(scope, state).then((res) => {
-          this.authCode = res;
-          /*
-          console.log('========Begin===========');
-          console.log('code is:', this.authCode.code);
-          console.log('errCode is:', this.authCode.ErrCode);
-          console.log('state is:', this.authCode.state);
-          console.log('land is:', this.authCode.lang);
-          console.log('conntry is:', this.authCode.country);
-          console.log('========End===========');
-         */
-          const postData = {
-              code: this.authCode.code,
-              uid: this.userData.id
-          };
-          this.httpService.post('wxauth/', postData).subscribe((res1) => {
-              console.log(res1);
-          });
-      }, reason => {
-          console.log('failed: ', reason);
-      });
   }
 }
