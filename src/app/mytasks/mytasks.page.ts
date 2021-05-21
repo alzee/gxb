@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class MytasksPage implements OnInit {
   applies = [];
-  seg = 0;
+  seg = 11;
   page = 1;
   userData = {
       id: 0

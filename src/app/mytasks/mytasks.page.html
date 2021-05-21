@@ -10,7 +10,7 @@
 
 <ion-content>
   <ion-toolbar>
-    <ion-segment (ionChange)="segmentChanged($event)" value="0">
+    <ion-segment (ionChange)="segmentChanged($event)" value="11">
       <ion-segment-button [value]="i.id" *ngFor="let i of statuses">
         <ion-label>{{i.label}}</ion-label>
       </ion-segment-button>
