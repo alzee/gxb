@@ -29,6 +29,8 @@ export class SettingPage implements OnInit {
   id: number;
   updateUrl = this.env.updateUrl;
   ver: string;
+  authCode: Data;
+  wxuserinfo: Data;
 
   constructor(
         private appVersion: AppVersion,
@@ -135,12 +137,12 @@ export class SettingPage implements OnInit {
       /*
       const r = {
           code: '0012XfGa19hM3B0L5kHa1WAm8A22XfGk',
-          uid: this.userData.id
+          uid: this.user.id
       };
       this.httpService.post('wxauth', r).subscribe((res1) => {
           console.log(res1);
           this.wxuserinfo = res1;
-          this.user.avatar = '/media/avatar/' + this.userData.id + '.jpg'
+          this.user.avatar = '/media/avatar/' + this.user.id + '.jpg'
       });
       */
 
@@ -157,7 +159,7 @@ export class SettingPage implements OnInit {
           console.log('========End===========');
           const postData = {
               code: this.authCode.code,
-              uid: this.userData.id
+              uid: this.user.id
           };
           this.httpService.post('wxauth', postData).subscribe((res1) => {
               console.log('wxuserinfo: ', res1);
@@ -168,7 +170,7 @@ export class SettingPage implements OnInit {
               console.log('openid is:', this.wxuserinfo.openid);
               console.log('unionid is:', this.wxuserinfo.unionid);
               console.log('========End===========');
-              this.user.avatar = '/media/avatar/' + this.userData.id + '.jpg'
+              this.user.avatar = '/media/avatar/' + this.user.id + '.jpg'
           });
       }, reason => {
           console.log('failed: ', reason);

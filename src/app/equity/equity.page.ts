@@ -35,7 +35,7 @@ export class EquityPage implements OnInit {
     },
     {
       link: '/equity/ranking',
-      img: '../assets/img/market.png',
+      img: '../assets/img/crown_gold.png',
       name: '排行榜'
     }
   ];

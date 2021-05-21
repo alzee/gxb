@@ -13,7 +13,6 @@ minor:
 question:
 
 feedback:
-  - 微信头像昵称
   - 任务关注
 
 # vim:ft=yaml
