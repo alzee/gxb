@@ -57,12 +57,12 @@ export class OccupyPage implements OnInit {
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.landId = parseInt(params.id, 10);
           if (this.landId === 1) {
-              this.priceMin = this.conf.mainlandMinPrice;
-              this.daysMin = this.conf.mainlandMinDays;
+              this.priceMin = this.conf.mainCellMinPrice;
+              this.daysMin = this.conf.mainCellMinDays;
           }
           else {
-              this.priceMin = this.conf.landMinPrice;
-              this.daysMin = this.conf.landMinDays;
+              this.priceMin = this.conf.cellMinPrice;
+              this.daysMin = this.conf.cellMinDays;
           }
       });
 
