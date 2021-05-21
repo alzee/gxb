@@ -6,16 +6,14 @@ major:
 minor:
   - pay pass
   - del report timeout
+
   - event for reportUpdate
   - apply archive
-  - bid refund
 
 question:
 
 feedback:
   - 微信头像昵称
   - 任务关注
-
-  - land hall
 
 # vim:ft=yaml
