@@ -19,8 +19,6 @@ export class MyPage implements OnInit {
   hists = [];
   total: number;
   price: number;
-  priceMax: number;
-  priceMin: number;
   conf: Data;
   userData: Data;
   user: Data;
@@ -50,8 +48,6 @@ export class MyPage implements OnInit {
       this.httpService.get('confs/1').subscribe((res) => {
           this.conf = res;
           this.price = this.conf.equityPrice;
-          this.priceMax = this.conf.equityPriceMax;
-          this.priceMin = this.conf.equityPriceMin;
           console.log(res);
       });
       this.httpService.get(`equity_trades?${this.query}&seller=${this.userData.id}`).subscribe((res) => {
