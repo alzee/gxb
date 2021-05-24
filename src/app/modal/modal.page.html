@@ -1,24 +1,7 @@
 <ion-item>
-<ion-text>请输入支付密码</ion-text>
+<ion-title>请输入支付密码</ion-title>
 </ion-item>
+<ng-otp-input class="ion-text-center" (onInputChange)="onOtpChange($event)"  [config]="config"></ng-otp-input>
 <ion-item>
-<ng-template>
-  <ion-input maxlength="1" type="password" (ionInput)="onDigitInput($event)"></ion-input>
-  <ion-input maxlength="1" type="password" (ionInput)="onDigitInput($event)"></ion-input>
-  <ion-input maxlength="1" type="password" (ionInput)="onDigitInput($event)"></ion-input>
-  <ion-input maxlength="1" type="password" (ionInput)="onDigitInput($event)"></ion-input>
-  <ion-input maxlength="1" type="password" (ionInput)="onDigitInput($event)"></ion-input>
-  <ion-input maxlength="1" type="password" (ionInput)="onDigitInput($event)"></ion-input>
-</ng-template>
-<ng-template>
-  <input maxlength="1" type="password" (keyup)="onDigitInput($event)">
-  <input maxlength="1" type="password" (keyup)="onDigitInput($event)">
-  <input maxlength="1" type="password" (keyup)="onDigitInput($event)">
-  <input maxlength="1" type="password" (keyup)="onDigitInput($event)">
-  <input maxlength="1" type="password" (keyup)="onDigitInput($event)">
-  <input maxlength="1" type="password" (keyup)="onDigitInput($event)">
-</ng-template>
 </ion-item>
-<ng-template>
-  <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="config"></ng-otp-input>
-</ng-template>
+

@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { HttpService } from '../services/http.service';
 import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
-import { Platform, LoadingController, NavController } from '@ionic/angular';
+import { AlertController, Platform, LoadingController, NavController } from '@ionic/angular';
 import { Wechat } from '@ionic-native/wechat/ngx';
 import { ToastService } from '../services/toast.service';
 import { ModalController } from '@ionic/angular';
@@ -26,6 +26,7 @@ export class PayPage implements OnInit {
   prevUrl: string;
   subscription: Subscription;
   message: Data;
+  resp: Data;
   url: string;
   httpMethod: string;
   postData: Data;
@@ -38,6 +39,7 @@ export class PayPage implements OnInit {
   coupon: Data;
 
   constructor(
+      public alertController: AlertController,
       public modalController: ModalController,
       public navCtrl: NavController,
       public loadingController: LoadingController,
@@ -90,7 +92,6 @@ export class PayPage implements OnInit {
   }
 
   pay() {
-    // this.presentModal();
     this.orderData.uid = this.userData.id;
     this.orderData.method = this.payMethod;
     this.httpService.post('order', this.orderData).subscribe((res) => {
@@ -152,6 +153,48 @@ export class PayPage implements OnInit {
       component: ModalPage,
       cssClass: 'my-custom-class'
     });
+    modal.onWillDismiss().then(data => {
+        const d = data;
+        if (typeof d.data !== 'undefined') {
+            if (d.data.passok) {
+                this.pay();
+            }
+        }
+    });
     return await modal.present();
+  }
+
+  tryMethod() {
+      switch (this.payMethod) {
+          case 0:
+              this.httpService.get('paypassnull/' + this.userData.id ).subscribe((res) => {
+                  this.resp = res;
+                  if (this.resp.code === 0) {
+                      this.mkpaypass();
+                  }
+                  else {
+                      this.presentModal();
+                  }
+              });
+              break;
+          case 1:
+              this.pay();
+              break;
+      }
+  }
+
+  async mkpaypass(){
+      const alert = await this.alertController.create({
+          header: '请先创建支付密码',
+          message: '您还未创建支付密码',
+          buttons: [{
+              text: '确定',
+              handler: () => {
+                  this.router.navigate(['/chpaypass']);
+              }
+          }],
+      });
+
+      await alert.present();
   }
 }
