@@ -24,6 +24,7 @@
 
   <ion-item class="hist">
     <ion-list>
+      <ng-template>
       <ion-list-header>
         <ion-item>
           <ion-item>
@@ -32,6 +33,7 @@
           </ion-item>
         </ion-item>
       </ion-list-header>
+      </ng-template>
       <ng-container *ngFor="let i of hists">
       <ion-item class="list-item" *ngIf="seg == 0 || (seg == 1 && i.type == 19) || (seg == 2 && i.type == 50)">
         <ion-thumbnail slot="start">
