@@ -146,8 +146,8 @@ export class SettingPage implements OnInit {
       });
       */
 
-      const scope = "snsapi_userinfo";
-      const state = "_" + (+new Date());
+      const scope = 'snsapi_userinfo';
+      const state = '_' + (+new Date());
       this.wechat.auth(scope, state).then((res) => {
           this.authCode = res;
           console.log('========Begin===========');
@@ -170,7 +170,7 @@ export class SettingPage implements OnInit {
               console.log('openid is:', this.wxuserinfo.openid);
               console.log('unionid is:', this.wxuserinfo.unionid);
               console.log('========End===========');
-              this.user.avatar = '/media/avatar/' + this.user.id + '.jpg'
+              this.user.avatar = '/media/avatar/' + this.user.id + '.jpg';
           });
       }, reason => {
           console.log('failed: ', reason);

@@ -17,6 +17,7 @@ export class MytasksPage implements OnInit {
   userData = {
       id: 0
   };
+  query = `itemsPerPage=7&order%5Bid%5D=desc`;
   envs = environment;
 
   public statuses = [
@@ -63,7 +64,7 @@ export class MytasksPage implements OnInit {
   }
 
   getMyTasks() {
-      this.httpService.get(`applies?page=${this.page}&itemsPerPage=7&order%5Bid%5D=desc&applicant.id=${this.userData.id}`).subscribe((res) => {
+      this.httpService.get(`applies?${this.query}&page=${this.page}&applicant.id=${this.userData.id}`).subscribe((res) => {
           this.applies = [...this.applies, ...res];
       });
   }

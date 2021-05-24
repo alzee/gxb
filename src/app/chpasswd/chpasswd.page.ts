@@ -45,7 +45,7 @@ export class ChpasswdPage implements OnInit {
   get oldPass(){
       return this.form.get('oldPass');
   }
-  
+
   get newPass(){
       return this.form.get('newPass');
   }

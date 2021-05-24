@@ -17,6 +17,7 @@ interface Data {
 export class ModalPage implements OnInit {
   userData: Data;
   otp: string;
+  resp: Data;
   showOtpComponent = true;
   @ViewChild('ngOtpInput', { static: false}) ngOtpInput: any;
   config = {

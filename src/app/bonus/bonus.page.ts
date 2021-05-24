@@ -22,6 +22,7 @@ export class BonusPage implements OnInit {
   subtotal: number;
   user: Data;
   page = 1;
+  query = 'itemsPerPage=10&type=59&order%5Bdate%5D=desc';
   hists: Array<Data>;
 
   constructor(
@@ -36,7 +37,7 @@ export class BonusPage implements OnInit {
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
         this.userData = res;
-        this.httpService.get(`finances?page=${this.page}&itemsPerPage=10&user=${this.userData.id}&type=59&order%5Bdate%5D=desc`).subscribe((res1) => {
+        this.httpService.get(`finances?${this.query}&page=${this.page}&user=${this.userData.id}`).subscribe((res1) => {
             this.hists = res1;
         });
     });

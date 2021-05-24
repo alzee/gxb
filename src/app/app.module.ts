@@ -14,7 +14,7 @@ import { Wechat } from '@ionic-native/wechat/ngx';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
-import { NgOtpInputModule } from  'ng-otp-input';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 @NgModule({
   declarations: [AppComponent],

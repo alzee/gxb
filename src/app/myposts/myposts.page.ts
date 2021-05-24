@@ -167,35 +167,35 @@ export class MypostsPage implements OnInit {
           this.toastService.presentToast('有维权中的申请，不能下架');
           return;
       }
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: '下架任务！',
-      message: '下架后任务无法再接受新的申请。<strong>下架后无法恢复！</strong>',
-      buttons: [
-        {
-          text: '取消',
-          role: 'cancel',
-          cssClass: 'danger',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: '确认',
-          cssClass: 'danger',
-          handler: () => {
-            console.log('Confirm Okay');
-            console.log('pause');
-            const data = {
-                status: '/api/statuses/4'
-            };
-            this.httpService.patch('tasks/' + t.id, data).subscribe((res) => {
-                this.tasks[i] = res;
-            });
-          }
-        }
-      ]
-    });
-    await alert.present();
+      const alert = await this.alertController.create({
+          cssClass: 'my-custom-class',
+          header: '下架任务！',
+          message: '下架后任务无法再接受新的申请。<strong>下架后无法恢复！</strong>',
+          buttons: [
+              {
+                  text: '取消',
+                  role: 'cancel',
+                  cssClass: 'danger',
+                  handler: (blah) => {
+                      console.log('Confirm Cancel: blah');
+                  }
+              }, {
+                  text: '确认',
+                  cssClass: 'danger',
+                  handler: () => {
+                      console.log('Confirm Okay');
+                      console.log('pause');
+                      const data = {
+                          status: '/api/statuses/4'
+                      };
+                      this.httpService.patch('tasks/' + t.id, data).subscribe((res) => {
+                          this.tasks[i] = res;
+                      });
+                  }
+              }
+          ]
+      });
+      await alert.present();
   }
 
   async showOpinion(i){

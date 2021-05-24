@@ -27,11 +27,11 @@ export class MePage implements OnInit {
       img: '../assets/img/bag.png',
       name: '发布管理',
     },
-    //{
+    // {
     //  link: '/mytasks',
     //  img: '../assets/img/record.png',
     //  name: '任务收藏',
-    //},
+    // },
     {
       link: '/mytasks',
       img: '../assets/img/flag.png',
