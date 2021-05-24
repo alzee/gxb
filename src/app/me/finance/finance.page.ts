@@ -16,7 +16,8 @@ export class FinancePage implements OnInit {
   seg = 0;
   userData: Data;
   month: string;
-  query = 'page=1&itemsPerPage=30&order%5Bdate%5D=desc&status=5';
+  page = 1;
+  query = 'itemsPerPage=15&order%5Bdate%5D=desc&status=5';
   hists = [];
 
   constructor(
@@ -31,9 +32,7 @@ export class FinancePage implements OnInit {
     this.storageService.get(AuthConstants.AUTH).then(
       (res) => {
         this.userData = res;
-        this.httpService.get(`finances?${this.query}&user=${this.userData.id}`).subscribe((res1) => {
-          this.hists = res1;
-        });
+        this.getFinances();
       });
   }
 
@@ -44,5 +43,20 @@ export class FinancePage implements OnInit {
   segmentChanged(ev: any) {
     this.seg = ev.detail.value;
     console.log('Segment changed', this.seg);
+  }
+
+  getFinances() {
+      this.httpService.get(`finances?page=${this.page}&${this.query}&user=${this.userData.id}`).subscribe((res) => {
+          this.hists = [...this.hists, ...res];
+      });
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+      this.page += 1;
+      this.getFinances();
+    }, 500);
   }
 }
