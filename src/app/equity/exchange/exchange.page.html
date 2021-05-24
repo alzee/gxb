@@ -23,8 +23,8 @@
       </div>
     </ion-item>
     <ion-item>
-      <ion-text color="medium" slot="start">剩余 {{remain}}</ion-text>
-      <ion-text color="medium" slot="end">已取 {{taken}}</ion-text>
+      <ion-text color="medium" slot="start">剩余 {{total - exchanged}}</ion-text>
+      <ion-text color="medium" slot="end">已兑换 {{exchanged}}</ion-text>
     </ion-item>
     <ion-item>
       <ion-progress-bar color="warning" value="0.5"></ion-progress-bar>

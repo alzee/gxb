@@ -16,8 +16,7 @@ interface Data {
 export class ExchangePage implements OnInit {
   rate: number;
   total: number;
-  remain: number;
-  taken: number;
+  exchanged: number;
   equity: number;
   userData: Data;
   user: Data;
@@ -27,10 +26,7 @@ export class ExchangePage implements OnInit {
   constructor(
       private storageService: StorageService,
       private httpService: HttpService
-  ) {
-      this.remain = 0;
-      this.taken = 0;
-  }
+  ) {}
 
   ngOnInit() {
       this.storageService.get(AuthConstants.AUTH).then(
@@ -52,6 +48,7 @@ export class ExchangePage implements OnInit {
           console.log(res);
           this.conf = res;
           this.total = this.conf.equity;
+          this.exchanged = this.conf.exchanged;
           this.rate = this.conf.equityGXBRate;
       });
   }
