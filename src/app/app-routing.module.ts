@@ -152,6 +152,10 @@ const routes: Routes = [
   {
     path: 'friend',
     loadChildren: () => import('./friend/friend.module').then( m => m.FriendPageModule)
+  },
+  {
+    path: 'chpaypass',
+    loadChildren: () => import('./chpaypass/chpaypass.module').then( m => m.ChpaypassPageModule)
   }
 ];
 @NgModule({

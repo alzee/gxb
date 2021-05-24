@@ -3,25 +3,26 @@
     <ion-buttons slot="start">
       <ion-back-button color="dark" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>修改密码</ion-title>
+    <ion-title *ngIf="!isset">创建支付密码</ion-title>
+    <ion-title *ngIf="isset">修改支付密码</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <form (ngSubmit)="chpass()" [formGroup]="form">
-  <ion-item>
+  <ion-item *ngIf="isset">
     <ion-label>原密码</ion-label>
-    <ion-input required formControlName="oldPass" type="password" placeholder="请输入原密码"> </ion-input>
+    <ion-input required formControlName="oldPass" type="password" placeholder="请输入原支付密码"> </ion-input>
   </ion-item>
 
 <ng-container *ngIf="newPass.invalid && (newPass.dirty || newPass.touched)">
-  <ion-label class="hint" color="danger" *ngIf="newPass.errors.required"> * 请输入新密码 </ion-label>
-  <ion-label class="hint" color="danger" *ngIf="newPass.errors.minlength"> * 密码8至16位 </ion-label>
-  <ion-label class="hint" color="danger" *ngIf="newPass.errors.pattern"> * 必须包含大写字母、小写字母及数字 </ion-label>
+  <ion-label class="hint" color="danger" *ngIf="newPass.errors.required"> * 请输入6位新密码 </ion-label>
+  <ion-label class="hint" color="danger" *ngIf="newPass.errors.minlength"> * 请输入6位新密码 </ion-label>
+  <ion-label class="hint" color="danger" *ngIf="newPass.errors.pattern"> * 支付密码只能包含数字 </ion-label>
 </ng-container>
   <ion-item>
     <ion-label>新密码</ion-label>
-    <ion-input required minlength='8' maxlength="16" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]+$" class="input" name="password" formControlName="newPass" type="password" placeholder="请输入新密码"> </ion-input>
+    <ion-input required minlength='6' maxlength="6" pattern="^\d+$" class="input" name="password" formControlName="newPass" type="password" placeholder="请输入新密码"> </ion-input>
   </ion-item>
 
   <ion-label class="hint" color="danger" *ngIf="newPass1.value != newPass.value && (newPass1.dirty)"> * 新密码输入不一致 </ion-label>

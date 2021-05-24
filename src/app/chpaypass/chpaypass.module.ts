@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ChpasswdPageRoutingModule } from './chpasswd-routing.module';
+import { ChpaypassPageRoutingModule } from './chpaypass-routing.module';
 
-import { ChpasswdPage } from './chpasswd.page';
+import { ChpaypassPage } from './chpaypass.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { ChpasswdPage } from './chpasswd.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    ChpasswdPageRoutingModule
+    ChpaypassPageRoutingModule
   ],
-  declarations: [ChpasswdPage]
+  declarations: [ChpaypassPage]
 })
-export class ChpasswdPageModule {}
+export class ChpaypassPageModule {}
