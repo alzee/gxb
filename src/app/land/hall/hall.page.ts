@@ -50,6 +50,9 @@ export class HallPage implements OnInit {
           this.toastService.presentToast('您拥有领地 - ' + i.land.name);
           return;
       }
+      if (i.buyer) {
+          return;
+      }
       const postData = {
           price: i.price,
           buyer: this.userData.id
