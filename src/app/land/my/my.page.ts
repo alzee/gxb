@@ -45,7 +45,7 @@ export class MyPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.httpService.get('lands?page=1&itemsPerPage=30&owner.id=' + this.uid).subscribe((res1) => {
+    this.httpService.get('lands?page=1&itemsPerPage=30&order%5BupdatedAt%5D=desc&owner.id=' + this.uid).subscribe((res1) => {
       this.myLands = res1;
       console.log(res1);
     });
