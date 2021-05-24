@@ -198,6 +198,25 @@ export class MypostsPage implements OnInit {
     await alert.present();
   }
 
+  async showOpinion(i){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: '任务审核拒绝',
+      message: '原因: ' + i.opinion,
+      buttons: [
+        {
+          text: '确定',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   loadData(event) {
     setTimeout(() => {
       console.log('Done');

@@ -56,7 +56,7 @@
         </ion-grid>
       </div>
     </ion-item>
-    <ion-item class="actions">
+    <ion-item class="actions" *ngIf="i.status.id != 5">
       <ion-label color="medium" [routerLink]="['/applies']" [queryParams]="{task:i.id}" >验收<div *ngIf="i.preReview > 0">{{i.preReview}}</div></ion-label>
       <ion-label color="medium">
         <ion-text (click)="pause(j)" *ngIf="i.status.id == 2">暂停</ion-text>
@@ -66,6 +66,9 @@
       <ion-label color="medium"><ion-text *ngIf="i.status.id == 2" routerLink="/promo"  [queryParams]="{tid:i.id, title:i.title}">推荐</ion-text></ion-label>
       <ion-label color="medium" (click)="stop(j)" *ngIf="i.status.id != 4">下架</ion-label>
       <ion-label color="medium" *ngIf="i.status.id == 4">已下架</ion-label>
+    </ion-item>
+    <ion-item class="actions" *ngIf="i.status.id == 5">
+      <ion-label color="medium" (click)="showOpinion(i)">审核拒绝</ion-label>
     </ion-item>
   </ion-card>
   </ng-container>
