@@ -22,7 +22,6 @@ export class ApplyPage implements OnInit {
   uid: number;
   gxb: number;
   rate: number;
-  equityBefore: number;
   max: number;
   total: number;
   conf: Data;
@@ -45,14 +44,11 @@ export class ApplyPage implements OnInit {
       this.httpService.get('users/' + this.uid).subscribe((res1) => {
           this.userData = res1;
           this.gxb = this.userData.gxb;
-          this.equityBefore = this.userData.equity;
-          console.log(this.gxb);
           this.httpService.get('confs/1').subscribe((res2) => {
               this.conf = res2;
               this.rate = this.conf.equityGXBRate;
               this.max = this.gxb / this.rate;
               this.equity.setValidators([Validators.min(1), Validators.max(this.max), Validators.pattern('^[0-9]*$')]);
-              console.log(this.rate);
           });
       });
     });
@@ -92,16 +88,12 @@ export class ApplyPage implements OnInit {
           text: '确认',
           cssClass: 'danger',
           handler: () => {
-            // subtract gxb
-            const gxbAfter = this.gxb - this.equity.value * this.rate;
-            // add equity
-            const equityAfter = this.equityBefore + this.equity.value;
-            // subtract platform equity
-            const data = {
-                gxb: gxbAfter,
-                equity: equityAfter
+            const postData = {
+                gxb: this.equity.value * this.rate,
+                equity: this.equity.value,
+                user: '/api/users/' + this.userData.id
             };
-            this.httpService.patch('users/' + this.uid, data).subscribe((res) => {
+            this.httpService.post('exchanges', postData).subscribe((res) => {
                 console.log(res);
                 this.toastService.presentToast('兑换成功！');
                 this.router.navigate(['/equity/exchange']);
