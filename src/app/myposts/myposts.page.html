@@ -57,7 +57,7 @@
       </div>
     </ion-item>
     <ion-item class="actions" *ngIf="i.status.id != 5">
-      <ion-label color="medium" [routerLink]="['/applies']" [queryParams]="{task:i.id}" >验收<div *ngIf="i.preReview > 0">{{i.preReview}}</div></ion-label>
+      <ion-label color="medium" *ngIf="i.status.id != 1" [routerLink]="['/applies']" [queryParams]="{task:i.id}" >验收<div *ngIf="i.preReview > 0">{{i.preReview}}</div></ion-label>
       <ion-label color="medium">
         <ion-text (click)="pause(j)" *ngIf="i.status.id == 2">暂停</ion-text>
         <ion-text (click)="unpause(j)" *ngIf="i.status.id == 3">恢复</ion-text>
