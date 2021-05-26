@@ -1,11 +1,7 @@
 major:
-  - setting password
   - setting phone
-  - setting pay pass
   - 忘记密码
 minor:
-  - pay pass
-
   - apply archive
 
 question:

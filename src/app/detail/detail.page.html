@@ -68,12 +68,14 @@
       <ion-text class="uid" color="medium"><p>{{task.owner.id}}</p></ion-text>
     </div>
     <div slot="end" class="actions">
+      <ng-template>
       <ion-thumbnail>
         <img src="../assets/img/favorite.png">
       </ion-thumbnail>
       <ion-text color="medium">
         收藏任务
       </ion-text>
+      </ng-template>
       <ion-button class="follow" color="danger" shape="round">关注TA</ion-button>
     </div>
   </ion-item>
