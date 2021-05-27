@@ -1,8 +1,8 @@
 major:
-  - setting phone
   - 忘记密码
 minor:
   - apply archive
+  - ban user
 
 question:
 

@@ -1,9 +1,37 @@
-ion-item{
-    ion-label{
-        width: 100px;
-    }
+.input{
+  background: #FAFAFA;
+  opacity: 1;
+  border-radius: 8px;
+  position: relative;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  --padding-end: 15px;
+  --padding-start: 15px !important;
+  --placeholder-color: #B2B2B2;
 }
-.hint{
+.password{
+  margin-bottom: 32px;
+}
+ion-label{
   display: block;
   font-size: 12px;
+}
+ion-button.sms{
+  position: absolute;
+  right: 0;
+  --background: #FAFAFA;
+  --background-activated: #FAFAFA;
+  --color: black;
+}
+.vcode{
+  --background: #FAFAFA;
+  --border-radius: 8px;
+  margin-bottom: 16px;
+  ion-input{
+    margin: 0;
+  }
+  ion-button{
+    //height: 40px;
+    margin: 0;
+  }
 }

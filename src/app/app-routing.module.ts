@@ -160,6 +160,10 @@ const routes: Routes = [
   {
     path: 'chphone',
     loadChildren: () => import('./chphone/chphone.module').then( m => m.ChphonePageModule)
+  },
+  {
+    path: 'resetpass',
+    loadChildren: () => import('./resetpass/resetpass.module').then( m => m.ResetpassPageModule)
   }
 ];
 @NgModule({

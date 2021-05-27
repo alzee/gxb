@@ -22,9 +22,11 @@
 <ion-icon name="eye" *ngIf="passType == 'text'" (click)="togglePassType()"></ion-icon>
 <ion-icon name="eye-off" *ngIf="passType == 'password'" (click)="togglePassType()"></ion-icon>
   </ion-item>
-  <ion-text class="small-links ion-text-end">
+  <ion-item class="resetpass">
+  <ion-text slot="end" class="small-links ion-text-end" routerLink="/resetpass">
     <p>忘记密码？</p>
   </ion-text>
+  </ion-item>
   <ion-button [disabled]="loginForm.invalid" expand="block" type="submit">登录</ion-button>
   </form>
 

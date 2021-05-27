@@ -4,6 +4,10 @@ form{
     --border-radius: 8px;
     --padding-end: 4px;
   }
+  ion-item.resetpass{
+    --background: #fff;
+    --padding-end: 0;
+  }
 }
 .input{
   background: #FAFAFA;

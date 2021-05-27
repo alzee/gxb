@@ -18,7 +18,7 @@
   <ion-label color="danger" *ngIf="phone.errors.pattern"> * 请输入正确的手机号 </ion-label>
 </ng-container>
   <ion-label color="danger" *ngIf="phone.valid && phoneDup == 1"> * 该手机号已注册 </ion-label>
-  <ion-input (ionChange)="checkPhoneDup()" required [readonly]="smsResp" inputmode="numeric" minlength='11' maxlength='11' pattern="^1[3-9]\d{9}$" class="input ion-margin-bottom" type="tel" name="phone" formControlName="phone" clearInput="true" placeholder="请输入您的手机号码"></ion-input>
+  <ion-input (ionChange)="checkPhoneDup()" required [readonly]="smsResp" inputmode="numeric" minlength='11' maxlength='11' pattern="^1[3-9]\d{9}$" class="input ion-margin-bottom" type="tel" name="phone" formControlName="phone" clearInput="true" placeholder="请输入新的手机号码"></ion-input>
 
   <ion-item class="vcode">
     <ion-input slot="start" [readonly]="!smsResp" inputmode="numeric" required minlength='6' maxlength='6' formControlName="vCode" name="vCode" class="input ion-margin-bottom" placeholder="验证码">
