@@ -14,7 +14,7 @@
         分红基金
       </ion-text>
       <ion-text color="light" class="amount">
-        {{ fund }}
+        {{ fund / 100 | currency:'CNY':'symbol-narrow'}}
       </ion-text>
     </div>
     <div slot="end">
