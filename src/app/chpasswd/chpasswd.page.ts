@@ -70,8 +70,7 @@ export class ChpasswdPage implements OnInit {
                   console.log(res1);
                   this.toastService.presentToast('密码已修改');
                   this.navCtrl.back();
-              }
-              );
+              });
           }
           else {
               this.toastService.presentToast('原密码输入错误');

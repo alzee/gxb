@@ -156,6 +156,10 @@ const routes: Routes = [
   {
     path: 'chpaypass',
     loadChildren: () => import('./chpaypass/chpaypass.module').then( m => m.ChpaypassPageModule)
+  },
+  {
+    path: 'chphone',
+    loadChildren: () => import('./chphone/chphone.module').then( m => m.ChphonePageModule)
   }
 ];
 @NgModule({
