@@ -175,7 +175,7 @@
     <ion-button [disabled]="form.invalid || guides[0].img == '' || reviews[0].img == ''" expand="full" size="large" class="preview" (click)="preview()">
       <ion-icon name="eye-outline"></ion-icon> 预览
     </ion-button>
-    <ion-button [disabled]="form.invalid || guides[0].img == '' || reviews[0].img == ''" expand="full" size="large" class="publish" type="submit">
+    <ion-button [disabled]="clicked || form.invalid || guides[0].img == '' || reviews[0].img == ''" expand="full" size="large" class="publish" type="submit">
       申请发布
     </ion-button>
   </ion-item>

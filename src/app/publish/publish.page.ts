@@ -36,6 +36,7 @@ export class PublishPage implements OnInit {
   orderType = 1;
   orderNote = '任务发布';
   coupon: Data;
+  clicked = false;
   hourOptions = [
       {
           time: 3,
@@ -290,6 +291,7 @@ export class PublishPage implements OnInit {
           cssClass: 'secondary',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
+            this.clicked = false;
           }
         }, {
           text: '确定',
@@ -337,6 +339,7 @@ export class PublishPage implements OnInit {
           cssClass: 'secondary',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
+            this.clicked = false;
           }
         }, {
           text: '确定',
@@ -378,6 +381,7 @@ export class PublishPage implements OnInit {
   }
 
   checkBalance(){
+      this.clicked = true;
       this.httpService.get('users/' + this.userData.id).subscribe((res) => {
           this.user = res;
           this.availableBalance = this.user.topup + this.user.earnings;
