@@ -39,12 +39,12 @@
     <ion-label>V{{i.level}}</ion-label>
     <ion-label *ngIf="i.taskLimit > 0">{{i.taskLimit}}</ion-label>
     <ion-label *ngIf="i.taskLimit == 0">无</ion-label>
-    <ion-label>{{i.postFee*100}}%</ion-label>
-    <ion-label>{{i.withdrawFee*100}}%</ion-label>
+    <ion-label>{{i.postFee|percent}}</ion-label>
+    <ion-label>{{i.withdrawFee|percent}}</ion-label>
     <ion-label>{{i.stickyPrice}}</ion-label>
     <ion-label>{{i.recommendPrice}}</ion-label>
-    <ion-label>{{i.landTradeRatio*100}}%</ion-label>
-    <ion-label>{{i.topupRatio*100}}%</ion-label>
+    <ion-label>{{i.landTradeRatio|percent}}</ion-label>
+    <ion-label>{{i.topupRatio|percent}}</ion-label>
     <ion-label>{{i.taskLeast}}</ion-label>
   </ion-item>
 </ion-item-group>
