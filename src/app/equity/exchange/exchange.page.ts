@@ -37,7 +37,7 @@ export class ExchangePage implements OnInit {
           });
       this.httpService.get('nodes/9').subscribe((res) => {
           this.node = res;
-          const msg = {node: this.node}
+          const msg = {node: this.node};
           this.data.changeMessage(msg);
       });
   }

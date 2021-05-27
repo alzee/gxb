@@ -22,6 +22,7 @@ export class ChpasswdPage implements OnInit {
   form: FormGroup;
   isReset = false;
   message: Data;
+  uid: number;
 
   constructor(
       public navCtrl: NavController,
@@ -37,12 +38,13 @@ export class ChpasswdPage implements OnInit {
       if (this.message.action === 'reset') {
           this.isReset = true;
       }
+      else {
+          this.storageService.get(AuthConstants.AUTH).then(
+              (res) => {
+                  this.userData = res;
+              });
+      }
 
-      this.storageService.get(AuthConstants.AUTH).then(
-          (res) => {
-              this.userData = res;
-          }
-      );
 
       this.form = this.formBuilder.group({
           oldPass: [''],
@@ -65,11 +67,13 @@ export class ChpasswdPage implements OnInit {
 
   chpass() {
       if (this.isReset) {
+          this.uid = this.message.uid;
           this.ch();
       }
       else {
+          this.uid = this.userData.id;
           const postData = {
-              uid: this.userData.id,
+              uid: this.uid,
               pass: this.oldPass.value,
               type: 0
           };
@@ -89,7 +93,7 @@ export class ChpasswdPage implements OnInit {
       const postData = {
           password: this.newPass.value
       };
-      this.httpService.patch('users/' + this.userData.id, postData).subscribe((res) => {
+      this.httpService.patch('users/' + this.uid, postData).subscribe((res) => {
           console.log(res);
           this.toastService.presentToast('密码已修改');
           this.navCtrl.back();

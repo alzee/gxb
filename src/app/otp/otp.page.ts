@@ -82,13 +82,13 @@ export class OtpPage implements OnInit {
       switch (this.chkcode()) {
           case 1:
               this.toastService.presentToast('请获取验证码');
-          break;
+              break;
           case 2:
               this.toastService.presentToast('验证码超时，请重新获取');
-          break;
+              break;
           case 3:
               this.toastService.presentToast('验证码错误');
-          break;
+              break;
           default:
               this.router.navigate(['/chpasswd'], {replaceUrl: true});
       }

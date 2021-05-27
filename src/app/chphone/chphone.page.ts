@@ -128,21 +128,20 @@ export class ChphonePage implements OnInit {
               switch (this.chkcode()) {
                   case 1:
                       this.toastService.presentToast('请获取验证码');
-                  break;
+                      break;
                   case 2:
                       this.toastService.presentToast('验证码超时，请重新获取');
-                  break;
+                      break;
                   case 3:
                       this.toastService.presentToast('验证码错误');
-                  break;
+                      break;
                   default:
                       const postData1 = {
-                      phone: this.phone.value
-                  };
+                          phone: this.phone.value
+                      };
                       this.httpService.patch('users/' + this.userData.id, postData1).subscribe((res1) => {
-                      console.log(res1);
-                      this.toastService.presentToast('手机号已修改');
-                      this.navCtrl.back();
+                          this.toastService.presentToast('手机号已修改');
+                          this.navCtrl.back();
                       });
               }
           }
