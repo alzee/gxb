@@ -5,6 +5,7 @@ import { StorageService } from '../services/storage.service';
 import { ToastService } from '../services/toast.service';
 import { ValidatorFn, AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import { DataService } from '../services/data.service';
 
 interface Data {
     [propName: string]: any;
@@ -19,16 +20,24 @@ export class ChpasswdPage implements OnInit {
   userData: Data;
   resp: Data;
   form: FormGroup;
+  isReset = false;
+  message: Data;
 
   constructor(
       public navCtrl: NavController,
       private formBuilder: FormBuilder,
       private httpService: HttpService,
       private toastService: ToastService,
-      private storageService: StorageService
+      private storageService: StorageService,
+      private data: DataService
   ) { }
 
   ngOnInit() {
+      this.data.currentMessage.subscribe(message => this.message = message);
+      if (this.message.action === 'reset') {
+          this.isReset = true;
+      }
+
       this.storageService.get(AuthConstants.AUTH).then(
           (res) => {
               this.userData = res;
@@ -55,27 +64,35 @@ export class ChpasswdPage implements OnInit {
   }
 
   chpass() {
-      const postData = {
-          uid: this.userData.id,
-          pass: this.oldPass.value,
-          type: 0
-      };
-      this.httpService.post('chkpass', postData).subscribe((res) => {
-          this.resp = res;
-          if (this.resp.code === 0) {
-              const postData1 = {
-                  password: this.newPass.value
-              };
-              this.httpService.patch('users/' + this.userData.id, postData1).subscribe((res1) => {
-                  console.log(res1);
-                  this.toastService.presentToast('密码已修改');
-                  this.navCtrl.back();
-              });
-          }
-          else {
-              this.toastService.presentToast('原密码输入错误');
-          }
+      if (this.isReset) {
+          this.ch();
       }
-      );
+      else {
+          const postData = {
+              uid: this.userData.id,
+              pass: this.oldPass.value,
+              type: 0
+          };
+          this.httpService.post('chkpass', postData).subscribe((res) => {
+              this.resp = res;
+              if (this.resp.code === 0) {
+                  this.ch();
+              }
+              else {
+                  this.toastService.presentToast('原密码输入错误');
+              }
+          });
+      }
+  }
+
+  ch(){
+      const postData = {
+          password: this.newPass.value
+      };
+      this.httpService.patch('users/' + this.userData.id, postData).subscribe((res) => {
+          console.log(res);
+          this.toastService.presentToast('密码已修改');
+          this.navCtrl.back();
+      });
   }
 }

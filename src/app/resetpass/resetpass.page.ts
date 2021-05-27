@@ -40,10 +40,11 @@ export class ResetpassPage implements OnInit {
       if (this.resp.code === 0) {
         const msg = {
           uid: this.resp.uid,
-          phone: this.resp.phone
+          phone: this.resp.phone,
+          action: 'reset'
         };
         this.data.changeMessage(msg);
-        this.router.navigate(['/otp']);
+        this.router.navigate(['/otp'], {replaceUrl: true});
       }
     });
   }

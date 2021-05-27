@@ -9,7 +9,7 @@
 
 <ion-content class="ion-padding">
   <form (ngSubmit)="chpass()" [formGroup]="form">
-  <ion-item>
+  <ion-item *ngIf="!isReset">
     <ion-input class="input" required formControlName="oldPass" type="password" placeholder="请输入原密码"> </ion-input>
   </ion-item>
 

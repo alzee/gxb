@@ -90,7 +90,7 @@ export class OtpPage implements OnInit {
               this.toastService.presentToast('验证码错误');
           break;
           default:
-              this.router.navigate(['/chpasswd']);
+              this.router.navigate(['/chpasswd'], {replaceUrl: true});
       }
   }
 }

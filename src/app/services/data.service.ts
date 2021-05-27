@@ -10,6 +10,7 @@ interface Data {
 })
 export class DataService {
   private messageSource = new BehaviorSubject({
+    action: 'pay',
     orderData: {},
     postData: {},
     url: '',
