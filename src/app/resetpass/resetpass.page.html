@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-item>
-    <ion-input class="input" required type="text" placeholder="请输入用户名或手机号"> </ion-input>
+  <ion-item class="ion-margin-bottom">
+    <ion-input [(ngModel)]="cred" class="input" required type="text" placeholder="请输入用户名或手机号"> </ion-input>
   </ion-item>
-  <ion-button expand="block" type="submit">确认</ion-button>
+  <ion-button [disabled]="!cred" (click)="chkcred()" expand="block" type="submit">确认</ion-button>
 </ion-content>
