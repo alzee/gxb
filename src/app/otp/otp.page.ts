@@ -5,6 +5,10 @@ import { environment } from '../../environments/environment';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.page.html',

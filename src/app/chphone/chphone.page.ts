@@ -7,6 +7,10 @@ import { HttpService } from '../services/http.service';
 import { NavController } from '@ionic/angular';
 import { environment } from '../../environments/environment';
 
+interface Data {
+    [propName: string]: any;
+}
+
 @Component({
   selector: 'app-chphone',
   templateUrl: './chphone.page.html',

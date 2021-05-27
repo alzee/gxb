@@ -126,22 +126,6 @@ const routes: Routes = [
     loadChildren: () => import('./terms/terms.module').then( m => m.TermsPageModule)
   },
   {
-    path: 'privacy',
-    loadChildren: () => import('./privacy/privacy.module').then( m => m.PrivacyPageModule)
-  },
-  {
-    path: 'support',
-    loadChildren: () => import('./support/support.module').then( m => m.SupportPageModule)
-  },
-  {
-    path: 'faq',
-    loadChildren: () => import('./faq/faq.module').then( m => m.FaqPageModule)
-  },
-  {
-    path: 'about',
-    loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
-  },
-  {
     path: 'chpasswd',
     loadChildren: () => import('./chpasswd/chpasswd.module').then( m => m.ChpasswdPageModule)
   },
