@@ -7,6 +7,7 @@ import { ToastService } from '../../../services/toast.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { DataService } from '../../../services/data.service';
 
 interface Data {
     [propName: string]: any;
@@ -19,6 +20,8 @@ interface Data {
 })
 export class ApplyPage implements OnInit {
   form: FormGroup;
+  message: Data;
+  node: Data;
   uid: number;
   gxb: number;
   rate: number;
@@ -34,6 +37,7 @@ export class ApplyPage implements OnInit {
       private toastService: ToastService,
       public alertController: AlertController,
       private router: Router,
+      private data: DataService
   ) {
   }
 
@@ -53,6 +57,9 @@ export class ApplyPage implements OnInit {
       });
     });
 
+    this.data.currentMessage.subscribe(message => this.message = message);
+    this.node = this.message.node;
+    console.log(this.node);
 
     this.form = this.formBuilder.group({
         equity: []

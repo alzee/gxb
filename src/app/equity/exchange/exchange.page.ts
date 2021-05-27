@@ -3,6 +3,7 @@ import { HttpService } from '../../services/http.service';
 import { environment } from '../../../environments/environment';
 import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
+import { DataService } from '../../services/data.service';
 
 interface Data {
     [propName: string]: any;
@@ -25,7 +26,8 @@ export class ExchangePage implements OnInit {
 
   constructor(
       private storageService: StorageService,
-      private httpService: HttpService
+      private httpService: HttpService,
+      private data: DataService
   ) {}
 
   ngOnInit() {
@@ -35,6 +37,8 @@ export class ExchangePage implements OnInit {
           });
       this.httpService.get('nodes/9').subscribe((res) => {
           this.node = res;
+          const msg = {node: this.node}
+          this.data.changeMessage(msg);
       });
   }
 
