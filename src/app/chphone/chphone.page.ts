@@ -143,8 +143,7 @@ export class ChphonePage implements OnInit {
                       console.log(res1);
                       this.toastService.presentToast('手机号已修改');
                       this.navCtrl.back();
-                  });
-                      ;
+                      });
               }
           }
           else {

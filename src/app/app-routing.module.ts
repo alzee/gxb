@@ -164,6 +164,10 @@ const routes: Routes = [
   {
     path: 'resetpass',
     loadChildren: () => import('./resetpass/resetpass.module').then( m => m.ResetpassPageModule)
+  },
+  {
+    path: 'otp',
+    loadChildren: () => import('./otp/otp.module').then( m => m.OtpPageModule)
   }
 ];
 @NgModule({

@@ -1,0 +1,30 @@
+.input{
+  background: #FAFAFA;
+  opacity: 1;
+  border-radius: 8px;
+  position: relative;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  --padding-end: 15px;
+  --padding-start: 15px !important;
+  --placeholder-color: #B2B2B2;
+}
+ion-button.sms{
+  position: absolute;
+  right: 0;
+  --background: #FAFAFA;
+  --background-activated: #FAFAFA;
+  --color: black;
+}
+.vcode{
+  --background: #FAFAFA;
+  --border-radius: 8px;
+  margin: 16px 0;
+  ion-input{
+    margin: 0;
+  }
+  ion-button{
+    //height: 40px;
+    margin: 0;
+  }
+}
