@@ -169,8 +169,9 @@ export class PublishPage implements OnInit {
       // this.postData.approveUntil = approveUntil;
       // this.postData.showUntil = showUntil;
       this.postData.ownerId = this.userData.id;
-      this.postData.owner = '/api/users/' + this.userData.id;   // only for preview
       this.postData.cateId = this.f.category.value;
+      this.postData.owner = this.user;   // only for preview
+      this.postData.category = {name: this.categories[this.f.category.value].name};   // only for preview
       this.postData.title = this.f.title.value;
       this.postData.name = this.f.name.value;
       this.postData.quantity = this.f.quantity.value;
