@@ -57,7 +57,6 @@ export class ApprovePage implements OnInit {
               this.workPics = this.apply.pic;
           });
       });
-      console.log(this.choice);
   }
 
   approve() {
