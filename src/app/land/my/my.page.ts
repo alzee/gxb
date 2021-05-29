@@ -21,7 +21,7 @@ export class MyPage implements OnInit {
   myLands = [];
   sold = [];
   uid: number;
-  user: Data;
+  profit: Data;
   seg = 'my';
   showSold = false;
 
@@ -34,11 +34,11 @@ export class MyPage implements OnInit {
   ngOnInit() {
     this.storageService.get(AuthConstants.AUTH).then((res) => {
       this.uid = res.id;
-      console.log(this.uid);
-      this.httpService.get('users/' + this.uid).subscribe((res1) => {
-          this.user = res1;
-          this.cellProfit = this.user.cellProfit;
-          this.landProfit = this.user.landProfit;
+      this.httpService.get('landprofit/' + this.uid).subscribe((res1) => {
+          this.profit = res1;
+          console.log(res1);
+          this.cellProfit = this.profit.cellProfit;
+          this.landProfit = this.profit.landProfit;
           this.total = this.cellProfit + this.landProfit;
       });
     });
