@@ -51,15 +51,24 @@ export class LandPage implements OnInit {
     this.storageService.get(AuthConstants.AUTH).then(
         (res) => {
             this.userData = res;
-        }
-    );
+        },
+        (rej) => {
+            console.log('not logged in yet');
+        });
     this.storageService.get('pca').then(
         (res) => {
+            console.log(res);
             this.provIndex = res[0];
             this.cityIndex = res[1];
             this.areaIndex = res[2];
-        }
-    );
+        },
+        (rej) => {
+            this.storageService.store('pca', [
+                this.provIndex,
+                this.cityIndex,
+                this.areaIndex
+            ]);
+        });
   }
 
   getPosts(){
