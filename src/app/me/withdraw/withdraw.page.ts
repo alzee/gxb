@@ -22,6 +22,7 @@ export class WithdrawPage implements OnInit {
       id: 0
   };
   user: Data;
+  method = 0;
 
   constructor(
       private httpService: HttpService,
@@ -87,4 +88,10 @@ export class WithdrawPage implements OnInit {
         break;
     }
   }
+
+  changeMethod(e){
+      this.payMethod = parseInt(e.detail.value, 10);
+      console.log(this.payMethod);
+  }
+
 }

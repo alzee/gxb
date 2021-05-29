@@ -26,10 +26,13 @@
     <ion-input type="number" slot="start" color="danger" [(ngModel)]="amount"><span>¥  </span></ion-input>
     <ion-text slot="end">元</ion-text>
   </ion-item>
-  <ion-text color="medium">充值余额（手续费10%，VIP3以上会员5%）</ion-text>
-  <ion-text color="medium">任务奖励（手续费1%，VIP3以上会员免费）</ion-text>
   <ion-label><ion-text color="medium">选择提现方式</ion-text></ion-label>
-  <ion-radio-group value="1">
+  <ion-radio-group (ionChange)="changeMethod($event)" value="{{method}}">
+  <ion-item>
+    <ion-icon name="logo-alipay" color="primary"></ion-icon>
+    <ion-text>支付宝</ion-text>
+    <ion-radio slot="end" value="0"></ion-radio>
+  </ion-item>
   <ion-item>
     <ion-icon name="logo-wechat" color="success"></ion-icon>
     <ion-text>微信</ion-text>
