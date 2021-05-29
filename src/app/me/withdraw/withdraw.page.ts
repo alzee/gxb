@@ -14,15 +14,16 @@ interface Data {
   styleUrls: ['./withdraw.page.scss'],
 })
 export class WithdrawPage implements OnInit {
-  topup: number;
-  earnings: number;
+  topup = 0;
+  earnings = 0;
+  balance = 0;
   amount: number;
   type: number;
   userData = {
       id: 0
   };
   user: Data;
-  method = 0;
+  method = 1;
 
   constructor(
       private httpService: HttpService,
@@ -46,6 +47,8 @@ export class WithdrawPage implements OnInit {
   }
 
   validate(){
+    this.amount = this.amount * 100;
+    console.log(this.amount);
     if (!this.amount){
       return 4;
     }
@@ -84,14 +87,27 @@ export class WithdrawPage implements OnInit {
         break;
       default:
         this.toastService.presentToast('提现成功');
-        console.log(0);
         break;
     }
   }
 
   changeMethod(e){
-      this.payMethod = parseInt(e.detail.value, 10);
-      console.log(this.payMethod);
+      this.method = parseInt(e.detail.value, 10);
+      console.log(this.method);
+  }
+
+  changeType(e){
+      this.type = parseInt(e.detail.value, 10);
+      console.log(this.type);
+      switch (this.type) {
+          case 1:
+              this.balance = this.topup;
+              break;
+          case 2:
+              this.balance = this.earnings;
+              break;
+      }
+      console.log(this.balance);
   }
 
 }
