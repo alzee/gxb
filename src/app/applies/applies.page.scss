@@ -38,6 +38,11 @@ ion-content{
         border-bottom: 1px solid #E6E6E6;
         .pic{
           ion-label{
+            font-size: 12px;
+            width: 48px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
             color: #787878;
             text-align: center;
           }

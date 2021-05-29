@@ -18,7 +18,7 @@ else
     exit
 fi
 
-# scp ../../platforms/android/app/build/outputs/apk/debug/app-debug.apk $path/download
+scp ../../platforms/android/app/build/outputs/apk/debug/app-debug.apk $path/download
 node ../../node_modules/cordova-plugin-apkupdater/src/nodejs/create-manifest.js $version 100k ../../platforms/android/app/build/outputs/apk/debug/app-debug.apk update
 rsync -avP update/ $path/update/
 rm -rf update/

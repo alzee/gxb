@@ -50,6 +50,7 @@ export class AppliesPage implements OnInit {
   ngOnInit() {
       this.activeRoute.queryParams.subscribe((params: Params) => {
           this.taskId = params.task;
+          this.applies = [];
           this.getApplies();
       });
   }
