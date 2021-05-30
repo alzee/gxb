@@ -150,6 +150,11 @@ export class WithdrawPage implements OnInit {
                   handler: () => {
                       console.log('Confirm Okay');
                       this.user[m] = i.value;
+                      const data = {
+                          [m]: i.value
+                      };
+                      this.httpService.patch('users/' + this.userData.id, data).subscribe((res) => {
+                      });
                       i.disable();
                   }
               }
