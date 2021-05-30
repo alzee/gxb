@@ -89,10 +89,36 @@ export class WithdrawPage implements OnInit {
   }
 
   withdraw(){
+      let m;
+      switch (+this.method.value) {
+          case 1:
+              m = {
+                  en: 'alipay',
+                  zh: '支付宝'
+              };
+              break;
+          case 2:
+              m = {
+                  en: 'wechat',
+                  zh: '微信'
+
+              };
+              break;
+      }
+      console.log(m);
+      const data = {
+          user: '/api/users/' + this.userData.id,
+          type: 19,
+          status: 5,
+          amount: +(this.amount.value * 100).toFixed(),
+          note: '提现-' + m.zh + '-' + this.user[m.en]
+      };
+      this.httpService.post('finances', data).subscribe((res) => {
+      });
   }
 
   changeMethod(e){
-      console.log(this.method.value);
+      // console.log(this.method.value);
   }
 
   changeType(e){
