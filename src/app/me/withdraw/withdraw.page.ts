@@ -3,6 +3,7 @@ import { HttpService } from '../../services/http.service';
 import { ToastService } from '../../services/toast.service';
 import { StorageService } from '../../services/storage.service';
 import { AuthConstants } from '../../config/auth-constants';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 interface Data {
     [propName: string]: any;
@@ -14,25 +15,21 @@ interface Data {
   styleUrls: ['./withdraw.page.scss'],
 })
 export class WithdrawPage implements OnInit {
+  form: FormGroup;
   topup = 0;
   earnings = 0;
   balance = 0;
-  amount: number;
-  type: number;
   userData = {
       id: 0
   };
   user: Data;
-  method = 1;
 
   constructor(
+      private formBuilder: FormBuilder,
       private httpService: HttpService,
       private storageService: StorageService,
       private toastService: ToastService
-  ) {
-    this.topup = 0;
-    this.earnings = 0;
-  }
+  ) {}
 
   ngOnInit(){
       this.storageService.get(AuthConstants.AUTH).then((res) => {
@@ -40,66 +37,39 @@ export class WithdrawPage implements OnInit {
           this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
               console.log(res1);
               this.user = res1;
-              this.topup = this.user.topup;
-              this.earnings = this.user.earnings;
+              this.topup = this.user.topup / 100;
+              this.earnings = this.user.earnings / 100;
           });
+      });
+
+      this.form = this.formBuilder.group({
+          type: [],
+          amount: [],
+          method: [],
       });
   }
 
-  validate(){
-    this.amount = this.amount * 100;
-    console.log(this.amount);
-    if (!this.amount){
-      return 4;
-    }
-    if (!this.type) {
-      return 3;
-    }
-    if (this.type === 1) {
-      if (this.amount > this.topup) {
-        return 1;
-      }
-    }
-    if (this.type === 2) {
-      if (this.amount > this.earnings) {
-        return 2;
-      }
-    }
+  get amount(){
+      return this.form.get('amount');
+  }
+
+  get type(){
+      return this.form.get('type');
+  }
+
+  get method(){
+      return this.form.get('method');
   }
 
   withdraw(){
-    switch (this.validate()){
-      case 1:
-        this.toastService.presentToast('提现金额不足');
-        console.log('提现金额不足');
-        break;
-      case 2:
-        this.toastService.presentToast('提现金额不足');
-        console.log('提现金额不足');
-        break;
-      case 3:
-        this.toastService.presentToast('请选择提现类型');
-        console.log('请选择提现类型');
-        break;
-      case 4:
-        this.toastService.presentToast('请输入提现金额');
-        console.log('请输入提现金额');
-        break;
-      default:
-        this.toastService.presentToast('提现成功');
-        break;
-    }
   }
 
   changeMethod(e){
-      this.method = parseInt(e.detail.value, 10);
-      console.log(this.method);
+      console.log(this.method.value);
   }
 
   changeType(e){
-      this.type = parseInt(e.detail.value, 10);
-      console.log(this.type);
-      switch (this.type) {
+      switch (+this.type.value) {
           case 1:
               this.balance = this.topup;
               break;
@@ -107,7 +77,7 @@ export class WithdrawPage implements OnInit {
               this.balance = this.earnings;
               break;
       }
-      console.log(this.balance);
+      this.amount.setValidators([Validators.min(5), Validators.max(this.balance)]);
+      this.amount.updateValueAndValidity();
   }
-
 }

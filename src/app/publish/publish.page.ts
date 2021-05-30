@@ -144,7 +144,6 @@ export class PublishPage implements OnInit {
           note: [''],
           acceptTerms: [false, Validators.requiredTrue],
       });
-
   }
 
   get f(){

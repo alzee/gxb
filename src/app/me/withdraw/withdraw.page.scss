@@ -12,7 +12,6 @@ ion-content{
     --padding-end: 16px;
   }
   .price{
-    margin-bottom: 16px;
     font-size: 22px;
     ion-input{
       span{
@@ -22,6 +21,10 @@ ion-content{
     ion-text:first-child{
       font-size: 42px;
     }
+  }
+  .hint{
+    font-size: 12px;
+    font-weight: normal;
   }
   ion-button{
     margin: 16px;

@@ -9,25 +9,29 @@
 </ion-header>
 
 <ion-content color="light">
-  <ion-label><ion-text color="medium">提现类型</ion-text></ion-label>
-  <ion-radio-group value="{{type}}" (ionChange)="changeType($event)">
+  <ion-item-divider color="light"></ion-item-divider>
+  <form (ngSubmit)="withdraw()" [formGroup]="form">
+  <ion-radio-group formControlName="type" (ionChange)="changeType($event)" required>
     <ion-item>
-      <ion-label>充值余额  可提({{topup / 100}}元)</ion-label>
+      <ion-label>充值余额  可提({{topup}}元)</ion-label>
       <ion-radio slot="start" value="1"></ion-radio>
     </ion-item>
 
     <ion-item>
-      <ion-label>任务奖励  可提({{earnings / 100}}元)</ion-label>
+      <ion-label>任务奖励  可提({{earnings}}元)</ion-label>
       <ion-radio slot="start" value="2"></ion-radio>
     </ion-item>
   </ion-radio-group>
-  <ion-label><ion-text color="medium">提现金额</ion-text></ion-label>
+  <ion-item-divider color="light"></ion-item-divider>
   <ion-item class="price">
-    <ion-input type="number" slot="start" color="danger" [(ngModel)]="amount"><span>¥  </span></ion-input>
+    <ion-input type="number" slot="start" color="danger" required formControlName="amount"><span>¥  </span></ion-input>
     <ion-text slot="end">元</ion-text>
   </ion-item>
-  <ion-label><ion-text color="medium">选择提现方式</ion-text></ion-label>
-  <ion-radio-group (ionChange)="changeMethod($event)" value="{{method}}">
+  <ion-item-divider color="light">
+    <ion-label class="hint" color="danger" *ngIf="amount.invalid && amount.errors.min">* 最低提现金额5元</ion-label>
+    <ion-label class="hint" color="danger" *ngIf="amount.invalid && !amount.errors.min && amount.errors.max">* 可提金额不足</ion-label>
+  </ion-item-divider>
+  <ion-radio-group formControlName="method" (ionChange)="changeMethod($event)" required>
   <ion-item>
     <ion-icon name="logo-alipay" color="primary"></ion-icon>
     <ion-text>支付宝</ion-text>
@@ -39,7 +43,9 @@
     <ion-radio slot="end" value="2"></ion-radio>
   </ion-item>
   </ion-radio-group>
-  <ion-button expand="block" [disabled]="!type || !amount || !method" (click)="withdraw()">立即提现</ion-button>
+  <ion-item-divider color="light"></ion-item-divider>
+  <ion-button expand="block" [disabled]="form.invalid">立即提现</ion-button>
+  </form>
   <ion-text color="medium">
     提现时间：周一至周五的工作日上班时间，24小时内到
     账，请耐心等待。
