@@ -39,6 +39,15 @@ export class WithdrawPage implements OnInit {
               this.user = res1;
               this.topup = this.user.topup / 100;
               this.earnings = this.user.earnings / 100;
+              if (this.user.wechat) {
+                  this.wechat.setValue(this.user.wechat);
+                  this.wechat.disable();
+              }
+
+              if (this.user.alipay) {
+                  this.alipay.setValue(this.user.alipay);
+                  this.alipay.disable();
+              }
           });
       });
 
@@ -46,6 +55,8 @@ export class WithdrawPage implements OnInit {
           type: [],
           amount: [],
           method: [],
+          wechat: [],
+          alipay: []
       });
   }
 
@@ -59,6 +70,14 @@ export class WithdrawPage implements OnInit {
 
   get method(){
       return this.form.get('method');
+  }
+
+  get wechat(){
+      return this.form.get('wechat');
+  }
+
+  get alipay(){
+      return this.form.get('alipay');
   }
 
   withdraw(){
@@ -79,6 +98,29 @@ export class WithdrawPage implements OnInit {
       }
       this.amount.setValidators([Validators.required, Validators.min(5), Validators.max(this.balance)]);
       this.amount.updateValueAndValidity();
-      console.log(this.form);
+  }
+
+  edit(i) {
+      console.log(i);
+      switch (i) {
+          case 1:
+              this.alipay.enable();
+              break;
+          case 2:
+              this.wechat.enable();
+              break;
+      }
+  }
+
+  confirm(i){
+      switch (i) {
+          case 1:
+              // patch user
+              this.alipay.disable();
+              break;
+          case 2:
+              this.wechat.disable();
+              break;
+      }
   }
 }
