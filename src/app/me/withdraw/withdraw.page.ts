@@ -4,6 +4,7 @@ import { ToastService } from '../../services/toast.service';
 import { StorageService } from '../../services/storage.service';
 import { AuthConstants } from '../../config/auth-constants';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 interface Data {
     [propName: string]: any;
@@ -25,6 +26,7 @@ export class WithdrawPage implements OnInit {
   user: Data;
 
   constructor(
+      public alertController: AlertController,
       private formBuilder: FormBuilder,
       private httpService: HttpService,
       private storageService: StorageService,
@@ -43,10 +45,16 @@ export class WithdrawPage implements OnInit {
                   this.wechat.setValue(this.user.wechat);
                   this.wechat.disable();
               }
+              else {
+                  this.user.wechat = '';
+              }
 
               if (this.user.alipay) {
                   this.alipay.setValue(this.user.alipay);
                   this.alipay.disable();
+              }
+              else {
+                  this.user.alipay = '';
               }
           });
       });
@@ -112,15 +120,42 @@ export class WithdrawPage implements OnInit {
       }
   }
 
-  confirm(i){
+  async confirm(i){
+      let m;
       switch (i) {
-          case 1:
-              // patch user
-              this.alipay.disable();
+          case this.alipay:
+              m = 'alipay';
               break;
-          case 2:
-              this.wechat.disable();
+          case this.wechat:
+              m = 'wechat';
               break;
       }
+      const alert = await this.alertController.create({
+          header: '请确认账号无误',
+          message: `您输入的账号为 ${i.value}`,
+          buttons: [
+              {
+                  text: '取消',
+                  role: 'cancel',
+                  cssClass: 'secondary',
+                  handler: (blah) => {
+                      console.log('Confirm Cancel: blah');
+                      i.setValue(this.user[m]);
+                      if (i.value) {
+                          i.disable();
+                      }
+                  }
+              }, {
+                  text: '确定',
+                  handler: () => {
+                      console.log('Confirm Okay');
+                      this.user[m] = i.value;
+                      i.disable();
+                  }
+              }
+          ]
+      });
+
+      await alert.present();
   }
 }
