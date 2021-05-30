@@ -77,7 +77,8 @@ export class WithdrawPage implements OnInit {
               this.balance = this.earnings;
               break;
       }
-      this.amount.setValidators([Validators.min(5), Validators.max(this.balance)]);
+      this.amount.setValidators([Validators.required, Validators.min(5), Validators.max(this.balance)]);
       this.amount.updateValueAndValidity();
+      console.log(this.form);
   }
 }
