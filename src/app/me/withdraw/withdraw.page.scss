@@ -32,4 +32,13 @@ ion-content{
   ion-icon{
     margin-right: 8px;
   }
+  .input{
+    background: #FAFAFA;
+    border-radius: 8px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    --padding-end: 15px;
+    --padding-start: 15px !important;
+    --placeholder-color: #B2B2B2;
+  }
 }
