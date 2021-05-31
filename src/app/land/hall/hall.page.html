@@ -17,7 +17,8 @@
       <ion-text slot="end" color="medium">{{i.date | dateAgo}}</ion-text>
     </ion-item>
     <div class="pk" (click)="buy(i)">
-      <div class="peer" *ngIf="i.seller">
+      <div class="peer">
+        <ng-container *ngIf="i.seller">
         <ion-thumbnail class="crown" slot="start">
           <img src="../assets/img/crown_gold.png">
         </ion-thumbnail>
@@ -27,6 +28,7 @@
         <ion-text class="name">{{i.seller.username}}</ion-text>
         <ion-text color="medium">原购买价格</ion-text>
         <ion-text class="price">{{i.prePrice / 100}}</ion-text>
+        </ng-container>
       </div>
       <ng-container *ngIf="i.buyer">
       <div class="vs">
