@@ -28,7 +28,7 @@
     <ion-text slot="end">元</ion-text>
   </ion-item>
   <ion-item-divider color="light">
-    <ion-label class="hint" color="danger" *ngIf="amount.invalid && amount.errors.min">* 最低提现金额5元</ion-label>
+    <ion-label class="hint" color="danger" *ngIf="amount.invalid && amount.errors.min">* 最低提现金额{{min}}元</ion-label>
     <ion-label class="hint" color="danger" *ngIf="amount.invalid && !amount.errors.min && amount.errors.max">* 可提金额不足</ion-label>
   </ion-item-divider>
   <ion-radio-group formControlName="method" (ionChange)="changeMethod($event)" required>

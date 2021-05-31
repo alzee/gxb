@@ -24,6 +24,7 @@ export class WithdrawPage implements OnInit {
       id: 0
   };
   user: Data;
+  min = 1;
 
   constructor(
       public navCtrl: NavController,
@@ -133,7 +134,7 @@ export class WithdrawPage implements OnInit {
               this.balance = this.earnings;
               break;
       }
-      this.amount.setValidators([Validators.required, Validators.min(5), Validators.max(this.balance)]);
+      this.amount.setValidators([Validators.required, Validators.min(this.min), Validators.max(this.balance)]);
       this.amount.updateValueAndValidity();
   }
 
