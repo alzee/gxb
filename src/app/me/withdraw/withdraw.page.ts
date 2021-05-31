@@ -4,7 +4,7 @@ import { ToastService } from '../../services/toast.service';
 import { StorageService } from '../../services/storage.service';
 import { AuthConstants } from '../../config/auth-constants';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 interface Data {
     [propName: string]: any;
@@ -26,6 +26,7 @@ export class WithdrawPage implements OnInit {
   user: Data;
 
   constructor(
+      public navCtrl: NavController,
       public alertController: AlertController,
       private formBuilder: FormBuilder,
       private httpService: HttpService,
@@ -114,6 +115,8 @@ export class WithdrawPage implements OnInit {
           note: '提现-' + m.zh + '-' + this.user[m.en]
       };
       this.httpService.post('finances', data).subscribe((res) => {
+          this.toastService.presentToast('提现处理中，请稍候');
+          this.navCtrl.back();
       });
   }
 
