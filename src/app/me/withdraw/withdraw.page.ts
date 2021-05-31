@@ -110,7 +110,7 @@ export class WithdrawPage implements OnInit {
       const data = {
           user: '/api/users/' + this.userData.id,
           type: 19,
-          status: 5,
+          status: 0,
           amount: +(this.amount.value * 100).toFixed(),
           note: '提现-' + m.zh + '-' + this.user[m.en]
       };
