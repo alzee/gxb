@@ -5,6 +5,7 @@ import { HttpService } from '../../services/http.service';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
+import { ToastService } from '../../services/toast.service';
 
 interface Data {
     [propName: string]: any;
@@ -31,6 +32,7 @@ export class MyPage implements OnInit {
       private router: Router,
       private storageService: StorageService,
       private httpService: HttpService,
+      private toastService: ToastService,
       private data: DataService
   ) {
   }
@@ -67,6 +69,12 @@ export class MyPage implements OnInit {
   }
 
   changePrice(i){
+      const now = new Date();
+      const then = new Date(i.updatedAt);
+      if ((now - then) < 3600000) {
+          this.toastService.presentToast('每小时只能修改一次价格');
+          return;
+      }
       const msg = {
           land: i
       };
