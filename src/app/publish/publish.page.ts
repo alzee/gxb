@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
 import { DataService } from '../services/data.service';
+import { ToastService } from '../services/toast.service';
 
 interface Data {
     [propName: string]: any;
@@ -90,6 +91,7 @@ export class PublishPage implements OnInit {
   };
 
   constructor(
+      private toastService: ToastService,
       public navCtrl: NavController,
       public alertController: AlertController,
       private formBuilder: FormBuilder,
@@ -107,6 +109,11 @@ export class PublishPage implements OnInit {
           this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
               console.log(res1);
               this.user = res1;
+              if (!this.user.active) {
+                  this.toastService.presentToast('您的账户已被禁用');
+                  this.navCtrl.back();
+                  return;
+              }
               this.feeRate = this.user.level.postFee;
               this.taskLeast = this.user.level.taskLeast;
               this.f.quantity.setValidators([Validators.min(this.taskLeast), Validators.required, Validators.pattern('^[0-9]*$')]);
