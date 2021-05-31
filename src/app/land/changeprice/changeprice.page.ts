@@ -3,6 +3,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { ToastService } from '../../services/toast.service';
 import { NavController } from '@ionic/angular';
+import { DataService } from '../../services/data.service';
+
+interface Data {
+    [propName: string]: any;
+}
 
 @Component({
   selector: 'app-changeprice',
@@ -16,30 +21,33 @@ export class ChangepricePage implements OnInit {
   id: number;
   name: string;
   newPrice: number;
+  message: Data;
+  land: Data;
 
   constructor(
       public navCtrl: NavController,
       private httpService: HttpService,
       private activeRoute: ActivatedRoute,
-      private toastService: ToastService
+      private toastService: ToastService,
+      private data: DataService
   ) { }
 
   ngOnInit() {
-      this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.id = params.id;
-          this.prePrice = parseInt(params.prePrice, 10);
-          this.plist = [
-              Math.round(this.prePrice * 0.7),
-              Math.round(this.prePrice * 0.8),
-              Math.round(this.prePrice * 0.9),
-              this.prePrice,
-              Math.round(this.prePrice * 1.1),
-              Math.round(this.prePrice * 1.2),
-              Math.round(this.prePrice * 1.3),
-          ];
-          console.log(this.plist);
-          this.name = params.name;
-      });
+      this.data.currentMessage.subscribe(message => this.message = message);
+      this.land = this.message.land;
+      console.log(this.land);
+      this.id = this.land.id;
+      this.name = this.land.name;
+      this.prePrice = parseInt(this.land.prePrice, 10);
+      this.plist = [
+        Math.round(this.prePrice * 0.7),
+        Math.round(this.prePrice * 0.8),
+        Math.round(this.prePrice * 0.9),
+        this.prePrice,
+        Math.round(this.prePrice * 1.1),
+        Math.round(this.prePrice * 1.2),
+        Math.round(this.prePrice * 1.3),
+      ];
   }
 
   changePrice(){

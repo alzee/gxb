@@ -3,6 +3,8 @@ import { AuthConstants } from '../../config/auth-constants';
 import { StorageService } from '../../services/storage.service';
 import { HttpService } from '../../services/http.service';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
+import { DataService } from '../../services/data.service';
 
 interface Data {
     [propName: string]: any;
@@ -26,8 +28,10 @@ export class MyPage implements OnInit {
   showSold = false;
 
   constructor(
+      private router: Router,
       private storageService: StorageService,
-      private httpService: HttpService
+      private httpService: HttpService,
+      private data: DataService
   ) {
   }
 
@@ -60,5 +64,13 @@ export class MyPage implements OnInit {
     else {
       this.showSold = true;
     }
+  }
+
+  changePrice(i){
+      const msg = {
+          land: i
+      };
+      this.data.changeMessage(msg);
+      this.router.navigate(['/land/changeprice']);
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router, Params, RoutesRecognized } from '@angular/router';
-import {Location} from '@angular/common';
 import { filter, pairwise } from 'rxjs/operators';
 import { DataService } from '../services/data.service';
 import { Subscription } from 'rxjs';
@@ -49,7 +48,6 @@ export class PayPage implements OnInit {
       private activeRoute: ActivatedRoute,
       private httpService: HttpService,
       private router: Router,
-      private location: Location,
       private toastService: ToastService,
       private data: DataService
   ) { }

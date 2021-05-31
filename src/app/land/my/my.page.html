@@ -46,7 +46,7 @@
       <ion-text>{{i.name}}</ion-text>
       <div slot="end">
         <ion-text class="price">{{i.price / 100}}</ion-text>
-        <ion-item routerLink="/land/changeprice" [queryParams]="{id: i.id, name: i.name, prePrice: i.prePrice}">
+        <ion-item (click)="changePrice(i)">
           <ion-text *ngIf="i.forSale" color="success" class="label">出售中</ion-text>
           <ion-text *ngIf="!i.forSale" color="danger" class="label">出售</ion-text>
         </ion-item>
