@@ -71,7 +71,7 @@ export class MyPage implements OnInit {
   changePrice(i){
       const now = new Date();
       const then = new Date(i.updatedAt);
-      if ((now - then) < 3600000) {
+      if ((now.getTime() - then.getTime()) < 3600000) {
           this.toastService.presentToast('每小时只能修改一次价格');
           return;
       }
