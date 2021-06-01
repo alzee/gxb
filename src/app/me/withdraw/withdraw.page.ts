@@ -24,7 +24,12 @@ export class WithdrawPage implements OnInit {
       id: 0
   };
   user: Data;
+  feeRate: number;
+  fee: number;
   min = 1;
+  conf: Data;
+  actual: number;
+  sum: number;
 
   constructor(
       public navCtrl: NavController,
@@ -41,6 +46,7 @@ export class WithdrawPage implements OnInit {
           this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
               console.log(res1);
               this.user = res1;
+              this.feeRate = this.user.level.withdrawFee;
               this.topup = this.user.topup / 100;
               this.earnings = this.user.earnings / 100;
               if (this.user.wechat) {
@@ -112,7 +118,8 @@ export class WithdrawPage implements OnInit {
           user: '/api/users/' + this.userData.id,
           type: 19,
           status: 0,
-          amount: +(this.amount.value * 100).toFixed(),
+          amount: +(this.actual * 100).toFixed(),
+          fee: +(this.fee * 100).toFixed(),
           note: '提现-' + m.zh + '-' + this.user[m.en]
       };
       this.httpService.post('finances', data).subscribe((res) => {
@@ -136,9 +143,10 @@ export class WithdrawPage implements OnInit {
       }
       this.amount.setValidators([Validators.required, Validators.min(this.min), Validators.max(this.balance)]);
       this.amount.updateValueAndValidity();
+      this.getActual();
   }
 
-  edit(i) {
+  editAccount(i) {
       console.log(i);
       switch (i) {
           case 1:
@@ -150,7 +158,7 @@ export class WithdrawPage implements OnInit {
       }
   }
 
-  async confirm(i){
+  async confirmAccount(i){
       let m;
       switch (i) {
           case this.alipay:
@@ -192,5 +200,15 @@ export class WithdrawPage implements OnInit {
       });
 
       await alert.present();
+  }
+
+  getActual(){
+      this.actual = +this.amount.value;
+      this.fee = +(this.actual * this.feeRate).toFixed(2);
+      if ((this.fee + this.actual) > this.balance) {
+          this.actual = +(this.balance / (1 + this.feeRate)).toFixed(2);
+          this.fee = +(this.actual * this.feeRate).toFixed(2);
+      }
+      this.sum = +(this.fee + this.actual).toFixed(2);
   }
 }

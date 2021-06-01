@@ -24,12 +24,13 @@
   </ion-radio-group>
   <ion-item-divider color="light"></ion-item-divider>
   <ion-item class="price">
-    <ion-input type="number" slot="start" color="danger" required formControlName="amount"><span>¥  </span></ion-input>
+    <ion-input type="number" slot="start" color="danger" required formControlName="amount" (ionChange)="getActual()"><span>¥  </span></ion-input>
     <ion-text slot="end">元</ion-text>
   </ion-item>
   <ion-item-divider color="light">
     <ion-label class="hint" color="danger" *ngIf="amount.invalid && amount.errors.min">* 最低提现金额{{min}}元</ion-label>
     <ion-label class="hint" color="danger" *ngIf="amount.invalid && !amount.errors.min && amount.errors.max">* 可提金额不足</ion-label>
+    <ion-label class="hint" color="" *ngIf="amount.valid">手续费: {{fee}} / 实际到帐: {{actual}} / 合计: {{sum}} </ion-label>
   </ion-item-divider>
   <ion-radio-group formControlName="method" (ionChange)="changeMethod($event)" required>
   <ion-item>
@@ -39,8 +40,8 @@
   </ion-item>
   <ion-item *ngIf="method.value == 1">
     <ion-input class="input" required formControlName="alipay" placeholder="请输入支付宝账号"></ion-input>
-    <ion-button *ngIf="!alipay.disabled" [disabled]="alipay.invalid" (click)="confirm(alipay)">确定</ion-button>
-    <ion-button *ngIf="alipay.disabled" (click)="edit(1)" color="danger">修改</ion-button>
+    <ion-button *ngIf="!alipay.disabled" [disabled]="alipay.invalid" (click)="confirmAccount(alipay)">确定</ion-button>
+    <ion-button *ngIf="alipay.disabled" (click)="editAccount(1)" color="danger">修改</ion-button>
   </ion-item>
   <ion-item>
     <ion-icon name="logo-wechat" color="success"></ion-icon>
@@ -49,8 +50,8 @@
   </ion-item>
   <ion-item *ngIf="method.value == 2">
     <ion-input class="input" required formControlName="wechat" placeholder="请输入微信号"></ion-input>
-    <ion-button *ngIf="!wechat.disabled" [disabled]="wechat.invalid" (click)="confirm(wechat)">确定</ion-button>
-    <ion-button *ngIf="wechat.disabled" (click)="edit(2)" color="danger">修改</ion-button>
+    <ion-button *ngIf="!wechat.disabled" [disabled]="wechat.invalid" (click)="confirmAccount(wechat)">确定</ion-button>
+    <ion-button *ngIf="wechat.disabled" (click)="editAccount(2)" color="danger">修改</ion-button>
   </ion-item>
   </ion-radio-group>
   <ion-item-divider color="light"></ion-item-divider>
