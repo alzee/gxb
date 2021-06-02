@@ -161,9 +161,20 @@ export class WithdrawPage implements OnInit {
   }
 
   changeMethod(e){
-      // console.log(this.method.value);
-      this.form.updateValueAndValidity();
-      console.log(this.form);
+      console.log(+this.method.value);
+      if (+this.method.value === 1) {
+          this.alipay.setValidators([Validators.required]);
+      }
+      else {
+          this.alipay.clearValidators();
+      }
+      if (+this.method.value === 2) {
+          this.wechat.setValidators([Validators.required]);
+      }
+      else {
+          this.wechat.clearValidators();
+          console.log(this.wechat);
+      }
   }
 
   changeType(e){
