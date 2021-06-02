@@ -5,6 +5,7 @@ import { StorageService } from '../../services/storage.service';
 import { AuthConstants } from '../../config/auth-constants';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
+import { Wechat } from '@ionic-native/wechat/ngx';
 
 interface Data {
     [propName: string]: any;
@@ -30,9 +31,12 @@ export class WithdrawPage implements OnInit {
   conf: Data;
   actual: number;
   sum: number;
+  authCode: Data;
+  wxuserinfo: Data;
 
   constructor(
       public navCtrl: NavController,
+      private Wechat: Wechat,
       public alertController: AlertController,
       private formBuilder: FormBuilder,
       private httpService: HttpService,
@@ -97,32 +101,56 @@ export class WithdrawPage implements OnInit {
   }
 
   withdraw(){
-      let m;
-      switch (+this.method.value) {
-          case 1:
-              m = {
-                  en: 'alipay',
-                  zh: '支付宝'
-              };
-              break;
-          case 2:
-              m = {
-                  en: 'wechat',
-                  zh: '微信'
-
-              };
-              break;
-      }
-      console.log(m);
       const data = {
-          user: '/api/users/' + this.userData.id,
+          uid: this.userData.id,
           type: 19,
-          status: 0,
           amount: +(this.actual * 100).toFixed(),
           fee: +(this.fee * 100).toFixed(),
-          note: '提现-' + m.zh + '-' + this.user[m.en]
+          method: +this.method.value,
+          note: '',
+          openid: ''
       };
-      this.httpService.post('finances', data).subscribe((res) => {
+      switch (+this.method.value) {
+          case 1:
+              data.note = '提现-支付宝(手动)-' + this.user['alipay'];
+              break;
+          case 2:
+              data.note = '提现-微信(手动)-' + this.user['wechat'];
+              break;
+          case 3:
+              data.note = '提现-微信';
+              const scope = 'snsapi_userinfo';
+              const state = '_' + (+new Date());
+              this.Wechat.auth(scope, state).then((res) => {
+                  this.authCode = res;
+                  console.log('========Begin===========');
+                  console.log('code is:', this.authCode.code);
+                  console.log('errCode is:', this.authCode.ErrCode);
+                  console.log('state is:', this.authCode.state);
+                  console.log('lang is:', this.authCode.lang);
+                  console.log('conntry is:', this.authCode.country);
+                  console.log('========End===========');
+                  const postData = {
+                      code: this.authCode.code,
+                      uid: this.user.id
+                  };
+                  this.httpService.post('wxauth', postData).subscribe((res1) => {
+                      console.log('wxuserinfo: ', res1);
+                      this.wxuserinfo = res1;
+                      console.log('========Begin===========');
+                      console.log('img is:', this.wxuserinfo.headimgurl);
+                      console.log('nick is:', this.wxuserinfo.nickname);
+                      console.log('openid is:', this.wxuserinfo.openid);
+                      console.log('unionid is:', this.wxuserinfo.unionid);
+                      console.log('========End===========');
+                      data.openid = this.wxuserinfo.openid;
+                  });
+              }, reason => {
+                  console.log('failed: ', reason);
+              });
+              break;
+      }
+      this.httpService.post('order', data).subscribe((res) => {
           this.toastService.presentToast('提现处理中，请稍候');
           this.navCtrl.back();
       });
@@ -210,5 +238,38 @@ export class WithdrawPage implements OnInit {
           this.fee = +(this.actual * this.feeRate).toFixed(2);
       }
       this.sum = +(this.fee + this.actual).toFixed(2);
+  }
+
+  auth() {
+      const scope = 'snsapi_userinfo';
+      const state = '_' + (+new Date());
+      this.Wechat.auth(scope, state).then((res) => {
+          this.authCode = res;
+          console.log('========Begin===========');
+          console.log('code is:', this.authCode.code);
+          console.log('errCode is:', this.authCode.ErrCode);
+          console.log('state is:', this.authCode.state);
+          console.log('lang is:', this.authCode.lang);
+          console.log('conntry is:', this.authCode.country);
+          console.log('========End===========');
+          const postData = {
+              code: this.authCode.code,
+              uid: this.user.id
+          };
+          this.httpService.post('wxauth', postData).subscribe((res1) => {
+              console.log('wxuserinfo: ', res1);
+              this.wxuserinfo = res1;
+              console.log('========Begin===========');
+              console.log('img is:', this.wxuserinfo.headimgurl);
+              console.log('nick is:', this.wxuserinfo.nickname);
+              console.log('openid is:', this.wxuserinfo.openid);
+              console.log('unionid is:', this.wxuserinfo.unionid);
+              console.log('========End===========');
+              this.user.avatar = '/media/avatar/' + this.user.id + '.jpg';
+              this.openid = this.wxuserinfo.openid;
+          });
+      }, reason => {
+          console.log('failed: ', reason);
+      });
   }
 }
