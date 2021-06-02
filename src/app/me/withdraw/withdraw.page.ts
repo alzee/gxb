@@ -119,6 +119,8 @@ export class WithdrawPage implements OnInit {
               break;
           case 3:
               data.note = '提现-微信';
+              data.openid = 'oPKyH6F6b7I1n9gmdIJ6wjgBPlkc';
+              /*
               const scope = 'snsapi_userinfo';
               const state = '_' + (+new Date());
               this.Wechat.auth(scope, state).then((res) => {
@@ -148,9 +150,11 @@ export class WithdrawPage implements OnInit {
               }, reason => {
                   console.log('failed: ', reason);
               });
+              */
               break;
       }
       this.httpService.post('order', data).subscribe((res) => {
+          console.log(res);
           this.toastService.presentToast('提现处理中，请稍候');
           this.navCtrl.back();
       });
@@ -158,6 +162,8 @@ export class WithdrawPage implements OnInit {
 
   changeMethod(e){
       // console.log(this.method.value);
+      this.form.updateValueAndValidity();
+      console.log(this.form);
   }
 
   changeType(e){
@@ -238,38 +244,5 @@ export class WithdrawPage implements OnInit {
           this.fee = +(this.actual * this.feeRate).toFixed(2);
       }
       this.sum = +(this.fee + this.actual).toFixed(2);
-  }
-
-  auth() {
-      const scope = 'snsapi_userinfo';
-      const state = '_' + (+new Date());
-      this.Wechat.auth(scope, state).then((res) => {
-          this.authCode = res;
-          console.log('========Begin===========');
-          console.log('code is:', this.authCode.code);
-          console.log('errCode is:', this.authCode.ErrCode);
-          console.log('state is:', this.authCode.state);
-          console.log('lang is:', this.authCode.lang);
-          console.log('conntry is:', this.authCode.country);
-          console.log('========End===========');
-          const postData = {
-              code: this.authCode.code,
-              uid: this.user.id
-          };
-          this.httpService.post('wxauth', postData).subscribe((res1) => {
-              console.log('wxuserinfo: ', res1);
-              this.wxuserinfo = res1;
-              console.log('========Begin===========');
-              console.log('img is:', this.wxuserinfo.headimgurl);
-              console.log('nick is:', this.wxuserinfo.nickname);
-              console.log('openid is:', this.wxuserinfo.openid);
-              console.log('unionid is:', this.wxuserinfo.unionid);
-              console.log('========End===========');
-              this.user.avatar = '/media/avatar/' + this.user.id + '.jpg';
-              this.openid = this.wxuserinfo.openid;
-          });
-      }, reason => {
-          console.log('failed: ', reason);
-      });
   }
 }
