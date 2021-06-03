@@ -110,7 +110,7 @@ export class WithdrawPage implements OnInit {
   withdraw(){
       const data = {
           uid: this.userData.id,
-          type: 19,
+          type: +this.type.value,
           amount: +(this.actual * 100).toFixed(),
           fee: +(this.fee * 100).toFixed(),
           method: +this.method.value,
@@ -171,7 +171,6 @@ export class WithdrawPage implements OnInit {
   }
 
   changeMethod(e){
-      console.log(+this.method.value);
       if (+this.method.value === 1) {
           this.alipay.setValidators([Validators.required]);
       }
@@ -183,16 +182,15 @@ export class WithdrawPage implements OnInit {
       }
       else {
           this.wechat.clearValidators();
-          console.log(this.wechat);
       }
   }
 
   changeType(e){
       switch (+this.type.value) {
-          case 1:
+          case 19:
               this.balance = this.topup;
               break;
-          case 2:
+          case 18:
               this.balance = this.earnings;
               break;
       }
