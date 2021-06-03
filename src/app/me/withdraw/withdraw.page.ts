@@ -126,7 +126,6 @@ export class WithdrawPage implements OnInit {
               break;
           case 3:
               data.note = '提现-微信';
-              // data.openid = 'oPKyH6F6b7I1n9gmdIJ6wjgBPlkc';
               const scope = 'snsapi_userinfo';
               const state = '_' + (+new Date());
               this.Wechat.auth(scope, state).then((res) => {
