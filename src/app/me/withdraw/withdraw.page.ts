@@ -34,6 +34,7 @@ export class WithdrawPage implements OnInit {
   authCode: Data;
   wxuserinfo: Data;
   node: Data;
+  resp: Data;
 
   constructor(
       public navCtrl: NavController,
@@ -153,7 +154,13 @@ export class WithdrawPage implements OnInit {
                       data.openid = this.wxuserinfo.openid;
                       this.httpService.post('order', data).subscribe((res) => {
                           console.log(res);
-                          this.toastService.presentToast('提现处理中');
+                          this.resp = res;
+                          if (+this.resp.code === 0) {
+                              this.toastService.presentToast('提现处理中');
+                          }
+                          else {
+                              this.toastService.presentToast('提现失败');
+                          }
                           this.navCtrl.back();
                       });
                   });
