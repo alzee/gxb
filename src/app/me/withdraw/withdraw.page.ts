@@ -33,6 +33,7 @@ export class WithdrawPage implements OnInit {
   sum: number;
   authCode: Data;
   wxuserinfo: Data;
+  node: Data;
 
   constructor(
       public navCtrl: NavController,
@@ -77,6 +78,11 @@ export class WithdrawPage implements OnInit {
           method: [],
           wechat: [],
           alipay: []
+      });
+
+      this.httpService.get('nodes/13').subscribe((res) => {
+          this.node = res;
+          console.log(res);
       });
   }
 

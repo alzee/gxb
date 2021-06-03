@@ -62,9 +62,5 @@
   <ion-item-divider color="light"></ion-item-divider>
   <ion-button expand="block" [disabled]="form.invalid" type="submit">立即提现</ion-button>
   </form>
-  <ion-text color="medium">
-    提现时间：周一至周五的工作日上班时间，24小时内到
-    账，请耐心等待。
-  </ion-text>
-
+  <ion-text color="medium" *ngIf="node" [innerHTML]="node.body"></ion-text>
 </ion-content>
