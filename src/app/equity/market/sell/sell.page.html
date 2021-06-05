@@ -9,9 +9,9 @@
   <ion-item class="data">
     <ion-label>数量</ion-label>
     <ion-input name="title" type="number" pattern="^[0-9]*$" formControlName="equity" placeholder="请输入出售数量" required clearInput>
-      <ion-text *ngIf="equity.invalid && equity.errors.min" class="hint" color="danger">请输入大于0的整数</ion-text>
+      <ion-text *ngIf="equity.invalid && equity.errors.min && !equity.errors.max" class="hint" color="danger">请输入大于0的整数</ion-text>
       <ion-text *ngIf="equity.invalid && equity.errors.pattern && !equity.errors.max && !equity.errors.min" class="hint" color="danger">请输入整数</ion-text>
-      <ion-text *ngIf="equity.invalid && equity.errors.max" class="hint" color="danger">最多能出售{{max}}个</ion-text>
+      <ion-text *ngIf="equity.invalid && equity.errors.max" class="hint" color="danger">可出售数量{{max}}个</ion-text>
     </ion-input>
   </ion-item>
   <ion-item class="data">

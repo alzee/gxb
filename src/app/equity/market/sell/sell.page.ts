@@ -35,7 +35,7 @@ export class SellPage implements OnInit {
       this.max = this.message.equity - 1;
 
       this.form = this.formBuilder.group({
-          equity: [, [Validators.min(0), Validators.max(this.max)]],
+          equity: [, [Validators.min(0), Validators.max(this.max), Validators.min(1)]],
       });
   }
 
