@@ -97,7 +97,7 @@ export class SignupPage implements OnInit {
     signup() {
         const postData = {
             username: this.username.value,
-            password: this.password.value,
+            plainPassword: this.password.value,
             phone: this.phone.value,
             otp: this.otp.value,
             referrerId: ''
@@ -117,17 +117,8 @@ export class SignupPage implements OnInit {
                         this.toastService.presentToast('注册成功');
                         this.router.navigate(['/signin']);
                         break;
-                    case 1:
-                        this.toastService.presentToast('请获取验证码');
-                        break;
-                    case 2:
-                        this.toastService.presentToast('验证码超时，请重新获取');
-                        break;
-                    case 3:
-                        this.toastService.presentToast('验证码错误');
-                        break;
                     default:
-                        this.toastService.presentToast('用户名已存在');
+                        this.toastService.presentToast(this.resp.msg);
                 }
             },
             (error: any) => {
