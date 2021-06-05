@@ -203,7 +203,7 @@ export class SignupPage implements OnInit {
     getSms(){
       console.log(this.smsType);
       console.log(this.smsPass);
-      this.httpService.get(`sms?phone=${this.phone.value}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
+      this.httpService.get(`getsms?phone=${this.phone.value}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
           this.toastService.presentToast('验证码已发送');
           this.getCodeBtnText = `重新发送(${this.resendTime})`;
           const that = this;
