@@ -6,6 +6,7 @@ import { ValidatorFn, AbstractControl, FormBuilder, FormGroup, Validators } from
 import { HttpService } from '../services/http.service';
 import { NavController } from '@ionic/angular';
 import { environment } from '../../environments/environment';
+import { DataService } from '../services/data.service';
 
 interface Data {
     [propName: string]: any;
@@ -17,7 +18,7 @@ interface Data {
   styleUrls: ['./chphone.page.scss'],
 })
 export class ChphonePage implements OnInit {
-  userData: Data;
+  user: Data;
   resp: Data;
   form: FormGroup;
   codeSent = false;
@@ -28,21 +29,20 @@ export class ChphonePage implements OnInit {
   smsPass = environment.smsPass;
   smsResp;
   getCodeBtnText = '获取验证码';
+  message: Data;
 
   constructor(
       public navCtrl: NavController,
       private formBuilder: FormBuilder,
       private httpService: HttpService,
       private toastService: ToastService,
+      private data: DataService,
       private storageService: StorageService
   ) { }
 
   ngOnInit() {
-      this.storageService.get(AuthConstants.AUTH).then(
-          (res) => {
-              this.userData = res;
-          }
-      );
+      this.data.currentMessage.subscribe(message => this.message = message);
+      this.user = this.message.user;
 
       this.form = this.formBuilder.group({
           pass: [''],
@@ -124,7 +124,7 @@ export class ChphonePage implements OnInit {
 
   chphone(){
       const postData = {
-          uid: this.userData.id,
+          uid: this.user.id,
           pass: this.pass.value,
           phone: this.phone.value,
           otp: this.otp.value
@@ -135,6 +135,11 @@ export class ChphonePage implements OnInit {
           switch (this.resp.code) {
               case 0:
                   this.toastService.presentToast('手机号已修改');
+                  this.user.phone = this.phone.value;
+                  const msg = {
+                      user: this.user
+                  };
+                  this.data.changeMessage(msg);
                   this.navCtrl.back();
                   break;
               default:

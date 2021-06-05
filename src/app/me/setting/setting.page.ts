@@ -9,6 +9,7 @@ import { Platform, AlertController } from '@ionic/angular';
 import { ToastService } from '../../services/toast.service';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { Wechat } from '@ionic-native/wechat/ngx';
+import { DataService } from '../../services/data.service';
 
 interface Data {
     [propName: string]: any;
@@ -26,14 +27,15 @@ export class SettingPage implements OnInit {
   version: string;
   url = environment.url;
   user: Data;
-  id: number;
   updateUrl = this.env.updateUrl;
   ver: string;
   authCode: Data;
   wxuserinfo: Data;
+  message: Data;
 
   constructor(
         private appVersion: AppVersion,
+        private data: DataService,
         private wechat: Wechat,
         public alertController: AlertController,
         private platform: Platform,
@@ -45,15 +47,8 @@ export class SettingPage implements OnInit {
   ) {}
 
   ngOnInit() {
-      this.activeRoute.queryParams.subscribe((params: Params) => {
-          this.id = params.id;
-      });
-
-      this.httpService.get('users/' + this.id).subscribe((res) => {
-          this.user = res;
-          this.user.total = this.user.balanceTask + this.user.balanceTopup;
-          console.log(this.user);
-      });
+      this.data.currentMessage.subscribe(message => this.message = message);
+      this.user = this.message.user;
 
       this.appVersion.getVersionNumber().then(
         (res) => {

@@ -151,9 +151,9 @@ export class WithdrawPage implements OnInit {
                       console.log('unionid is:', this.wxuserinfo.unionid);
                       console.log('========End===========');
                       data.openid = this.wxuserinfo.openid;
-                      this.httpService.post('order', data).subscribe((res) => {
-                          console.log(res);
-                          this.resp = res;
+                      this.httpService.post('order', data).subscribe((res2) => {
+                          console.log(res2);
+                          this.resp = res2;
                           if (+this.resp.code === 0) {
                               this.toastService.presentToast('提现处理中');
                           }
