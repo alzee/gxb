@@ -21,7 +21,7 @@
       <ion-thumbnail *ngIf="j == 2">
         <img src="../assets/img/crown_bronze.png">
       </ion-thumbnail>
-      <ion-text *ngIf="j > 2">{{j + 1}}</ion-text>
+      <ion-text class="num" *ngIf="j > 2">{{j + 1}}</ion-text>
       <ion-avatar>
         <img *ngIf="r.user.avatar" [src]="envs.url + r.user.avatar">
         <img *ngIf="!r.user.avatar" src="../assets/img/avatar.png">
