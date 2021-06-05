@@ -38,7 +38,7 @@
   <ion-input (ionChange)="checkPhoneDup()" required [readonly]="smsResp" inputmode="numeric" minlength='11' maxlength='11' pattern="^1[3-9]\d{9}$" class="input ion-margin-bottom" type="tel" name="phone" formControlName="phone" clearInput="true" placeholder="请输入您的手机号码"></ion-input>
 
   <ion-item class="vcode">
-    <ion-input slot="start" [readonly]="!smsResp" inputmode="numeric" required minlength='6' maxlength='6' formControlName="vCode" name="vCode" class="input ion-margin-bottom" placeholder="验证码">
+    <ion-input slot="start" [readonly]="!smsResp" inputmode="numeric" required minlength='6' maxlength='6' formControlName="otp" name="otp" class="input ion-margin-bottom" placeholder="验证码">
     </ion-input>
     <ion-button slot="end" [disabled]="phoneDup != 2 || codeSent" class="sms" type="button" size="" (click)="getSms()">{{getCodeBtnText}}</ion-button>
   </ion-item>

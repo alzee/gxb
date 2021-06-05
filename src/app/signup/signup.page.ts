@@ -25,20 +25,15 @@ export class SignupPage implements OnInit {
     phoneDup = 0;
     usernameDup = 0;
     resendTime = 59;
-    codeTimeout = 1800;
+    codeTimeout = 300;
     smsType = 'register';
     smsPass: string;
     smsResp;
     refcodeFound = true;
     referrer: Data;
+    resp: Data;
     term = {
         isChecked: true
-    };
-    postData = {
-        username: '',
-        password: '',
-        phone: '',
-        referrer: ''
     };
 
     constructor(
@@ -62,7 +57,7 @@ export class SignupPage implements OnInit {
             password: [''],
             // phone: ['', this.phoneDupValidator()],
             phone: [''],
-            vCode: [''],
+            otp: [''],
             refcode: ['']
         });
     }
@@ -91,65 +86,54 @@ export class SignupPage implements OnInit {
       return this.form.get('phone');
     }
 
-    get vCode(){
-      return this.form.get('vCode');
+    get otp(){
+      return this.form.get('otp');
     }
 
     get refcode(){
       return this.form.get('refcode');
     }
 
-    validateInputs() {
-        if (!this.smsResp){
-            return 1;
-        }
-        else if (this.smsResp.code === 'timeout'){
-            return 2;
-        }
-        else if (this.vCode.value !== this.smsResp.code){
-            return 3;
-        }
-    }
-
     signup() {
-        console.log(this.smsResp);
-        switch (this.validateInputs()){
-            case 1:
-                this.toastService.presentToast('请获取验证码');
-                break;
-            case 2:
-                this.toastService.presentToast('验证码超时，请重新获取');
-                break;
-            case 3:
-                this.toastService.presentToast('验证码错误');
-                break;
-            default:
-                this.postData.username = this.username.value;
-                this.postData.password = this.password.value;
-                this.postData.phone = this.phone.value;
-                if (this.referrer) {
-                    this.postData.referrer = '/api/users/' + this.referrer.id;
-                }
-                else {
-                    delete this.postData.referrer;
-                }
-                this.authService.signup(this.postData).subscribe(
-                    (res: any) => {
-                        console.log(res);
-                        if (res) {
-                            this.toastService.presentToast('注册成功');
-                            this.router.navigate(['/signin']);
-                        } else {
-                            this.toastService.presentToast(
-                                '用户名已存在'
-                            );
-                        }
-                    },
-                    (error: any) => {
-                        this.toastService.presentToast('网络异常');
-                    }
-            );
+        const postData = {
+            username: this.username.value,
+            password: this.password.value,
+            phone: this.phone.value,
+            otp: this.otp.value,
+            referrerId: ''
+        };
+        if (this.referrer) {
+            postData.referrerId = this.referrer.id;
         }
+        else {
+            delete postData.referrerId;
+        }
+        this.authService.signup(postData).subscribe(
+            (res: any) => {
+                console.log(res);
+                this.resp = res;
+                switch (this.resp.code) {
+                    case 0:
+                        this.toastService.presentToast('注册成功');
+                        this.router.navigate(['/signin']);
+                        break;
+                    case 1:
+                        this.toastService.presentToast('请获取验证码');
+                        break;
+                    case 2:
+                        this.toastService.presentToast('验证码超时，请重新获取');
+                        break;
+                    case 3:
+                        this.toastService.presentToast('验证码错误');
+                        break;
+                    default:
+                        this.toastService.presentToast('用户名已存在');
+                }
+            },
+            (error: any) => {
+                this.toastService.presentToast('网络异常');
+            }
+        );
     }
 
     checkPhoneDup(){
@@ -221,8 +205,7 @@ export class SignupPage implements OnInit {
               that.codeTimeout -= 1;
               if (that.codeTimeout === 0){
                   clearInterval(interval2);
-                  that.codeTimeout = 1800;
-                  that.smsResp.code = 'timeout';
+                  that.codeTimeout = 300;
               }
           }, 1000);
           this.codeSent = true;
