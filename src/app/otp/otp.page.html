@@ -10,9 +10,9 @@
 <ion-content class="ion-padding">
   <ion-label>将向手机号 {{phone}} 发送验证码:</ion-label>
   <ion-item class="vcode">
-    <ion-input slot="start" [(ngModel)]="vCode" [readonly]="!smsResp" inputmode="numeric" required minlength='6' maxlength='6' name="vCode" class="input ion-margin-bottom" placeholder="验证码">
+    <ion-input slot="start" [(ngModel)]="otp" [readonly]="!smsResp" inputmode="numeric" required minlength='6' maxlength='6' name="otp" class="input ion-margin-bottom" placeholder="验证码">
     </ion-input>
-    <ion-button slot="end" [disabled]="codeSent" class="sms" type="button" size="" (click)="getSms()">{{getCodeBtnText}}</ion-button>
+    <ion-button slot="end" [disabled]="codeSent" class="sms" type="button" size="" (click)="getOtp()">{{getCodeBtnText}}</ion-button>
   </ion-item>
-  <ion-button [disabled]="!vCode" (click)="chpass()" expand="block" type="submit">确认</ion-button>
+  <ion-button [disabled]="!otp" (click)="chpass()" expand="block" type="submit">确认</ion-button>
 </ion-content>

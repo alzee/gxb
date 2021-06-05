@@ -20,13 +20,13 @@ export class OtpPage implements OnInit {
   resp: Data;
   codeSent = false;
   resendTime = 59;
-  codeTimeout = 120;
+  codeTimeout = 300;
   smsType = 'verify';
   smsPass = environment.smsPass;
   smsResp;
   getCodeBtnText = '获取验证码';
   phone: string;
-  vCode: string;
+  otp: string;
   uid: number;
 
   constructor(
@@ -41,9 +41,16 @@ export class OtpPage implements OnInit {
     this.phone = this.message.phone;
   }
 
-  getSms(){
-      this.httpService.get(`sms?phone=${this.phone}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
-          this.toastService.presentToast('验证码已发送');
+  getOtp(){
+      this.httpService.get(`getsms?phone=${this.phone}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
+          this.smsResp = res;
+          if (this.smsResp.success) {
+              this.toastService.presentToast('验证码已发送');
+          }
+          else {
+              this.toastService.presentToast('验证码发送失败，请稍后重试');
+          }
+          console.log(res);
           this.getCodeBtnText = `重新发送(${this.resendTime})`;
           const that = this;
           const interval = setInterval(() => {
@@ -60,41 +67,31 @@ export class OtpPage implements OnInit {
               that.codeTimeout -= 1;
               if (that.codeTimeout === 0){
                   clearInterval(interval2);
-                  that.codeTimeout = 120;
-                  that.smsResp.code = 'timeout';
+                  that.codeTimeout = 300;
               }
           }, 1000);
           this.codeSent = true;
-          this.smsResp = res;
-          console.log(res);
       });
   }
 
-  chkcode() {
-      if (!this.smsResp){
-          return 1;
-      }
-      else if (this.smsResp.code === 'timeout'){
-          return 2;
-      }
-      else if (this.vCode !== this.smsResp.code){
-          return 3;
-      }
-  }
-
   chpass(){
-      switch (this.chkcode()) {
-          case 1:
-              this.toastService.presentToast('请获取验证码');
+      const postData = {
+          phone: this.phone,
+          otp: this.otp
+      };
+      this.httpService.post('verifyotp', postData).subscribe((res) => {
+          this.resp = res;
+          console.log(res);
+          switch (this.resp.code) {
+              case 1:
+                  this.toastService.presentToast('验证码超时，请重新获取');
               break;
-          case 2:
-              this.toastService.presentToast('验证码超时，请重新获取');
+              case 2:
+                  this.toastService.presentToast('验证码错误');
               break;
-          case 3:
-              this.toastService.presentToast('验证码错误');
-              break;
-          default:
-              this.router.navigate(['/chpasswd'], {replaceUrl: true});
-      }
+              default:
+                  this.router.navigate(['/chpasswd'], {replaceUrl: true});
+          }
+      });
   }
 }

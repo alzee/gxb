@@ -114,7 +114,7 @@ export class SignupPage implements OnInit {
                 this.resp = res;
                 switch (this.resp.code) {
                     case 0:
-                        this.toastService.presentToast('注册成功');
+                        this.toastService.presentToast(this.resp.msg);
                         this.router.navigate(['/signin']);
                         break;
                     default:
@@ -179,7 +179,14 @@ export class SignupPage implements OnInit {
       console.log(this.smsType);
       console.log(this.smsPass);
       this.httpService.get(`getsms?phone=${this.phone.value}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
-          this.toastService.presentToast('验证码已发送');
+          this.smsResp = res;
+          if (this.smsResp.success) {
+              this.toastService.presentToast('验证码已发送');
+          }
+          else {
+              this.toastService.presentToast('验证码发送失败，请稍后重试');
+          }
+          console.log(res);
           this.getCodeBtnText = `重新发送(${this.resendTime})`;
           const that = this;
           const interval = setInterval(() => {
@@ -200,8 +207,6 @@ export class SignupPage implements OnInit {
               }
           }, 1000);
           this.codeSent = true;
-          this.smsResp = res;
-          console.log(res);
       });
     }
 

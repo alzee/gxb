@@ -23,7 +23,7 @@ export class ChphonePage implements OnInit {
   codeSent = false;
   phoneDup = 0;
   resendTime = 59;
-  codeTimeout = 120;
+  codeTimeout = 300;
   smsType = 'verify';
   smsPass = environment.smsPass;
   smsResp;
@@ -80,7 +80,7 @@ export class ChphonePage implements OnInit {
   getSms(){
       console.log(this.smsType);
       console.log(this.smsPass);
-      this.httpService.get(`sms?phone=${this.phone.value}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
+      this.httpService.get(`getsms?phone=${this.phone.value}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
           this.toastService.presentToast('验证码已发送');
           this.getCodeBtnText = `重新发送(${this.resendTime})`;
           const that = this;
@@ -98,8 +98,7 @@ export class ChphonePage implements OnInit {
               that.codeTimeout -= 1;
               if (that.codeTimeout === 0){
                   clearInterval(interval2);
-                  that.codeTimeout = 120;
-                  that.smsResp.code = 'timeout';
+                  that.codeTimeout = 300;
               }
           }, 1000);
           this.codeSent = true;
