@@ -47,7 +47,7 @@ export class ChphonePage implements OnInit {
       this.form = this.formBuilder.group({
           pass: [''],
           phone: [''],
-          vCode: ['']
+          otp: ['']
       });
   }
 
@@ -59,8 +59,8 @@ export class ChphonePage implements OnInit {
       return this.form.get('phone');
   }
 
-  get vCode(){
-      return this.form.get('vCode');
+  get otp(){
+      return this.form.get('otp');
   }
 
   checkPhoneDup(){
@@ -78,10 +78,15 @@ export class ChphonePage implements OnInit {
   }
 
   getSms(){
-      console.log(this.smsType);
-      console.log(this.smsPass);
       this.httpService.get(`getsms?phone=${this.phone.value}&type=${this.smsType}&pass=${this.smsPass}`).subscribe((res) => {
-          this.toastService.presentToast('验证码已发送');
+          this.smsResp = res;
+          if (this.smsResp.success) {
+              this.toastService.presentToast('验证码已发送');
+          }
+          else {
+              this.toastService.presentToast('验证码发送失败，请稍后重试');
+          }
+          console.log(res);
           this.getCodeBtnText = `重新发送(${this.resendTime})`;
           const that = this;
           const interval = setInterval(() => {
@@ -102,8 +107,6 @@ export class ChphonePage implements OnInit {
               }
           }, 1000);
           this.codeSent = true;
-          this.smsResp = res;
-          console.log(res);
       });
   }
 
@@ -114,7 +117,7 @@ export class ChphonePage implements OnInit {
       else if (this.smsResp.code === 'timeout'){
           return 2;
       }
-      else if (this.vCode.value !== this.smsResp.code){
+      else if (this.otp.value !== this.smsResp.code){
           return 3;
       }
   }
@@ -123,33 +126,19 @@ export class ChphonePage implements OnInit {
       const postData = {
           uid: this.userData.id,
           pass: this.pass.value,
-          type: 0
+          phone: this.phone.value,
+          otp: this.otp.value
       };
-      this.httpService.post('chkpass', postData).subscribe((res) => {
+      this.httpService.post('chphone', postData).subscribe((res) => {
           this.resp = res;
-          if (this.resp.code === 0) {
-              switch (this.chkcode()) {
-                  case 1:
-                      this.toastService.presentToast('请获取验证码');
-                      break;
-                  case 2:
-                      this.toastService.presentToast('验证码超时，请重新获取');
-                      break;
-                  case 3:
-                      this.toastService.presentToast('验证码错误');
-                      break;
-                  default:
-                      const postData1 = {
-                          phone: this.phone.value
-                      };
-                      this.httpService.patch('users/' + this.userData.id, postData1).subscribe((res1) => {
-                          this.toastService.presentToast('手机号已修改');
-                          this.navCtrl.back();
-                      });
-              }
-          }
-          else {
-              this.toastService.presentToast('密码输入错误');
+          console.log(res);
+          switch (this.resp.code) {
+              case 0:
+                  this.toastService.presentToast('手机号已修改');
+                  this.navCtrl.back();
+                  break;
+              default:
+                  this.toastService.presentToast(this.resp.msg);
           }
       });
   }
