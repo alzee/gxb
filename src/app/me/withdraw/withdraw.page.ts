@@ -171,7 +171,7 @@ export class WithdrawPage implements OnInit {
       }
   }
 
-  async confirmWithdraw(i){
+  async confirmWithdraw(){
       this.clicked = true;
       const alert = await this.alertController.create({
           header: `提现 ¥${this.actual.toFixed(2)}`,
