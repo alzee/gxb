@@ -8,13 +8,16 @@ import { PublishPageRoutingModule } from './publish-routing.module';
 
 import { PublishPage } from './publish.page';
 
+import { DebounceClickModule } from '../debounce-click.module';
+
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
     IonicModule,
-    PublishPageRoutingModule
+    PublishPageRoutingModule,
+    DebounceClickModule
   ],
   declarations: [PublishPage]
 })
