@@ -387,7 +387,7 @@ export class PublishPage implements OnInit {
   }
 
   checkBalance(){
-      // this.clicked = true;
+      this.clicked = true;
       this.httpService.get('users/' + this.userData.id).subscribe((res) => {
           this.user = res;
           this.availableBalance = this.user.topup + this.user.earnings;
