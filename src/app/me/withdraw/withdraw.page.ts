@@ -35,6 +35,7 @@ export class WithdrawPage implements OnInit {
   wxuserinfo: Data;
   node: Data;
   resp: Data;
+  clicked: false;
 
   constructor(
       public navCtrl: NavController,
@@ -108,6 +109,7 @@ export class WithdrawPage implements OnInit {
   }
 
   withdraw(){
+      this.clicked = true;
       const data = {
           uid: this.userData.id,
           type: +this.type.value,
@@ -154,6 +156,7 @@ export class WithdrawPage implements OnInit {
                       this.httpService.post('order', data).subscribe((res2) => {
                           console.log(res2);
                           this.resp = res2;
+                          this.clicked = false;
                           if (+this.resp.code === 0) {
                               this.toastService.presentToast('提现处理中');
                           }

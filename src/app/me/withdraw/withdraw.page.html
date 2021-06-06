@@ -60,7 +60,7 @@
   </ion-item>
   </ion-radio-group>
   <ion-item-divider color="light"></ion-item-divider>
-  <ion-button expand="block" [disabled]="form.invalid" type="submit" appDebounceClick (debounceClick)="withdraw()">立即提现</ion-button>
+  <ion-button expand="block" [disabled]="clicked || form.invalid" type="submit" appDebounceClick (debounceClick)="withdraw()">立即提现</ion-button>
   </form>
   <ion-text color="medium" *ngIf="node" [innerHTML]="node.body"></ion-text>
 </ion-content>
