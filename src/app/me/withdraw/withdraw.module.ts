@@ -8,13 +8,16 @@ import { WithdrawPageRoutingModule } from './withdraw-routing.module';
 
 import { WithdrawPage } from './withdraw.page';
 
+import { DebounceClickModule } from '../../debounce-click.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    WithdrawPageRoutingModule
+    WithdrawPageRoutingModule,
+    DebounceClickModule
   ],
   declarations: [WithdrawPage]
 })
