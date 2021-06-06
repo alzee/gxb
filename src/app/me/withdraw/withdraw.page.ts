@@ -109,7 +109,6 @@ export class WithdrawPage implements OnInit {
   }
 
   withdraw(){
-      this.clicked = true;
       const data = {
           uid: this.userData.id,
           type: +this.type.value,
@@ -156,7 +155,6 @@ export class WithdrawPage implements OnInit {
                       this.httpService.post('order', data).subscribe((res2) => {
                           console.log(res2);
                           this.resp = res2;
-                          this.clicked = false;
                           if (+this.resp.code === 0) {
                               this.toastService.presentToast('提现处理中');
                           }
@@ -171,6 +169,33 @@ export class WithdrawPage implements OnInit {
               });
               break;
       }
+  }
+
+  async confirmWithdraw(i){
+      this.clicked = true;
+      const alert = await this.alertController.create({
+          header: `提现 ¥${this.actual.toFixed(2)}`,
+          message: `手续费 ¥${this.fee.toFixed(2)}`,
+          buttons: [
+              {
+                  text: '取消',
+                  role: 'cancel',
+                  cssClass: 'secondary',
+                  handler: (blah) => {
+                      this.clicked = false;
+                      console.log('Confirm Cancel: blah');
+                  }
+              }, {
+                  text: '确定',
+                  handler: () => {
+                      console.log('Confirm Okay');
+                      this.withdraw();
+                  }
+              }
+          ]
+      });
+
+      await alert.present();
   }
 
   changeMethod(e){
