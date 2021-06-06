@@ -39,5 +39,5 @@
       <ion-radio slot="end" value="1"></ion-radio>
     </ion-item>
   </ion-radio-group>
-  <ion-button expand="block" (click)="tryMethod()">立即支付</ion-button>
+  <ion-button [disabled]="clicked" expand="block" (click)="tryMethod()">立即支付</ion-button>
 </ion-content>

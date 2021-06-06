@@ -35,7 +35,7 @@ export class WithdrawPage implements OnInit {
   wxuserinfo: Data;
   node: Data;
   resp: Data;
-  clicked: false;
+  clicked = false;
 
   constructor(
       public navCtrl: NavController,

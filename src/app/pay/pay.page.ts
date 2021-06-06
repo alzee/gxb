@@ -36,6 +36,7 @@ export class PayPage implements OnInit {
   insufficient: boolean;
   payMethod = 0;
   coupon: Data;
+  clicked = false;
 
   constructor(
       public alertController: AlertController,
@@ -98,6 +99,7 @@ export class PayPage implements OnInit {
     this.orderData.uid = this.userData.id;
     this.orderData.method = this.payMethod;
     this.httpService.post('order', this.orderData).subscribe((res) => {
+        this.clicked = false;
         console.log(res);
         if (this.payMethod === 0) { // balance
             this.toastService.presentToast(this.orderData.note + ' 支付完成');
@@ -168,6 +170,7 @@ export class PayPage implements OnInit {
   }
 
   tryMethod() {
+      this.clicked = true;
       switch (this.payMethod) {
           case 0:
               this.httpService.get('paypassnull/' + this.userData.id ).subscribe((res) => {
@@ -193,6 +196,7 @@ export class PayPage implements OnInit {
           buttons: [{
               text: '确定',
               handler: () => {
+                  this.clicked = false;
                   this.router.navigate(['/chpaypass']);
               }
           }],
