@@ -99,7 +99,6 @@ export class PayPage implements OnInit {
     this.orderData.uid = this.userData.id;
     this.orderData.method = this.payMethod;
     this.httpService.post('order', this.orderData).subscribe((res) => {
-        this.clicked = false;
         console.log(res);
         if (this.payMethod === 0) { // balance
             this.toastService.presentToast(this.orderData.note + ' 支付完成');
@@ -159,6 +158,7 @@ export class PayPage implements OnInit {
       cssClass: 'my-custom-class'
     });
     modal.onWillDismiss().then(data => {
+        this.clicked = false;
         const d = data;
         if (typeof d.data !== 'undefined') {
             if (d.data.passok) {
