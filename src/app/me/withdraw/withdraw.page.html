@@ -10,7 +10,7 @@
 
 <ion-content color="light">
   <ion-item-divider color="light"></ion-item-divider>
-  <form [formGroup]="form">
+  <form (ngSubmit)="confirmWithdraw()" [formGroup]="form">
   <ion-radio-group formControlName="type" (ionChange)="changeType($event)" required>
     <ion-item>
       <ion-label>充值余额  可提({{topup}}元)</ion-label>
@@ -60,7 +60,10 @@
   </ion-item>
   </ion-radio-group>
   <ion-item-divider color="light"></ion-item-divider>
+  <ion-button expand="block" [disabled]="clicked || form.invalid" type="submit">立即提现</ion-button>
+  <ng-template>
   <ion-button expand="block" [disabled]="clicked || form.invalid" type="submit" appDebounceClick (debounceClick)="confirmWithdraw()">立即提现</ion-button>
+  </ng-template>
   </form>
   <ion-text color="medium" *ngIf="node" [innerHTML]="node.body"></ion-text>
 </ion-content>
