@@ -27,7 +27,7 @@ export class PublishPage implements OnInit {
   min = 1;
   feeRate = 0.15;
   taskLeast: number;
-  sum: number;
+  amount: number;
   fee: number;
   price: number;
   total: number;
@@ -289,7 +289,7 @@ export class PublishPage implements OnInit {
   async confirmPublish() {
     const alert = await this.alertController.create({
       header: '发布任务',
-      message: `您账户中相应金额(${this.sum}元)将被冻结，任务结束后解冻剩余部分！`,
+      message: `您账户中相应金额(${this.amount}元)将被冻结，任务结束后解冻剩余部分！`,
       buttons: [
         {
           text: '取消',
@@ -305,7 +305,7 @@ export class PublishPage implements OnInit {
             console.log('Confirm Okay');
             this.validateInputs();
             const orderData = {
-                amount: Math.round(this.total * 100),
+                amount: Math.round(this.amount * 100),
                 fee: Math.round(this.fee * 100),
                 type: this.orderType,
                 note: this.orderNote,
@@ -404,14 +404,14 @@ export class PublishPage implements OnInit {
       if (this.f.price.value) {
           this.price = +this.f.price.value.toFixed(2);
       }
-      this.sum = +(this.f.quantity.value * this.price).toFixed(2);
-      this.fee = +(this.sum * this.feeRate).toFixed(2);
+      this.amount = +(this.f.quantity.value * this.price).toFixed(2);
+      this.fee = +(this.amount * this.feeRate).toFixed(2);
       if (this.coupon) {
           this.fee = +(this.fee - this.coupon.value / 100).toFixed(2);
       }
       if (this.fee < 0) {
           this.fee = 0;
       }
-      this.total = +(this.sum + this.fee).toFixed(2);
+      this.total = +(this.amount + this.fee).toFixed(2);
   }
 }
