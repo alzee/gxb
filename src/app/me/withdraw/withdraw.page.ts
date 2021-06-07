@@ -53,6 +53,11 @@ export class WithdrawPage implements OnInit {
           this.httpService.get('users/' + this.userData.id).subscribe((res1) => {
               console.log(res1);
               this.user = res1;
+              if (!this.user.active) {
+                  this.toastService.presentToast('您的账户已被禁用');
+                  this.navCtrl.back();
+                  return;
+              }
               this.feeRate = this.user.level.withdrawFee;
               this.topup = this.user.topup / 100;
               this.earnings = this.user.earnings / 100;
