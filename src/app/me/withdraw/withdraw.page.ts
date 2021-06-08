@@ -123,9 +123,14 @@ export class WithdrawPage implements OnInit {
           note: '',
           openid: ''
       };
+
+      let type = '奖励';
+      if (+this.type.value === 19) {
+          type = '余额';
+      }
       switch (+this.method.value) {
           case 11:
-              data.note = '提现-微信(手动)-' + this.user['wechat'];
+              data.note = type + '提现-微信(手动)-' + this.user['wechat'];
               this.httpService.post('order', data).subscribe((res) => {
                   console.log(res);
                   this.resp = res;
@@ -139,7 +144,7 @@ export class WithdrawPage implements OnInit {
               });
               break;
           case 12:
-              data.note = '提现-支付宝(手动)-' + this.user['alipay'];
+              data.note = type + '提现-支付宝(手动)-' + this.user['alipay'];
               this.httpService.post('order', data).subscribe((res) => {
                   console.log(res);
                   this.resp = res;
@@ -153,7 +158,7 @@ export class WithdrawPage implements OnInit {
               });
               break;
           case 13:
-              data.note = '提现-微信';
+              data.note = type + '提现-微信';
               const scope = 'snsapi_userinfo';
               const state = '_' + (+new Date());
               this.Wechat.auth(scope, state).then((res) => {
