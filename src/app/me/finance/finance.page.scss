@@ -41,11 +41,12 @@ ion-segment-button{
         font-size: 14px;
       }
       div{
+        font-size: 14px;
         ion-text{
           display: block;
         }
-        .date{
-          font-size: 14px;
+        .status{
+          text-align: right;
         }
       }
     }

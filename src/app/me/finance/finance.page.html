@@ -35,7 +35,7 @@
       </ion-list-header>
       </ng-template>
       <ng-container *ngFor="let i of hists">
-      <ion-item class="list-item" *ngIf="seg == 0 || (seg == 1 && i.type == 19) || (seg == 2 && i.type == 50)">
+      <ion-item class="list-item" *ngIf="seg == 0 || (seg == 1 && (i.type == 18 || i.type == 19)) || (seg == 2 && i.type == 50)">
         <ion-thumbnail slot="start">
           <img src="../assets/img/rmb_blue.png">
         </ion-thumbnail>
@@ -43,9 +43,12 @@
           <ion-text>{{i.note}}</ion-text>
           <ion-text color="medium" class="date">{{i.date | date:'yyyy-MM-dd HH:mm'}}</ion-text>
         </div>
-        <ion-text slot="end">
-          <ion-text *ngIf="i.type < 50">-</ion-text><ion-text *ngIf="i.type >= 50">+</ion-text>{{i.amount / 100|currency:'CNY':'symbol-narrow'}}
-        </ion-text>
+        <div slot="end">
+          <span *ngIf="i.type < 50">-</span>
+          <span *ngIf="i.type >= 50">+</span>
+          {{i.amount / 100|currency:'CNY':'symbol-narrow'}}
+          <ion-text color="medium" class="status">{{statuses[i.status]}}</ion-text>
+        </div>
       </ion-item>
       </ng-container>
     </ion-list>

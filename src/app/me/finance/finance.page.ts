@@ -17,8 +17,9 @@ export class FinancePage implements OnInit {
   userData: Data;
   month: string;
   page = 1;
-  query = 'itemsPerPage=15&order%5Bdate%5D=desc&status=5';
+  query = 'itemsPerPage=15&order%5Bdate%5D=desc&status%5B%5D=1&status%5B%5D=4&status%5B%5D=5';
   hists = [];
+  statuses = ['', '处理中', '', '', '失败', '已完成'];
 
   constructor(
     private httpService: HttpService,
