@@ -124,13 +124,13 @@ export class WithdrawPage implements OnInit {
           openid: ''
       };
       switch (+this.method.value) {
-          case 1:
-              data.note = '提现-支付宝(手动)-' + this.user['alipay'];
-              break;
-          case 2:
+          case 11:
               data.note = '提现-微信(手动)-' + this.user['wechat'];
               break;
-          case 3:
+          case 12:
+              data.note = '提现-支付宝(手动)-' + this.user['alipay'];
+              break;
+          case 13:
               data.note = '提现-微信';
               const scope = 'snsapi_userinfo';
               const state = '_' + (+new Date());
@@ -204,13 +204,14 @@ export class WithdrawPage implements OnInit {
   }
 
   changeMethod(e){
-      if (+this.method.value === 1) {
+      console.log(this.method.value);
+      if (+this.method.value === 12) {
           this.alipay.setValidators([Validators.required]);
       }
       else {
           this.alipay.clearValidators();
       }
-      if (+this.method.value === 2) {
+      if (+this.method.value === 11) {
           this.wechat.setValidators([Validators.required]);
       }
       else {

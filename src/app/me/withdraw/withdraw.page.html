@@ -34,29 +34,29 @@
   </ion-item-divider>
   <ion-radio-group formControlName="method" (ionChange)="changeMethod($event)" required>
   <ion-item>
+    <ion-icon name="logo-wechat" color="success"></ion-icon>
+    <ion-text>微信(手动)</ion-text>
+    <ion-radio slot="end" value="11"></ion-radio>
+  </ion-item>
+  <ion-item *ngIf="method.value == 11">
+    <ion-input class="input" formControlName="wechat" placeholder="请输入微信号"></ion-input>
+    <ion-button *ngIf="!wechat.disabled" [disabled]="wechat.invalid" (click)="confirmAccount(wechat)">确定</ion-button>
+    <ion-button *ngIf="wechat.disabled" (click)="editAccount(2)" color="danger">修改</ion-button>
+  </ion-item>
+  <ion-item>
     <ion-icon name="logo-alipay" color="primary"></ion-icon>
     <ion-text>支付宝(手动)</ion-text>
-    <ion-radio slot="end" value="1"></ion-radio>
+    <ion-radio slot="end" value="12"></ion-radio>
   </ion-item>
-  <ion-item *ngIf="method.value == 1">
+  <ion-item *ngIf="method.value == 12">
     <ion-input class="input" formControlName="alipay" placeholder="请输入支付宝账号"></ion-input>
     <ion-button *ngIf="!alipay.disabled" [disabled]="alipay.invalid" (click)="confirmAccount(alipay)">确定</ion-button>
     <ion-button *ngIf="alipay.disabled" (click)="editAccount(1)" color="danger">修改</ion-button>
   </ion-item>
   <ion-item>
     <ion-icon name="logo-wechat" color="success"></ion-icon>
-    <ion-text>微信(手动)</ion-text>
-    <ion-radio slot="end" value="2"></ion-radio>
-  </ion-item>
-  <ion-item *ngIf="method.value == 2">
-    <ion-input class="input" formControlName="wechat" placeholder="请输入微信号"></ion-input>
-    <ion-button *ngIf="!wechat.disabled" [disabled]="wechat.invalid" (click)="confirmAccount(wechat)">确定</ion-button>
-    <ion-button *ngIf="wechat.disabled" (click)="editAccount(2)" color="danger">修改</ion-button>
-  </ion-item>
-  <ion-item>
-    <ion-icon name="logo-wechat" color="success"></ion-icon>
     <ion-text>微信</ion-text>
-    <ion-radio slot="end" value="3"></ion-radio>
+    <ion-radio slot="end" value="13"></ion-radio>
   </ion-item>
   </ion-radio-group>
   <ion-item-divider color="light"></ion-item-divider>
