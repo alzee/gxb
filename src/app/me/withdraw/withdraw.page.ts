@@ -231,18 +231,22 @@ export class WithdrawPage implements OnInit {
   }
 
   changeMethod(e){
-      console.log(this.method.value);
-      if (+this.method.value === 12) {
-          this.alipay.setValidators([Validators.required]);
-      }
-      else {
-          this.alipay.clearValidators();
-      }
       if (+this.method.value === 11) {
           this.wechat.setValidators([Validators.required]);
+          this.wechat.updateValueAndValidity();
       }
       else {
           this.wechat.clearValidators();
+          this.wechat.updateValueAndValidity();
+      }
+
+      if (+this.method.value === 12) {
+          this.alipay.setValidators([Validators.required]);
+          this.alipay.updateValueAndValidity();
+      }
+      else {
+          this.alipay.clearValidators();
+          this.alipay.updateValueAndValidity();
       }
   }
 
