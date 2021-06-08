@@ -2,7 +2,8 @@ major:
 
 minor:
   - apply archive
-  - ban user
+  - can't patch task status anymore if it's stopped
+
 
 question:
 
