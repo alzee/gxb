@@ -157,14 +157,6 @@ export class PublishPage implements OnInit {
       return this.form.controls;
   }
 
-  publish() {
-      this.validateInputs();
-      this.httpService.post('tasks', this.postData).subscribe((res) => {
-          console.log(res);
-          this.router.navigate(['/myposts'], {replaceUrl: true});
-      });
-  }
-
   validateInputs() {
       // const applyUntil = new Date();
       // applyUntil.setHours(applyUntil.getHours() + this.f.workHours.value);
