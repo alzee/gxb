@@ -10,12 +10,12 @@
 <ion-content color="light">
   <ion-item class="head">
     <div slot="start">
-      <h4>我的股权 {{myEquity}}</h4>
-      <p>现价(RMB) {{price}}</p>
+      <p>我的股权 {{myEquity}}</p>
+      <p>现价 {{price|currency:'CNY':'symbol-narrow'}}</p>
     </div>
     <div slot="end" class="">
-      <p><span>成交量</span>{{total / 100}}</p>
-      <p><span></span></p>
+      <p>成交量</p>
+      <p class="ion-text-right">{{total / 100}}</p>
     </div>
   </ion-item>
 
