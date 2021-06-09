@@ -1,10 +1,10 @@
 ion-header{
     ion-toolbar{
-      --background: none;
+      --background: #0080ff;
     }
 }
 ion-content{
-  --offset-top: 46px !important;
+  //--offset-top: 46px !important;
   --background: url("../../../assets/img/land_cell_bg.png") top/contain no-repeat;
 }
 .info{
