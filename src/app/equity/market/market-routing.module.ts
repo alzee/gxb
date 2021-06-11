@@ -9,10 +9,6 @@ const routes: Routes = [
     component: MarketPage
   },
   {
-    path: 'rule',
-    loadChildren: () => import('./rule/rule.module').then( m => m.RulePageModule)
-  },
-  {
     path: 'pay',
     loadChildren: () => import('./pay/pay.module').then( m => m.PayPageModule)
   },
