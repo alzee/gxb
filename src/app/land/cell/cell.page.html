@@ -29,10 +29,7 @@
       <h4>TA想跟大家说</h4>
     </ion-item>
     <ion-item>
-      <ion-text>
-        <p>
-        {{post.body}}
-        </p>
+      <ion-text [innerHTML]="post.body">
       </ion-text>
     </ion-item>
       <ion-item *ngFor="let i of post.pics" class="pic">
