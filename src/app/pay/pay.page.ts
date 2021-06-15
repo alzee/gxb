@@ -37,6 +37,8 @@ export class PayPage implements OnInit {
   payMethod = 0;
   coupon: Data;
   clicked = false;
+  useCoupon = true;
+  amount: number;
 
   constructor(
       public alertController: AlertController,
@@ -63,7 +65,8 @@ export class PayPage implements OnInit {
       }
       this.orderData = this.message.orderData;
       this.orderData.amount = Math.round(this.orderData.amount * 100);
-      console.log(this.message);
+      this.amount = this.orderData.amount;
+      // console.log(this.message);
 
       this.storageService.get(AuthConstants.AUTH).then((res) => {
           this.userData = res;
@@ -78,8 +81,7 @@ export class PayPage implements OnInit {
               for (const coupon of this.user.coupon) {
                   if (coupon.type === this.orderData.type) {
                       this.coupon = coupon;
-                      this.orderData.amount = this.orderData.amount - coupon.value;
-                      this.orderData.couponId = coupon.id;
+                      this.checkCoupon();
                       break;
                   }
               }
@@ -141,13 +143,19 @@ export class PayPage implements OnInit {
     console.log('Loading dismissed!');
   }
 
-  checkCoupon(e) {
-      if (e.detail.checked) {
-         this.orderData.amount = this.orderData.amount - this.coupon.value;
+  checkCoupon() {
+      console.log(this.useCoupon);
+      if (this.useCoupon) {
+         if (this.amount > this.coupon.value) {
+             this.orderData.amount = this.amount - this.coupon.value;
+         }
+         else {
+             this.orderData.amount = 0;
+         }
          this.orderData.couponId = this.coupon.id;
       }
       else {
-         this.orderData.amount = this.orderData.amount + this.coupon.value;
+         this.orderData.amount = this.amount;
          this.orderData.couponId = 0;
       }
   }
