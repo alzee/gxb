@@ -144,7 +144,6 @@ export class PayPage implements OnInit {
   }
 
   checkCoupon() {
-      console.log(this.useCoupon);
       if (this.useCoupon) {
          if (this.amount > this.coupon.value) {
              this.orderData.amount = this.amount - this.coupon.value;
