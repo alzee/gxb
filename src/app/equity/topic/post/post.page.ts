@@ -45,7 +45,7 @@ export class PostPage implements OnInit {
       const postData = {
           author: '/api/users/' + this.userData.id,
           title: this.f.title.value,
-          body: this.f.body.value,
+          body: this.f.body.value.replace(/\n/g, '<br>'),
           type: '/api/node_types/2'
       };
       this.httpService.post('nodes', postData).subscribe((res) => {
