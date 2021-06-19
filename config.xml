@@ -2,7 +2,7 @@
 <widget id="com.drgxb.app" version="1.2.26" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>达人共享宝</name>
     <description>drgxb</description>
-    <author email="hi@ionicframework.com" href="http://ionicframework.com/">Al Zee</author>
+    <author email="z@alz.ee" href="https://alz.ee/">Al Zee</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
