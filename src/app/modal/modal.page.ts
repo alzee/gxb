@@ -18,6 +18,7 @@ export class ModalPage implements OnInit {
   userData: Data;
   otp: string;
   resp: Data;
+  title = '请输入支付密码';
   showOtpComponent = true;
   @ViewChild('ngOtpInput', { static: false}) ngOtpInput: any;
   config = {
