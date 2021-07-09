@@ -5,6 +5,8 @@ import { ToastService } from '../services/toast.service';
 import { HttpService } from '../services/http.service';
 import { AuthConstants } from '../config/auth-constants';
 import { StorageService } from '../services/storage.service';
+import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 
 interface Data {
     [propName: string]: any;
@@ -17,16 +19,19 @@ interface Data {
 })
 export class ChpaypassPage implements OnInit {
   userData: Data;
+  user: Data;
   resp: Data;
   form: FormGroup;
   isset: boolean;
 
   constructor(
+      private router: Router,
       public navCtrl: NavController,
       private formBuilder: FormBuilder,
       private httpService: HttpService,
       private toastService: ToastService,
-      private storageService: StorageService
+      private storageService: StorageService,
+      private data: DataService
   ) { }
 
   ngOnInit() {
@@ -97,4 +102,17 @@ export class ChpaypassPage implements OnInit {
       });
   }
 
+  reset(){
+      this.httpService.get('users/' + this.userData.id).subscribe((res) => {
+          this.user = res;
+
+          const msg = {
+              uid: this.user.id,
+              phone: this.user.phone,
+              action: 'resetpay'
+          };
+          this.data.changeMessage(msg);
+          this.router.navigate(['/otp'], {replaceUrl: true});
+      });
+  }
 }

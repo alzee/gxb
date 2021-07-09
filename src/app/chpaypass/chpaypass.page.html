@@ -29,7 +29,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-note slot="end" routerLink="/resetpass">忘记支付密码？</ion-note>
+    <ion-note slot="end" (click)="reset()">忘记支付密码？</ion-note>
   </ion-item>
   <ion-button [disabled]="form.invalid || newPass1.value != newPass.value" expand="block" type="submit">确认</ion-button>
   </form>
