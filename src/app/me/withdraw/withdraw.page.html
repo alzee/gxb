@@ -10,7 +10,7 @@
 
 <ion-content color="light">
   <ion-item-divider color="light"></ion-item-divider>
-  <form (ngSubmit)="confirmWithdraw()" [formGroup]="form">
+  <form (ngSubmit)="chkpaypass()" [formGroup]="form">
   <ion-radio-group formControlName="type" (ionChange)="changeType($event)" required>
     <ion-item>
       <ion-label>任务奖励  可提({{earnings}}元)</ion-label>

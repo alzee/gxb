@@ -6,6 +6,8 @@ import { AuthConstants } from '../../config/auth-constants';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
 import { Wechat } from '@ionic-native/wechat/ngx';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../../modal/modal.page';
 
 interface Data {
     [propName: string]: any;
@@ -38,6 +40,7 @@ export class WithdrawPage implements OnInit {
   clicked = false;
 
   constructor(
+      public modalController: ModalController,
       public navCtrl: NavController,
       private Wechat: Wechat,
       public alertController: AlertController,
@@ -328,5 +331,51 @@ export class WithdrawPage implements OnInit {
           this.fee = +(this.actual * this.feeRate).toFixed(2);
       }
       this.sum = +(this.fee + this.actual).toFixed(2);
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      cssClass: 'my-custom-class'
+    });
+    modal.onWillDismiss().then(data => {
+        this.clicked = false;
+        const d = data;
+        if (typeof d.data !== 'undefined') {
+            if (d.data.passok) {
+                this.withdraw();
+            }
+        }
+    });
+    return await modal.present();
+  }
+
+  async mkpaypass(){
+      const alert = await this.alertController.create({
+          header: '请先创建支付密码',
+          message: '您还未创建支付密码',
+          buttons: [{
+              text: '确定',
+              handler: () => {
+                  this.clicked = false;
+                  this.router.navigate(['/chpaypass']);
+              }
+          }],
+      });
+
+      await alert.present();
+  }
+
+  chkpaypass(){
+      this.clicked = true;
+      this.httpService.get('paypassnull/' + this.userData.id ).subscribe((res) => {
+          this.resp = res;
+          if (this.resp.code === 0) {
+              this.mkpaypass();
+          }
+          else {
+              this.presentModal();
+          }
+      });
   }
 }
