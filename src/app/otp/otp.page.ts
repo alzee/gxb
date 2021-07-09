@@ -28,6 +28,7 @@ export class OtpPage implements OnInit {
   phone: string;
   otp: string;
   uid: number;
+  action: string;
 
   constructor(
     private httpService: HttpService,
@@ -39,6 +40,8 @@ export class OtpPage implements OnInit {
   ngOnInit() {
     this.data.currentMessage.subscribe(message => this.message = message);
     this.phone = this.message.phone;
+    this.action = this.message.action;
+    console.log(this.action, this.phone);
   }
 
   getOtp(){
@@ -90,7 +93,12 @@ export class OtpPage implements OnInit {
                   this.toastService.presentToast('验证码错误');
                   break;
               default:
-                  this.router.navigate(['/chpasswd'], {replaceUrl: true});
+                  if (this.action === 'reset') {
+                      this.router.navigate(['/chpasswd'], {replaceUrl: true});
+                  }
+                  if (this.action === 'resetpay') {
+                      this.router.navigate(['/chpaypass'], {replaceUrl: true});
+                  }
           }
       });
   }
