@@ -41,7 +41,6 @@ export class OtpPage implements OnInit {
     this.data.currentMessage.subscribe(message => this.message = message);
     this.phone = this.message.phone;
     this.action = this.message.action;
-    console.log(this.action, this.phone);
   }
 
   getOtp(){
@@ -97,6 +96,10 @@ export class OtpPage implements OnInit {
                       this.router.navigate(['/chpasswd'], {replaceUrl: true});
                   }
                   if (this.action === 'resetpay') {
+                      const msg = {
+                          action: 'resetpay_otp'
+                      };
+                      this.data.changeMessage(msg);
                       this.router.navigate(['/chpaypass'], {replaceUrl: true});
                   }
           }

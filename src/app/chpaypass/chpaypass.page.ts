@@ -23,6 +23,8 @@ export class ChpaypassPage implements OnInit {
   resp: Data;
   form: FormGroup;
   isset: boolean;
+  message: Data;
+  isReset = false;
 
   constructor(
       private router: Router,
@@ -35,6 +37,11 @@ export class ChpaypassPage implements OnInit {
   ) { }
 
   ngOnInit() {
+      this.data.currentMessage.subscribe(message => this.message = message);
+      if (this.message.action === 'resetpay_otp') {
+          this.isReset = true;
+      }
+
       this.storageService.get(AuthConstants.AUTH).then(
           (res) => {
               this.userData = res;
@@ -70,7 +77,10 @@ export class ChpaypassPage implements OnInit {
   }
 
   chpass() {
-      if (this.isset) {
+      if (!this.isset || this.isReset) {
+          this.ch();
+      }
+      else {
           const postData = {
               uid: this.userData.id,
               pass: this.oldPass.value,
@@ -85,9 +95,6 @@ export class ChpaypassPage implements OnInit {
                   this.toastService.presentToast('原密码输入错误');
               }
           });
-      }
-      else {
-          this.ch();
       }
   }
 
@@ -114,5 +121,12 @@ export class ChpaypassPage implements OnInit {
           this.data.changeMessage(msg);
           this.router.navigate(['/otp'], {replaceUrl: true});
       });
+  }
+
+  ionViewWillLeave(){
+      const msg = {
+          action: 'pay'
+      };
+      this.data.changeMessage(msg);
   }
 }
