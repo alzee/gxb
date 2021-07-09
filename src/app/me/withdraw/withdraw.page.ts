@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { ToastService } from '../../services/toast.service';
 import { StorageService } from '../../services/storage.service';
@@ -47,6 +48,7 @@ export class WithdrawPage implements OnInit {
       private formBuilder: FormBuilder,
       private httpService: HttpService,
       private storageService: StorageService,
+      private router: Router,
       private toastService: ToastService
   ) {}
 

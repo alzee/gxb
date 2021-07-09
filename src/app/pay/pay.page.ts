@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import { ActivatedRoute, Router, Params, RoutesRecognized } from '@angular/router';
+import { Router } from '@angular/router';
 import { filter, pairwise } from 'rxjs/operators';
 import { DataService } from '../services/data.service';
 import { Subscription } from 'rxjs';
@@ -48,7 +48,6 @@ export class PayPage implements OnInit {
       private wechat: Wechat,
       private platform: Platform,
       private storageService: StorageService,
-      private activeRoute: ActivatedRoute,
       private httpService: HttpService,
       private router: Router,
       private toastService: ToastService,
